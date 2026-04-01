@@ -47,6 +47,7 @@
 - 3/7/14/30 day overdue buckets
 - next action recommendation
 - tone stage (`gentle`, `firm`, `escalate`)
+- blockage-first grouping (`routing`, `AP review`, `pay-run`, `proof missing`)
 
 ### `/deals/:id`
 - invoice readiness checklist
@@ -107,6 +108,8 @@
 - amount
 - happened_at
 - note
+- proof_requested_at
+- proof_received_at
 
 ## 6. Required automation
 - invoice sent → due date tracking 시작
@@ -116,6 +119,7 @@
 - outstanding unpaid → new work risk 표시
 - pay-run miss → blockage queue 이동
 - remittance promised but not received → proof request 추천
+- reminder-only 자동화가 아니라 blockage type 기준으로 next step 추천
 
 ## 7. Build order
 1. deal + status model
@@ -157,7 +161,7 @@ Do not build:
 - discovery CRM
 - accounting platform
 - contract suite
-- auto-send messaging
+- reminder-only auto-send messaging
 
 Success:
 - user can see today’s collections queue

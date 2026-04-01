@@ -38,6 +38,8 @@
 ## 제품 wedge
 "creator CRM"이 아니라 **collections visibility + payment-stage clarity + AP-routing control**.
 
+자동 리마인더 자체는 이미 보이는 만큼, wedge는 `독촉 자동화`보다 **현재 blockage를 드러내고 다음 조치를 큐로 보여주는 operating layer**에 둔다.
+
 ## 하지 말아야 할 것
 - creator discovery CRM
 - contract/e-sign suite first

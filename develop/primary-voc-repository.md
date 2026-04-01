@@ -59,6 +59,7 @@
 - tone selector
 - bucket definition note (`now`, `next`, `later`)
 - ambiguity explanation block
+- `near-term commitments only` validation badge
 
 ### `/commitments`
 - promises at risk
@@ -123,6 +124,8 @@
 - bucket_definition_note
 - ambiguity_note
 - safe_wording_notes
+- commitment_window_rule (`near_term_only`)
+- timeline_confidence_note
 
 ## 6. Ranking logic
 초기 점수 가중치:
@@ -160,6 +163,7 @@
 - bucket definition note
 - ambiguity explanation
 - non-commitment-safe wording
+- rule: `now`에만 near-term commitment 허용, `next/later`는 방향성 표현만 허용
 
 ## 8. Build order
 1. record intake

@@ -27,6 +27,7 @@
 - segment / account at risk
 - commitment risk this quarter
 - priority override explanation
+- near-term commitments only 규칙이 반영된 update draft
 - now/next/later-safe external update draft
 
 ## 왜 지금 이 아이디어를 유지하는가
