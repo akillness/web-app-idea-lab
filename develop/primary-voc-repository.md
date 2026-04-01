@@ -12,8 +12,9 @@
 ### 포함
 - record paste/upload
 - source type 지정
+- shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`)
 - AI extraction
-- theme clustering
+- tagging + AI clustering
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
