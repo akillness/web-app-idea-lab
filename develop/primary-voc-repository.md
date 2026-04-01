@@ -6,6 +6,8 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **주간 의사결정 브리프**와 **commitment-safe external update draft**를 생성한다.
 
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **internal decision layer**와 **external communication layer**로 번역하는 것이다.
+
 ## 2. MVP scope
 ### 포함
 - record paste/upload
@@ -48,11 +50,13 @@
 - score breakdown
 - evidence drawer
 - linked accounts / segments
+- linked commitments / override reasons
 
 ### `/briefs/latest`
 - weekly decision brief
 - edit / regenerate
 - export markdown
+- internal notes vs customer-facing implications split
 
 ### `/updates/latest`
 - customer-safe roadmap / progress wording
@@ -60,12 +64,14 @@
 - bucket definition note (`now`, `next`, `later`)
 - ambiguity explanation block
 - `near-term commitments only` validation badge
+- `when is later?` answer helper
 
 ### `/commitments`
 - promises at risk
 - affected accounts
 - promise type (`date`, `range`, `directional`)
 - suggested safer wording
+- confidence / evidence link
 
 ## 5. Core entities
 ### `records`
@@ -126,6 +132,7 @@
 - safe_wording_notes
 - commitment_window_rule (`near_term_only`)
 - timeline_confidence_note
+- answer_when_is_later
 
 ## 6. Ranking logic
 초기 점수 가중치:
@@ -162,10 +169,17 @@
 - later
 - bucket definition note
 - ambiguity explanation
+- answer to `when is later?`
 - non-commitment-safe wording
 - rule: `now`에만 near-term commitment 허용, `next/later`는 방향성 표현만 허용
 
-## 8. Build order
+## 8. Product rules
+- `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
+- `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
+- 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
+- internal decision artifact와 customer-facing update draft를 섞지 않는다.
+
+## 9. Build order
 1. record intake
 2. extraction JSON validation
 3. theme ranking board
@@ -174,25 +188,27 @@
 6. external update draft
 7. export/editing
 
-## 9. First milestone
+## 10. First milestone
 - 10~20개 샘플 record 입력 가능
 - 5개 이상 theme 생성
 - brief 1개 생성
 - evidence linked output 확인 가능
 - commitment risk item 최소 1개 노출
+- `when is later?`에 답하는 safe draft 한 개 생성
 
-## 10. Validation
+## 11. Validation
 - founder/PM이 실제 weekly review 전에 본다.
 - brief를 회의에서 그대로 사용한다.
-- "무엇이 악화됐는지 빨리 읽힌다"는 피드백 확보.
+- `무엇이 악화됐는지 빨리 읽힌다`는 피드백 확보.
+- `why this jumped the queue` 설명이 납득된다는 피드백 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
 
-## 11. Build prompt
+## 12. Build prompt
 ```text
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a weekly decision brief for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a weekly decision brief and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
@@ -202,6 +218,7 @@ Must-have capabilities:
 - priority override labeling
 - weekly brief generation
 - customer-safe now/next/later update draft
+- explicit answer helper for "when is later?"
 - markdown export
 
 Do not build:
@@ -210,9 +227,15 @@ Do not build:
 - generic note-taking app
 - roadmap system of record
 
+Important rules:
+- only near-term commitments can appear in `now`
+- `next/later` must remain directional
+- keep internal decision logic separate from customer-facing wording
+
 Success:
 - 10+ records in
 - meaningful ranked themes out
 - one weekly brief generated with source evidence
 - one commitment-safe update draft generated
+- one clear explanation of why an item jumped priority
 ```

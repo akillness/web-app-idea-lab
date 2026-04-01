@@ -6,6 +6,8 @@
 ## 1. Build goal
 사용자가 deal 이후의 invoice/payment 흐름을 구조화해서 **오늘 회수해야 할 돈과 다음 행동**을 볼 수 있게 한다.
 
+핵심은 generic creator CRM이 아니라, collections 단계에서 `지금 어디서 막혔는지`를 보여주는 **cash-ops operating layer**다.
+
 ## 2. MVP scope
 ### 포함
 - deal 등록
@@ -18,6 +20,7 @@
 - overdue cadence queue
 - underpaid / ghosted / escalated state tracking
 - remittance-proof 상태 기록
+- next-step recommendation
 
 ### 제외
 - creator discovery CRM
@@ -30,10 +33,11 @@
 1. deal 생성
 2. contact / clause / routing 정보 입력
 3. deliverable 상태 기록
-4. invoice sent 기록
-5. due/promised/pay-run 정보 추적
-6. overdue cadence queue 생성
-7. paid / underpaid / escalated 종료
+4. invoice readiness 확인
+5. invoice sent 기록
+6. due/promised/pay-run 정보 추적
+7. overdue cadence queue 생성
+8. paid / underpaid / escalated 종료
 
 ## 4. Main screens
 ### `/deals`
@@ -41,13 +45,14 @@
 - amount / due date / promised date
 - payment status
 - blockage badge
+- invoice correctness badge
 
 ### `/collections/today`
 - follow-up due today
 - 3/7/14/30 day overdue buckets
 - next action recommendation
 - tone stage (`gentle`, `firm`, `escalate`)
-- blockage-first grouping (`routing`, `AP review`, `pay-run`, `proof missing`)
+- blockage-first grouping (`routing`, `AP review`, `pay-run`, `proof missing`, `wrong destination`)
 
 ### `/deals/:id`
 - invoice readiness checklist
@@ -55,6 +60,7 @@
 - follow-up log
 - payment events
 - remittance-proof status
+- promised date vs actual status delta
 
 ### `/blockages`
 - onboarding blocked
@@ -62,6 +68,7 @@
 - pay-run missed
 - wrong invoice destination
 - missing PO/reference
+- missing remittance proof
 
 ## 5. Core entities
 ### `deals`
@@ -86,6 +93,7 @@
 ### `invoice_profiles`
 - invoice_recipient
 - invoice_destination
+- invoice_destination_verified
 - po_number
 - vendor_reference
 - terms_text
@@ -119,28 +127,37 @@
 - outstanding unpaid → new work risk 표시
 - pay-run miss → blockage queue 이동
 - remittance promised but not received → proof request 추천
+- invoice destination 미확인 / PO 누락 / onboarding 미완료 시 `send reminder`보다 먼저 `fix routing` 추천
 - reminder-only 자동화가 아니라 blockage type 기준으로 next step 추천
 
-## 7. Build order
+## 7. Product rules
+- broad CRM처럼 deal 전체를 관리하지 않고 **payment-stage visibility**에만 집중한다.
+- follow-up 문구 생성보다 먼저 `invoice correctness`, `invoice destination`, `AP owner`, `pay-run date`를 확인한다.
+- `AP review`, `pay-run miss`, `wrong destination`, `proof missing`은 서로 다른 blockage로 유지한다.
+- overdue queue는 날짜 기준이지만, 추천 액션은 blockage 기준으로 만든다.
+
+## 8. Build order
 1. deal + status model
 2. invoice readiness checklist + routing fields
 3. overdue cadence queue
 4. blockage states + payment transitions
 5. next-step recommendation
 
-## 8. First milestone
+## 9. First milestone
 - 10개 deal 등록 가능
 - today follow-up queue 동작
 - overdue / underpaid / ghosted / blocked 분리
 - next action 추천 표시
 - invoice readiness 누락 필드 경고 표시
+- wrong destination / AP review / pay-run miss가 서로 다른 상태로 보임
 
-## 9. Validation
+## 10. Validation
 - 사용자가 시트 대신 이 화면을 회수 source of truth로 본다.
-- follow-up timing이 유용하다는 반응이 나온다.
+- follow-up timing보다 `지금 어디서 막혔는지`가 더 빨리 보인다는 반응이 나온다.
 - invoice readiness checklist와 AP routing 정보가 실제로 빠진 정보를 줄인다.
+- `누구에게 무엇을 보내야 하는지`가 바로 결정된다는 피드백 확보.
 
-## 10. Build prompt
+## 11. Build prompt
 ```text
 Build a collections-first MVP for Creator Deal CRM.
 
@@ -151,11 +168,13 @@ Must-have:
 - deal tracking
 - AP/project-owner/intermediary routing
 - invoice readiness checklist
+- invoice destination verification
 - invoice destination + terms + PO/reference
 - due/promised/pay-run dates
 - overdue cadence queue
 - underpaid/ghosted/blocked states
 - remittance-proof tracking
+- next-step recommendation by blockage type
 
 Do not build:
 - discovery CRM
@@ -163,8 +182,14 @@ Do not build:
 - contract suite
 - reminder-only auto-send messaging
 
+Important rules:
+- treat AP review, wrong invoice destination, pay-run miss, and proof missing as separate states
+- fix routing before sending another chase email when core invoice fields are incomplete
+- optimize for collections visibility, not CRM completeness
+
 Success:
 - user can see today’s collections queue
 - overdue and blocked cases are categorized clearly
 - next step is obvious per deal
+- invoice correctness problems are caught before another reminder is sent
 ```
