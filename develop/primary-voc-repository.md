@@ -4,7 +4,7 @@
 **Updated**: 2026-04-02
 
 ## 1. Build goal
-사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **주간 의사결정 브리프**를 생성한다.
+사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **주간 의사결정 브리프**와 **commitment-safe external update draft**를 생성한다.
 
 ## 2. MVP scope
 ### 포함
@@ -12,7 +12,9 @@
 - source type 지정
 - AI extraction
 - theme clustering
-- theme ranking
+- account/revenue-aware ranking
+- commitment risk detection
+- priority override labeling
 - weekly decision brief 생성
 - now/next/later-safe external update draft 생성
 - markdown export
@@ -45,6 +47,7 @@
 - theme list
 - score breakdown
 - evidence drawer
+- linked accounts / segments
 
 ### `/briefs/latest`
 - weekly decision brief
@@ -54,6 +57,14 @@
 ### `/updates/latest`
 - customer-safe roadmap / progress wording
 - tone selector
+- bucket definition note (`now`, `next`, `later`)
+- ambiguity explanation block
+
+### `/commitments`
+- promises at risk
+- affected accounts
+- promise type (`date`, `range`, `directional`)
+- suggested safer wording
 
 ## 5. Core entities
 ### `records`
@@ -61,6 +72,7 @@
 - source_type
 - raw_text
 - account_name
+- customer_name
 - segment
 - arr_band
 - lifecycle_stage
@@ -77,7 +89,9 @@
 - expected_value
 - rough_effort
 - commitment_status
+- promise_type
 - external_update_mode
+- priority_override_reason
 
 ### `themes`
 - id
@@ -88,6 +102,7 @@
 - revenue_risk_score
 - commitment_risk_score
 - recency_score
+- override_score
 - total_score
 
 ### `brief_items`
@@ -97,16 +112,35 @@
 - recommendation
 - confidence
 - source_theme_ids
+- affected_account_ids
+
+### `update_drafts`
+- id
+- brief_id
+- now_text
+- next_text
+- later_text
+- bucket_definition_note
+- ambiguity_note
+- safe_wording_notes
 
 ## 6. Ranking logic
 초기 점수 가중치:
-- frequency 30
+- frequency 25
 - severity 20
 - ARR/account importance 20
 - commitment risk 20
 - recency 10
+- priority override 5
 
 규칙 기반 점수 + LLM 해석 보조로 시작한다.
+
+`priority_override_reason`은 아래 중 하나 이상으로 제한한다.
+- customer commitment
+- churn risk
+- strategic segment
+- company objective
+- technical foundation
 
 ## 7. Required outputs
 ### Weekly Decision Brief
@@ -115,6 +149,7 @@
 - segment at risk
 - commitments at risk
 - recommended actions now
+- priority overrides and why
 - what stays intentionally uncommitted
 - evidence highlights
 
@@ -122,6 +157,7 @@
 - now
 - next
 - later
+- bucket definition note
 - ambiguity explanation
 - non-commitment-safe wording
 
@@ -129,20 +165,23 @@
 1. record intake
 2. extraction JSON validation
 3. theme ranking board
-4. weekly brief generation
-5. external update draft
-6. export/editing
+4. commitment risk + priority override labeling
+5. weekly brief generation
+6. external update draft
+7. export/editing
 
 ## 9. First milestone
 - 10~20개 샘플 record 입력 가능
 - 5개 이상 theme 생성
 - brief 1개 생성
 - evidence linked output 확인 가능
+- commitment risk item 최소 1개 노출
 
 ## 10. Validation
 - founder/PM이 실제 weekly review 전에 본다.
 - brief를 회의에서 그대로 사용한다.
 - "무엇이 악화됐는지 빨리 읽힌다"는 피드백 확보.
+- `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
 
 ## 11. Build prompt
 ```text
@@ -154,7 +193,9 @@ Turn support, churn, feature request, and commitment records into a weekly decis
 Must-have capabilities:
 - upload/paste records
 - structured extraction
-- theme clustering and ranking
+- account/revenue-aware ranking
+- commitment risk detection
+- priority override labeling
 - weekly brief generation
 - customer-safe now/next/later update draft
 - markdown export
@@ -169,4 +210,5 @@ Success:
 - 10+ records in
 - meaningful ranked themes out
 - one weekly brief generated with source evidence
+- one commitment-safe update draft generated
 ```
