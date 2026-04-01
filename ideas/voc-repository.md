@@ -5,7 +5,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view + progress-report surface**로 바꿔주는 decision layer.
+초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꿔주는 decision layer.
 
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, spreadsheet, ProductBoard, Jira, Slack, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지, 무엇에 시간을 써야 하는지**를 한 번에 보지 못한다는 점이다.
@@ -21,6 +21,9 @@
 - 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
+- roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
+- public roadmap은 `now / next / soon / later` 수준으로 두고, proven delivery history 없으면 날짜를 피하라는 운영 조언이 보인다.
+- 실제 release cadence는 2주처럼 짧을 수 있어, 내부 shipping rhythm과 외부 expectation language를 분리하는 레이어가 필요하다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - churn evidence는 surveys / support tickets / Stripe fields에 흩어져 있고 systematic reading이 없다.
 - 일부 팀은 percentile benchmark도 궁금해하지만, 그 전에 월요일 아침마다 support ticket, Intercom, Slack, Salesforce를 수동으로 읽고 정리한다.
@@ -57,6 +60,7 @@
 - requesting customer / account importance
 - commitment status
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
+- roadmap layer vs release-plan layer distinction
 
 핵심 포지셔닝 문장:
 > Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief plus a next-90-days commitment-risk and progress-report surface showing what got worse, for which segment, what revenue or trust is at risk, and what to say or do now.
@@ -70,6 +74,7 @@
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
 - `what should stay intentionally uncommitted for the next 90 days`를 명시해 false commitment를 줄임
 - hard date를 못 주는 상황에서도 쓸 수 있는 **progress report / release-plan style external update draft**를 생성
+- roadmap theme와 release/date-like promise를 섞지 않도록 **safe communication mode**를 강제
 - generic AI summary가 아니라 **source-linked decision artifact**를 출력
 
 ## MVP Boundary
@@ -149,6 +154,12 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/zrtnvu/how_do_i_respond_to_emails_loosely_and_not_give/
 - Reddit indexed snippet: even a 3-month roadmap can change every two weeks once work begins
   - https://www.reddit.com/r/ProductManagement/comments/t9oymm/realistically_how_often_do_you_actually_hit_your/
+- Reddit indexed snippet: some PMs explicitly distinguish roadmap from release plan and warn against treating roadmap like a dated timeline
+  - https://www.reddit.com/r/ProductManagement/comments/rtmf2p/how_to_write_a_product_roadmap/
+- Reddit indexed snippet: some teams keep public roadmap language at now / next / soon / later and avoid dates unless delivery history is proven
+  - https://www.reddit.com/r/ProductManagement/comments/mtid85/product_roadmap_template/
+- Reddit indexed snippet: release planning can follow a concrete 2-week SaaS cadence even when customer-facing roadmap commitments stay softer
+  - https://www.reddit.com/r/ProductManagement/comments/q3q7dv/how_do_you_plan_releases/
 - Reddit indexed snippet: Google Form + spreadsheet intake still powers feature request collection
   - https://www.reddit.com/r/ProductManagement/comments/y3pmqg/managing_and_tracking_customer_feature_request/
 - Reddit indexed snippet: teams want to tie dollars / resource time / requesting customers back to feature requests

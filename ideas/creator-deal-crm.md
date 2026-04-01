@@ -4,7 +4,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms · promised payment date · pre-due reminder · follow-up timing · collections visibility**를 닫아주는 creator cash-ops tool.
+브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms · promised payment date · pre-due reminder · follow-up timing · collections visibility**를 닫아주고 `지금 돈이 어디서 막혔는지`를 보여주는 creator cash-ops tool.
 
 ## Why it stayed backup, not primary
 이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `late payment`, `underpayment`, `ghosting`, `awkward chasing`, `automated reminders`, `clear payment terms before work` 같은 framing이 더 추가됐다. 다만 fresh evidence의 무게중심은 agency-wide CRM보다는 **freelancer / solo creator collections pain** 쪽에 더 가까웠고, 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있다. 그래서 지금은 **강한 backup**으로 유지한다.

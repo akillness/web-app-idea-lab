@@ -22,5 +22,10 @@
 - Creator 쪽에서는 `invoice creation`보다 **payment chasing timing**, **collections visibility**, **invoice readiness professionalism**이 더 선명한 pain으로 강화됐다.
 - 특히 이번 루프에는 **`not some scribbled note` 수준의 professional invoice + net 30 + late fee + auto-reminder** framing이 추가돼, 문제의 시작점이 collections 이후가 아니라 invoice setup 품질에도 있음을 더 분명히 보여줬다.
 - 추가로 Reddit `r/freelance` indexed snippets에서는 **due date 일주일 전 friendly reminder**, **due date 전날 reminder + 20% late fee**, **첫 인보이스/연체 시 추가 작업을 멈추는 hold-work rule**, **작은 벤더가 AP list 맨 아래로 밀리는 현실**이 보였다.
+- 새로 확인된 Reddit roadmap/release-plan 신호:
+  - `How do you plan releases?`에서는 **feature는 준비되는 대로 shipping하고 SaaS는 2주 release cadence로 운영**한다는 식의 현실적인 release-plan 감각이 보였다.
+  - `how to write a product roadmap?`에서는 **roadmap을 start/end date가 있는 timeline으로 오해하지만, 그건 roadmap이 아니라 release plan**이라는 구분이 드러났다.
+  - `Product Roadmap Template?`에서는 **public roadmap은 now / next / soon / later 수준으로 두고, proven delivery history 없으면 날짜를 피하라**는 운영 조언이 보였다.
+  - `How to commit to quarterly or yearly roadmap goals/deadlines ...`에서는 **just-in-time design/detail 환경에서 분기·연간 목표 commit 자체가 어렵다**는 tension이 다시 확인됐다.
 - Threads는 `site:threads.net` 기반 재탐색에서도 유의미한 net-new signal을 거의 주지 못했고, creator invoice/payment query는 이번 루프도 Yahoo에서 **검색 결과 0건**이었다. 이번에는 더 좁힌 quoted query `site:threads.net "creator invoice" "follow up" "brand deal"`도 **검색 결과 0건**이었다.
 - 따라서 현재 조사 레이어는 `Reddit = indexed snippet + PullPush mirror`, `X = indexed snippet`, `Threads = weak/blocked` 조합으로 운영 중이다.
