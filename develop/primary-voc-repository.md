@@ -4,9 +4,9 @@
 **Updated**: 2026-04-02
 
 ## 1. Build goal
-사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **commitment-safe external update draft**를 생성한다.
+사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**를 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work가 잡아먹는 strategy-time tax를 줄이는 운영 레이어**가 필요하다.
 
 ## 2. MVP scope
 ### 포함
@@ -29,6 +29,7 @@
 - now/next/later-safe external update draft 생성
 - bucket definition note 생성
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
+- commitment-overhead queue 생성
 - markdown export
 
 ### 제외
@@ -49,7 +50,8 @@
 8. decision rationale 생성
 9. weekly brief 생성
 10. external update draft 생성
-11. markdown export
+11. commitment-overhead queue 생성
+12. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -85,6 +87,7 @@
 - `decision trace` block
 - `what changed since last review` block
 - `what should we build next` answer block
+- `strategy-time tax this week` block
 
 ### `/updates/latest`
 - customer-safe roadmap / progress wording
@@ -109,6 +112,14 @@
 - linked account concentration
 - linked churn / revenue / commitment signals
 - override reason badge
+
+### `/queue/commitment-overhead`
+- accounts asking for timing clarity
+- open `when is later?` style questions
+- accounts with risky dated promises
+- suggested ambiguity-closing answer
+- suggested safer directional wording
+- owner + due-next-action
 
 ## 5. Core entities
 ### `records`
@@ -207,6 +218,18 @@
 - answer_when_is_later
 - answer_why_not_committed
 
+### `commitment_overhead_items`
+- id
+- account_id
+- source_record_id
+- question_type (`when_is_later`, `why_not_now`, `can_you_commit`, `follow_up_needed`)
+- risk_level
+- suggested_answer
+- suggested_safe_wording
+- owner
+- next_action_at
+- status
+
 ## 6. Ranking logic
 초기 점수 가중치:
 - frequency 20
@@ -234,6 +257,10 @@
 - 그래서 지금 build next 후보는 무엇인가?
 - 다른 후보보다 이 항목을 먼저 다뤄야 하는 이유는 무엇인가?
 
+`commitment_overhead_items`는 아래 두 질문을 항상 채운다.
+- 어떤 account/commitment 질문이 이번 주 전략 시간을 가장 많이 잡아먹는가?
+- 이 질문을 안전하게 닫기 위해 다음으로 누구에게 어떤 설명을 보내야 하는가?
+
 ## 7. Required outputs
 ### Customer-Level Evidence Board
 반드시 아래가 보여야 한다.
@@ -255,6 +282,7 @@
 - why not now
 - build next recommendation
 - what stays intentionally uncommitted
+- strategy-time tax this week
 - evidence highlights
 
 ### External Update Draft
@@ -268,6 +296,13 @@
 - non-commitment-safe wording
 - rule: `now`에만 near-term commitment 허용, `next/later`는 방향성 표현만 허용
 
+### Commitment-Overhead Queue
+- open expectation-management questions
+- risky dated promises
+- suggested owner
+- suggested safe answer
+- next action due
+
 ## 8. Product rules
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
 - `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
@@ -276,6 +311,7 @@
 - deferred item에도 `왜 아직 now가 아닌지`를 남긴다.
 - `build next` 추천은 linked account evidence 없이 생성하지 않는다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
+- `commitment_overhead_items`는 separate queue로 유지해 decision work와 explanation work를 같이 보되 섞지 않는다.
 
 ## 9. Build order
 1. record intake
@@ -287,7 +323,8 @@
 7. decision rationale generation
 8. weekly brief generation
 9. external update draft
-10. export/editing
+10. commitment-overhead queue
+11. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
@@ -299,6 +336,7 @@
 - commitment risk item 최소 1개 노출
 - `when is later?`에 답하는 safe draft 한 개 생성
 - `why this jumped / why not now` rationale 한 세트 생성
+- commitment-overhead queue item 최소 1개 노출
 
 ## 11. Validation
 - founder/PM이 실제 weekly review 전에 본다.
@@ -309,13 +347,14 @@
 - `why not now` 설명이 customer-facing 팀에도 유용하다는 반응 확보.
 - `지금 무엇을 build next 해야 하는지`를 linked evidence 기준으로 말할 수 있다는 반응 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
+- expectation-management 질문을 처리하는 시간이 줄었다는 반응 확보.
 
 ## 12. Build prompt
 ```text
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a ranked build-next decision queue, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a ranked build-next decision queue, a commitment-overhead queue, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
@@ -329,6 +368,7 @@ Must-have capabilities:
 - why-this-jumped / why-not-now rationale generation
 - weekly brief generation
 - commitment-safe external update draft
+- commitment-overhead queue
 
 Do not build:
 - helpdesk replacement
@@ -343,10 +383,12 @@ Important rules:
 - the product must explicitly answer `what should we build next?`
 - `now` can contain near-term commitments, `next/later` cannot
 - the product must answer both `why this jumped` and `why not now`
+- the product must reduce commitment/explanation overhead, not just summarize feedback
 
 Success:
 - a PM/founder can review linked customer evidence before the weekly meeting
 - the brief explains what changed, who is affected, and why priorities moved
 - the build-next queue is explainable from linked evidence
 - the external draft is safer than ad-hoc now/next/later messaging
+- the team can close recurring `when is later?` / `why not now?` questions faster
 ```
