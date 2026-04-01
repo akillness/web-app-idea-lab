@@ -3,8 +3,8 @@
 ## Workflow Context
 이번 루프에서도 플랫폼별 신호 품질 차이는 유지됐다.
 
-- **Reddit**: direct live page는 불안정했지만, Yahoo indexed Reddit snippets로는 오히려 더 구체적인 workflow가 보였다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다.
-- **X**: direct post reading은 막혔지만, Yahoo indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 추가됐다.
+- **Reddit**: direct live page는 불안정했지만, Yahoo indexed Reddit snippets로는 오히려 더 구체적인 workflow가 보였다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**까지 확인됐다.
+- **X**: direct post reading은 막혔지만, Yahoo indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다.
 - **Threads**: 이번 루프의 focused query `site:threads.net creator invoice payment follow up brand deal`는 Yahoo에서 **검색 결과 0건**이었다. 여전히 discovery source보다는 blocker evidence에 가깝다.
 
 이번 루프에서 더 선명해진 흐름은 세 가지다.
@@ -38,10 +38,13 @@
 3. feature request별로 어느 고객이 요청했는지, dollars/resource time이 어떻게 연결되는지 별도 수동 계산을 한다.
 4. churn feedback는 survey/support/billing export에 남지만 ARR / ICP / lifecycle 기준으로 정규화하지 못한다.
 5. 월요일 아침마다 support tickets, Intercom, Slack complaints, Salesforce churn note를 사람이 직접 오가며 읽는다.
-6. enterprise request/commitment는 spreadsheet 여러 개나 backlog 툴 여기저기에 흩어져 prioritization drift가 생긴다.
-7. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
-8. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
-9. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
+6. formal intake를 도입해도 여전히 JTBD / use case / desired outcome을 템플릿으로 수집한 뒤 사람이 다시 grooming하고 보강한다.
+7. JIRA feature request project에서 area / impact / effort를 채우며 raw request를 decision-ready field로 번역한다.
+8. enterprise request/commitment는 spreadsheet 여러 개나 backlog 툴 여기저기에 흩어져 prioritization drift가 생긴다.
+9. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
+10. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
+11. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
+12. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
 
 ## Adjacent Problems
 - feedback는 쌓이는데 decision artifact는 남지 않는다.
@@ -66,6 +69,16 @@
 
 > "PMs spend monday morning: reading last week's support tickets, skimming intercom, checking slack for complaints, opening salesforce for churn notes..." — X indexed snippet
 - https://x.com/valewrnt/status
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Instead of simply giving us solutions, we wanted to enforce the principle of understanding the problem so our template is a fill-in-the-blank JTBD." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1bi0jqk/do_you_have_a_formal_request_intake_process/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "We have a JIRA project named Feature requests ... we fill out area of application, impact, effort as we groom this list." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/11s751k/what_info_to_ask_for_in_feature_requests/
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
@@ -105,9 +118,14 @@
 - Confidence: high
 
 > "Saw the same post on r/freelance every single week: how do I chase late payments without being awkward" — X indexed snippet
-- https://x.com/Anubhavi/status
+- https://x.com/Anubhavhing/status/2028627747158016340
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
-- Confidence: medium
+- Confidence: high
+
+> "built : polite nudge day 3, firm follow up day 7, 'my accountant is handling this' at day 30" — X indexed snippet
+- https://x.com/Anubhavhing/status/2028627747158016340
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
 > "The fourth earner is an automated invoice reminder system for freelancers and small service businesses." — X indexed snippet
 - https://x.com/shubh19/status
@@ -120,9 +138,14 @@
 - Confidence: medium
 
 > "Late payments, underpayments, and ghosting creators is way too common." — X indexed snippet
-- https://x.com/mahlaku_m/status
+- https://x.com/mahlaku_m/status/2036378849487749441
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
-- Confidence: medium
+- Confidence: high
+
+> "A creator sent me a screenshot of how they invoice their clients. It was a WhatsApp message ... That's not an invoice." — X indexed snippet
+- https://x.com/Dominus_Kelvin/status/2029573666388996145
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
 ## Collection Caveat
 - Reddit evidence는 이번 루프도 **Yahoo indexed Reddit snippet**이 핵심이었다. live-page verification과 동일하지 않다.

@@ -3,8 +3,8 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 benchmark/network product로 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back signal이 추가로 강화됨 |
-| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, `automated reminders` 신호를 보강함 |
+| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 benchmark/network product로 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming** 신호가 추가로 강화됨 |
+| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **WhatsApp-style invoicing** 신호를 보강함 |
 | Support-to-Product Decision Hub | support/CS 요청을 dedupe·contextualize·impact-aware prioritization으로 바꾸는 intake layer | VoC의 가장 강한 하위 wedge | standalone이면 Productboard/Jira 보조툴처럼 보일 위험 | dollars/resource time tie-back과 request-origin tracking이 이번 루프에서 더 또렷해짐 |
 | Creator Collections Assistant | overdue invoice, promised date, follow-up sequence, reminder timing에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context와 rights memory가 빠짐 | solo/freelancer skew가 강한 entry wedge로는 유효 |
 | Churn Decision Copilot | churn rate가 아니라 churn reason / segment / avoidability / unit-econ impact를 연결하는 분석 레이어 | `why`와 `so what`을 동시에 풀 수 있음 | 단독 제품이면 intake/evidence layer 없이 약할 수 있음 | VoC의 module로는 강하지만 standalone 1순위는 아님 |
@@ -21,7 +21,9 @@
 
 ## What People Actually Use
 - SaaS 팀은 여전히 Google Forms, email, MS Forms, spreadsheets로 request를 모으고 weekly review를 한다.
+- formal intake를 도입한 팀도 여전히 JTBD / problem statement / desired outcome을 템플릿으로 받는다.
 - Slack / email / meeting note를 ProductBoard에 넣고 Jira로 다시 넘기는 식의 multi-tool bridge가 흔하다.
+- feature request grooming은 여전히 `area`, `impact`, `effort` 같은 필드를 사람이 채우며 진행된다.
 - feature request prioritization은 여전히 `누가 요청했는지`, `얼마짜리 고객인지`, `얼마나 많은 resource time이 드는지`를 수동으로 연결한다.
 - founders는 feedback가 없는 게 아니라 support/churn/NPS가 많아서 **무엇을 결정해야 하는지**가 더 어려워진다.
 - PM은 월요일 아침 support tickets, Intercom, Slack, Salesforce를 오가며 상황을 재구성한다.
@@ -39,6 +41,8 @@
 
 ## Curated Sources
 ### Reddit / Yahoo indexed snippets
+- https://www.reddit.com/r/ProductManagement/comments/1bi0jqk/do_you_have_a_formal_request_intake_process/
+- https://www.reddit.com/r/ProductManagement/comments/11s751k/what_info_to_ask_for_in_feature_requests/
 - https://www.reddit.com/r/ProductManagement/comments/y3pmqg/managing_and_tracking_customer_feature_request/
 - https://www.reddit.com/r/ProductManagement/comments/10g15dz/tools_for_tracking_customer_requests/
 - https://www.reddit.com/r/ProductManagement/comments/vjpy9n/what_tools_do_you_use_to_gather_feature_requests/
@@ -64,15 +68,16 @@
 - https://x.com/brianfofficial/status/2031850417718460521
 - https://x.com/_kamsyed/status/2033983166759793024
 - https://x.com/valewrnt/status
-- https://x.com/jeebz_a/status
+- https://x.com/jeebz_a/status/2029969484459462989
 - https://x.com/polsia/status/2035027604550689279
 - https://x.com/fbrsaas/status
-- https://x.com/Anubhavi/status
+- https://x.com/Anubhavhing/status/2028627747158016340
 - https://x.com/shubh19/status
 - https://x.com/canusign/status
-- https://x.com/mahlaku_m/status
+- https://x.com/mahlaku_m/status/2036378849487749441
 - https://x.com/ManojBuilds/status
 - https://x.com/Indiepat2026/status
+- https://x.com/Dominus_Kelvin/status/2029573666388996145
 
 ### Threads
 - Focused query `site:threads.net creator invoice payment follow up brand deal` returned zero Yahoo results this loop.

@@ -24,6 +24,7 @@
 - usage rights, quoted rate, repeat-brand history 같은 운영 맥락이 payment 회수와 분리된다.
 - 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
 - follow-up copy보다 **언제 follow-up해야 하는지**가 더 큰 문제다.
+- follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
@@ -53,6 +54,7 @@
 - overdue / unpaid / underpaid / ghosted view
 - next action queue for collections
 - quoted rate, usage rights, repeat-brand note 저장
+- default follow-up cadence tracking (e.g. day 3 / day 7 / day 30 after due date or promised payment date)
 - follow-up sequence recommendation
 
 ### 제외
@@ -73,8 +75,10 @@
 ## What changed this loop
 - `creator CRM`보다 `collections clarity`가 더 날카로운 wedge라는 점이 다시 확인됐다.
 - automated reminder demand가 보였지만, 더 중요한 건 reminder copy보다 **timing logic**이라는 점이다.
+- 이번 루프에는 그 timing logic이 더 구체화돼 **day 3 / day 7 / day 30** cadence 수준까지 보였다.
 - `clear payment terms before work`가 invoice 이후 문제가 아니라 **사전 cash-risk control**이라는 점이 추가됐다.
 - late payments뿐 아니라 **underpayments / ghosting**도 first-class 상태여야 한다.
+- 일부 creators는 여전히 **WhatsApp message 수준의 invoicing**을 하고 있어 invoice readiness / professionalism gap도 entry pain으로 읽힌다.
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 
 ## Supporting Evidence
@@ -92,14 +96,14 @@
   - https://www.reddit.com/r/PartneredYoutube/comments/1cf7d33/pricing_sponsorships_and_usage_rights/
 - Reddit / PullPush mirror: brand payments often stretch to 30–90 days and require repeated follow-up
   - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
-- X indexed snippet: awkward late-payment chasing appears often enough to be productized
-  - https://x.com/Anubhavi/status
+- X indexed snippet: awkward late-payment chasing appears often enough to be productized, and the best recovered framing explicitly suggested day 3 / day 7 / day 30 sequence steps
+  - https://x.com/Anubhavhing/status/2028627747158016340
 - X indexed snippet: automated invoice reminders are being framed as their own product for freelancers and small service businesses
   - https://x.com/shubh19/status
 - X indexed snippet: clear payment terms before work are framed as the main fix for late-payment losses
   - https://x.com/canusign/status
 - X indexed snippet: late payments, underpayments, and ghosting creators is way too common
-  - https://x.com/mahlaku_m/status
+  - https://x.com/mahlaku_m/status/2036378849487749441
 - X indexed snippet: freelancers still chase payments 30+ days after delivery and feel real stress
   - https://x.com/Indiepat2026/status
 - X indexed snippet: creators still invoice through WhatsApp-like chat messages

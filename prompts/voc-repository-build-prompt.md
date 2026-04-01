@@ -31,8 +31,9 @@ Build an evidence layer that:
 1. accepts transcript/text uploads or paste input,
 2. extracts structured tags such as segment, ARR/ICP importance, JTBD, pain point, objection, feature request, churn reason, churn risk,
 3. preserves the original customer wording plus normalized reasoning,
-4. groups recurring themes,
-5. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
+4. normalizes messy requests into PM-ready fields such as JTBD / use case / desired outcome / impacted area / impact / effort,
+5. groups recurring themes,
+6. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
@@ -81,7 +82,7 @@ Implementation contract for coding agent:
 
    For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, ARR band, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
 
-   For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, account importance, requesting customer(s), revenue importance when known, and rough resource-cost / implementation-effort context when available.
+   For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, JTBD/use case, desired outcome, impacted area, expected value, urgency, account importance, requesting customer(s), revenue importance when known, and rough resource-cost / implementation-effort context when available.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.

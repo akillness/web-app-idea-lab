@@ -10,10 +10,12 @@
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, spreadsheet, ProductBoard, Jira, Slack, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지, 무엇에 시간을 써야 하는지**를 한 번에 보지 못한다는 점이다.
 
-이번 루프에서 더 강해진 핵심 증거는 아래 아홉 가지다.
+이번 루프에서 더 강해진 핵심 증거는 아래 열한 가지다.
 - 사용자는 feedback 부족보다 **decision problem**을 겪고 있다.
 - feature request intake는 여전히 Google Form / MS Forms / spreadsheet와 weekly review에 의존한다.
+- 일부 팀은 formal intake를 도입해도 여전히 **fill-in-the-blank JTBD template**로 문제 정의를 강제한다.
 - PM은 Slack / email / meeting note를 ProductBoard에 넣고 다시 Jira로 옮기는 bridge workflow를 수동으로 운영한다.
+- feature request grooming도 자동화되지 않았고, 여전히 **area / impact / effort** 같은 필드를 사람이 채우며 decision-ready 상태로 번역한다.
 - 일부 팀은 feature request별로 **dollars / resource time / requesting customer**를 묶고 싶지만 구조화가 부족하다.
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
@@ -41,6 +43,14 @@
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review**.
 
+핵심은 raw feedback를 더 모으는 게 아니라, 팀이 이미 쓰는 intake/grooming language로 바꾸는 것이다. 즉 record는 최소한 아래 필드를 향해야 한다.
+- JTBD / use case / desired outcome
+- impacted area
+- expected impact
+- rough effort / implementation weight
+- requesting customer / account importance
+- commitment status
+
 핵심 포지셔닝 문장:
 > Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief showing what got worse, for which segment, what revenue is at risk, and what to act on now.
 
@@ -58,6 +68,7 @@
 - 텍스트/문서 업로드 및 붙여넣기
 - support tickets / feedback emails / churn notes / cancellation reasons / feature-request context 업로드
 - AI-assisted tagging (pain, segment, objection, request, churn reason, lifecycle stage, ARR/ICP importance, request origin, avoidable-vs-non-actionable churn)
+- structured intake normalization for JTBD / use case / desired outcome / impacted area / expected impact / rough effort
 - recurring signal dashboard
 - support-to-product intake summary
 - health / risk review brief
@@ -109,7 +120,11 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
 - X indexed snippet: founders know churn rate but not why customers leave; evidence sits in surveys/support tickets/Stripe fields
   - https://x.com/brianfofficial/status/2031850417718460521
 - X indexed snippet: founders have a decision problem, not a feedback problem
-  - https://x.com/jeebz_a/status
+  - https://x.com/jeebz_a/status/2029969484459462989
+- Reddit indexed snippet: some teams enforce problem understanding with a fill-in-the-blank JTBD intake template
+  - https://www.reddit.com/r/ProductManagement/comments/1bi0jqk/do_you_have_a_formal_request_intake_process/
+- Reddit indexed snippet: some teams still groom feature requests in JIRA using area / impact / effort fields
+  - https://www.reddit.com/r/ProductManagement/comments/11s751k/what_info_to_ask_for_in_feature_requests/
 - X indexed snippet: PMs manually read support tickets, Intercom, Slack, and Salesforce on Monday morning
   - https://x.com/valewrnt/status
 - X indexed snippet: some founders want a single Monday-morning view of what is healthy, at risk, and urgent

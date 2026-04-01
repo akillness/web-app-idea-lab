@@ -32,6 +32,7 @@ Optimize the MVP for creator deal execution plus collections visibility, not gen
 Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 Treat `follow-up timing` as a first-class product problem, not just a copy-generation afterthought.
 Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
+Assume the default manual collections workflow often wants explicit checkpoints like **day 3, day 7, and day 30** after the due date or promised payment date.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -120,6 +121,7 @@ Implementation contract for coding agent:
    - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message
+   - support a default cadence such as **day-3 gentle reminder, day-7 firmer payment-date confirmation, day-30 escalation/final follow-up**, while allowing per-deal override
    - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | firmer escalation | final notice / pause future work
    - the system must explain *why now* for each next action so users understand why this is the right follow-up moment
    - store sequence step number, last contact date, promised payment date, recommended next send date, and the reason that date was chosen
