@@ -3,9 +3,9 @@
 ## Workflow Context
 이번 루프에서는 소셜 원문 접근성이 플랫폼별로 더 명확하게 갈렸다.
 
-- **Reddit**: live page는 여전히 불안정했지만, PullPush mirror를 통해 실제 pain 문장이 있는 post들을 다수 회수했다.
-- **X**: direct post opening은 막혔지만 Yahoo indexed snippet으로 반복되는 workflow pain을 계속 확인했다.
-- **Threads**: 이번 루프도 focused query에서 의미 있는 결과를 거의 주지 못했다.
+- **Reddit**: live page는 여전히 불안정했지만, Yahoo indexed Reddit snippets로 roadmap-date / commitment pain을 다시 회수했고 PullPush mirror 근거와 연결해 읽을 수 있었다.
+- **X**: direct post opening은 막혔지만 Yahoo indexed snippet으로 반복되는 workflow pain을 계속 확인했다. 이번 루프는 특히 `percentile curiosity`, `one Monday-morning view`, `messy multi-dataset churn analysis`, `payment follow-up timing`을 추가로 보여줬다.
+- **Threads**: 이번 루프도 focused query에서 의미 있는 결과를 거의 주지 못했고, creator invoice/payment query는 Yahoo에서 아예 결과 0건이었다.
 
 이번에 더 선명해진 핵심 흐름은 두 가지다.
 
@@ -142,6 +142,31 @@
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
+> "Most SaaS founders have no idea if their churn rate is normal. Percentile fixes that. Connect Stripe, see where you rank against anonymized peers." — X indexed snippet
+- https://x.com/polsia/status/2035027604550689279
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "The founder could open one view every Monday morning and see exactly what was healthy, what was at risk, and what needed immediate attention. No digging through Slack." — X indexed snippet
+- https://x.com/_kamsyed/status/2033983166759793024
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I analysed churn for a subscription fitness app. 400 customers. 918 support tickets. 445 activity logs. 3 messy datasets, 5 data quality issues, and findings that would change how leadership spends next quarter." — X indexed snippet
+- https://x.com/Ibk_egwu/status/2030939886304321786
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Freelancers lose thousands every year to late payments. Not because clients don't want to pay. Because nobody followed up at the right time." — browser-rendered indexed snippet
+- https://x.com/ManojBuilds/status
+- Source path: Yahoo Search browser vision capture, accessed 2026-04-01
+- Confidence: medium
+
+> "If you're self-employed, you know the hard part isn't sending the invoice, it's chasing the payment." — browser-rendered indexed snippet
+- https://x.com/Invoice_Ovaro/status
+- Source path: Yahoo Search browser vision capture, accessed 2026-04-01
+- Confidence: medium
+
 > "Freelancers don’t need more tabs. They need money to show up." — X indexed snippet
 - https://x.com/MilesCraftDev/status
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
@@ -150,7 +175,7 @@
 ## Collection Caveat
 - Reddit evidence는 이번 루프부터 **PullPush mirror 기반 회수**가 중심이다. live-page verification과 동일하지 않다.
 - 이번 루프는 일부 Reddit 근거를 **Yahoo indexed Reddit snippet**으로도 회수했다. 이 역시 live-page verification은 아니다.
-- X evidence는 여전히 **Yahoo indexed snippet 기반**이다.
+- X evidence는 여전히 **Yahoo indexed snippet 기반**이 중심이며, 일부 creator-payment 근거는 **browser-rendered indexed snippet**으로 회수했다.
 - Threads는 creator invoice/payment query에서 **검색 결과 0건**이 나올 정도로 회수 효율이 낮아 현재는 보조 채널 이하로 본다.
 - 그래도 이번 루프는 `feedback repository`보다 **support-to-product/churn/commitment decision ritual**, `creator CRM`보다 **invoice-ready, usage-rights-aware, collections-aware deal ops**가 더 강한 wedge라는 점을 한 단계 더 명확하게 만들었다.
-- 특히 이번 루프의 net-new nuance는 **VoC에서 avoidable vs non-actionable churn 구분**, **Creator 쪽에서 "more tabs"보다 cash-arrival visibility가 중요하다는 framing**이다.
+- 특히 이번 루프의 net-new nuance는 **VoC에서 percentile curiosity는 있더라도 benchmark product보다 multi-source decision brief가 더 강하다는 점**, **Creator 쪽에서 invoice generation보다 payment chasing timing이 더 중요하다는 점**이다.

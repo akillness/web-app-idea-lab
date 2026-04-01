@@ -5,7 +5,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-초기 B2B SaaS 팀의 support / feature-request / churn 데이터를 **월요일 아침 health/risk decision brief**로 바꿔주는 evidence layer.
+초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 월요일 아침 health/risk decision brief**로 바꿔주는 evidence layer.
 
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, Slack, Jira, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지**를 한 번에 보지 못한다는 점이다.
@@ -17,6 +17,7 @@
 - enterprise 고객이 roadmap date를 계속 요구하는 순간 팀은 단순 request backlog가 아니라 `promise exposure`를 관리해야 한다.
 - churn 감소 논의는 많지만 ARR / ICP / lifecycle context로 reason을 구조화하지 못한다.
 - 게다가 churn도 모두 같은 churn이 아니다. `good churn vs bad churn`을 나누지 않으면 잘못된 우선순위가 나온다.
+- 일부 팀은 이걸 해결하려고 benchmark percentile이나 churn comparison을 원하지만, 실제 현장은 여전히 support ticket / billing export / activity log / churn note를 한 문맥으로 엮는 것부터 막힌다.
 - 결국 월요일 아침마다 support ticket, complaints, churn notes를 수동으로 읽고 우선순위를 추정하고, 분기 planning에서는 commitments를 다시 손으로 reconcile한다.
 
 ## ICP
@@ -92,7 +93,7 @@
 - generic feedback repository처럼 보일 수 있음
 - integration 요구가 빠르게 커질 수 있음
 - commitment tracking을 과하게 확장하면 roadmap system-of-record처럼 보여 scope가 커질 수 있음
-- benchmark/normalization 기대치를 너무 빨리 올리면 범위가 커짐
+- percentile / peer benchmark 기대치를 너무 빨리 올리면 evidence-cleanup wedge보다 benchmark product처럼 보일 수 있음
 - intake layer와 decision brief를 함께 못 보여주면 차별점이 약해짐
 
 ## Why Now
@@ -103,6 +104,12 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://x.com/brianfofficial/status/2031850417718460521
 - X indexed snippet: PMs manually read support tickets, complaints, and churn notes on Monday morning
   - https://x.com/valewnrt/status/2031470425675354199
+- X indexed snippet: some founders want a single Monday-morning view of what is healthy, at risk, and urgent
+  - https://x.com/_kamsyed/status/2033983166759793024
+- X indexed snippet: churn analysis still means stitching hundreds of support tickets, activity logs, and messy datasets before a quarter-level decision
+  - https://x.com/Ibk_egwu/status/2030939886304321786
+- X indexed snippet: some founders also want to know whether churn is normal via percentile-style peer comparison
+  - https://x.com/polsia/status/2035027604550689279
 - Reddit / PullPush mirror: support forwards every customer request to developers, creating roadmap noise
   - https://www.reddit.com/r/ProductManagement/comments/1jrlxxe/challenge_with_our_customer_support_team/
 - Reddit / PullPush mirror: valuable insights are buried in support conversations without systematic extraction

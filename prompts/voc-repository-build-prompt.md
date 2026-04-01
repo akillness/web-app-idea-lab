@@ -44,6 +44,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
+Treat the ideal default surface as a single Monday-morning view that answers: what is healthy, what is at risk, and what deserves action now.
 The brief must:
 1. synthesize cross-record patterns rather than single-record summaries,
 2. rank issues by frequency + severity + segment concentration + source diversity,
@@ -63,7 +64,7 @@ Out of scope:
 - real-time integrations with Intercom/Zendesk/Gong
 - complex permissions/roles
 - automation hub behavior
-- enterprise analytics
+- external peer benchmarking / percentile network as a v1 requirement
 - polished billing/auth stack beyond what is necessary for MVP
 
 Implementation contract for coding agent:

@@ -4,10 +4,10 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice · payment follow-up · collections visibility**를 닫아주는 creator ops tool.
+브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment follow-up timing · collections visibility**를 닫아주는 creator ops tool.
 
 ## Why it stayed backup, not primary
-이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 여기에 이번 루프에서는 **"Freelancers don’t need more tabs. They need money to show up"** 라는 framing까지 추가돼, 사용자가 원하는 가치가 generic CRM breadth가 아니라 **cash-arrival visibility**라는 점이 더 분명해졌다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn/commitment decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
+이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 여기에 이번 루프에서는 **"Freelancers don’t need more tabs. They need money to show up"**, **"nobody followed up at the right time"**, **"the hard part isn't sending the invoice, it's chasing the payment"** 같은 framing까지 추가돼, 사용자가 원하는 가치가 generic CRM breadth가 아니라 **cash-arrival visibility + payment chasing timing**이라는 점이 더 분명해졌다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn/commitment decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
 
 ## ICP
 - 월 브랜드딜이 꾸준한 솔로 크리에이터
@@ -96,5 +96,9 @@
   - https://x.com/Dominus_Kelvin/status/2029573666388996145
 - X indexed snippet: invoice chasing / late payment follow-up is explicit enough to become its own product wedge
   - https://x.com/Anubhavhing/status/2028627747158016340
+- X browser-rendered indexed snippet: freelancers lose money to late payments because nobody followed up at the right time
+  - https://x.com/ManojBuilds/status
+- X browser-rendered indexed snippet: the hard part is not sending the invoice but chasing the payment
+  - https://x.com/Invoice_Ovaro/status
 - X indexed snippet: freelancers do not want more tabs; they want money to show up, which reinforces collections visibility over generic CRM breadth
   - https://x.com/MilesCraftDev/status
