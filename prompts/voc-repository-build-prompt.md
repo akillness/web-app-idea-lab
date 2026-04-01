@@ -13,6 +13,7 @@ Create a product that helps early-stage SaaS teams turn scattered support, featu
 Important framing:
 Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
 Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days.
+The MVP should also support customer-facing expectation management when hard dates are unrealistic: generate update-ready language using high-level roadmap, release-plan, sprint-plan, or explicit non-commitment framing instead of false certainty.
 Assume many teams already use Productboard/Jira/spreadsheets for planning, but those tools do not fully solve ongoing discovery, commitment hygiene, or roadmap-volatility communication.
 
 Target users:

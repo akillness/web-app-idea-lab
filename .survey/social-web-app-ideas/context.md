@@ -3,7 +3,7 @@
 ## Workflow Context
 이번 루프에서도 플랫폼별 신호 품질 차이는 유지됐다.
 
-- **Reddit**: direct live page는 불안정했지만, Yahoo indexed Reddit snippets로는 오히려 더 구체적인 workflow가 보였다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**는 신호까지 확인됐다.
+- **Reddit**: direct live page는 불안정했지만, Yahoo indexed Reddit snippets로는 오히려 더 구체적인 workflow가 보였다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**는 신호까지 확인됐다.
 - **X**: direct post reading은 막혔지만, Yahoo indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다. 여기에 더해 **professional invoice template + net 30 + late fee + auto-reminders** 같은 framing도 보이면서, 돈이 늦게 들어오는 문제의 일부가 invoice readiness / professionalism gap이라는 점이 더 또렷해졌다.
 - **Threads**: 이번 루프의 focused query `site:threads.net creator invoice payment follow up brand deal`는 Yahoo에서 **검색 결과 0건**이었다. 여전히 discovery source보다는 blocker evidence에 가깝다.
 
@@ -20,6 +20,7 @@
    - 즉 사용자는 저장소보다 **decision surface + commitment-risk surface**를 원한다.
 3. **Creator 쪽 pain은 generic CRM이 아니라 collections workflow clarity**다.
    - late payments, underpayments, ghosting, awkward chasing, `clear terms before work`, automated reminders 같은 신호가 더 누적됐다.
+   - 이번 루프 Reddit `r/freelance` recoveries는 여기에 더해 **due date 전에 미리 reminder를 보낸다**, **late fee를 invoice/contract에 명시한다**, **연체되면 추가 작업을 멈춘다**, **작은 벤더는 AP queue에서 밀리기 쉽다**는 운영 습관까지 드러냈다.
    - 다만 이번 루프의 fresh creator evidence는 agency-wide ops보다 **freelancer / solo creator cash collection pain** 쪽에 더 많이 기울었다.
 
 즉 이번 루프는 순위를 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `feedback repository`가 아니라 `decision problem + commitment-risk solver`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`broad CRM`이 아니라 `deal execution + collections visibility + follow-up timing + payment-terms clarity + invoice readiness`**로 더 좁아졌다.
@@ -45,11 +46,14 @@
 9. enterprise request/commitment는 spreadsheet 여러 개나 backlog 툴 여기저기에 흩어져 prioritization drift가 생긴다.
 10. scope/date commitment는 90일 이상 잠그기 어려워도, 팀은 고객 커뮤니케이션과 내부 planning 사이를 수동으로 reconcile해야 한다.
 11. 3개월 roadmap도 2주 단위로 흔들리는데 commitment ledger는 그 변화 속도를 못 따라간다.
-12. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
-13. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
-14. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
-15. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
-16. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
+12. hard date가 불가능할 때도 팀은 high-level roadmap, sprint/release plan, progress report를 수동으로 조합해 customer expectation을 관리한다.
+13. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
+14. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
+15. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
+16. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
+17. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
+18. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
+19. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
 
 ## Adjacent Problems
 - feedback는 쌓이는데 decision artifact는 남지 않는다.
@@ -59,8 +63,10 @@
 - enterprise request backlog는 commitment registry 역할까지 떠안으며 더 혼란스러워진다.
 - quarterly planning 도구가 ongoing discovery와 commitment hygiene를 동시에 해결하지 못하면 request overload가 그대로 남는다.
 - roadmap volatility가 큰 팀일수록 `무엇을 약속했고`, `무엇은 아직 약속하지 말아야 하는지`를 분리하는 레이어가 필요하다.
+- 그 레이어는 단순 backlog가 아니라 **progress report / release-plan language로 commitment 상태를 외부에 설명하는 커뮤니케이션 surface**까지 필요하다.
 - creator payment ops는 `send invoice`보다 `terms are clear`, `promised date is tracked`, `follow-up is due now` 쪽이 더 중요하다.
 - creator 쪽에서도 invoice professionalism이 약하면 collections 문제가 더 오래 끈다.
+- 작은 운영자는 AP queue에서 뒤로 밀리기 쉬워서, overdue 자체보다 **내가 지금 어느 escalation step에 있어야 하는지**를 더 절실하게 원한다.
 - creator 쪽 최신 X evidence는 solo/freelancer skew가 강해서, agency ICP는 계속 보되 early wedge는 solo pain으로 읽는 편이 맞다.
 - Threads는 현재 discovery source로서 효율이 계속 낮다.
 
@@ -172,6 +178,36 @@
 
 > "Invoice Template – Not some scribbled note. A pro one with payment terms (net 30), late fees (1.5%/mo), and auto-reminders ... chased $5k for 90 days—proper invoice? Paid in 2 weeks." — X indexed snippet
 - https://x.com/iRunDocs/status/2032562374872543349
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "The problem we have now is that there are too many deals and too many feature requests, so I make the Sales & CSM team prioritize between commitments every quarter." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Giving dates is an unrealistic and problematic thing to do. Stick to a high level roadmap and supplement it with a release plan or sprint plan, then keep people up to date with progress reports." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/z978tk/product_commitments/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "My typically net is 30 days and so usually I'll send out a friendly reminder a week before payment is due if not paid yet." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/a0viuu/is_it_wrong_to_send_a_reminder_to_client_for/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I use contracts for even the smallest projects, specify invoice due dates on invoices, estimates, and contracts, send a friendly reminder the day before invoices are due, and enforce a strict 20% late fee." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/bdtlwa/how_long_should_i_take_to_remind_my_client_to_pay/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Since this is your first invoice to them, I think it is reasonable to hold off on doing more work until it is paid." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/qm5omp/steps_when_a_client_is_late_on_payment/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I currently have 4 invoices that clients are late to pay ... clients know they have leverage and can push smaller vendors to the bottom of the AP list." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/11r9p3n/late_payment_rant/
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 

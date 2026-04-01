@@ -4,7 +4,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms · promised payment date · follow-up timing · collections visibility**를 닫아주는 creator cash-ops tool.
+브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms · promised payment date · pre-due reminder · follow-up timing · collections visibility**를 닫아주는 creator cash-ops tool.
 
 ## Why it stayed backup, not primary
 이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `late payment`, `underpayment`, `ghosting`, `awkward chasing`, `automated reminders`, `clear payment terms before work` 같은 framing이 더 추가됐다. 다만 fresh evidence의 무게중심은 agency-wide CRM보다는 **freelancer / solo creator collections pain** 쪽에 더 가까웠고, 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있다. 그래서 지금은 **강한 backup**으로 유지한다.
@@ -25,6 +25,8 @@
 - 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
 - follow-up copy보다 **언제 follow-up해야 하는지**가 더 큰 문제다.
 - follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
+- 일부 freelancers는 **due date 일주일 전**이나 **전날**에 미리 reminder를 보내며, 이 pre-due habit도 제품화 가치가 있다.
+- late fee, stop-work-until-paid, escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
 - invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
 
 ## Strongest Wedge
@@ -37,10 +39,12 @@
 - deliverable due date와 invoice trigger 연결
 - payment terms before work clarity
 - invoice professionalism / readiness
+- pre-due reminder schedule
 - invoice/payment status
 - promised payment date log
 - overdue follow-up queue
 - partial / underpayment / ghosting 추적
+- late fee / stop-work / escalation policy memory
 - usage rights / repeat brand memory
 - invoice workflow readiness memory (recipient, required fields, portal/AP instructions)
 
@@ -56,8 +60,10 @@
 - overdue / unpaid / underpaid / ghosted view
 - next action queue for collections
 - quoted rate, usage rights, repeat-brand note 저장
+- pre-due reminder tracking (e.g. 7 days before due date, 1 day before due date)
 - default follow-up cadence tracking (e.g. day 3 / day 7 / day 30 after due date or promised payment date)
 - follow-up sequence recommendation
+- late fee / stop-work / escalation policy tracking
 
 ### 제외
 - lead gen / creator discovery CRM
@@ -83,6 +89,7 @@
 - 일부 creators는 여전히 **WhatsApp message 수준의 invoicing**을 하고 있어 invoice readiness / professionalism gap도 entry pain으로 읽힌다.
 - 이번 루프에는 **professional invoice template + net 30 + late fee + auto-reminders**가 실제 회수 속도를 높인다는 framing도 추가돼, invoice setup quality를 별도 wedge로 둘 근거가 생겼다.
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
+- 이번 루프 Reddit `r/freelance` recoveries는 reminder copy보다 **pre-due reminder habit**, **late-fee rule**, **work-stop policy**, **AP-list delay reality**가 더 제품적인 운영 규칙임을 보여줬다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack

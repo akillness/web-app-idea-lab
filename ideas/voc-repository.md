@@ -5,7 +5,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view**로 바꿔주는 decision layer.
+초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view + progress-report surface**로 바꿔주는 decision layer.
 
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, spreadsheet, ProductBoard, Jira, Slack, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지, 무엇에 시간을 써야 하는지**를 한 번에 보지 못한다는 점이다.
@@ -18,7 +18,9 @@
 - feature request grooming도 자동화되지 않았고, 여전히 **area / impact / effort** 같은 필드를 사람이 채우며 decision-ready 상태로 번역한다.
 - 일부 팀은 feature request별로 **dollars / resource time / requesting customer**를 묶고 싶지만 구조화가 부족하다.
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
+- 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
+- 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - churn evidence는 surveys / support tickets / Stripe fields에 흩어져 있고 systematic reading이 없다.
 - 일부 팀은 percentile benchmark도 궁금해하지만, 그 전에 월요일 아침마다 support ticket, Intercom, Slack, Salesforce를 수동으로 읽고 정리한다.
@@ -45,7 +47,7 @@
 10. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Next-90-Days Decision View**.
+"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
 
 핵심은 raw feedback를 더 모으는 게 아니라, 팀이 이미 쓰는 intake/grooming language로 바꾸는 것이다. 즉 record는 최소한 아래 필드를 향해야 한다.
 - JTBD / use case / desired outcome
@@ -54,9 +56,10 @@
 - rough effort / implementation weight
 - requesting customer / account importance
 - commitment status
+- external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
 
 핵심 포지셔닝 문장:
-> Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief showing what got worse, for which segment, what revenue is at risk, and what to act on now.
+> Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief plus a next-90-days commitment-risk and progress-report surface showing what got worse, for which segment, what revenue or trust is at risk, and what to say or do now.
 
 핵심 차별점:
 - support / CS / sales / churn evidence를 같은 ingestion surface로 묶음
@@ -66,6 +69,7 @@
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
 - `what should stay intentionally uncommitted for the next 90 days`를 명시해 false commitment를 줄임
+- hard date를 못 주는 상황에서도 쓸 수 있는 **progress report / release-plan style external update draft**를 생성
 - generic AI summary가 아니라 **source-linked decision artifact**를 출력
 
 ## MVP Boundary

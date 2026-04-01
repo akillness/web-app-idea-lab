@@ -33,7 +33,8 @@ Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 Treat `follow-up timing` as a first-class product problem, not just a copy-generation afterthought.
 Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
 Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
-Assume the default manual collections workflow often wants explicit checkpoints like **day 3, day 7, and day 30** after the due date or promised payment date.
+Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
+Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
