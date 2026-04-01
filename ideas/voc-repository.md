@@ -5,12 +5,12 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief**로 바꿔주는 decision layer.
+초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view**로 바꿔주는 decision layer.
 
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, spreadsheet, ProductBoard, Jira, Slack, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지, 무엇에 시간을 써야 하는지**를 한 번에 보지 못한다는 점이다.
 
-이번 루프에서 더 강해진 핵심 증거는 아래 열한 가지다.
+이번 루프에서 더 강해진 핵심 증거는 아래 신호들이다.
 - 사용자는 feedback 부족보다 **decision problem**을 겪고 있다.
 - feature request intake는 여전히 Google Form / MS Forms / spreadsheet와 weekly review에 의존한다.
 - 일부 팀은 formal intake를 도입해도 여전히 **fill-in-the-blank JTBD template**로 문제 정의를 강제한다.
@@ -18,9 +18,11 @@
 - feature request grooming도 자동화되지 않았고, 여전히 **area / impact / effort** 같은 필드를 사람이 채우며 decision-ready 상태로 번역한다.
 - 일부 팀은 feature request별로 **dollars / resource time / requesting customer**를 묶고 싶지만 구조화가 부족하다.
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
+- Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - churn evidence는 surveys / support tickets / Stripe fields에 흩어져 있고 systematic reading이 없다.
 - 일부 팀은 percentile benchmark도 궁금해하지만, 그 전에 월요일 아침마다 support ticket, Intercom, Slack, Salesforce를 수동으로 읽고 정리한다.
+- scope/date commitment는 90일 이상 잠그기 어렵고, 3개월 roadmap도 2주 단위로 흔들릴 수 있다.
 - churn pressure는 unit economics와 연결된다. 즉 `what got worse?`를 늦게 읽으면 retention 문제를 넘어 CAC/ARPU 의사결정까지 흔들린다.
 
 ## ICP
@@ -36,12 +38,14 @@
 3. feature request를 requesting customer / ARR / dollars / resource time과 연결하지 못한다.
 4. churn reason은 남지만 ARR / ICP / lifecycle / avoidability 맥락이 사라진다.
 5. 월요일 회의 전에 support tickets, Intercom, Slack, Salesforce를 오가며 사람이 다시 판단한다.
-6. CS, Sales, Product가 같은 evidence를 source-linked 상태로 공유하지 못한다.
-7. enterprise commitment와 일반 수요가 같은 backlog에 섞여 later dispute risk가 생긴다.
-8. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
+6. Productboard/Jira/시트가 있어도 discovery와 commitment hygiene가 분리돼 다시 사람이 중간 정리를 한다.
+7. CS, Sales, Product가 같은 evidence를 source-linked 상태로 공유하지 못한다.
+8. enterprise commitment와 일반 수요가 같은 backlog에 섞여 later dispute risk가 생긴다.
+9. 90일 이상 lock하기 어려운 roadmap 현실과 customer expectation을 같은 화면에서 reconcile하지 못한다.
+10. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review**.
+"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Next-90-Days Decision View**.
 
 핵심은 raw feedback를 더 모으는 게 아니라, 팀이 이미 쓰는 intake/grooming language로 바꾸는 것이다. 즉 record는 최소한 아래 필드를 향해야 한다.
 - JTBD / use case / desired outcome
@@ -61,6 +65,7 @@
 - avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
+- `what should stay intentionally uncommitted for the next 90 days`를 명시해 false commitment를 줄임
 - generic AI summary가 아니라 **source-linked decision artifact**를 출력
 
 ## MVP Boundary
@@ -73,6 +78,7 @@
 - support-to-product intake summary
 - health / risk review brief
 - lightweight commitment tracking for already-promised customer asks
+- next-90-days commitment-risk summary
 - evidence-linked decision brief export to markdown
 - requesting account / revenue importance / estimated resource cost 같은 decision context 필드
 
@@ -133,6 +139,12 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://x.com/polsia/status/2035027604550689279
 - X indexed snippet: unit-econ pressure appears directly in churn discussions (`7% churn`, `$20 ARPU`, CAC ceiling)
   - https://x.com/fbrsaas/status
+- Reddit indexed snippet: Productboard can become tied to quarterly planning, making actual discovery/backlog weighing hard
+  - https://www.reddit.com/r/ProductManagement/comments/1csuyjc/how_do_you_use_productboard_successfully/
+- Reddit indexed snippet: teams are not accustomed to locking scope and dates more than 90 days in advance
+  - https://www.reddit.com/r/ProductManagement/comments/zrtnvu/how_do_i_respond_to_emails_loosely_and_not_give/
+- Reddit indexed snippet: even a 3-month roadmap can change every two weeks once work begins
+  - https://www.reddit.com/r/ProductManagement/comments/t9oymm/realistically_how_often_do_you_actually_hit_your/
 - Reddit indexed snippet: Google Form + spreadsheet intake still powers feature request collection
   - https://www.reddit.com/r/ProductManagement/comments/y3pmqg/managing_and_tracking_customer_feature_request/
 - Reddit indexed snippet: teams want to tie dollars / resource time / requesting customers back to feature requests

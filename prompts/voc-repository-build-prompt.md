@@ -12,7 +12,8 @@ Create a product that helps early-stage SaaS teams turn scattered support, featu
 
 Important framing:
 Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
-Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, or de-prioritization in the next quarter.
+Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days.
+Assume many teams already use Productboard/Jira/spreadsheets for planning, but those tools do not fully solve ongoing discovery, commitment hygiene, or roadmap-volatility communication.
 
 Target users:
 - Founders
@@ -42,7 +43,8 @@ The MVP should help a team answer these Monday-morning questions quickly:
 4. Which churn is likely avoidable versus non-actionable or bad-fit churn?
 5. What product, messaging, or support change deserves action now?
 6. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
-7. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
+7. What should stay intentionally uncommitted in the next 90 days because the evidence is weak, the roadmap is volatile, or bandwidth is uncertain?
+8. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -52,7 +54,7 @@ The brief must:
 2. rank issues by frequency + severity + segment concentration + source diversity,
 3. show only source-linked claims,
 4. recommend concrete product/message/support actions,
-5. default to the structure: Health overview -> Risk review -> Ranked actions -> Evidence and gaps.
+5. default to the structure: Health overview -> Risk review -> Ranked actions -> Commitments to revisit -> Evidence and gaps.
 
 MVP scope:
 - single workspace
@@ -113,7 +115,7 @@ Implementation contract for coding agent:
    - generate 3-5 ranked brief items per run
    - brief item must include:
      - title
-     - decision_type: product | messaging | sales_enablement | support
+     - decision_type: product | messaging | sales_enablement | support | commitment_management
      - recommendation
      - why_now
      - confidence: high | medium | low
@@ -133,6 +135,7 @@ Implementation contract for coding agent:
      - rough resource-cost pressure when available
      - commitment pressure when available
    - include at least one explicit section or flag in the brief for: committed features at risk this quarter
+   - include at least one explicit section or flag in the brief for: requests that should remain intentionally uncommitted for the next 90 days
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample conversation records
    - include one sample extraction output, one theme output, and one brief output in the repo

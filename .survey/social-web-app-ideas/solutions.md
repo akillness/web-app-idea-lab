@@ -3,8 +3,8 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 benchmark/network product로 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming** 신호가 추가로 강화됨 |
-| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **WhatsApp-style invoicing** 신호를 보강함 |
+| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief + next-90-days commitment-risk view**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 benchmark/network product로 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming**, **Productboard quarterly-planning bias**, **90-day commitment limit**, **roadmap changes every two weeks** 신호가 추가로 강화됨 |
+| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **WhatsApp-style invoicing**, **professional invoice template + net 30 + late fee + auto-reminder** 신호를 보강함 |
 | Support-to-Product Decision Hub | support/CS 요청을 dedupe·contextualize·impact-aware prioritization으로 바꾸는 intake layer | VoC의 가장 강한 하위 wedge | standalone이면 Productboard/Jira 보조툴처럼 보일 위험 | dollars/resource time tie-back과 request-origin tracking이 이번 루프에서 더 또렷해짐 |
 | Creator Collections Assistant | overdue invoice, promised date, follow-up sequence, reminder timing에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context와 rights memory가 빠짐 | solo/freelancer skew가 강한 entry wedge로는 유효 |
 | Churn Decision Copilot | churn rate가 아니라 churn reason / segment / avoidability / unit-econ impact를 연결하는 분석 레이어 | `why`와 `so what`을 동시에 풀 수 있음 | 단독 제품이면 intake/evidence layer 없이 약할 수 있음 | VoC의 module로는 강하지만 standalone 1순위는 아님 |
@@ -27,6 +27,9 @@
 - feature request prioritization은 여전히 `누가 요청했는지`, `얼마짜리 고객인지`, `얼마나 많은 resource time이 드는지`를 수동으로 연결한다.
 - founders는 feedback가 없는 게 아니라 support/churn/NPS가 많아서 **무엇을 결정해야 하는지**가 더 어려워진다.
 - PM은 월요일 아침 support tickets, Intercom, Slack, Salesforce를 오가며 상황을 재구성한다.
+- Productboard 같은 도구를 써도 discovery/backlog weighing은 따로 남고 quarterly planning 중심으로 쏠리기 쉽다.
+- 팀은 90일 이상 scope/date commitment를 잠그기 어려워하면서도 고객과 내부 roadmap을 계속 reconcile해야 한다.
+- 3개월 roadmap도 2주마다 흔들릴 수 있어 commitment-risk visibility가 비어 있다.
 - churn은 여전히 rate로 먼저 보지만, 실제로는 unit economics와 연결된 decision pressure를 만든다.
 - creators와 freelancers는 여전히 invoice sending, overdue follow-up, promised payment, underpayment, ghosting을 수동으로 처리한다.
 - creator 쪽 최신 X 결과는 agency dashboard보다 `awkward chasing`, `clear terms before work`, `automated reminders`, `money stuck` 같은 solo operator pain을 더 많이 보여준다.
@@ -48,6 +51,9 @@
 - https://www.reddit.com/r/ProductManagement/comments/vjpy9n/what_tools_do_you_use_to_gather_feature_requests/
 - https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
 - https://www.reddit.com/r/ProductManagement/comments/11xkty3/roadmapping_tools/
+- https://www.reddit.com/r/ProductManagement/comments/1csuyjc/how_do_you_use_productboard_successfully/
+- https://www.reddit.com/r/ProductManagement/comments/zrtnvu/how_do_i_respond_to_emails_loosely_and_not_give/
+- https://www.reddit.com/r/ProductManagement/comments/t9oymm/realistically_how_often_do_you_actually_hit_your/
 - https://www.reddit.com/r/ProductManagement/comments/13d599t/how_do_you_manage_enterprise_saas_customers_who/
 - https://www.reddit.com/r/ProductManagement/comments/zsuyqn/how_do_you_documenttrack_costumer_committments/
 - https://www.reddit.com/r/CustomerSuccess/comments/13zqul2/best_way_to_minimize_churn_in_saas/
@@ -78,12 +84,15 @@
 - https://x.com/ManojBuilds/status
 - https://x.com/Indiepat2026/status
 - https://x.com/Dominus_Kelvin/status/2029573666388996145
+- https://x.com/iRunDocs/status/2032562374872543349
 
 ### Threads
 - Focused query `site:threads.net creator invoice payment follow up brand deal` returned zero Yahoo results this loop.
+- Narrow quoted query `site:threads.net "creator invoice" "follow up" "brand deal"` also returned zero Yahoo results.
 
 ## Key Gaps
 - feedback tooling 시장에는 저장/태깅 툴은 많아 보이지만, **support → churn → request → commitment → Monday decision brief**를 한 줄로 닫아주는 레이어는 여전히 약하다.
+- Productboard/Jira류 planning stack과 별개로 **next-90-days commitment risk**를 읽어주는 lightweight layer도 부족하다.
 - request를 revenue impact / resource time / customer importance와 연결해 의사결정하는 lightweight layer도 부족하다.
 - benchmark curiosity는 존재하지만, 현장의 더 급한 pain은 still messy evidence cleanup + weekly decision ritual이다.
 - churn tooling도 많지만 `why`, `which segment`, `what action`, `what unit-econ risk`를 동시에 보여주는 decision layer는 드물다.
@@ -93,6 +102,7 @@
 
 ## Contradictions
 - 사용자들은 feedback를 못 모으는 게 아니라 **무엇을 결정할지 못 정한다**.
+- quarterly planning tool을 써도 discovery/backlog weighting과 commitment hygiene는 따로 남는다.
 - tool을 하나 더 추가해도 ProductBoard→Jira→spreadsheet 같은 bridge work는 계속 남는다.
 - benchmark percentile curiosity는 있지만, 실제 현장은 peer rank보다 먼저 `weekly decision surface`가 필요하다.
 - churn problem은 retention dashboard처럼 보이지만, 실제 pain은 unit economics pressure가 걸린 prioritization 문제다.
@@ -101,4 +111,4 @@
 - reminder copy generation은 쉬워도 `why follow up now`, `what sequence step`, `what promise was missed`는 여전히 비어 있다.
 
 ## Key Insight
-이번 루프의 핵심은 **Primary/Backup 순위를 바꾸는 게 아니라, 두 아이디어의 operational wedge를 더 명확히 닫는 것**이었다. Primary인 Voice-of-Customer Repository는 이제 `feedback repository`보다 **support/churn/request/commitment를 decision artifact로 바꾸는 Monday-morning operating system**으로 보는 편이 정확하다. 특히 이번 루프는 `decision problem`, `weekly spreadsheet review`, `ProductBoard→Jira bridge`, `revenue/resource tie-back`, `unit-econ pressure`가 한 흐름으로 연결됐다. Backup인 Creator Deal CRM은 `creator CRM`보다 **cash-arrival visibility + payment-terms clarity + overdue follow-up timing + underpayment/ghosting handling**으로 더 좁혀야 한다. Creator 쪽 최신 X evidence는 솔로/프리랜서 skew가 강했기 때문에, broad agency OS보다 **collections clarity entry wedge**가 더 실전적이다.
+이번 루프의 핵심은 **Primary/Backup 순위를 바꾸는 게 아니라, 두 아이디어의 operational wedge를 더 명확히 닫는 것**이었다. Primary인 Voice-of-Customer Repository는 이제 `feedback repository`보다 **support/churn/request/commitment를 decision artifact로 바꾸는 Monday-morning operating system + next-90-days commitment-risk view**로 보는 편이 정확하다. 특히 이번 루프는 `decision problem`, `weekly spreadsheet review`, `Productboard quarterly-planning bias`, `90-day commitment limit`, `roadmap changes every two weeks`, `ProductBoard→Jira bridge`, `revenue/resource tie-back`, `unit-econ pressure`가 한 흐름으로 연결됐다. Backup인 Creator Deal CRM은 `creator CRM`보다 **cash-arrival visibility + payment-terms clarity + overdue follow-up timing + underpayment/ghosting handling + invoice professionalism**으로 더 좁혀야 한다. Creator 쪽 최신 X evidence는 솔로/프리랜서 skew가 강했기 때문에, broad agency OS보다 **collections clarity + invoice readiness entry wedge**가 더 실전적이다.

@@ -32,6 +32,7 @@ Optimize the MVP for creator deal execution plus collections visibility, not gen
 Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 Treat `follow-up timing` as a first-class product problem, not just a copy-generation afterthought.
 Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
+Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
 Assume the default manual collections workflow often wants explicit checkpoints like **day 3, day 7, and day 30** after the due date or promised payment date.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
@@ -41,8 +42,9 @@ The MVP should help a user answer these questions quickly:
 5. What usage rights, quoted rate, and deliverable commitments were agreed?
 6. What payment terms or promised dates were missed, and what should happen next?
 7. What invoice workflow details still need to be confirmed before I send or chase an invoice?
-8. How did usage-rights scope change the quoted price during negotiation?
-9. Which deals are risky because the payment terms were never clarified before work started?
+8. Is the invoice itself professional enough — terms, due date, late-fee policy, required fields, reminder setup — to support collections?
+9. How did usage-rights scope change the quoted price during negotiation?
+10. Which deals are risky because the payment terms were never clarified before work started?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -58,6 +60,7 @@ MVP scope:
 - create and manage post-agreement payment-tracked deals
 - attach one or more deliverables to each deal
 - capture structured payment terms, invoice workflow requirements, and deposit requirements
+- capture invoice-template quality fields such as due date, late-fee policy, reminder defaults, and required invoice fields
 - capture quoted rate, usage rights, and repeat-brand notes
 - capture usage-rights pricing deltas and negotiation notes
 - log invoices manually
@@ -89,7 +92,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, required fields, submission method, supporting docs, payment portal or AP instructions if known), and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, required fields, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, reminder defaults, professional-template readiness), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals

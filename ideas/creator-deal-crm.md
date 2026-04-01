@@ -25,6 +25,7 @@
 - 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
 - follow-up copy보다 **언제 follow-up해야 하는지**가 더 큰 문제다.
 - follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
+- invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
@@ -35,6 +36,7 @@
 - deal stage visibility
 - deliverable due date와 invoice trigger 연결
 - payment terms before work clarity
+- invoice professionalism / readiness
 - invoice/payment status
 - promised payment date log
 - overdue follow-up queue
@@ -79,6 +81,7 @@
 - `clear payment terms before work`가 invoice 이후 문제가 아니라 **사전 cash-risk control**이라는 점이 추가됐다.
 - late payments뿐 아니라 **underpayments / ghosting**도 first-class 상태여야 한다.
 - 일부 creators는 여전히 **WhatsApp message 수준의 invoicing**을 하고 있어 invoice readiness / professionalism gap도 entry pain으로 읽힌다.
+- 이번 루프에는 **professional invoice template + net 30 + late fee + auto-reminders**가 실제 회수 속도를 높인다는 framing도 추가돼, invoice setup quality를 별도 wedge로 둘 근거가 생겼다.
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 
 ## Supporting Evidence
@@ -108,5 +111,7 @@
   - https://x.com/Indiepat2026/status
 - X indexed snippet: creators still invoice through WhatsApp-like chat messages
   - https://x.com/Dominus_Kelvin/status/2029573666388996145
+- X indexed snippet: a professional invoice with payment terms, late fees, and auto-reminders can materially speed collections
+  - https://x.com/iRunDocs/status/2032562374872543349
 - X browser-rendered indexed snippet: freelancers lose money because nobody followed up at the right time
   - https://x.com/ManojBuilds/status
