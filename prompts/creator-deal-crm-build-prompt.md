@@ -41,6 +41,7 @@ Assume the default manual collections workflow often wants explicit checkpoints 
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
 Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, the correct submission path, and the actual invoice destination. Do not assume the AP follow-up target and invoice destination are always the same field.
 Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run. Treat AP-processing lead time as first-class as well: the MVP should make it obvious when a creator must invoice in advance simply to get into the client's AP/audit cycle, rather than discovering the delay only after the due date passes. Treat direct-client AP-navigation quality as first-class too: a deal may be risky because the project owner cannot reliably guide the creator through the internal payment path. Also treat remittance-proof visibility as first-class: if a client says payment was sent, the system should support a separate `payment proof / receipt requested or received` state instead of collapsing that into simply `paid` or `unpaid`. When possible, preserve the proof artifact type too (`receipt`, `remittance_advice`, `bank_proof`, `other`) because freelancers may use distinct names for the proof they need.
+Model invoice execution correctness explicitly. The MVP should help the user answer not only `did I send it?` but `was it submitted correctly`, `did it reach the right destination`, and `is it actually being processed`. Preserve separate submission, receipt, and processing states instead of collapsing everything into `sent` vs `paid`. Threads remains a weak/noisy signal source here, so do not add scope based on Threads-specific workflow assumptions alone.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -111,6 +112,7 @@ Implementation contract for coding agent:
    - usage_rights
 
    Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, invoice destination, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), AP lead-time fields (invoice_in_advance_required, recommended_submit_by_date, AP_process_lead_time_days when known, AP_audit_expected boolean, direct_client_AP_navigation_confidence), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work, payment_clause_strength, missing_clause_fields), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), remittance-proof fields (payment_claimed_at, remittance_proof_requested_at, remittance_proof_received_at, remittance_reference, remittance_proof_artifact_type), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
+   Also store invoice execution-state fields: invoice_submission_status (`not_started | submitted | failed | needs_resubmission`), invoice_submitted_at, invoice_receipt_status (`unknown | received | not_received | rejected`), invoice_received_at, invoice_processing_status (`not_started | queued | processing | exception | approved_for_payment | paid`), processing_exception_reason, and last_payment_system_confirmation_at.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -125,7 +127,7 @@ Implementation contract for coding agent:
 3. Use these status enums:
    - deal_status: lead | negotiating | awaiting_deposit | active | delivered | invoiced | partially_paid | paid | overdue | closed
    - deliverable_status: planned | in_progress | submitted | approved
-   - invoice_status: draft | sent | deposit_pending | partially_paid | promised | promised_date_missed | paid | overdue | disputed
+   - invoice_status: draft | sent | submitted | received | processing | deposit_pending | partially_paid | promised | promised_date_missed | paid | overdue | disputed
    - follow_up_channel: whatsapp | email | call | dm
 4. Minimum UI surfaces:
    - deal list with filters
@@ -141,6 +143,7 @@ Implementation contract for coding agent:
    - invoice readiness blockers must distinguish missing creator-side work from missing client-side invoice instructions
    - invoice readiness blockers must explicitly flag missing AP recipient, missing project-owner contact, missing PO/reference number, or unknown submission route
    - payment blockers must explicitly distinguish: vendor onboarding delay, payment-system setup delay, intermediary/recruiter handoff, invoice not booked, waiting for next pay run, AP processing/audit window not started early enough, weak direct-client AP navigation, client dispute, or true non-response
+   - invoice state must explicitly distinguish `sent to client`, `submitted to AP/destination`, `received by destination`, and `processing inside buyer system` whenever that evidence exists
    - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message

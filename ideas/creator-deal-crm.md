@@ -1,7 +1,7 @@
 # Creator Deal CRM
 
 **Status**: Backup pick
-**Updated**: 2026-04-01
+**Updated**: 2026-04-02
 
 ## One-line Thesis
 브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms / clause clarity · promised payment date · pre-due reminder · follow-up timing · collections visibility**를 닫아주고 `지금 돈이 어디서 막혔는지`를 보여주는 creator cash-ops tool.
@@ -33,6 +33,7 @@
 - project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
 - 이번 루프의 fresh indexed signal은 여기서 한 단계 더 나아가, **AP contact를 아는 것**과 **invoice를 어디로 보내야 하는지 아는 것**이 별개라는 점을 보여줬다. 즉 invoice destination과 follow-up target은 따로 저장해야 한다.
 - 어떤 경우엔 invoice가 늦어서가 아니라 **AP가 처리/감사할 시간을 아직 못 받은 것**이 문제일 수 있어, invoice 제출 lead time 자체를 관리해야 한다.
+- 이번 루프의 fresh creator snippet은 사용자가 **`my invoices are being submitted and processed correctly`**를 직접 걱정한다는 점도 보여줬다. 즉 제품은 `invoice sent`만이 아니라 **submitted → received → processing** 상태를 더 분명히 보여줘야 한다.
 - 또 AP를 잘 통과하느냐는 **direct client가 내부 결제 프로세스를 얼마나 잘 아느냐**에도 좌우되므로, 제품은 단순 contact 저장을 넘어서 `internal champion quality`를 기억해야 한다.
 - client가 `payment sent`라고 말해도 실제 입금 전에는 **payment documentation / receipt**를 다시 받아야 하는 경우가 있다. 즉 `paid claimed`와 `proof received`는 다른 상태다.
 - 이번 루프에는 paid-invoice receipt artifact를 **`remittance advice`**라고 부르는 실무 용어도 확인됐다. 즉 proof는 단순 boolean이 아니라 artifact type까지 저장하는 편이 맞다.
@@ -124,6 +125,7 @@
 - 여기에 더해 **vendor onboarding / payment-system setup delay**, **recruiter/intermediary billing chain**, **not properly booked / pay-run miss** 같은 accounting-stage blockage가 드러나, 제품이 `연체 후 메시지`만이 아니라 `돈이 시스템 어디에서 막혔는지`를 보여줘야 한다는 점이 선명해졌다.
 - 이번 루프에는 추가로 **AP가 invoice를 처리·감사할 시간을 벌기 위해 미리 청구해야 한다**, **AP 네비게이션은 direct client가 내부 프로세스를 얼마나 잘 아느냐에 좌우된다**는 신호도 붙었다. 즉 초기 wedge는 단순 overdue queue가 아니라 **AP-ready lead time + internal champion quality + collections clarity**다.
 - 이번 루프의 추가 indexed signal은 여기에 더해 **invoice destination vs AP follow-up target 분리**, **client-paid claim 뒤 remittance proof/receipt 회수**, **2주 뒤 재알림 같은 중기 re-nudge cadence**까지 보여줬다. 즉 제품은 `누구에게 언제 다시 물을지`뿐 아니라 `돈이 실제로 이동했다는 증거를 받았는지`까지 다뤄야 한다.
+- 이번 루프에는 `invoice가 제대로 제출/처리되고 있는지`를 걱정하는 직접 문구가 추가돼, backup 아이디어의 상태 모델을 `sent vs paid`에서 **submission correctness / receipt / processing visibility**까지 확장해야 할 이유가 더 분명해졌다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack

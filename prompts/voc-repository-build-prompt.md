@@ -14,6 +14,7 @@ Important framing:
 Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
 Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days. The MVP should also make visible when customer-commitment handling is consuming too much strategy time, so teams can see what strategic work is being crowded out by commitment reconciliation.
 The MVP should also support customer-facing expectation management when hard dates are unrealistic: generate update-ready language using high-level roadmap, release-plan, sprint-plan, or explicit non-commitment framing instead of false certainty.
+Do not stop at static brief output. The MVP should also support **progress-report drafting** and **status-update drafting** tied to time commitments and open items, so a PM/CSM can explain what is on track, what slipped, what is still unresolved, and when the next checkpoint will happen without inventing false certainty.
 Keep roadmap themes and release-plan specifics distinct. A roadmap theme must never silently become a dated promise.
 Assume now/next/later buckets alone are not enough. Users will still ask "when is later?" so the system should explicitly state why timing is still ambiguous, what is near-term committed, and what is only safe to communicate as a theme or progress update.
 Treat roadmap communication maturity as a first-class output. For any customer-facing roadmap or commitment-related item, the MVP must force the agent to classify the safest communication level as one of: now_committed, next_candidate, later_exploratory, release_window_defined, or no_date_safe. Each classification must include a plain-language explanation of what is known, what is not yet firm, and what can be said externally without creating a false promise.
@@ -111,6 +112,14 @@ Roadmap Communication Contract:
    - `work_size_band`
    - `commitment_fit`
    - `satisfy_commitment_without_derailing_strategy`
+   - `status_update_needed`
+   - `status_update_due_by`
+   - `status_update_audience`
+   - `status_update_owner`
+   - `open_items`
+   - `open_items_owner`
+   - `next_commitment_checkpoint`
+   - `commitment_status` = `on_track | at_risk | slipped | blocked`
 3. Enforce rendering rules:
    - any item labeled `next` or `later` must also show what that label means in the current workspace
    - any `direction_only` item must explicitly say that the label expresses intention, not schedule certainty
@@ -138,6 +147,7 @@ Implementation contract for coding agent:
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, whether multiple accounts are asking for the same committed capability, whether the conflict now requires an explicit executive decision, who the final decision owner is, the likely work size band (`small_3d | small_1w | small_2w | larger_bet | unknown`), whether the ask is a `small_patch_candidate | roadmap_candidate | unsafe_to_commit`, and whether it appears satisfiable without derailing strategic work (`yes | no | unclear`).
    For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, recommended_external_wording, chosen_bucket, chosen_bucket_definition, bucket_definition_source (team_default | workspace_override | item_override), bucket_mode (direction_only | working_horizon | none), customer_safe_answer_to_when, reason_not_committed, and next_reassessment_trigger so roadmap themes do not get misread as dated delivery commitments.
+   Also preserve update-drafting context for commitment-linked records: whether a status update is needed now, who owns it, who the audience is, which open items still block stronger promise language, what the next checkpoint date is, and whether the commitment is currently on_track | at_risk | slipped | blocked.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
 2. Support these minimum routes:
    - POST /records
@@ -186,6 +196,10 @@ Implementation contract for coding agent:
      - customer_safe_answer_to_when: 1-2 sentences directly answering timing pressure without creating a false promise
      - reason_not_committed: the concrete blocker that prevents stronger promise language
      - next_reassessment_trigger: what change would justify revisiting the wording
+     - status_update_draft: 1-3 sentences suitable for PM/CSM stakeholder communication when a commitment or open item needs explicit update wording
+     - open_items_summary
+     - next_commitment_checkpoint
+     - commitment_status
      - strategy_time_tax_summary when customer commitments are consuming strategy bandwidth
      - work_size_band for commitment-linked items
      - commitment_fit for commitment-linked items

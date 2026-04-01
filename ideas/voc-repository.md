@@ -1,8 +1,8 @@
 # Voice-of-Customer Repository
 
 **Status**: Primary pick
-**Source basis**: Yahoo indexed Reddit/X snippets + prior PullPush Reddit mirror recoveries refreshed on 2026-04-01
-**Updated**: 2026-04-01
+**Source basis**: Yahoo indexed Reddit/X snippets + Yahoo Japan indexed snippets + prior PullPush Reddit mirror recoveries refreshed on 2026-04-02
+**Updated**: 2026-04-02
 
 ## One-line Thesis
 초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + now/next/later roadmap communication + next-90-days commitment-risk view + release-plan separation + progress-report surface**로 바꿔주는 decision layer.
@@ -30,6 +30,7 @@
 - 이번 루프의 추가 Shape Up 관련 indexed snippet은 일부 팀이 **customer commitments와 3일~2주짜리 small work item**을 같은 운영 현실 안에서 다룬다는 점도 보여줬다. 즉 제품은 `큰 roadmap bet`만이 아니라 `작은 commitment-saving work`도 분리해 읽어줘야 한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
+- 이번 루프의 fresh PM indexed snippet은 AI 활용처로 **progress report drafting / status update drafting**을 직접 언급했고, 그 목적을 **time commitments와 open items를 honest하게 유지하는 것**이라고 설명했다. 즉 제품은 brief 생성 뒤에 끝나는 게 아니라, commitment-safe update draft까지 이어져야 한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
 - public roadmap은 `now / next / later` 또는 `now / next / soon / later` 수준으로 두고, proven delivery history 없으면 날짜를 피하라는 운영 조언이 반복해서 보인다.
 - public roadmap transparency 자체는 긍정적으로 읽히지만, commitment는 날짜보다 **status language**로 관리하는 쪽이 안전하다는 신호가 추가됐다.
@@ -84,6 +85,8 @@
 - commitment fit (`small_patch_candidate`, `roadmap_candidate`, `unsafe_to_commit`)
 - can this satisfy the commitment without derailing strategy? (`yes`, `no`, `unclear`)
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
+- status update intent (`progress_report`, `status_update`, `commitment_reconfirmation`, `delay_explanation`)
+- open items summary + owner + next checkpoint so update drafting is grounded in unresolved work, not generic AI copy
 - roadmap layer vs release-plan layer distinction
 - bucket definition guidance (default: `now` = recently shipped through ~2 months out, `next` = next quarter, `later` = ~6–12 months; editable by team)
 - bucket mode (`direction_only` vs `working_horizon`) so the team can distinguish intention-setting language from an internally held horizon
