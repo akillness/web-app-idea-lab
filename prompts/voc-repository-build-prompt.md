@@ -15,6 +15,7 @@ Optimize the MVP for a Monday-morning review ritual. Users upload the last week'
 Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days.
 The MVP should also support customer-facing expectation management when hard dates are unrealistic: generate update-ready language using high-level roadmap, release-plan, sprint-plan, or explicit non-commitment framing instead of false certainty.
 Keep roadmap themes and release-plan specifics distinct. A roadmap theme must never silently become a dated promise.
+Assume now/next/later buckets alone are not enough. Users will still ask "when is later?" so the system should explicitly state why timing is still ambiguous, what is near-term committed, and what is only safe to communicate as a theme or progress update.
 Assume many teams already use Productboard/Jira/spreadsheets for planning, but those tools do not fully solve ongoing discovery, commitment hygiene, or roadmap-volatility communication.
 
 Target users:
@@ -48,6 +49,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 7. What should stay intentionally uncommitted in the next 90 days because the evidence is weak, the roadmap is volatile, or bandwidth is uncertain?
 8. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
 9. Which customer-facing updates should be framed as roadmap themes versus release-plan specifics right now?
+10. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -142,6 +144,7 @@ Implementation contract for coding agent:
    - include at least one explicit section or flag in the brief for: committed features at risk this quarter
    - include at least one explicit section or flag in the brief for: requests that should remain intentionally uncommitted for the next 90 days
    - include at least one explicit section or flag in the brief for: roadmap themes that should not yet be communicated as dated release promises
+   - include at least one explicit section or flag in the brief for: ambiguous later-stage items that still need a safe progress-update explanation
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample conversation records
    - include one sample extraction output, one theme output, and one brief output in the repo

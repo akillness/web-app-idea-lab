@@ -3,8 +3,8 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 roadmap software처럼 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming**, **Productboard quarterly-planning bias**, **quarterly commitment reprioritization**, **high-level roadmap + release/sprint plan + progress report ritual**, **90-day commitment limit**, **roadmap changes every two weeks**, **roadmap ≠ release plan**, **public roadmap date-avoidance**, **2-week release cadence reality** 신호가 추가로 강화됨 |
-| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **pre-due reminder habit**, **late-fee rule**, **hold-work-until-paid rule**, **AP list delay reality**, **WhatsApp-style invoicing**, **professional invoice template + net 30 + late fee + auto-reminder** 신호를 보강함 |
+| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 roadmap software처럼 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming**, **Productboard quarterly-planning bias**, **quarterly commitment reprioritization**, **high-level roadmap + release/sprint plan + progress report ritual**, **90-day commitment limit**, **roadmap changes every two weeks**, **roadmap ≠ release plan**, **public roadmap date-avoidance**, **2-week release cadence reality**, 그리고 새로 **now/next/later는 near-term commitment만 만들고 later ambiguity는 그대로 남는다**, **timeline disclaimer만으로는 expectation management가 안 된다**, **NOW/NEXT/LATER가 clarity/commitment 부족으로 읽힐 수 있다**는 신호까지 붙어 더 강화됨 |
+| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **pre-due reminder habit**, **late-fee rule**, **hold-work-until-paid rule**, **AP list delay reality**, **WhatsApp-style invoicing**, **professional invoice template + net 30 + late fee + auto-reminder**에 더해 **weak payment systems**와 **solid payment clause** 신호가 붙으면서, creator 문제를 broad CRM보다 payment-system clarity / clause clarity / collections discipline 문제로 더 좁혔다 |
 | Support-to-Product Decision Hub | support/CS 요청을 dedupe·contextualize·impact-aware prioritization으로 바꾸는 intake layer | VoC의 가장 강한 하위 wedge | standalone이면 Productboard/Jira 보조툴처럼 보일 위험 | dollars/resource time tie-back과 request-origin tracking이 이번 루프에서 더 또렷해짐 |
 | Creator Collections Assistant | overdue invoice, promised date, follow-up sequence, reminder timing에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context와 rights memory가 빠짐 | solo/freelancer skew가 강한 entry wedge로는 유효 |
 | Churn Decision Copilot | churn rate가 아니라 churn reason / segment / avoidability / unit-econ impact를 연결하는 분석 레이어 | `why`와 `so what`을 동시에 풀 수 있음 | 단독 제품이면 intake/evidence layer 없이 약할 수 있음 | VoC의 module로는 강하지만 standalone 1순위는 아님 |
@@ -33,6 +33,7 @@
 - 그래서 실제 운영은 high-level roadmap, sprint/release plan, progress report를 섞어 commitment를 설명하는 식으로 흘러간다.
 - roadmap 자체와 release plan을 구분해야 한다는 practitioner language가 분명히 존재한다.
 - public roadmap은 now/next/soon/later로 유지하고 날짜는 피하라는 현실적 조언이 반복된다.
+- 그런데 이번 루프에는 **now/next/later를 써도 고객이 결국 later가 언제인지 다시 묻는다**는 신호가 붙어, bucket label만으로는 expectation management가 끝나지 않는다는 점이 더 선명해졌다.
 - 실제 shipping cadence가 짧을수록 roadmap-theme와 customer-facing promise를 분리해 주는 레이어가 더 필요하다.
 - 3개월 roadmap도 2주마다 흔들릴 수 있어 commitment-risk visibility가 비어 있다.
 - churn은 여전히 rate로 먼저 보지만, 실제로는 unit economics와 연결된 decision pressure를 만든다.
@@ -107,11 +108,13 @@
 - Productboard/Jira류 planning stack과 별개로 **next-90-days commitment risk**를 읽어주는 lightweight layer도 부족하다.
 - hard date가 어려운 상황에서 **progress report / release-plan language로 commitment 상태를 설명해주는 lightweight surface**도 부족하다.
 - **roadmap theme**와 **release plan / dated promise**를 안전하게 분리해주는 lightweight surface도 부족하다.
+- **now/next/later를 보여줘도 결국 later timing 질문에 답해야 하는 ambiguity-closing surface**도 부족하다.
 - request를 revenue impact / resource time / customer importance와 연결해 의사결정하는 lightweight layer도 부족하다.
 - benchmark curiosity는 존재하지만, 현장의 더 급한 pain은 still messy evidence cleanup + weekly decision ritual이다.
 - churn tooling도 많지만 `why`, `which segment`, `what action`, `what unit-econ risk`를 동시에 보여주는 decision layer는 드물다.
 - creator tooling은 invoice creation을 말해도 실제 사용자는 **late payment / underpayment / ghosting / follow-up timing**에서 막힌다.
 - creator tooling은 payment terms before work, promised payment date, invoice instructions, rights/pricing memory를 first-class로 다루지 않는 경우가 많다.
+- 그리고 이번 루프의 X/Threads indexed evidence는 creator pain의 뿌리를 **weak payment systems / weak payment clauses** 쪽으로 더 밀어, CRM보다 시스템-정비 레이어가 더 급하다는 점을 드러냈다.
 - Threads는 discovery source로서 계속 효율이 낮다.
 
 ## Contradictions

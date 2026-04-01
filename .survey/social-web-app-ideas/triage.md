@@ -5,7 +5,8 @@
 
 ## 조사 메모
 - `web_search` / `web_extract`는 이번 루프도 `401 Invalid API key`로 실패했다.
-- Reddit live page 접근은 여전히 불안정하지만, 이번 루프에서는 **Yahoo indexed Reddit snippets**로 더 구체적인 PM intake/grooming workflow와 commitment-handling ritual을 회수했다.
+- Yahoo global search는 이번 루프 환경에서 불안정했고, 대신 **Yahoo Japan indexed snippets**가 더 안정적인 fallback이었다.
+- Reddit live page 접근은 여전히 불안정하지만, 이번 루프에서는 **Yahoo Japan indexed Reddit snippets**로 더 구체적인 PM intake/grooming workflow와 commitment-handling ritual을 회수했다.
 - 새로 확인된 Reddit 신호:
   - `formal request intake process` 논의에서 **fill-in-the-blank JTBD template**로 문제 이해를 강제한다는 흐름이 보였다.
   - `What info to ask for in Feature Requests` 논의에서 여전히 **JIRA feature request project + area / impact / effort** 같은 수동 grooming 필드가 보였다.
@@ -22,10 +23,15 @@
 - Creator 쪽에서는 `invoice creation`보다 **payment chasing timing**, **collections visibility**, **invoice readiness professionalism**이 더 선명한 pain으로 강화됐다.
 - 특히 이번 루프에는 **`not some scribbled note` 수준의 professional invoice + net 30 + late fee + auto-reminder** framing이 추가돼, 문제의 시작점이 collections 이후가 아니라 invoice setup 품질에도 있음을 더 분명히 보여줬다.
 - 추가로 Reddit `r/freelance` indexed snippets에서는 **due date 일주일 전 friendly reminder**, **due date 전날 reminder + 20% late fee**, **첫 인보이스/연체 시 추가 작업을 멈추는 hold-work rule**, **작은 벤더가 AP list 맨 아래로 밀리는 현실**이 보였다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 roadmap-language pain이 더 직접적으로 보였다.
+  - `How are you supposed to create an accurate roadmap when...`에서는 **now/next/later의 commitment는 근거리 범위에만 유효하다**는 논리가 드러났다.
+  - `Presented roadmap / prioritization ...`에서는 **"this does not correspond with a literal timeline"라고 말해도 결국 고객/내부 이해관계자는 "그럼 later는 언제냐"를 다시 묻는다**는 tension이 보였다.
+  - `Roadmaps in a SaaS context ...`에서는 **NOW/NEXT/LATER 모델이 오히려 큰 고객에게는 clarity와 commitment 부족으로 읽힌다**는 신호가 추가됐다.
 - 새로 확인된 Reddit roadmap/release-plan 신호:
   - `How do you plan releases?`에서는 **feature는 준비되는 대로 shipping하고 SaaS는 2주 release cadence로 운영**한다는 식의 현실적인 release-plan 감각이 보였다.
   - `how to write a product roadmap?`에서는 **roadmap을 start/end date가 있는 timeline으로 오해하지만, 그건 roadmap이 아니라 release plan**이라는 구분이 드러났다.
   - `Product Roadmap Template?`에서는 **public roadmap은 now / next / soon / later 수준으로 두고, proven delivery history 없으면 날짜를 피하라**는 운영 조언이 보였다.
   - `How to commit to quarterly or yearly roadmap goals/deadlines ...`에서는 **just-in-time design/detail 환경에서 분기·연간 목표 commit 자체가 어렵다**는 tension이 다시 확인됐다.
-- Threads는 `site:threads.net` 기반 재탐색에서도 유의미한 net-new signal을 거의 주지 못했고, creator invoice/payment query는 이번 루프도 Yahoo에서 **검색 결과 0건**이었다. 이번에는 더 좁힌 quoted query `site:threads.net "creator invoice" "follow up" "brand deal"`도 **검색 결과 0건**이었다.
-- 따라서 현재 조사 레이어는 `Reddit = indexed snippet + PullPush mirror`, `X = indexed snippet`, `Threads = weak/blocked` 조합으로 운영 중이다.
+- Threads는 여전히 약했지만, 이번 루프 Yahoo Japan 검색에서는 broad query 기준으로 **1건의 indexed Threads result**가 보였다. `@counselforcreators` 스레드 계정 snippet은 **payment clause는 due date + late fee를 명시해야 한다**는 방향을 줬다. 다만 이건 커뮤니티 workflow breadth가 아니라 계정성/전문가성 advice에 가까워 confidence는 낮다.
+- X 쪽에서는 새로 **"late payments rarely come from bad clients; most stem from weak payment systems"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
+- 따라서 현재 조사 레이어는 `Reddit = Yahoo Japan indexed snippet + PullPush mirror`, `X = Yahoo Japan indexed snippet`, `Threads = weak but no longer hard-zero` 조합으로 운영 중이다.

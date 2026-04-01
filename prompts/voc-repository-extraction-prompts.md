@@ -34,6 +34,13 @@ Schema:
       "evidence": ["string"]
     }
   ],
+  "commitment_signals": [
+    {
+      "label": "string",
+      "commitment_status": "named_commitment|near_term_focus|theme_only|timing_ambiguous|unknown",
+      "evidence": ["string"]
+    }
+  ],
   "normalized_signals": [
     {
       "raw_label": "string",
@@ -64,6 +71,7 @@ Rules:
 - Favor concrete pains over vague themes.
 - Populate evidence_spans whenever a signal is asserted.
 - Normalize labels aggressively enough to support downstream clustering.
+- If the record implies roadmap communication risk, capture whether the ask is a named commitment, only a roadmap theme, or still timing-ambiguous.
 ```
 
 ## 2. Theme Clustering Prompt
@@ -97,6 +105,7 @@ Rules:
 - Merge only truly similar issues.
 - Preserve segment differences when they matter.
 - Suggested action must be decision-oriented, not generic.
+- Keep commitment/timeline ambiguity visible when it changes what can be safely communicated externally.
 ```
 
 ## 3. Decision Brief Prompt
@@ -119,7 +128,7 @@ JSON schema:
   "top_decisions": [
     {
       "title": "string",
-      "decision_type": "product|messaging|sales_enablement|support",
+      "decision_type": "product|messaging|sales_enablement|support|commitment_management",
       "recommendation": "string",
       "why_now": "string",
       "confidence": "high|medium|low",
@@ -127,7 +136,9 @@ JSON schema:
       "evidence": [
         { "record_id": "string", "quote": "string" }
       ],
-      "counterevidence_or_gaps": "string"
+      "counterevidence_or_gaps": "string",
+      "update_mode": "roadmap_theme|release_plan_update|explicit_non_commitment|at_risk_progress_report",
+      "timing_ambiguity_note": "string"
     }
   ],
   "monitor_only": [

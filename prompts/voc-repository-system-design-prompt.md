@@ -35,6 +35,7 @@ Requirements:
 11. Define how commitment-risk and next-90-days uncertainty should be represented in both the data model and the brief UX.
 12. Define the storage model for snippet-level evidence traceability.
 13. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
+14. Define how the product should represent `near-term commitment`, `roadmap theme only`, and `timing still ambiguous` without collapsing them into one roadmap state.
 
 Constraints:
 - Prefer a simple web app stack.
@@ -52,6 +53,7 @@ Output format:
 - Async jobs
 - Error handling
 - Evidence and trust UX
+- External update / ambiguity-closure UX
 - MVP implementation phases
 - Open questions
 ```
