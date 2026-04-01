@@ -12,7 +12,7 @@ Create a product that helps early-stage SaaS teams turn scattered support, featu
 
 Important framing:
 Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
-Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days.
+Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, de-prioritization, or explicit non-commitment in the next 90 days. The MVP should also make visible when customer-commitment handling is consuming too much strategy time, so teams can see what strategic work is being crowded out by commitment reconciliation.
 The MVP should also support customer-facing expectation management when hard dates are unrealistic: generate update-ready language using high-level roadmap, release-plan, sprint-plan, or explicit non-commitment framing instead of false certainty.
 Keep roadmap themes and release-plan specifics distinct. A roadmap theme must never silently become a dated promise.
 Assume now/next/later buckets alone are not enough. Users will still ask "when is later?" so the system should explicitly state why timing is still ambiguous, what is near-term committed, and what is only safe to communicate as a theme or progress update.
@@ -57,6 +57,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 10. Which customer-facing updates should be framed as roadmap themes versus release-plan specifics right now?
 11. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
 12. Which items are rising because the evidence is strong versus because an explicit external commitment or shipment pressure is forcing a priority override?
+13. Which commitments are consuming disproportionate strategy time this week, and what strategic work is being crowded out?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -67,6 +68,7 @@ The brief must:
 3. show only source-linked claims,
 4. recommend concrete product/message/support actions,
 5. default to the structure: Health overview -> Risk review -> Ranked actions -> Commitments to revisit -> Evidence and gaps.
+6. include a compact strategy-time-tax section when commitment reconciliation is crowding out strategic work.
 
 MVP scope:
 - single workspace
@@ -175,6 +177,7 @@ Implementation contract for coding agent:
      - customer_safe_answer_to_when: 1-2 sentences directly answering timing pressure without creating a false promise
      - reason_not_committed: the concrete blocker that prevents stronger promise language
      - next_reassessment_trigger: what change would justify revisiting the wording
+     - strategy_time_tax_summary when customer commitments are consuming strategy bandwidth
    - theme priority score should use:
      - frequency across records
      - average severity

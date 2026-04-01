@@ -24,6 +24,7 @@
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
 - 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
 - 같은 맥락에서 commitment hygiene는 단순 roadmap 커뮤니케이션 문제가 아니라 **close deals / plan effectively / meet customer commitments** 수준의 사업 실행 문제로도 읽힌다.
+- 이번 루프의 fresh Reddit indexed snippet은 여기서 한 발 더 나아가, **customer commitments를 맞추려다 strategy에 쓸 시간이 먼저 사라진다**고 말한다. 즉 제품은 commitment-aware prioritization뿐 아니라 **strategy-time protection**도 제공해야 한다.
 - 이번 루프의 추가 Reddit indexed signal은 우선순위가 실제로 **external customer commitments / customer shipments / priority company objectives / technology inflections / market timing** 때문에 override된다는 점을 보여줬다. 즉 제품은 `무엇이 많이 요청됐는가`만이 아니라 `왜 이 요청이 지금 기본 scoring을 덮고 올라왔는가`를 남겨야 한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
@@ -61,9 +62,10 @@
 11. roadmap과 release schedule은 둘 다 고객-facing commitment artifact인데, 이 둘의 안전한 경계를 제품이 지켜주지 못한다.
 12. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 13. external commitment / shipment / company objective가 들어왔을 때 왜 기존 우선순위를 override했는지 기록되지 않아, 예외가 곧 정치처럼 보인다.
+14. customer commitment reconciliation이 길어질수록 strategy work가 밀리는데, 현재 팀은 이 `strategy-time tax`를 측정하거나 설명하지 못한다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
+"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Strategy-Time Protection View + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
 
 핵심은 raw feedback를 더 모으는 게 아니라, 팀이 이미 쓰는 intake/grooming language로 바꾸는 것이다. 즉 record는 최소한 아래 필드를 향해야 한다.
 - JTBD / use case / desired outcome
@@ -93,6 +95,7 @@
 - generic scoring을 뒤집는 **priority override**가 생기면 why-now를 commitment / shipment / company-objective 문맥으로 명시함
 - avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
+- weekly brief 안에서 `what is consuming strategy time this week`를 별도 블록으로 보여줌
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
 - `what should stay intentionally uncommitted for the next 90 days`를 명시해 false commitment를 줄임
 - hard date를 못 주는 상황에서도 쓸 수 있는 **progress report / release-plan style external update draft**를 생성
@@ -157,7 +160,7 @@
 ## Why Now
 support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것을 product decision ritual로 바꾸지 못한다. 요약 도구는 많아졌지만 **`what got worse this week?`, `which segment is newly at risk?`, `which requests are worth time now?`, `what revenue or commitment is exposed?`** 를 source-linked 상태로 말해주는 레이어는 여전히 희박하다.
 
-이번 루프의 추가 신호는 여기에 한 가지를 더 보탠다. 팀은 public roadmap transparency를 원하지만, 실제로는 hard-date roadmap보다 **now / next / later 같은 low-commitment status communication**과 release-plan 분리가 더 실무적이다. 즉 VoC wedge는 단순 저장소가 아니라 **evidence-backed roadmap communication safety layer**로도 읽힌다.
+이번 루프의 추가 신호는 여기에 두 가지를 더 보탠다. 첫째, 팀은 public roadmap transparency를 원하지만, 실제로는 hard-date roadmap보다 **now / next / later 같은 low-commitment status communication**과 release-plan 분리가 더 실무적이다. 둘째, customer commitments를 맞추는 과정 자체가 strategy 시간을 잠식할 수 있으므로, 제품은 `what is at risk`뿐 아니라 `what strategic work is being crowded out`도 보여줘야 한다. 즉 VoC wedge는 단순 저장소가 아니라 **evidence-backed roadmap communication safety layer + strategy-protection layer**로도 읽힌다.
 
 ## Supporting Evidence
 - X indexed snippet: founders know churn rate but not why customers leave; evidence sits in surveys/support tickets/Stripe fields
@@ -192,6 +195,8 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/t9oymm/realistically_how_often_do_you_actually_hit_your/
 - Reddit indexed snippet: some PMs explicitly distinguish roadmap from release plan and warn against treating roadmap like a dated timeline
   - https://www.reddit.com/r/ProductManagement/comments/rtmf2p/how_to_write_a_product_roadmap/
+- Reddit / Yahoo Japan indexed snippet: customer commitments can consume strategy time; teams may lose strategy bandwidth while trying to meet commitments
+  - https://www.reddit.com/r/ProductManagement/comments/1ia5yda/content_vs_process/
 - Reddit indexed snippet: some teams keep public roadmap language at now / next / soon / later and avoid dates unless delivery history is proven
   - https://www.reddit.com/r/ProductManagement/comments/mtid85/product_roadmap_template/
 - Reddit / Yahoo indexed snippet: publishing a transparent roadmap can build trust, but teams often use now / next / later framing to show commitment without overcommitting to dates

@@ -39,7 +39,7 @@ Treat invoice professionalism / readiness as a first-class problem too: many use
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
 Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, and the correct submission path.
-Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run.
+Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run. Treat AP-processing lead time as first-class as well: the MVP should make it obvious when a creator must invoice in advance simply to get into the client's AP/audit cycle, rather than discovering the delay only after the due date passes. Treat direct-client AP-navigation quality as first-class too: a deal may be risky because the project owner cannot reliably guide the creator through the internal payment path.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -53,7 +53,9 @@ The MVP should help a user answer these questions quickly:
 10. Which deals are risky because the payment terms were never clarified before work started?
 11. Do I have the correct AP contact, project owner, PO/reference number, and submission path before I send or chase this invoice?
 12. Is the money actually late, or is it blocked in vendor onboarding, intermediary billing, invoice booking, or the next pay run?
-13. Should this deal now move into `pause future work until paid` mode?
+13. Do I need to invoice in advance for this client so AP has time to process and audit before the expected pay run?
+14. How confident am I that my direct client can actually navigate their internal AP/payment path?
+15. Should this deal now move into `pause future work until paid` mode?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -63,6 +65,7 @@ By the end of a session, the user should be able to see:
 - next follow-up action,
 - a clean overdue queue,
 - and the fastest answer to: `where is my money stuck right now?`
+- plus whether the deal is late because money is missing, or because the AP clock never started early enough.
 
 MVP scope:
 - single workspace
@@ -70,6 +73,7 @@ MVP scope:
 - attach one or more deliverables to each deal
 - capture structured payment terms, invoice workflow requirements, and deposit requirements
 - capture AP routing details, including project owner, AP contact, and PO/reference fields when known
+- capture AP lead-time expectations, invoice-in-advance requirements, and direct-client AP-navigation confidence
 - capture invoice-template quality fields such as due date, late-fee policy, reminder defaults, and required invoice fields
 - capture quoted rate, usage rights, and repeat-brand notes
 - capture usage-rights pricing deltas and negotiation notes
@@ -102,7 +106,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), AP lead-time fields (invoice_in_advance_required, recommended_submit_by_date, AP_process_lead_time_days when known, AP_audit_expected boolean, direct_client_AP_navigation_confidence), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -132,7 +136,7 @@ Implementation contract for coding agent:
    - every deal detail should expose the reason a case is blocked from invoicing or closing
    - invoice readiness blockers must distinguish missing creator-side work from missing client-side invoice instructions
    - invoice readiness blockers must explicitly flag missing AP recipient, missing project-owner contact, missing PO/reference number, or unknown submission route
-   - payment blockers must explicitly distinguish: vendor onboarding delay, payment-system setup delay, intermediary/recruiter handoff, invoice not booked, waiting for next pay run, client dispute, or true non-response
+   - payment blockers must explicitly distinguish: vendor onboarding delay, payment-system setup delay, intermediary/recruiter handoff, invoice not booked, waiting for next pay run, AP processing/audit window not started early enough, weak direct-client AP navigation, client dispute, or true non-response
    - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message

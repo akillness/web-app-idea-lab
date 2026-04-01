@@ -56,3 +56,6 @@
   이 추가됐다.
 - VoC 쪽에서는 Reddit/X 외에 discussion-index fallback을 통해, **customer-needs observability를 Jira 밖에서 유지해야 한다**, **support queue와 project queue는 데이터 모델이 다르다**, **support-origin request를 automation + AI로 triage해 planning으로 연결하는 운영 루프가 존재한다**, **release schedule과 roadmap 둘 다 고객-facing commitment artifact로 소비된다**는 실무 신호가 보였다. 이는 1순위 아이디어의 `repository`보다 `decision + commitment-safe communication` 해석을 더 강화한다.
 - 따라서 현재 조사 레이어는 `Reddit = Yahoo Japan indexed snippet + PullPush API(user-agent)`, `X = Yahoo Japan indexed snippet`, `Threads = weak but no longer hard-zero`, `adjacent discussion index = HN/PM discussions for workflow structure` 조합으로 운영 중이다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 `Content vs Process` 결과가 추가로 잡혔고, snippet 수준에서 **customer commitments를 맞추려다 strategy에 쓸 시간이 가장 먼저 떨어진다**는 문장이 보였다. 이는 VoC 제품이 단순 prioritization 설명을 넘어서 **strategy-time protection / commitment-overhead visibility**까지 다뤄야 한다는 근거를 더한다.
+- creator 쪽 Yahoo Japan Reddit 검색에서는 **accounts payable가 invoice를 처리·감사(audit)할 시간을 벌기 위해 선청구/사전 제출이 필요하다**, **AP 네비게이션은 direct client가 내부 결제 프로세스를 얼마나 잘 아느냐에 크게 좌우된다**는 신호가 새로 잡혔다. 즉 creator backup은 overdue follow-up 이후보다도 **AP-ready lead time / invoice-before-pay-run discipline / internal champion quality**를 먼저 다뤄야 한다.
+- 이번 루프도 `web_search`는 직접 재테스트 시 `401 Invalid API key`였다.
