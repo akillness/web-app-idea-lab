@@ -396,3 +396,25 @@ Success:
 - the external draft is safer than ad-hoc now/next/later messaging
 - the team can close recurring `when is later?` / `why not now?` questions faster
 ```
+
+## 13. Current implementation slice
+### Selected task
+Build a zero-dependency prototype shell for the primary idea that:
+- accepts record intake in the browser
+- derives account/theme/commitment signals from sample and user-added records
+- renders the core decision artifacts (`accounts`, `themes`, `build-next`, `brief`, `updates`, `commitments`)
+- keeps `next/later` output commitment-safe
+
+### Planned files
+- Create: `prototype/voc-repository/index.html`
+- Create: `prototype/voc-repository/styles.css`
+- Create: `prototype/voc-repository/src/data/sample-records.js`
+- Create: `prototype/voc-repository/src/lib/voc.js`
+- Create: `prototype/voc-repository/src/main.js`
+- Create: `prototype/voc-repository/tests/voc.test.js`
+- Create: `prototype/voc-repository/package.json`
+- Modify: `README.md`
+
+### Verification
+- `node --test prototype/voc-repository/tests/voc.test.js`
+- smoke-check the prototype in a local browser session

@@ -1,0 +1,8 @@
+{
+  "name": "voc-repository-prototype",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/voc.test.js"
+  }
+}

@@ -28,3 +28,11 @@
 ## 현재 결론
 - Primary idea: **Voice-of-Customer Repository**
 - Backup idea: **Creator Deal CRM**
+
+## Prototype
+현재 저장소에는 primary 아이디어를 빠르게 검증하기 위한 무의존성 브라우저 프로토타입이 추가되어 있다.
+
+- Path: `prototype/voc-repository/`
+- 목적: raw record를 넣으면 account board / ranked theme board / build-next queue / weekly brief / commitment-safe update draft / commitment queue를 즉시 재계산
+- 실행: `python3 -m http.server 4173` 후 `http://127.0.0.1:4173/prototype/voc-repository/`
+- 테스트: `node --test prototype/voc-repository/tests/voc.test.js`
