@@ -1,15 +1,19 @@
 # Voice-of-Customer Repository
 
 **Status**: Primary pick
-**Source basis**: Reddit/X recurring pain clusters, 1st-pass survey
+**Source basis**: Reddit/X recurring pain clusters + indexed snippets recovered on 2026-04-01
 **Updated**: 2026-04-01
 
 ## Problem Statement
 초기 SaaS 팀은 고객 인터뷰, 세일즈 콜, 지원 티켓, 리뷰에 중요한 신호가 많지만 그 데이터가 Notion, Slack, Gong, Intercom, 메모에 흩어진다. 그 결과 고객 목소리는 존재하지만 제품 우선순위, 메시징, 세일즈 대응에 일관되게 반영되지 않는다.
 
+이번 루프에서 보강된 핵심 증거는 다음 문장으로 압축된다.
+- "247 support tickets and feedback emails sitting in my inbox" 같은 상태는 흔하다.
+- 문제는 저장이 아니라 **반복 패턴을 놓치고 있다는 것**이다.
+
 ## ICP
 - 10~100명 B2B SaaS 팀
-- Founder-led sales 또는 초기 PMF 탐색 단계
+- founder-led sales 또는 초기 PMF 탐색 단계
 - 전담 리서치 조직이 약한 팀
 - 인터뷰/콜/티켓은 늘고 있는데 인사이트 운영체계가 없는 팀
 
@@ -22,17 +26,21 @@
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **의사결정용 고객 증거 레이어**.
 
+핵심 포지셔닝 문장:
+> 초기 B2B SaaS 팀이 support tickets, sales call notes, interview transcripts를 매주 업로드하면 제품 우선순위와 메시지 수정에 바로 쓸 수 있는 evidence-backed weekly decision brief를 생성한다.
+
 핵심 차별점:
 - 인터뷰/콜/티켓을 JTBD / pain / objection / feature request / churn risk로 구조화
 - 빈도와 심각도를 기준으로 recurring signal 탐지
 - 인사이트를 태스크/문서/우선순위 변경 추천으로 연결
+- generic AI summary가 아니라 **source-linked evidence brief**를 출력
 
 ## MVP Boundary
 ### 포함
 - 텍스트/문서 업로드 및 붙여넣기
 - AI-assisted tagging (pain, segment, objection, request)
 - recurring signal dashboard
-- insight-to-action recommendation summary
+- evidence-linked decision brief
 - export to markdown / prompt-ready brief
 
 ### 제외
@@ -45,6 +53,10 @@
 ## Validation Plan
 - 5~10개 초기 팀 인터뷰
 - 샘플 데이터 20~50개 업로드 기반 파일럿
+- 검증 질문:
+  - 지금 feedback source가 어디에 흩어져 있는가?
+  - recurring pattern을 잡을 때 실제로 어떤 수동 작업을 하는가?
+  - weekly decision brief가 있으면 어떤 회의/문서가 대체되는가?
 - 검증 지표:
   - 주 1회 이상 반복 업로드
   - 실제 메시지/우선순위 변경 1건 이상
@@ -61,3 +73,10 @@
 
 ## Why Now
 요약 도구는 많지만 실행 연결 레이어가 비어 있다. 초기 팀은 더 적은 인력으로 더 많은 고객 대화를 처리해야 하고, founder-led sales 및 AI-assisted product work가 늘면서 이 gap이 더 분명해졌다.
+
+## Supporting Evidence
+- X indexed snippet: support tickets + feedback emails에서 패턴을 놓친다는 신호
+  - https://x.com/MillieMarconnni/status/2023363588099113093
+- Survey artifact
+  - `.survey/social-web-app-ideas/context.md`
+  - `.survey/social-web-app-ideas/solutions.md`

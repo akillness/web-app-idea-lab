@@ -44,6 +44,38 @@ Out of scope:
 - enterprise analytics
 - polished billing/auth stack beyond what is necessary for MVP
 
+Implementation contract for coding agent:
+1. Use these canonical entities:
+   - conversation_records
+   - record_extractions
+   - themes
+   - decision_briefs
+2. Support these minimum routes:
+   - POST /records
+   - GET /records
+   - GET /records/:id
+   - POST /records/:id/extract
+   - POST /themes/rebuild
+   - GET /themes
+   - GET /themes/:id
+   - POST /briefs
+   - GET /briefs/:id
+3. Use async job states:
+   - pending
+   - processing
+   - complete
+   - failed
+4. Minimum UI surfaces:
+   - records list
+   - record detail with source text + extracted tags
+   - theme list with counts and linked evidence
+   - brief view with recommendation markdown
+5. Preserve evidence traceability:
+   - every extracted signal must link back to source record ids and quoted snippets
+6. Start with fixtures and local-first iteration:
+   - seed at least 10 sample conversation records
+   - include one sample extraction output, one theme output, and one brief output in the repo
+
 Suggested artifacts to produce:
 1. product spec
 2. information architecture
@@ -62,6 +94,45 @@ Success criteria:
 
 Engineering preference:
 Favor a simple stack and fast iteration. Choose implementation details that make it easy to test with real sample transcripts quickly.
+```
+
+## Example payloads to anchor implementation
+```text
+Sample conversation record:
+{
+  "title": "Support call - pricing confusion",
+  "source_type": "support_ticket",
+  "customer_segment": "seed-stage B2B SaaS",
+  "content": "We like the product, but the pricing page makes it hard to know which plan includes API access..."
+}
+
+Sample extraction output:
+{
+  "record_id": "rec_001",
+  "jtbd": "evaluate pricing and plan fit",
+  "pain_points": ["pricing confusion", "unclear API entitlement"],
+  "objections": ["cannot justify upgrade without API clarity"],
+  "feature_requests": [],
+  "churn_risk": "medium",
+  "evidence_quotes": [
+    "the pricing page makes it hard to know which plan includes API access"
+  ]
+}
+
+Sample theme output:
+{
+  "theme": "Pricing clarity gap",
+  "record_count": 4,
+  "segments": ["seed-stage B2B SaaS", "Series A SaaS"],
+  "linked_record_ids": ["rec_001", "rec_004", "rec_009", "rec_010"]
+}
+
+Sample brief output:
+# Weekly Decision Brief
+- Theme: Pricing clarity gap
+- Why it matters: repeated pre-purchase confusion is slowing conversion
+- Recommended action: rewrite pricing page API entitlement copy and test a comparison table
+- Evidence: 4 records, including support_ticket rec_001
 ```
 
 ## Immediate follow-up prompt

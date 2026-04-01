@@ -1,46 +1,57 @@
 # Context: Social Web/App Ideas
 
 ## Workflow Context
-소셜 플랫폼에서 반복적으로 나오는 불만은 대체로 세 가지로 모인다.
-1. 여러 채널/도구를 오가며 운영하는 과정의 파편화
-2. 반복 업무가 많은데 실행 레이어가 약한 SaaS 공백
-3. 요약/기록 툴은 많지만 실제 액션 관리와 수익 회수까지 이어지지 않는 문제
+이번 루프에서는 직접 플랫폼 원문 접근이 계속 막혀서, **검색엔진이 인덱싱한 Reddit / X / Threads 결과 스니펫**을 source-backed signal로 사용했다. 이번에 실제로 더 선명해진 pain은 두 갈래다.
 
-이번 조사에서 특히 강하게 보인 영역은 다음이다.
-- 프리랜서/크리에이터 운영 자동화
-- 소상공인/1인 사업자 커뮤니케이션 통합
-- 회의/인터뷰/고객피드백을 실행 가능한 구조로 축적하는 도구
+1. **크리에이터 브랜드딜 운영은 여전히 스프레드시트·DM·이메일에 묶여 있다.**
+2. **고객 피드백은 inbox와 티켓에 쌓이지만, 반복 패턴을 잡아 제품 의사결정으로 연결하기 어렵다.**
+
+즉, 이번 루프는 `generic productivity`보다 `운영 파편화가 돈/의사결정 손실로 이어지는 좁은 workflow`가 더 강하다는 쪽으로 신호가 보강됐다.
 
 ## Affected Users
 | Role | Responsibility | Skill Level |
 |------|----------------|-------------|
-| 프리랜서/소형 에이전시 | 견적, 계약, 청구, 팔로업, 고객 커뮤니케이션 | 중간 |
-| 크리에이터/뉴스레터 운영자 | 브랜드딜, 콘텐츠 운영, 파이프라인 관리 | 중간 |
-| 초기 스타트업 창업자/PM | 인터뷰, 세일즈콜, support signal 정리 | 중간~상 |
-| 소상공인/로컬 비즈니스 | 리뷰, DM, 예약, 반복 문의 대응 | 낮음~중간 |
-| 원격팀/지식노동자 | 회의 결정사항, action item 실행 추적 | 중간 |
+| 솔로 크리에이터 | 브랜드딜 수주, 납기 관리, 인보이스, 입금 확인 | 중간 |
+| 소형 크리에이터 에이전시 | 다수 크리에이터 deal pipeline, 커뮤니케이션, deliverable 추적 | 중간~상 |
+| 초기 B2B SaaS 창업자 | 인터뷰/세일즈콜/지원티켓에서 반복 pain 추출 | 중간~상 |
+| PM / PMM / CS 리드 | 고객 신호 정리, 우선순위, 메시지 수정 | 중간~상 |
+| 소상공인/1인 운영자 | 여러 채널에서 들어오는 반복 문의와 고객 맥락 관리 | 낮음~중간 |
 
 ## Current Workarounds
-1. Notion + Google Sheets + 이메일 + DM + 캘린더를 수동 연결
-2. CRM, invoicing, support, meeting note 앱을 따로 쓰고 사람이 붙여서 운영
-3. AI 요약 툴을 쓰되 최종 실행관리(담당자, due date, 후속조치)는 다시 수동 입력
-4. 콘텐츠/리드/고객 목소리를 Slack/Discord/문서에 흩뿌린 뒤 검색으로 버팀
+1. 스프레드시트로 deal stage, 납기, 입금 상태를 수동 관리한다.
+2. Gmail / DM / 캘린더 / Notion을 사람이 머리로 연결해서 운영한다.
+3. support tickets, feedback emails, call notes를 inbox에 쌓아두고 LLM에 통째로 붙여넣어 패턴만 뽑는다.
+4. 회의/고객대화 요약은 하되, action owner / due date / follow-up은 다시 수동으로 옮긴다.
 
 ## Adjacent Problems
-- 데이터는 있는데 전환/현금흐름/실행으로 연결되지 않음
-- 멀티채널 커뮤니케이션 누락이 매출 손실로 직결됨
-- AI 요약 결과가 실제 업무 시스템으로 이어지지 않아 재작업이 생김
-- 작은 팀일수록 여러 point solution을 붙일 리소스가 없음
+- deal tracking 누락이 곧바로 미수금·납기 리스크로 이어진다.
+- customer feedback는 모아도 `반복 패턴`과 `의사결정 근거`로 정제되지 않는다.
+- AI 요약은 쉬워졌지만, 팀이 합의 가능한 evidence layer는 여전히 부족하다.
+- 검색엔진 인덱싱 품질이 플랫폼마다 달라 Threads는 usable signal이 거의 안 잡힌다.
 
 ## User Voices
-> "브랜드딜 관리가 스프레드시트 지옥이다" — X/Twitter creator/founder search cluster
-- https://x.com/search?q=%22brand%20deals%22%20creator%20spreadsheet&src=typed_query
+> "I run an outdoor channel ... got tired of losing track of brand emails. So I built myself a tool. It's basically a YouTube creator CRM..." — Reddit / r/PartneredYoutube search snippet
+- https://www.reddit.com/r/PartneredYoutube/comments/1qjw1po/built_a_tool_to_track_my_own_brand_deals_need/
+- Source path: Brave Search indexed snippet, accessed 2026-04-01
 
-> "회의 요약보다 누가 언제 무엇을 하기로 했는지가 중요하다" — Reddit/startup/productivity recurring complaint cluster
-- https://www.reddit.com/search/?q=subreddit%3Astartups%20meeting%20action%20items%20tool
+> "What do you all use for managing brand deals/payments ... managing payments, gifts, and projects for the brands" — Reddit / r/influencermarketing search snippet
+- https://www.reddit.com/r/influencermarketing/comments/17seflc/what_do_you_all_use_for_managing_brand/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 
-> "같은 고객 문의를 계속 답하느라 운영 피로가 크다" — Reddit Shopify/SaaS support complaint cluster
-- https://www.reddit.com/search/?q=subreddit%3Ashopify%20same%20customer%20questions%20tool
+> "Brands still manage creator relationships in spreadsheets." — X indexed snippet
+- https://x.com/polsia/status/2034926469835829637
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+
+> "Talent agencies run on spreadsheets and DMs. So I built Dealboard." — X indexed snippet
+- https://x.com/polsia/status/2030280962647671102
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+
+> "I had 247 support tickets and feedback emails sitting in my inbox. Claude found the patterns I completely missed." — X indexed snippet
+- https://x.com/MillieMarconnni/status/2023363588099113093
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 
 ## Collection Caveat
-실시간 원문 추출은 이번 실행에서 tool/API 및 anti-bot 제한으로 완전 자동화되지 않았다. 현재 문서는 반복 신호를 구조화한 1차 조사본이며, 이후 30분 루프에서 source quality를 지속 개선하도록 설계한다.
+- Reddit direct access: browser/curl 모두 network policy block.
+- X / Threads direct in-browser reading: login/captcha/anti-bot 제한이 강함.
+- 따라서 이번 문서는 **원문 전수 검증본이 아니라 search-indexed snippet 기반 2차 관측본**이다.
+- 다만 이전 루프의 `반복 pain 클러스터` 수준에서 한 단계 올라가, 이번에는 **구체 URL + 인덱싱 스니펫**까지 확보했다.
