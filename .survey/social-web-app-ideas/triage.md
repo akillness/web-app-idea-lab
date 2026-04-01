@@ -36,6 +36,9 @@
 - X 쪽에서는 새로 **\"late payments rarely come from bad clients; most stem from weak payment systems\"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
 - 이번 루프 Yahoo Japan Reddit 검색에서는 `If you use a roadmap without specific timelines ...` 류 결과가 더 구체적으로 잡혔다. 한 indexed snippet은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 bucket 자체를 operational horizon으로 정의하고 있었다. 이건 VoC 아이디어의 `safe roadmap/update communication` 레이어를 더 구현 가능한 형태로 바꿔 준다.
 - Creator 쪽 Yahoo Japan Reddit 재검색에서는 `PO number` 관련 late-payment query가 다시 살아 있었고, snippet 수준에서도 **회계팀이 있으면 PO number를 확보하고 이후 연체 reminder에서 계속 reference하라**는 운영 규칙이 명확히 보였다.
+- 이번 루프 Yahoo Japan Reddit 재검색에서는 `How to approach multi-year Roadmapping and prioritization?`가 잡혔고, snippet 수준에서 **now / next / later는 정확한 타임라인보다 flexibility와 intention을 주기 위한 장치**라는 framing이 확인됐다.
+- 동시에 `Presented roadmap / prioritization ...` 재확인으로 **"literal timeline이 아니다"라고 선을 그어도 결국 상대는 later가 언제인지 다시 묻는다**는 tension이 여전히 유지된다는 점도 다시 확인됐다.
+- creator 쪽 exact workflow query(`site:reddit.com/r/freelance invoice pay run booked AP PO number late payment`)는 Yahoo Japan에서 **0건**이었다. 즉 accounting-stage blockage는 broad recovery query나 prior PullPush comment recovery 쪽이 여전히 더 효율적이다.
 - `web_search` / `web_extract`는 이번 루프에도 다시 직접 테스트했고 둘 다 `401 Invalid API key`였다.
 - 이번 루프에는 Reddit recovery path도 한 단계 진전됐다. 기본 요청은 막히기 쉬웠지만, **PullPush API + browser-like user-agent** 조합으로는 comment-level 회수가 가능했다.
 - 그 결과 creator 쪽에서는 새로:

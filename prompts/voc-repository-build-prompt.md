@@ -80,6 +80,29 @@ Out of scope:
 - external peer benchmarking / percentile network as a v1 requirement
 - polished billing/auth stack beyond what is necessary for MVP
 
+Roadmap Communication Contract:
+1. Treat customer-facing roadmap wording as a small state machine, not freeform copy.
+   - `direction_only`: safe to express intention/direction, but no operational horizon should be implied.
+   - `bucket_with_horizon`: safe to use `now` / `next` / `later` only when the active bucket definition is shown or recoverable.
+   - `release_window_defined`: safe to communicate a bounded release window without a hard date.
+   - `committed_date`: use only when the team has explicitly accepted date risk.
+   - `no_date_safe`: the system must avoid date-like language and explain why.
+2. For every customer-facing item, require these fields in storage and output:
+   - `bucket_mode` = `direction_only | working_horizon | none`
+   - `chosen_bucket`
+   - `chosen_bucket_definition`
+   - `customer_safe_answer_to_when`
+   - `reason_not_committed`
+   - `next_reassessment_trigger`
+3. Enforce rendering rules:
+   - any item labeled `next` or `later` must also show what that label means in the current workspace
+   - any `direction_only` item must explicitly say that the label expresses intention, not schedule certainty
+   - any item without a safe horizon must generate `no_date_safe` wording instead of vague bucket text
+4. Example output behaviors the MVP must support:
+   - `direction_only later`: "This is still a later-theme item. We are signaling direction, not a delivery window yet, because scope and sequencing are still moving."
+   - `working_horizon later`: "This is currently in our later bucket, which for this team means roughly 6–12 months out. That is a planning horizon, not a fixed delivery promise, and it may move as near-term commitments change."
+   - `no_date_safe`: "We are actively evaluating this area, but we do not have a reliable delivery window yet. The safest update right now is that it remains under review rather than committed."
+
 Implementation contract for coding agent:
 1. Use these canonical entities:
    - conversation_records
@@ -97,7 +120,7 @@ Implementation contract for coding agent:
    Also preserve workflow-state context so the system knows whether a record is still raw support evidence, already triaged into a planning candidate, linked to an active execution item, or already being communicated as a customer-facing commitment.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
-   For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, recommended_external_wording, chosen_bucket_definition, and bucket_definition_source (team_default | workspace_override | item_override) so roadmap themes do not get misread as dated delivery commitments.
+   For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, recommended_external_wording, chosen_bucket, chosen_bucket_definition, bucket_definition_source (team_default | workspace_override | item_override), bucket_mode (direction_only | working_horizon | none), customer_safe_answer_to_when, reason_not_committed, and next_reassessment_trigger so roadmap themes do not get misread as dated delivery commitments.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
 2. Support these minimum routes:
    - POST /records
@@ -140,7 +163,12 @@ Implementation contract for coding agent:
      - safest_update_level: now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe
      - timing_explanation: what is firm, what is still ambiguous, and why
      - recommended_external_wording: 1-3 sentences a PM/CSM can send without overcommitting
+     - chosen_bucket: the selected `now|next|later` bucket when used
      - chosen_bucket_definition: the active `now/next/later` semantics used for this wording
+     - bucket_mode: whether this wording is `direction_only`, `working_horizon`, or `none`
+     - customer_safe_answer_to_when: 1-2 sentences directly answering timing pressure without creating a false promise
+     - reason_not_committed: the concrete blocker that prevents stronger promise language
+     - next_reassessment_trigger: what change would justify revisiting the wording
    - theme priority score should use:
      - frequency across records
      - average severity

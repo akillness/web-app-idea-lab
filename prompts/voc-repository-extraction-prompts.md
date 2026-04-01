@@ -38,6 +38,8 @@ Schema:
     {
       "label": "string",
       "commitment_status": "named_commitment|near_term_focus|theme_only|timing_ambiguous|unknown",
+      "bucket_mode": "direction_only|working_horizon|none|unknown",
+      "customer_safe_answer_to_when": "string",
       "evidence": ["string"]
     }
   ],
@@ -72,6 +74,7 @@ Rules:
 - Populate evidence_spans whenever a signal is asserted.
 - Normalize labels aggressively enough to support downstream clustering.
 - If the record implies roadmap communication risk, capture whether the ask is a named commitment, only a roadmap theme, or still timing-ambiguous.
+- When roadmap language appears, also capture whether it is being used as direction-only language or as a bucket with an implied working horizon, and draft a safe answer to `when is later?` when the pressure is explicit.
 ```
 
 ## 2. Theme Clustering Prompt

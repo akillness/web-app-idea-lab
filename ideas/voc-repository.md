@@ -27,7 +27,9 @@
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
 - public roadmap은 `now / next / later` 또는 `now / next / soon / later` 수준으로 두고, proven delivery history 없으면 날짜를 피하라는 운영 조언이 반복해서 보인다.
 - public roadmap transparency 자체는 긍정적으로 읽히지만, commitment는 날짜보다 **status language**로 관리하는 쪽이 안전하다는 신호가 추가됐다.
-- 그런데 latest indexed signal은 여기서 한 단계 더 나아가, 어떤 팀은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 bucket 자체에 operational horizon을 부여한다는 점을 보여줬다. 즉 제품은 단순 now/next/later label이 아니라 **bucket definition + ambiguity explanation**을 같이 제공해야 한다.
+- 그런데 latest indexed signal은 여기서 한 단계 더 나아가, 어떤 팀은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 bucket 자체에 operational horizon을 부여한다는 점을 보여줬다.
+- 또 다른 최신 Reddit indexed signal은 multi-year roadmap에서도 **now/next/later의 목적이 timeline accuracy보다 flexibility + intention 유지**라는 점을 드러냈다.
+- 즉 제품은 단순 now/next/later label이 아니라 **bucket definition + bucket mode(direction-only vs working horizon) + ambiguity explanation**을 같이 제공해야 한다.
 - 실제 release cadence는 2주처럼 짧을 수 있어, 내부 shipping rhythm과 외부 expectation language를 분리하는 레이어가 필요하다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - churn evidence는 surveys / support tickets / Stripe fields에 흩어져 있고 systematic reading이 없다.
@@ -69,7 +71,9 @@
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
 - roadmap layer vs release-plan layer distinction
 - bucket definition guidance (default: `now` = recently shipped through ~2 months out, `next` = next quarter, `later` = ~6–12 months; editable by team)
+- bucket mode (`direction_only` vs `working_horizon`) so the team can distinguish intention-setting language from an internally held horizon
 - ambiguity explanation for why an item is still only safe as theme / next / later language
+- direct answer field for `when is later?` that explains what can and cannot be said externally right now
 
 핵심 포지셔닝 문장:
 > Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief plus a now/next/later roadmap communication layer, next-90-days commitment-risk view, and progress-report surface showing what got worse, for which segment, what revenue or trust is at risk, and what to say or do now.

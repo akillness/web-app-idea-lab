@@ -36,6 +36,7 @@ Requirements:
 12. Define the storage model for snippet-level evidence traceability.
 13. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
 14. Define how the product should represent `near-term commitment`, `roadmap theme only`, and `timing still ambiguous` without collapsing them into one roadmap state.
+15. Define a roadmap-communication contract that distinguishes `direction_only` bucket language from `working_horizon` bucket language and explains how the system answers the stakeholder question: `when is later?` safely.
 
 Constraints:
 - Prefer a simple web app stack.
@@ -54,6 +55,7 @@ Output format:
 - Error handling
 - Evidence and trust UX
 - External update / ambiguity-closure UX
+- Roadmap communication contract (`direction_only` vs `working_horizon`)
 - MVP implementation phases
 - Open questions
 ```

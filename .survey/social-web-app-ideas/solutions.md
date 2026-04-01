@@ -39,6 +39,7 @@
 - 또 **now/next/later는 시작점일 뿐, detail은 firm해질수록 layered communication으로 보강해야 한다**는 practitioner framing도 붙었다.
 - 그런데 이번 루프에는 **now/next/later를 써도 고객이 결국 later가 언제인지 다시 묻는다**는 신호가 붙어, bucket label만으로는 expectation management가 끝나지 않는다는 점이 더 선명해졌다.
 - 일부 팀은 이 ambiguity를 줄이기 위해 **Now ≈ 최근/향후 2개월, Next ≈ 다음 분기, Later ≈ 6~12개월**처럼 bucket에 암묵 horizon을 부여한다.
+- 다른 팀에게 now/next/later는 날짜 약속이 아니라 **intention과 flexibility를 유지하기 위한 방향성 언어**로 쓰인다.
 - 실제 shipping cadence가 짧을수록 roadmap-theme와 customer-facing promise를 분리해 주는 레이어가 더 필요하다.
 - 3개월 roadmap도 2주마다 흔들릴 수 있어 commitment-risk visibility가 비어 있다.
 - churn은 여전히 rate로 먼저 보지만, 실제로는 unit economics와 연결된 decision pressure를 만든다.
@@ -123,6 +124,7 @@
 - hard date가 어려운 상황에서 **progress report / release-plan language로 commitment 상태를 설명해주는 lightweight surface**도 부족하다.
 - **roadmap theme**와 **release plan / dated promise**를 안전하게 분리해주는 lightweight surface도 부족하다.
 - **now/next/later를 보여줘도 결국 later timing 질문에 답해야 하는 ambiguity-closing surface**도 부족하다.
+- 특히 `later`가 direction-only인지, working horizon이 붙은 상태인지, 아니면 아직 말할 수 없는지 구분해 주는 **roadmap communication contract layer**도 부족하다.
 - `what we heard`, `what is triaged`, `what is in planning`, `what is customer-safe to say`를 한 화면에서 분리해주는 lightweight layer도 부족하다.
 - request를 revenue impact / resource time / customer importance와 연결해 의사결정하는 lightweight layer도 부족하다.
 - benchmark curiosity는 존재하지만, 현장의 더 급한 pain은 still messy evidence cleanup + weekly decision ritual이다.
