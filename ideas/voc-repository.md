@@ -5,7 +5,7 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꿔주는 decision layer.
+초기 B2B SaaS 팀의 support / feature-request / churn / commitment 데이터를 **한 화면짜리 Monday-morning decision brief + now/next/later roadmap communication + next-90-days commitment-risk view + release-plan separation + progress-report surface**로 바꿔주는 decision layer.
 
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, spreadsheet, ProductBoard, Jira, Slack, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지, 무엇에 시간을 써야 하는지**를 한 번에 보지 못한다는 점이다.
@@ -22,7 +22,8 @@
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
-- public roadmap은 `now / next / soon / later` 수준으로 두고, proven delivery history 없으면 날짜를 피하라는 운영 조언이 보인다.
+- public roadmap은 `now / next / later` 또는 `now / next / soon / later` 수준으로 두고, proven delivery history 없으면 날짜를 피하라는 운영 조언이 반복해서 보인다.
+- public roadmap transparency 자체는 긍정적으로 읽히지만, commitment는 날짜보다 **status language**로 관리하는 쪽이 안전하다는 신호가 추가됐다.
 - 실제 release cadence는 2주처럼 짧을 수 있어, 내부 shipping rhythm과 외부 expectation language를 분리하는 레이어가 필요하다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - churn evidence는 surveys / support tickets / Stripe fields에 흩어져 있고 systematic reading이 없다.
@@ -50,7 +51,7 @@
 10. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
+"고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
 
 핵심은 raw feedback를 더 모으는 게 아니라, 팀이 이미 쓰는 intake/grooming language로 바꾸는 것이다. 즉 record는 최소한 아래 필드를 향해야 한다.
 - JTBD / use case / desired outcome
@@ -63,7 +64,7 @@
 - roadmap layer vs release-plan layer distinction
 
 핵심 포지셔닝 문장:
-> Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief plus a next-90-days commitment-risk and progress-report surface showing what got worse, for which segment, what revenue or trust is at risk, and what to say or do now.
+> Voice-of-Customer Repository helps founder-led B2B SaaS teams turn support tickets, churn reasons, feature requests, and customer commitments scattered across spreadsheets and tools into a Monday-morning decision brief plus a now/next/later roadmap communication layer, next-90-days commitment-risk view, and progress-report surface showing what got worse, for which segment, what revenue or trust is at risk, and what to say or do now.
 
 핵심 차별점:
 - support / CS / sales / churn evidence를 같은 ingestion surface로 묶음
@@ -74,6 +75,7 @@
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
 - `what should stay intentionally uncommitted for the next 90 days`를 명시해 false commitment를 줄임
 - hard date를 못 주는 상황에서도 쓸 수 있는 **progress report / release-plan style external update draft**를 생성
+- public roadmap에 바로 복사할 수 있는 **now / next / later-safe language**를 생성
 - roadmap theme와 release/date-like promise를 섞지 않도록 **safe communication mode**를 강제
 - generic AI summary가 아니라 **source-linked decision artifact**를 출력
 
@@ -131,6 +133,8 @@
 ## Why Now
 support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것을 product decision ritual로 바꾸지 못한다. 요약 도구는 많아졌지만 **`what got worse this week?`, `which segment is newly at risk?`, `which requests are worth time now?`, `what revenue or commitment is exposed?`** 를 source-linked 상태로 말해주는 레이어는 여전히 희박하다.
 
+이번 루프의 추가 신호는 여기에 한 가지를 더 보탠다. 팀은 public roadmap transparency를 원하지만, 실제로는 hard-date roadmap보다 **now / next / later 같은 low-commitment status communication**과 release-plan 분리가 더 실무적이다. 즉 VoC wedge는 단순 저장소가 아니라 **evidence-backed roadmap communication safety layer**로도 읽힌다.
+
 ## Supporting Evidence
 - X indexed snippet: founders know churn rate but not why customers leave; evidence sits in surveys/support tickets/Stripe fields
   - https://x.com/brianfofficial/status/2031850417718460521
@@ -158,6 +162,10 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/rtmf2p/how_to_write_a_product_roadmap/
 - Reddit indexed snippet: some teams keep public roadmap language at now / next / soon / later and avoid dates unless delivery history is proven
   - https://www.reddit.com/r/ProductManagement/comments/mtid85/product_roadmap_template/
+- Reddit / Yahoo indexed snippet: publishing a transparent roadmap can build trust, but teams often use now / next / later framing to show commitment without overcommitting to dates
+  - https://www.reddit.com/r/ProductManagement/comments/1jcy21y/how_do_you_make_roadmaps_actually_useful/
+- Reddit / Yahoo indexed snippet: now / next / later is described as the right starting structure for roadmap communication because detail can be layered in later
+  - https://www.reddit.com/r/ProductManagement/comments/1jsoma2/advice_on_building_roadmaps_from_scratch/
 - Reddit indexed snippet: release planning can follow a concrete 2-week SaaS cadence even when customer-facing roadmap commitments stay softer
   - https://www.reddit.com/r/ProductManagement/comments/q3q7dv/how_do_you_plan_releases/
 - Reddit indexed snippet: Google Form + spreadsheet intake still powers feature request collection

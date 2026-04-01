@@ -3,7 +3,7 @@
 ## Workflow Context
 이번 루프에서도 플랫폼별 신호 품질 차이는 유지됐다.
 
-- **Reddit**: direct live page는 불안정했지만, 이번 루프에는 **Yahoo Japan indexed Reddit snippets**가 꽤 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 그리고 이번엔 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **"literal timeline이 아니다"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**는 신호까지 붙었다.
+- **Reddit**: direct live page는 불안정했지만, 이번 루프에도 **Yahoo Japan indexed Reddit snippets**가 가장 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 그리고 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **\"literal timeline이 아니다\"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**, **public roadmap transparency 자체는 신뢰를 주지만 날짜보다 status language가 더 안전하다**, **now/next/later는 시작점일 뿐이고 detail은 firm해질수록 단계적으로 덧붙여야 한다**는 신호까지 붙었다.
 - **X**: direct post reading은 막혔지만, Yahoo Japan indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다. 여기에 더해 **professional invoice template + net 30 + late fee + auto-reminders** 같은 framing도 보이면서, 돈이 늦게 들어오는 문제의 일부가 invoice readiness / professionalism gap이라는 점이 더 또렷해졌다. 이번 루프에는 특히 **late payments는 bad client만의 문제가 아니라 weak payment systems의 문제일 수 있다**는 framing이 추가돼, creator backup을 generic CRM보다 payment-system clarity 쪽으로 더 좁힐 근거가 생겼다.
 - **Threads**: 이번 루프의 broad query는 Yahoo Japan에서 **1건의 indexed result**를 돌려줬다. `@counselforcreators` 계정 snippet은 **solid payment clause = explicit due date + late fee**라는 방향을 줬다. 다만 여전히 community workflow breadth는 약해서, discovery source라기보다 low-confidence 보조 신호에 가깝다.
 
@@ -52,12 +52,14 @@
 15. public roadmap은 now / next / soon / later 수준으로 쓰되, proven delivery history가 없으면 날짜를 피하는 식의 암묵 규칙이 존재한다.
 16. 실제 release cadence는 짧고 반복적일 수 있어, quarterly goal language와 biweekly shipping reality 사이 translation layer가 필요하다.
 17. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
-17. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
-18. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
-19. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
-20. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
-21. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
-22. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
+18. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
+19. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
+20. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
+21. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
+22. 어떤 경우에는 AP 담당자와 실무 담당자에게 동시에 보내야 하는데, 라우팅 정보가 메모 수준에 머문다.
+23. PO number / vendor reference가 없으면 payment chase가 반복되지만, 이 reference도 deal memory 안에 구조화되지 않는다.
+24. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
+25. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
 
 ## Adjacent Problems
 - feedback는 쌓이는데 decision artifact는 남지 않는다.
@@ -72,6 +74,7 @@
 - creator payment ops는 `send invoice`보다 `terms are clear`, `promised date is tracked`, `follow-up is due now` 쪽이 더 중요하다.
 - creator 쪽에서도 invoice professionalism이 약하면 collections 문제가 더 오래 끈다.
 - 작은 운영자는 AP queue에서 뒤로 밀리기 쉬워서, overdue 자체보다 **내가 지금 어느 escalation step에 있어야 하는지**를 더 절실하게 원한다.
+- 그래서 creator 제품은 generic CRM보다 **invoice routing completeness(AP contact / project owner / PO reference)**와 **collections policy memory(stop-work / late-fee start)**를 먼저 닫아야 한다.
 - creator 쪽 최신 X evidence는 solo/freelancer skew가 강해서, agency ICP는 계속 보되 early wedge는 solo pain으로 읽는 편이 맞다.
 - Threads는 현재 discovery source로서 효율이 계속 낮다.
 
@@ -236,6 +239,16 @@
 - Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
+> "Publish this roadmap ... transparency shows commitment ... We've switched to now, next, later roadmaps ..." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1jcy21y/how_do_you_make_roadmaps_actually_useful/
+- Source path: Yahoo Japan browser-rendered indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Someone mentioned a Now, Next, Later roadmap — that's a great way to begin. You can always layer in more detail as things firm up." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1jsoma2/advice_on_building_roadmaps_from_scratch/
+- Source path: Yahoo Japan browser-rendered indexed snippet, accessed 2026-04-01
+- Confidence: high
+
 > "Late payments rarely come from ‘bad clients’. Most stem from weak payment systems." — X indexed snippet
 - https://x.com/ruulnow
 - Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
@@ -244,6 +257,21 @@
 > "Since this is your first invoice to them, I think it is reasonable to hold off on doing more work until it is paid." — Reddit indexed snippet
 - https://www.reddit.com/r/freelance/comments/qm5omp/steps_when_a_client_is_late_on_payment/
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Just tell him that you can't start new work until his outstanding invoices have been paid and add a late fee system to your next contract with him." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/10rbyln/my_client_has_a_habit_of_saying_hell_pay_me_today/
+- Source path: Yahoo Japan browser-rendered indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I send the invoices to the accounts payable person as well as the person in charge of the project. And I charge 5% per week late fee after 30 ..." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/o7k3tm/getting_a_client_to_pay_invoices_help_please/
+- Source path: Yahoo Japan browser-rendered indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "If there's an accounting department try calling and getting a PO number. Then on consequent late invoice reminders, reference their PO number." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/ej4uqx/took_a_gig_that_pays_net_45_still_havent_been/
+- Source path: Yahoo Japan browser-rendered indexed snippet, accessed 2026-04-01
 - Confidence: high
 
 > "I currently have 4 invoices that clients are late to pay ... clients know they have leverage and can push smaller vendors to the bottom of the AP list." — Reddit indexed snippet

@@ -3,8 +3,8 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 roadmap software처럼 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming**, **Productboard quarterly-planning bias**, **quarterly commitment reprioritization**, **high-level roadmap + release/sprint plan + progress report ritual**, **90-day commitment limit**, **roadmap changes every two weeks**, **roadmap ≠ release plan**, **public roadmap date-avoidance**, **2-week release cadence reality**, 그리고 새로 **now/next/later는 near-term commitment만 만들고 later ambiguity는 그대로 남는다**, **timeline disclaimer만으로는 expectation management가 안 된다**, **NOW/NEXT/LATER가 clarity/commitment 부족으로 읽힐 수 있다**는 신호까지 붙어 더 강화됨 |
-| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **pre-due reminder habit**, **late-fee rule**, **hold-work-until-paid rule**, **AP list delay reality**, **WhatsApp-style invoicing**, **professional invoice template + net 30 + late fee + auto-reminder**에 더해 **weak payment systems**와 **solid payment clause** 신호가 붙으면서, creator 문제를 broad CRM보다 payment-system clarity / clause clarity / collections discipline 문제로 더 좁혔다 |
+| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief + next-90-days commitment-risk view + roadmap-theme / release-plan separation + progress-report surface**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 roadmap software처럼 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back에 더해 **JTBD intake template**, **JIRA area/impact/effort grooming**, **Productboard quarterly-planning bias**, **quarterly commitment reprioritization**, **high-level roadmap + release/sprint plan + progress report ritual**, **90-day commitment limit**, **roadmap changes every two weeks**, **roadmap ≠ release plan**, **public roadmap date-avoidance**, **2-week release cadence reality**, 그리고 새로 **now/next/later는 near-term commitment만 만들고 later ambiguity는 그대로 남는다**, **timeline disclaimer만으로는 expectation management가 안 된다**, **NOW/NEXT/LATER가 clarity/commitment 부족으로 읽힐 수 있다**, **transparent roadmap는 신뢰를 주지만 status-language 중심이 더 안전하다**, **now/next/later는 시작점이고 detail은 firm해질수록 덧붙여야 한다**는 신호까지 붙어 더 강화됨 |
+| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, **day 3/day 7/day 30 follow-up cadence**, **pre-due reminder habit**, **late-fee rule**, **hold-work-until-paid rule**, **AP list delay reality**, **WhatsApp-style invoicing**, **professional invoice template + net 30 + late fee + auto-reminder**에 더해 **weak payment systems**, **solid payment clause**, **AP + project-owner dual-send**, **PO/reference memory**, **30일 이후 주간 late-fee rule** 신호가 붙으면서, creator 문제를 broad CRM보다 payment-system clarity / invoice-routing completeness / collections discipline 문제로 더 좁혔다 |
 | Support-to-Product Decision Hub | support/CS 요청을 dedupe·contextualize·impact-aware prioritization으로 바꾸는 intake layer | VoC의 가장 강한 하위 wedge | standalone이면 Productboard/Jira 보조툴처럼 보일 위험 | dollars/resource time tie-back과 request-origin tracking이 이번 루프에서 더 또렷해짐 |
 | Creator Collections Assistant | overdue invoice, promised date, follow-up sequence, reminder timing에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context와 rights memory가 빠짐 | solo/freelancer skew가 강한 entry wedge로는 유효 |
 | Churn Decision Copilot | churn rate가 아니라 churn reason / segment / avoidability / unit-econ impact를 연결하는 분석 레이어 | `why`와 `so what`을 동시에 풀 수 있음 | 단독 제품이면 intake/evidence layer 없이 약할 수 있음 | VoC의 module로는 강하지만 standalone 1순위는 아님 |
@@ -33,6 +33,8 @@
 - 그래서 실제 운영은 high-level roadmap, sprint/release plan, progress report를 섞어 commitment를 설명하는 식으로 흘러간다.
 - roadmap 자체와 release plan을 구분해야 한다는 practitioner language가 분명히 존재한다.
 - public roadmap은 now/next/soon/later로 유지하고 날짜는 피하라는 현실적 조언이 반복된다.
+- 이번 루프에는 **roadmap transparency 자체는 신뢰를 주지만, commitment는 날짜보다 status language로 관리해야 한다**는 뉘앙스가 추가됐다.
+- 또 **now/next/later는 시작점일 뿐, detail은 firm해질수록 layered communication으로 보강해야 한다**는 practitioner framing도 붙었다.
 - 그런데 이번 루프에는 **now/next/later를 써도 고객이 결국 later가 언제인지 다시 묻는다**는 신호가 붙어, bucket label만으로는 expectation management가 끝나지 않는다는 점이 더 선명해졌다.
 - 실제 shipping cadence가 짧을수록 roadmap-theme와 customer-facing promise를 분리해 주는 레이어가 더 필요하다.
 - 3개월 roadmap도 2주마다 흔들릴 수 있어 commitment-risk visibility가 비어 있다.
@@ -40,6 +42,7 @@
 - creators와 freelancers는 여전히 invoice sending, overdue follow-up, promised payment, underpayment, ghosting을 수동으로 처리한다.
 - creator 쪽 최신 X 결과는 agency dashboard보다 `awkward chasing`, `clear terms before work`, `automated reminders`, `money stuck` 같은 solo operator pain을 더 많이 보여준다.
 - Reddit `r/freelance` 쪽에서는 일주일 전/전날 pre-due reminder, late-fee clause, first-invoice 미지급 시 추가 작업 중단 같은 collections discipline을 개인 습관으로 운영한다.
+- 이번 루프에는 여기에 더해 **AP 담당자 + 프로젝트 담당자 dual-send**, **PO/reference 확보 후 chase**, **30일 이후 주간 late-fee rule** 같은 invoice-routing / accounting-facing ritual도 붙었다.
 - 작은 운영자는 AP list 맨 아래로 밀리기 쉬워 overdue list보다 `지금 어떤 escalation step을 밟아야 하는지`가 더 중요해진다.
 - 즉 사람들이 원하는 것은 generic dashboard보다 **결정용 한 화면** 또는 **오늘 회수해야 할 돈/행동 큐**다.
 
@@ -65,11 +68,16 @@
 - https://www.reddit.com/r/ProductManagement/comments/13d599t/how_do_you_manage_enterprise_saas_customers_who/
 - https://www.reddit.com/r/ProductManagement/comments/zsuyqn/how_do_you_documenttrack_costumer_committments/
 - https://www.reddit.com/r/ProductManagement/comments/z978tk/product_commitments/
+- https://www.reddit.com/r/ProductManagement/comments/1jcy21y/how_do_you_make_roadmaps_actually_useful/
+- https://www.reddit.com/r/ProductManagement/comments/1jsoma2/advice_on_building_roadmaps_from_scratch/
 - https://www.reddit.com/r/CustomerSuccess/comments/13zqul2/best_way_to_minimize_churn_in_saas/
 - https://www.reddit.com/r/CustomerSuccess/comments/19b0xvo/how_do_you_handle_churn/
 - https://www.reddit.com/r/freelance/comments/a0viuu/is_it_wrong_to_send_a_reminder_to_client_for/
 - https://www.reddit.com/r/freelance/comments/bdtlwa/how_long_should_i_take_to_remind_my_client_to_pay/
 - https://www.reddit.com/r/freelance/comments/qm5omp/steps_when_a_client_is_late_on_payment/
+- https://www.reddit.com/r/freelance/comments/10rbyln/my_client_has_a_habit_of_saying_hell_pay_me_today/
+- https://www.reddit.com/r/freelance/comments/o7k3tm/getting_a_client_to_pay_invoices_help_please/
+- https://www.reddit.com/r/freelance/comments/ej4uqx/took_a_gig_that_pays_net_45_still_havent_been/
 - https://www.reddit.com/r/freelance/comments/11r9p3n/late_payment_rant/
 - https://www.reddit.com/r/PartneredYoutube/comments/rdh39k/first_brand_deal_wondering_how_to_invoice_the/
 - https://www.reddit.com/r/PartneredYoutube/comments/1d21p8k/is_there_a_formula_for_how_much_i_should_charge/

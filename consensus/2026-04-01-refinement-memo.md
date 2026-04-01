@@ -8,7 +8,7 @@
 ## Primary refinement — Voice-of-Customer Repository
 
 ### Sharp positioning
-> The weekly evidence brief for early B2B SaaS teams: upload support tickets, feedback emails, sales notes, and interview transcripts, then get recurring pain patterns with source-linked proof and recommended product/messaging actions.
+> The weekly evidence brief for early B2B SaaS teams: upload support tickets, feedback emails, sales notes, and interview transcripts, then get recurring pain patterns with source-linked proof, recommended product/messaging actions, and now/next/later-safe roadmap communication.
 
 ### MVP wedge
 - Start with **support tickets + feedback emails** as the highest-friction, highest-volume input.
@@ -29,6 +29,8 @@
 ### Why this refinement fits this loop
 - New evidence kept confirming the same pain: teams already have the raw feedback, but miss **patterns** across support tickets and feedback emails.
 - This makes the sharpest wedge **pattern extraction -> decision brief**, not storage.
+- Fresh roadmap signals did not create a new category winner; they reinforced that teams want **transparent roadmap communication without date commitments**.
+- That means VoC should keep the same primary slot, but its wedge should explicitly mention **now / next / later communication + release-plan separation**.
 
 ## Backup refinement — Creator Deal CRM
 
@@ -57,5 +59,5 @@
 - That means the wedge should tighten around **AR control**, not a broad creator relationship manager.
 
 ## Prompt-ready summary
-- **Primary**: Voice-of-Customer Repository = weekly source-linked decision brief from support tickets and feedback emails.
+- **Primary**: Voice-of-Customer Repository = weekly source-linked decision brief from support tickets and feedback emails, plus now/next/later-safe roadmap communication.
 - **Backup**: Creator Deal CRM = creator AR ops tool for invoices, overdue payments, and follow-up visibility.

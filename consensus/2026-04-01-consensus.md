@@ -22,6 +22,7 @@
 ## Agreed wedge
 - Not: "store customer conversations"
 - Yes: "turn recurring customer evidence into prioritized product and messaging decisions"
+- Fresh nuance: add **now / next / later-safe roadmap communication** rather than expanding into a full roadmap system-of-record
 
 ## Key unresolved debates
 - 얼마나 빨리 external integrations를 붙일지

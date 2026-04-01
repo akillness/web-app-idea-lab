@@ -7,7 +7,7 @@
 브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice readiness · payment terms / clause clarity · promised payment date · pre-due reminder · follow-up timing · collections visibility**를 닫아주고 `지금 돈이 어디서 막혔는지`를 보여주는 creator cash-ops tool.
 
 ## Why it stayed backup, not primary
-이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `late payment`, `underpayment`, `ghosting`, `awkward chasing`, `automated reminders`, `clear payment terms before work` 같은 framing이 더 추가됐다. 다만 fresh evidence의 무게중심은 agency-wide CRM보다는 **freelancer / solo creator collections pain** 쪽에 더 가까웠고, 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있다. 그래서 지금은 **강한 backup**으로 유지한다.
+이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `late payment`, `underpayment`, `ghosting`, `awkward chasing`, `automated reminders`, `clear payment terms before work` 같은 framing에 더해, 이번에는 **accounts payable contact 동시 추적**, **PO number / invoice reference 기억**, **outstanding invoice가 있으면 새 작업을 멈추는 정책**, **30일 이후 주간 late fee 규칙** 같은 더 구체적인 collections operating rule 신호가 붙었다. 다만 fresh evidence의 무게중심은 agency-wide CRM보다는 **freelancer / solo creator collections pain** 쪽에 더 가까웠고, 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있다. 그래서 지금은 **강한 backup**으로 유지한다.
 
 ## ICP
 - 월 브랜드딜이 꾸준한 솔로 크리에이터 / 프리랜서
@@ -22,30 +22,35 @@
 - promised payment date와 actual payment가 계속 어긋난다.
 - partial payment / underpayment / ghosting이 visibility 없이 흘러간다.
 - usage rights, quoted rate, repeat-brand history 같은 운영 맥락이 payment 회수와 분리된다.
-- 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
+- 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, AP contact, PO number / vendor reference, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
 - follow-up copy보다 **언제 follow-up해야 하는지**가 더 큰 문제다.
 - follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
 - 일부 freelancers는 **due date 일주일 전**이나 **전날**에 미리 reminder를 보내며, 이 pre-due habit도 제품화 가치가 있다.
-- late fee, stop-work-until-paid, escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
+- late fee, late-fee start rule, stop-work-until-paid, AP escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
+- project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
+- PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
 - invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
 - 이번 루프 신호처럼, late payment의 일부는 **bad client**보다 **weak payment system / weak clause setup**에서 오므로 deal memory 이전에 payment-system hygiene가 필요하다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
 
-> A creator deal ops tool that helps creators and small agencies track deal stages, deliverables, payment terms, invoice readiness, promised payment dates, and overdue follow-up before cash leaks.
+> A creator collections command center for solo creators and small agencies that tracks deal stages, deliverables, payment terms, invoice readiness, AP contacts, PO/reference numbers, promised payment dates, and overdue follow-up before cash leaks.
 
 즉 핵심은 discovery가 아니라:
 - deal stage visibility
 - deliverable due date와 invoice trigger 연결
 - payment terms before work clarity
 - invoice professionalism / readiness
+- AP + project-owner routing memory
+- PO / vendor reference memory
 - pre-due reminder schedule
 - invoice/payment status
 - promised payment date log
 - overdue follow-up queue
 - partial / underpayment / ghosting 추적
 - late fee / stop-work / escalation policy memory
+- outstanding-balance blocks for future work
 - usage rights / repeat brand memory
 - invoice workflow readiness memory (recipient, required fields, portal/AP instructions)
 
@@ -65,6 +70,8 @@
 - default follow-up cadence tracking (e.g. day 3 / day 7 / day 30 after due date or promised payment date)
 - follow-up sequence recommendation
 - late fee / stop-work / escalation policy tracking
+- AP contact + project owner follow-up routing
+- PO number / vendor reference tracking
 
 ### 제외
 - lead gen / creator discovery CRM
@@ -92,6 +99,7 @@
 - Yahoo Japan indexed X/Threads 결과는 creator pain의 뿌리를 **weak payment systems / solid payment clauses** 쪽으로도 밀어, CRM보다 payment-system clarity를 더 전면에 둘 이유를 보강했다.
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 - 이번 루프 Reddit `r/freelance` recoveries는 reminder copy보다 **pre-due reminder habit**, **late-fee rule**, **work-stop policy**, **AP-list delay reality**가 더 제품적인 운영 규칙임을 보여줬다.
+- 이번 루프의 추가 Reddit recoveries는 **AP 담당자와 프로젝트 담당자 동시 라우팅**, **PO number/reference 기억**, **30일 이후 주간 late fee**, **미지급이면 신규 작업 중단**이 단순 노하우가 아니라 제품화 가능한 collections workflow라는 점을 더 강하게 보여줬다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack
@@ -108,6 +116,12 @@
   - https://www.reddit.com/r/PartneredYoutube/comments/1cf7d33/pricing_sponsorships_and_usage_rights/
 - Reddit / PullPush mirror: brand payments often stretch to 30–90 days and require repeated follow-up
   - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
+- Reddit indexed snippet: freelancers explicitly route invoices to both the project owner and accounts payable contact
+  - https://www.reddit.com/r/freelance/comments/o7k3tm/getting_a_client_to_pay_invoices_help_please/
+- Reddit indexed snippet: if an accounting department exists, getting and reusing a PO number helps late-payment follow-up
+  - https://www.reddit.com/r/freelance/comments/ej4uqx/took_a_gig_that_pays_net_45_still_havent_been/
+- Reddit indexed snippet: some freelancers pause new work until outstanding invoices are paid and add late-fee rules to the next contract
+  - https://www.reddit.com/r/freelance/comments/10rbyln/my_client_has_a_habit_of_saying_hell_pay_me_today/
 - X indexed snippet: awkward late-payment chasing appears often enough to be productized, and the best recovered framing explicitly suggested day 3 / day 7 / day 30 sequence steps
   - https://x.com/Anubhavhing/status/2028627747158016340
 - X indexed snippet: automated invoice reminders are being framed as their own product for freelancers and small service businesses

@@ -36,6 +36,7 @@ Treat `weak payment system / weak payment clause setup` as a core root-cause dia
 Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
+Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, and the correct submission path.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -47,6 +48,8 @@ The MVP should help a user answer these questions quickly:
 8. Is the invoice itself professional enough — terms, due date, late-fee policy, required fields, reminder setup — to support collections?
 9. How did usage-rights scope change the quoted price during negotiation?
 10. Which deals are risky because the payment terms were never clarified before work started?
+11. Do I have the correct AP contact, project owner, PO/reference number, and submission path before I send or chase this invoice?
+12. Should this deal now move into `pause future work until paid` mode?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -62,6 +65,7 @@ MVP scope:
 - create and manage post-agreement payment-tracked deals
 - attach one or more deliverables to each deal
 - capture structured payment terms, invoice workflow requirements, and deposit requirements
+- capture AP routing details, including project owner, AP contact, and PO/reference fields when known
 - capture invoice-template quality fields such as due date, late-fee policy, reminder defaults, and required invoice fields
 - capture quoted rate, usage rights, and repeat-brand notes
 - capture usage-rights pricing deltas and negotiation notes
@@ -94,7 +98,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, required fields, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, reminder defaults, professional-template readiness), and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -123,20 +127,23 @@ Implementation contract for coding agent:
    - every follow-up must store channel, suggested message, actual message sent, and response status
    - every deal detail should expose the reason a case is blocked from invoicing or closing
    - invoice readiness blockers must distinguish missing creator-side work from missing client-side invoice instructions
+   - invoice readiness blockers must explicitly flag missing AP recipient, missing project-owner contact, missing PO/reference number, or unknown submission route
    - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message
    - support a default cadence such as **day-3 gentle reminder, day-7 firmer payment-date confirmation, day-30 escalation/final follow-up**, while allowing per-deal override
-   - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | firmer escalation | final notice / pause future work
+   - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | contact AP / request PO | firmer escalation | final notice / pause future work | late fee notice | stop work until paid
    - the system must explain *why now* for each next action so users understand why this is the right follow-up moment
-   - store sequence step number, last contact date, promised payment date, recommended next send date, and the reason that date was chosen
+   - store sequence step number, last contact date, last_contact_target, promised payment date, recommended next send date, and the reason that date was chosen
    - generate 2-3 message variants for each overdue case
    - tone options: polite | firm | final_notice
    - include due amount, invoice reference, and next requested action
    - keep WhatsApp variants short and sendable
+   - when an invoice is overdue or promised payment is missed, support dual-send guidance: send one version to AP/accounts payable and one version to the project owner/day-to-day contact when both exist
+   - when late fees are enabled, the recommendation must state whether the next message should reference the late fee and from what trigger date
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample deals
-   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, ghosted client, payment-promised-then-missed, missing invoice instructions, and a usage-rights expansion that changed the quoted rate
+   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, ghosted client, payment-promised-then-missed, missing invoice instructions, missing AP recipient / project owner / PO number, dual-send follow-up to AP + project owner, and a usage-rights expansion that changed the quoted rate
 
 Suggested artifacts to produce:
 1. product spec
@@ -154,6 +161,7 @@ Success criteria:
 - the system can suggest follow-up drafts for WhatsApp and email
 - the system can show what operational fact is blocking payment progress
 - the system makes invoice workflow questions explicit before an invoice is sent
+- the system makes AP recipient, project-owner contact, PO/reference number, late-fee policy, and stop-work-until-paid status explicit before collections start
 - the system shows how usage-rights negotiation changed the deal value or follow-up recommendation
 - a user can tell what to do next without opening a spreadsheet
 - the output is clearly more focused on deal ops and collections visibility than a generic CRM
