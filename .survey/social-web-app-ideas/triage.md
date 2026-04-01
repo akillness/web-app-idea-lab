@@ -36,6 +36,11 @@
 - X 쪽에서는 새로 **\"late payments rarely come from bad clients; most stem from weak payment systems\"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
 - 이번 루프 Yahoo Japan Reddit 검색에서는 `If you use a roadmap without specific timelines ...` 류 결과가 더 구체적으로 잡혔다. 한 indexed snippet은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 bucket 자체를 operational horizon으로 정의하고 있었다. 이건 VoC 아이디어의 `safe roadmap/update communication` 레이어를 더 구현 가능한 형태로 바꿔 준다.
 - Creator 쪽 Yahoo Japan Reddit 재검색에서는 `PO number` 관련 late-payment query가 다시 살아 있었고, snippet 수준에서도 **회계팀이 있으면 PO number를 확보하고 이후 연체 reminder에서 계속 reference하라**는 운영 규칙이 명확히 보였다.
+- 이번 루프 Yahoo Japan ProductManagement 검색에서는 **"customer commitments는 별도 flow로 관리한다"**는 문장이 다시 확인됐다. 즉 feature demand 전체와 named commitment를 같은 backlog 레이어에 두지 않는 운영 습관이 직접적으로 보였다.
+- 같은 검색 결과 묶음에서 **"close deals, plan effectively, or meet customer commitments"**가 한 문장으로 붙어 나타나, commitment hygiene 문제가 단순 PM 정리 습관이 아니라 세일즈/계획/신뢰 문제와도 직결된다는 신호가 추가됐다.
+- creator 쪽 Yahoo Japan Reddit 검색에서는 late payment/late fee 운영 규칙도 더 구체화됐다.
+  - `When would you recommend invoicing a fee for a late ...`에서는 **3일 이상 연체 시 1% fee compounded daily** 같은 강한 late-fee 정책 예시가 보였다.
+  - `Steps when a client is late on payment`에서는 **payment terms와 unpaid invoice late fee는 계약 단계에서 미리 정의되어야 한다**는 흐름이 재확인됐다.
 - 이번 루프 Yahoo Japan Reddit 재검색에서는 `How to approach multi-year Roadmapping and prioritization?`가 잡혔고, snippet 수준에서 **now / next / later는 정확한 타임라인보다 flexibility와 intention을 주기 위한 장치**라는 framing이 확인됐다.
 - 동시에 `Presented roadmap / prioritization ...` 재확인으로 **"literal timeline이 아니다"라고 선을 그어도 결국 상대는 later가 언제인지 다시 묻는다**는 tension이 여전히 유지된다는 점도 다시 확인됐다.
 - creator 쪽 exact workflow query(`site:reddit.com/r/freelance invoice pay run booked AP PO number late payment`)는 Yahoo Japan에서 **0건**이었다. 즉 accounting-stage blockage는 broad recovery query나 prior PullPush comment recovery 쪽이 여전히 더 효율적이다.

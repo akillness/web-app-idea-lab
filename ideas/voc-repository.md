@@ -17,11 +17,13 @@
 - PM은 Slack / email / meeting note를 ProductBoard에 넣고 다시 Jira로 옮기는 bridge workflow를 수동으로 운영한다.
 - 실무자들은 customer needs가 곧바로 Jira ticket으로 떨어지지 않게 **별도 discovery / observability layer**가 필요하다고 말한다.
 - 좋은 discovery 운영은 단순 note 저장이 아니라 **meeting/call notes, presales notes, forum posts, Zendesk tickets, services interactions**를 함께 보게 해 준다.
+- 이번 루프에는 일부 팀이 **customer commitments를 generic request backlog와 분리된 별도 flow로 관리한다**는 더 직접적인 signal도 잡혔다.
 - feature request grooming도 자동화되지 않았고, 여전히 **area / impact / effort** 같은 필드를 사람이 채우며 decision-ready 상태로 번역한다.
 - 일부 팀은 support-origin request를 **automation + AI로 triage**한 뒤 planning/milestone으로 넘기는 루프를 이미 만들고 있다.
 - 일부 팀은 feature request별로 **dollars / resource time / requesting customer**를 묶고 싶지만 구조화가 부족하다.
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
 - 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
+- 같은 맥락에서 commitment hygiene는 단순 roadmap 커뮤니케이션 문제가 아니라 **close deals / plan effectively / meet customer commitments** 수준의 사업 실행 문제로도 읽힌다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
@@ -82,7 +84,8 @@
 - support / CS / sales / churn evidence를 같은 ingestion surface로 묶음
 - raw request가 아니라 **problem, expected value, ARR/ICP context, segment concentration, request origin**을 같이 읽음
 - recurring signal을 pain / objection / feature request / churn reason / broken promise로 구조화
-- support evidence queue / triaged decision queue / execution queue를 섞지 않고 연결함
+- support evidence queue / triaged decision queue / explicit customer-commitment queue / execution queue를 섞지 않고 연결함
+- named customer commitments를 `generic demand`와 분리해 close-plan risk / trust risk / reprioritization pressure를 따로 읽게 함
 - avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시

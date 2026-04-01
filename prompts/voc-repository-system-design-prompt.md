@@ -20,23 +20,24 @@ Produce a practical MVP system design that is optimized for speed of validation,
 Requirements:
 1. Define the core user journey from raw transcript upload to decision brief output.
 2. Show how the system distinguishes generic demand, named customer commitments, and intentionally uncommitted requests.
-3. Propose a minimal information architecture.
-4. Propose the backend data model.
-5. Define the AI pipeline for:
+3. Define a dedicated customer-commitments workflow that is separate from both the discovery/theme backlog and the release-plan surface, including what fields and states are needed to manage promise hygiene.
+4. Propose a minimal information architecture.
+5. Propose the backend data model.
+6. Define the AI pipeline for:
    - extraction
    - tagging
    - theme clustering
    - decision brief generation
-6. Specify what should be synchronous vs asynchronous.
-7. Include error handling and confidence/traceability design.
-8. Explain how source evidence should be shown so the user can trust outputs.
-9. Provide a realistic MVP implementation plan for a small team.
-10. Define the ranking/scoring logic that decides which themes are promoted into the weekly decision brief.
-11. Define how commitment-risk and next-90-days uncertainty should be represented in both the data model and the brief UX.
-12. Define the storage model for snippet-level evidence traceability.
-13. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
-14. Define how the product should represent `near-term commitment`, `roadmap theme only`, and `timing still ambiguous` without collapsing them into one roadmap state.
-15. Define a roadmap-communication contract that distinguishes `direction_only` bucket language from `working_horizon` bucket language and explains how the system answers the stakeholder question: `when is later?` safely.
+7. Specify what should be synchronous vs asynchronous.
+8. Include error handling and confidence/traceability design.
+9. Explain how source evidence should be shown so the user can trust outputs.
+10. Provide a realistic MVP implementation plan for a small team.
+11. Define the ranking/scoring logic that decides which themes are promoted into the weekly decision brief.
+12. Define how commitment-risk and next-90-days uncertainty should be represented in both the data model and the brief UX.
+13. Define the storage model for snippet-level evidence traceability.
+14. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
+15. Define how the product should represent `near-term commitment`, `roadmap theme only`, and `timing still ambiguous` without collapsing them into one roadmap state.
+16. Define a roadmap-communication contract that distinguishes `direction_only` bucket language from `working_horizon` bucket language and explains how the system answers the stakeholder question: `when is later?` safely.
 
 Constraints:
 - Prefer a simple web app stack.

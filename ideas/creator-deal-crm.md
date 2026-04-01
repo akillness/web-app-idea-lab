@@ -29,6 +29,7 @@
 - 일부 freelancers는 **due date 일주일 전**이나 **전날**에 미리 reminder를 보내며, 이 pre-due habit도 제품화 가치가 있다.
 - late fee, late-fee start rule, stop-work-until-paid, AP escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
 - Threads/X의 최신 신호처럼, 좋은 payment clause는 **payment due timing + late fee**를 upfront에 명시해야 한다. 즉 collection policy는 연체 후 메모가 아니라 deal setup 단계의 first-class field여야 한다.
+- 이번 루프 Yahoo Japan Reddit 검색은 여기에 더해 **3일 이상 연체 시 1% compounded daily** 같은 매우 구체적인 late-fee policy 예시와, **payment terms + unpaid-invoice late fee는 계약에 미리 들어 있어야 한다**는 점을 다시 보여줬다. 제품은 이런 정책을 자유 텍스트가 아니라 structured rule로 저장해야 한다.
 - project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
 - PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
 - 큰 조직/대행사 체인에서는 project owner 승인 뒤에도 recruiter/intermediary billing이 끼어, 실제 돈이 도는 경로를 별도로 기억해야 한다.
@@ -108,6 +109,7 @@
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 - 이번 루프 Reddit `r/freelance` recoveries는 reminder copy보다 **pre-due reminder habit**, **late-fee rule**, **work-stop policy**, **AP-list delay reality**가 더 제품적인 운영 규칙임을 보여줬다.
 - 이번 루프의 추가 Reddit recoveries는 **AP 담당자와 프로젝트 담당자 동시 라우팅**, **PO number/reference 기억**, **30일 이후 주간 late fee**, **미지급이면 신규 작업 중단**이 단순 노하우가 아니라 제품화 가능한 collections workflow라는 점을 더 강하게 보여줬다.
+- 새 Yahoo Japan Reddit 결과는 여기에 더해 **계약 기반 late-fee rule** 자체를 더 구조적으로 다뤄야 한다는 점도 보강했다. 즉 제품은 `late fee 있음` 수준이 아니라 **trigger days / percentage or formula / compounding 여부 / contract-defined 여부**를 저장해야 한다.
 - 여기에 더해 **vendor onboarding / payment-system setup delay**, **recruiter/intermediary billing chain**, **not properly booked / pay-run miss** 같은 accounting-stage blockage가 드러나, 제품이 `연체 후 메시지`만이 아니라 `돈이 시스템 어디에서 막혔는지`를 보여줘야 한다는 점이 선명해졌다.
 
 ## Supporting Evidence

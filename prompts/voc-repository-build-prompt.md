@@ -38,9 +38,10 @@ Build an evidence layer that:
 2. extracts structured tags such as segment, ARR/ICP importance, JTBD, pain point, objection, feature request, churn reason, churn risk,
 3. preserves the original customer wording plus normalized reasoning,
 4. normalizes messy requests into PM-ready fields such as JTBD / use case / desired outcome / impacted area / impact / effort,
-5. preserves queue separation between raw support evidence, triaged planning candidates, and execution backlog references,
-6. groups recurring themes,
-7. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
+5. preserves queue separation between raw support evidence, triaged planning candidates, explicit customer commitments, and execution backlog references,
+6. treats named customer commitments as a dedicated operating flow with their own owner, target window, confidence, and risk state,
+7. groups recurring themes,
+8. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?

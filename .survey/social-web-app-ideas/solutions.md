@@ -30,7 +30,9 @@
 - Productboard 같은 도구를 써도 discovery/backlog weighing은 따로 남고 quarterly planning 중심으로 쏠리기 쉽다.
 - customer needs를 Jira backlog에 바로 넣어버리면 discovery evidence와 execution queue가 섞여 버리므로, practitioners는 별도 discovery/observability layer 필요성을 계속 말한다.
 - support-origin request를 automation + AI로 triage한 뒤 planning/milestone으로 넘기는 운영 루프도 보인다. 즉 제품이 raw inbox를 그대로 보여주는 것만으로는 부족하다.
+- 이번 루프에는 일부 PM 팀이 **customer commitments를 별도 flow로 관리한다**는 신호도 직접 잡혔다. 즉 commitment layer는 generic demand backlog에 흡수되지 않는다.
 - enterprise request가 많아지면 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다.
+- commitment hygiene는 단순 PM 정리 문제가 아니라 **deal closing / planning effectiveness / ability to meet commitments**와도 직결된다.
 - 팀은 90일 이상 scope/date commitment를 잠그기 어려워하면서도 고객과 내부 roadmap을 계속 reconcile해야 한다.
 - 그래서 실제 운영은 high-level roadmap, sprint/release plan, progress report를 섞어 commitment를 설명하는 식으로 흘러간다.
 - roadmap 자체와 release plan을 구분해야 한다는 practitioner language가 분명히 존재한다.
@@ -84,6 +86,7 @@
 - https://www.reddit.com/r/freelance/comments/10rbyln/my_client_has_a_habit_of_saying_hell_pay_me_today/
 - https://www.reddit.com/r/freelance/comments/o7k3tm/getting_a_client_to_pay_invoices_help_please/
 - https://www.reddit.com/r/freelance/comments/ej4uqx/took_a_gig_that_pays_net_45_still_havent_been/
+- https://www.reddit.com/r/freelance/comments/agu165/when_would_you_recommend_invoicing_a_fee_for_a/
 - https://www.reddit.com/r/freelance/comments/11r9p3n/late_payment_rant/
 - https://www.reddit.com/r/PartneredYoutube/comments/rdh39k/first_brand_deal_wondering_how_to_invoice_the/
 - https://www.reddit.com/r/PartneredYoutube/comments/1d21p8k/is_there_a_formula_for_how_much_i_should_charge/

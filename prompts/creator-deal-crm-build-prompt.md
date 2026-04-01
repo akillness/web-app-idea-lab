@@ -34,6 +34,7 @@ Treat `follow-up timing` as a first-class product problem, not just a copy-gener
 Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
 Treat `weak payment system / weak payment clause setup` as a core root-cause diagnosis, not just an after-the-fact collections excuse.
 Treat payment clause completeness as a first-class setup problem: the MVP should make due timing, late-fee policy, and late-fee start rule explicit before work starts whenever possible.
+Do not model late-fee policy as loose text only. Store it as a structured rule with fields such as trigger days, fee type (percent | flat | formula), fee value, compounding flag, and whether the rule is explicitly contract-backed. The system should support strong examples seen in the wild (for example, >3 days late with 1% compounded daily) without hardcoding any single legal/business default.
 Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
