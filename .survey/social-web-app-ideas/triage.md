@@ -59,3 +59,11 @@
 - 이번 루프 Yahoo Japan Reddit 검색에서는 `Content vs Process` 결과가 추가로 잡혔고, snippet 수준에서 **customer commitments를 맞추려다 strategy에 쓸 시간이 가장 먼저 떨어진다**는 문장이 보였다. 이는 VoC 제품이 단순 prioritization 설명을 넘어서 **strategy-time protection / commitment-overhead visibility**까지 다뤄야 한다는 근거를 더한다.
 - creator 쪽 Yahoo Japan Reddit 검색에서는 **accounts payable가 invoice를 처리·감사(audit)할 시간을 벌기 위해 선청구/사전 제출이 필요하다**, **AP 네비게이션은 direct client가 내부 결제 프로세스를 얼마나 잘 아느냐에 크게 좌우된다**는 신호가 새로 잡혔다. 즉 creator backup은 overdue follow-up 이후보다도 **AP-ready lead time / invoice-before-pay-run discipline / internal champion quality**를 먼저 다뤄야 한다.
 - 이번 루프도 `web_search`는 직접 재테스트 시 `401 Invalid API key`였다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 PM 쪽 새 신호도 하나 더 잡혔다.
+  - `Tips for dealing with requestors that don't take 'no' for ...`에서는 **customer commitments 충돌이 어느 순간부터는 exec decision**이 된다는 문맥이 보였다. 즉 VoC 제품은 scoring/summary만이 아니라 **누가 override 결정을 내려야 하는지와 escalation owner**도 드러내야 한다.
+- creator 쪽 Yahoo Japan Reddit 검색에서는 invoice/AP 실무 디테일이 조금 더 추가됐다.
+  - `Client hasn't paid me after files were sent`에서는 **AP contact를 확보하고 invoice를 어디로 보내야 하는지부터 확인하라**는 흐름이 보였다. 즉 follow-up 대상과 invoice destination은 따로 저장해야 한다.
+  - `Client says they paid my invoice, but I received nothing`에서는 **payment documentation / receipt를 요청하라**는 흐름이 보였다. 즉 제품은 `paid라고 들음`과 `remittance proof 확보`를 구분해야 한다.
+  - `I asked a client about some unpaid invoices, what does his response mean?`에서는 **다음 reminder를 2주 후로 잡는다**는 문장이 보여, creator cash-ops에서는 day 3/day 7/day 30 같은 짧은 cadence만이 아니라 promised-date 이후의 중기 re-nudge cadence도 존재함이 보였다.
+- 이번 루프 X broad query 재테스트는 대부분 noisy하거나 profile-page 결과로 흘렀고, **Ruul의 weak payment systems framing 이상으로 discovery ranking을 바꿀 새 organic snippet은 회수하지 못했다**. X는 여전히 보조 확인 레이어다.
+- Threads broad query도 재테스트했지만 여전히 **실질적으로 쓸 만한 건 `@counselforcreators` 1건 수준**이었다. Threads는 hard-zero는 아니지만 여전히 ranking을 바꿀 discovery lane은 아니다.

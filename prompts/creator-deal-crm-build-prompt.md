@@ -38,8 +38,8 @@ Do not model late-fee policy as loose text only. Store it as a structured rule w
 Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
-Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, and the correct submission path.
-Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run. Treat AP-processing lead time as first-class as well: the MVP should make it obvious when a creator must invoice in advance simply to get into the client's AP/audit cycle, rather than discovering the delay only after the due date passes. Treat direct-client AP-navigation quality as first-class too: a deal may be risky because the project owner cannot reliably guide the creator through the internal payment path.
+Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, the correct submission path, and the actual invoice destination. Do not assume the AP follow-up target and invoice destination are always the same field.
+Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run. Treat AP-processing lead time as first-class as well: the MVP should make it obvious when a creator must invoice in advance simply to get into the client's AP/audit cycle, rather than discovering the delay only after the due date passes. Treat direct-client AP-navigation quality as first-class too: a deal may be risky because the project owner cannot reliably guide the creator through the internal payment path. Also treat remittance-proof visibility as first-class: if a client says payment was sent, the system should support a separate `payment proof / receipt requested or received` state instead of collapsing that into simply `paid` or `unpaid`.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -55,7 +55,8 @@ The MVP should help a user answer these questions quickly:
 12. Is the money actually late, or is it blocked in vendor onboarding, intermediary billing, invoice booking, or the next pay run?
 13. Do I need to invoice in advance for this client so AP has time to process and audit before the expected pay run?
 14. How confident am I that my direct client can actually navigate their internal AP/payment path?
-15. Should this deal now move into `pause future work until paid` mode?
+15. If the client says payment was sent, do I have remittance proof / receipt yet?
+16. Should this deal now move into `pause future work until paid` mode?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -72,8 +73,9 @@ MVP scope:
 - create and manage post-agreement payment-tracked deals
 - attach one or more deliverables to each deal
 - capture structured payment terms, invoice workflow requirements, and deposit requirements
-- capture AP routing details, including project owner, AP contact, and PO/reference fields when known
+- capture AP routing details, including project owner, AP contact, invoice destination, and PO/reference fields when known
 - capture AP lead-time expectations, invoice-in-advance requirements, and direct-client AP-navigation confidence
+- capture remittance-proof state when payment is claimed but cash has not visibly landed yet
 - capture invoice-template quality fields such as due date, late-fee policy, reminder defaults, and required invoice fields
 - capture quoted rate, usage rights, and repeat-brand notes
 - capture usage-rights pricing deltas and negotiation notes
@@ -106,7 +108,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), AP lead-time fields (invoice_in_advance_required, recommended_submit_by_date, AP_process_lead_time_days when known, AP_audit_expected boolean, direct_client_AP_navigation_confidence), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, invoice destination, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), AP lead-time fields (invoice_in_advance_required, recommended_submit_by_date, AP_process_lead_time_days when known, AP_audit_expected boolean, direct_client_AP_navigation_confidence), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), remittance-proof fields (payment_claimed_at, remittance_proof_requested_at, remittance_proof_received_at, remittance_reference), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -141,6 +143,7 @@ Implementation contract for coding agent:
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message
    - support a default cadence such as **day-3 gentle reminder, day-7 firmer payment-date confirmation, day-30 escalation/final follow-up**, while allowing per-deal override
+   - support a secondary re-nudge step after the first overdue cycle, such as **2 weeks after the last reminder**, when the client gives a soft response but proof/payment still has not landed
    - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | contact AP / request PO | firmer escalation | final notice / pause future work | late fee notice | stop work until paid
    - the system must explain *why now* for each next action so users understand why this is the right follow-up moment
    - store sequence step number, last contact date, last_contact_target, promised payment date, recommended next send date, and the reason that date was chosen

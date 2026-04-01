@@ -26,6 +26,7 @@
 - 같은 맥락에서 commitment hygiene는 단순 roadmap 커뮤니케이션 문제가 아니라 **close deals / plan effectively / meet customer commitments** 수준의 사업 실행 문제로도 읽힌다.
 - 이번 루프의 fresh Reddit indexed snippet은 여기서 한 발 더 나아가, **customer commitments를 맞추려다 strategy에 쓸 시간이 먼저 사라진다**고 말한다. 즉 제품은 commitment-aware prioritization뿐 아니라 **strategy-time protection**도 제공해야 한다.
 - 이번 루프의 추가 Reddit indexed signal은 우선순위가 실제로 **external customer commitments / customer shipments / priority company objectives / technology inflections / market timing** 때문에 override된다는 점을 보여줬다. 즉 제품은 `무엇이 많이 요청됐는가`만이 아니라 `왜 이 요청이 지금 기본 scoring을 덮고 올라왔는가`를 남겨야 한다.
+- 같은 결의 fresh PM indexed snippet은 customer-commitment conflict가 어느 순간부터는 **exec decision**이 된다고 말한다. 즉 override workflow는 이유 기록만으로 끝나지 않고, **누가 최종 결정을 내려야 하는지 / escalation owner가 누구인지**도 드러내야 한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
@@ -76,6 +77,7 @@
 - commitment status
 - priority override reason (external commitment / customer shipment / company objective / market timing / tech inflection / none)
 - override evidence source and override expiry / reassessment trigger
+- escalation owner / final decision owner when a conflict has moved beyond normal PM triage into explicit exec-level arbitration
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
 - roadmap layer vs release-plan layer distinction
 - bucket definition guidance (default: `now` = recently shipped through ~2 months out, `next` = next quarter, `later` = ~6–12 months; editable by team)
@@ -199,6 +201,8 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/1ia5yda/content_vs_process/
 - Reddit indexed snippet: some teams keep public roadmap language at now / next / soon / later and avoid dates unless delivery history is proven
   - https://www.reddit.com/r/ProductManagement/comments/mtid85/product_roadmap_template/
+- Reddit / Yahoo indexed snippet: some commitment conflicts eventually become an executive decision
+  - https://www.reddit.com/r/ProductManagement/comments/1ibmzt6/tips_for_dealing_with_requestors_that_dont_take/
 - Reddit / Yahoo indexed snippet: publishing a transparent roadmap can build trust, but teams often use now / next / later framing to show commitment without overcommitting to dates
   - https://www.reddit.com/r/ProductManagement/comments/1jcy21y/how_do_you_make_roadmaps_actually_useful/
 - Reddit / Yahoo indexed snippet: now / next / later is described as the right starting structure for roadmap communication because detail can be layered in later

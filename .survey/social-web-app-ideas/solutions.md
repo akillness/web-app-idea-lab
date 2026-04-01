@@ -44,15 +44,18 @@
 - 일부 팀은 이 ambiguity를 줄이기 위해 **Now ≈ 최근/향후 2개월, Next ≈ 다음 분기, Later ≈ 6~12개월**처럼 bucket에 암묵 horizon을 부여한다.
 - 다른 팀에게 now/next/later는 날짜 약속이 아니라 **intention과 flexibility를 유지하기 위한 방향성 언어**로 쓰인다.
 - 또 일부 팀은 **external commitments / customer shipments / priority company objectives**가 들어오면 기존 demand scoring보다 override logic을 먼저 적용한다.
+- 최근 PM indexed signal은 이 충돌이 어느 순간부터는 **exec decision**이 된다는 점도 보여줬다. 즉 override는 점수 조정만이 아니라 escalation owner 지정 문제다.
 - 실제 shipping cadence가 짧을수록 roadmap-theme와 customer-facing promise를 분리해 주는 레이어가 더 필요하다.
 - 3개월 roadmap도 2주마다 흔들릴 수 있어 commitment-risk visibility가 비어 있다.
 - churn은 여전히 rate로 먼저 보지만, 실제로는 unit economics와 연결된 decision pressure를 만든다.
 - creators와 freelancers는 여전히 invoice sending, overdue follow-up, promised payment, underpayment, ghosting을 수동으로 처리한다.
 - 어떤 freelancer들은 **AP가 처리·감사할 시간을 벌기 위해 invoice를 미리 넣어야 한다**고 말한다. 즉 invoice due-date만이 아니라 `AP start date`가 별도 운영 포인트다.
 - 또 실제 AP 진척은 **direct client가 내부 결제 프로세스를 얼마나 잘 안내하는지**에도 크게 좌우된다.
+- 최신 creator indexed signal은 **AP contact를 확보하는 것**과 **invoice를 어디로 보내야 하는지 확인하는 것**을 별개 실무로 다룬다. 즉 routing completeness는 단일 contact field로 닫히지 않는다.
+- 또 다른 indexed signal은 client가 `paid`라고 말해도 **payment documentation / receipt 확보**가 별도 단계임을 보여줬다.
 - creator 쪽 최신 X 결과는 agency dashboard보다 `awkward chasing`, `clear terms before work`, `automated reminders`, `money stuck` 같은 solo operator pain을 더 많이 보여준다.
 - Reddit `r/freelance` 쪽에서는 일주일 전/전날 pre-due reminder, late-fee clause, first-invoice 미지급 시 추가 작업 중단 같은 collections discipline을 개인 습관으로 운영한다.
-- 이번 루프에는 여기에 더해 **AP 담당자 + 프로젝트 담당자 dual-send**, **PO/reference 확보 후 chase**, **30일 이후 주간 late-fee rule** 같은 invoice-routing / accounting-facing ritual도 붙었다.
+- 이번 루프에는 여기에 더해 **AP 담당자 + 프로젝트 담당자 dual-send**, **PO/reference 확보 후 chase**, **30일 이후 주간 late-fee rule**, 그리고 **2주 뒤 재알림** 같은 longer re-nudge cadence도 붙었다.
 - 또 어떤 경우엔 **vendor onboarding / payment-system setup**이 invoice 전 단계에서 6주를 잡아먹고, 대형 조직은 **recruiter/intermediary billing chain** 때문에 approved → payable 사이가 길어진다.
 - accounting-side에서는 unpaid invoice가 실제로는 **not properly booked** 상태거나 **pay run**을 놓친 것일 수 있어, `overdue` 하나로는 설명이 부족하다.
 - 작은 운영자는 AP list 맨 아래로 밀리기 쉬워 overdue list보다 `지금 어떤 escalation step을 밟아야 하는지`가 더 중요해진다.
@@ -135,6 +138,7 @@
 - `what we heard`, `what is triaged`, `what is in planning`, `what is customer-safe to say`를 한 화면에서 분리해주는 lightweight layer도 부족하다.
 - customer commitment 때문에 **strategy 시간이 어디서 소모되고 있는지**를 보여주는 lightweight layer도 부족하다.
 - `why this got priority override`를 commitment / shipment / company-objective 근거와 함께 남겨주는 lightweight layer도 부족하다.
+- override가 어느 시점에 **exec decision / escalation owner assignment**로 넘어가야 하는지 보여주는 lightweight layer도 부족하다.
 - request를 revenue impact / resource time / customer importance와 연결해 의사결정하는 lightweight layer도 부족하다.
 - benchmark curiosity는 존재하지만, 현장의 더 급한 pain은 still messy evidence cleanup + weekly decision ritual이다.
 - churn tooling도 많지만 `why`, `which segment`, `what action`, `what unit-econ risk`를 동시에 보여주는 decision layer는 드물다.
@@ -142,6 +146,7 @@
 - creator tooling은 payment terms before work, promised payment date, invoice instructions, rights/pricing memory를 first-class로 다루지 않는 경우가 많다.
 - creator tooling은 onboarding/vendor-setup delay, recruiter/intermediary chain, booked-vs-unbooked invoice, next pay-run timing 같은 **payment-system-stage visibility**도 거의 다루지 않는다.
 - creator tooling은 **AP processing/audit lead time**, **invoice를 언제 미리 넣어야 하는지**, **direct client가 AP를 잘 안내할 수 있는지** 같은 pre-collections risk도 거의 다루지 않는다.
+- creator tooling은 **invoice recipient와 AP follow-up target을 분리해 저장하는 routing completeness**, **client-paid claim 이후 remittance proof / receipt capture**, **짧은 cadence 이후 2주 단위 re-nudge 같은 longer reminder logic**도 거의 다루지 않는다.
 - 그리고 이번 루프의 X/Threads indexed evidence는 creator pain의 뿌리를 **weak payment systems / weak payment clauses** 쪽으로 더 밀어, CRM보다 시스템-정비 레이어가 더 급하다는 점을 드러냈다.
 - Threads는 discovery source로서 계속 효율이 낮다.
 

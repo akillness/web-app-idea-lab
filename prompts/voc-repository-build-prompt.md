@@ -41,8 +41,9 @@ Build an evidence layer that:
 5. preserves queue separation between raw support evidence, triaged planning candidates, explicit customer commitments, and execution backlog references,
 6. treats named customer commitments as a dedicated operating flow with their own owner, target window, confidence, and risk state,
 7. captures when an item is being promoted because of a legitimate priority override such as external customer commitment, customer shipment, priority company objective, technology inflection, or market timing,
-8. groups recurring themes,
-9. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
+8. captures whether a conflict has escalated beyond normal PM triage and now needs an explicit executive decision owner,
+9. groups recurring themes,
+10. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
@@ -58,6 +59,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 11. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
 12. Which items are rising because the evidence is strong versus because an explicit external commitment or shipment pressure is forcing a priority override?
 13. Which commitments are consuming disproportionate strategy time this week, and what strategic work is being crowded out?
+14. Which commitment conflicts now require an explicit exec-level decision, and who owns that decision?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -102,6 +104,8 @@ Roadmap Communication Contract:
    - `priority_override_reason`
    - `priority_override_note`
    - `override_review_at`
+   - `escalation_decision_required`
+   - `decision_owner`
 3. Enforce rendering rules:
    - any item labeled `next` or `later` must also show what that label means in the current workspace
    - any `direction_only` item must explicitly say that the label expresses intention, not schedule certainty
@@ -127,7 +131,7 @@ Implementation contract for coding agent:
    For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, JTBD/use case, desired outcome, impacted area, expected value, urgency, account importance, requesting customer(s), revenue importance when known, and rough resource-cost / implementation-effort context when available.
    Also preserve workflow-state context so the system knows whether a record is still raw support evidence, already triaged into a planning candidate, linked to an active execution item, or already being communicated as a customer-facing commitment.
 
-   For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
+   For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, whether multiple accounts are asking for the same committed capability, whether the conflict now requires an explicit executive decision, and who the final decision owner is.
    For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, recommended_external_wording, chosen_bucket, chosen_bucket_definition, bucket_definition_source (team_default | workspace_override | item_override), bucket_mode (direction_only | working_horizon | none), customer_safe_answer_to_when, reason_not_committed, and next_reassessment_trigger so roadmap themes do not get misread as dated delivery commitments.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
 2. Support these minimum routes:

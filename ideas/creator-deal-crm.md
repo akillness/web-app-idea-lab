@@ -31,8 +31,10 @@
 - Threads/X의 최신 신호처럼, 좋은 payment clause는 **payment due timing + late fee**를 upfront에 명시해야 한다. 즉 collection policy는 연체 후 메모가 아니라 deal setup 단계의 first-class field여야 한다.
 - 이번 루프 Yahoo Japan Reddit 검색은 여기에 더해 **3일 이상 연체 시 1% compounded daily** 같은 매우 구체적인 late-fee policy 예시와, **payment terms + unpaid-invoice late fee는 계약에 미리 들어 있어야 한다**는 점을 다시 보여줬다. 제품은 이런 정책을 자유 텍스트가 아니라 structured rule로 저장해야 한다.
 - project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
+- 이번 루프의 fresh indexed signal은 여기서 한 단계 더 나아가, **AP contact를 아는 것**과 **invoice를 어디로 보내야 하는지 아는 것**이 별개라는 점을 보여줬다. 즉 invoice destination과 follow-up target은 따로 저장해야 한다.
 - 어떤 경우엔 invoice가 늦어서가 아니라 **AP가 처리/감사할 시간을 아직 못 받은 것**이 문제일 수 있어, invoice 제출 lead time 자체를 관리해야 한다.
 - 또 AP를 잘 통과하느냐는 **direct client가 내부 결제 프로세스를 얼마나 잘 아느냐**에도 좌우되므로, 제품은 단순 contact 저장을 넘어서 `internal champion quality`를 기억해야 한다.
+- client가 `payment sent`라고 말해도 실제 입금 전에는 **payment documentation / receipt**를 다시 받아야 하는 경우가 있다. 즉 `paid claimed`와 `proof received`는 다른 상태다.
 - PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
 - 큰 조직/대행사 체인에서는 project owner 승인 뒤에도 recruiter/intermediary billing이 끼어, 실제 돈이 도는 경로를 별도로 기억해야 한다.
 - invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
@@ -80,6 +82,7 @@
 - quoted rate, usage rights, repeat-brand note 저장
 - pre-due reminder tracking (e.g. 7 days before due date, 1 day before due date)
 - default follow-up cadence tracking (e.g. day 3 / day 7 / day 30 after due date or promised payment date)
+- longer re-nudge cadence tracking after the first overdue cycle (e.g. 2 weeks after last reminder when a client gives a soft response but money still has not landed)
 - follow-up sequence recommendation
 - late fee / stop-work / escalation policy tracking
 - AP contact + project owner follow-up routing
@@ -116,6 +119,7 @@
 - 새 Yahoo Japan Reddit 결과는 여기에 더해 **계약 기반 late-fee rule** 자체를 더 구조적으로 다뤄야 한다는 점도 보강했다. 즉 제품은 `late fee 있음` 수준이 아니라 **trigger days / percentage or formula / compounding 여부 / contract-defined 여부**를 저장해야 한다.
 - 여기에 더해 **vendor onboarding / payment-system setup delay**, **recruiter/intermediary billing chain**, **not properly booked / pay-run miss** 같은 accounting-stage blockage가 드러나, 제품이 `연체 후 메시지`만이 아니라 `돈이 시스템 어디에서 막혔는지`를 보여줘야 한다는 점이 선명해졌다.
 - 이번 루프에는 추가로 **AP가 invoice를 처리·감사할 시간을 벌기 위해 미리 청구해야 한다**, **AP 네비게이션은 direct client가 내부 프로세스를 얼마나 잘 아느냐에 좌우된다**는 신호도 붙었다. 즉 초기 wedge는 단순 overdue queue가 아니라 **AP-ready lead time + internal champion quality + collections clarity**다.
+- 이번 루프의 추가 indexed signal은 여기에 더해 **invoice destination vs AP follow-up target 분리**, **client-paid claim 뒤 remittance proof/receipt 회수**, **2주 뒤 재알림 같은 중기 re-nudge cadence**까지 보여줬다. 즉 제품은 `누구에게 언제 다시 물을지`뿐 아니라 `돈이 실제로 이동했다는 증거를 받았는지`까지 다뤄야 한다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack
@@ -152,6 +156,12 @@
   - https://www.reddit.com/r/freelance/comments/35zcax/large_wellknown_client_waits_til_i_submit_an/
 - Reddit / Yahoo Japan indexed snippet: AP navigation depends heavily on whether the direct client understands the internal process
   - https://www.reddit.com/r/freelance/comments/nlhe6e/is_it_fair_this_client_expects_me_to_continue/
+- Reddit / Yahoo Japan indexed snippet: ask for an AP contact and separately confirm where invoices should be sent
+  - https://www.reddit.com/r/freelance/comments/joq52k/client_hasnt_paid_me_after_files_were_sent/
+- Reddit / Yahoo Japan indexed snippet: if a client says payment was sent, request documentation / receipt
+  - https://www.reddit.com/r/freelance/comments/wps58g/client_says_they_paid_my_invoice_but_i_received/
+- Reddit / Yahoo Japan indexed snippet: some freelancers explicitly schedule the next reminder two weeks later
+  - https://www.reddit.com/r/freelance/comments/ivipfs/i_asked_a_client_about_some_unpaid_invoices_what/
 - X indexed snippet: awkward late-payment chasing appears often enough to be productized, and the best recovered framing explicitly suggested day 3 / day 7 / day 30 sequence steps
   - https://x.com/Anubhavhing/status/2028627747158016340
 - X indexed snippet: automated invoice reminders are being framed as their own product for freelancers and small service businesses
