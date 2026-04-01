@@ -8,35 +8,36 @@
 Build an MVP for a product called "Creator Deal CRM".
 
 Goal:
-Create a lightweight operations tool for creators and small creator agencies that prevents money leaks across deliverables, deposit collection, invoice timing, payment terms, overdue follow-up, and partial-payment recovery.
+Create a lightweight operations tool for creators and small creator agencies that prevents money leaks across deal stages, deliverables, invoice timing, promised payment dates, payment terms, overdue follow-up, and partial-payment recovery.
 
 Important framing:
 Do NOT build a broad creator marketplace.
 Do NOT build a generic sales CRM.
 Do NOT build a full accounting suite.
-Build a creator collections and payment-recovery workflow tool.
+Build a creator deal-ops and collections-visibility workflow tool.
 
 Target users:
 - Solo creators with recurring brand deals
 - Small creator agencies (1-10 people)
-- Operators/managers who currently run brand deal tracking in spreadsheets, WhatsApp, DMs, and email
+- Operators/managers who currently run brand deal tracking in spreadsheets, Notion, WhatsApp, DMs, and email
 
 Core problem:
-Creators and small agencies often manage brand deals across inboxes, chat apps, spreadsheets, and memory. They lose track of deliverables, invoice status, partial payments, follow-up timing, and overdue receivables. The result is awkward manual chasing, late payments, underpayments, and poor cash visibility.
+Creators and small agencies often manage brand deals across inboxes, chat apps, spreadsheets, and memory. They lose track of deliverables, usage rights, invoice status, promised payment dates, partial payments, follow-up timing, and overdue receivables. The result is awkward manual chasing, late payments, underpayments, and poor cash visibility.
 
 Product wedge:
-Optimize the MVP for creator collections ops, not generic deal management.
+Optimize the MVP for creator deal execution plus collections visibility, not generic deal management.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
 3. Who needs a follow-up today, and through which channel?
 4. What message should I send next without sounding chaotic?
-5. Has the deposit been collected, and if not, should work start yet?
-6. What payment terms were agreed, and which deals are at risk because those terms were missed?
+5. What usage rights, quoted rate, and deliverable commitments were agreed?
+6. What payment terms or promised dates were missed, and what should happen next?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
 - all active deals,
+- deal stage and deliverable status,
 - invoice/payment state,
 - next follow-up action,
 - and a clean overdue queue.
@@ -46,6 +47,7 @@ MVP scope:
 - create and manage post-agreement payment-tracked deals
 - attach one or more deliverables to each deal
 - capture structured payment terms and deposit requirements
+- capture quoted rate, usage rights, and repeat-brand notes
 - log invoices manually
 - log payments manually, including partial payment and underpayment
 - record promised payment dates
@@ -73,8 +75,9 @@ Implementation contract for coding agent:
    - reminder_rules
    - payment_terms
    - follow_up_sequences
+   - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -101,6 +104,7 @@ Implementation contract for coding agent:
    - every payment log must record amount, currency, paid_at, method, and note
    - every underpayment must remain visible until resolved
    - every follow-up must store channel, suggested message, actual message sent, and response status
+   - every deal detail should expose the reason a case is blocked from invoicing or closing
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message
    - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | firmer escalation | final notice / pause future work
@@ -111,7 +115,7 @@ Implementation contract for coding agent:
    - keep WhatsApp variants short and sendable
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample deals
-   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, and ghosted client
+   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, ghosted client, and payment-promised-then-missed
 
 Suggested artifacts to produce:
 1. product spec
@@ -124,11 +128,12 @@ Suggested artifacts to produce:
 8. validation checklist
 
 Success criteria:
-- a user can log 10+ deals and see current invoice/payment status
-- the system surfaces overdue and underpaid deals correctly
+- a user can log 10+ deals and see current stage, invoice, and payment status
+- the system surfaces overdue, underpaid, and promised-date-missed deals correctly
 - the system can suggest follow-up drafts for WhatsApp and email
+- the system can show what operational fact is blocking payment progress
 - a user can tell what to do next without opening a spreadsheet
-- the output is clearly more focused on collections/payment recovery than a generic CRM
+- the output is clearly more focused on deal ops and collections visibility than a generic CRM
 
 Engineering preference:
 Favor a simple stack and fast iteration. Choose implementation details that make the overdue queue and follow-up loop testable with sample data immediately.
@@ -143,11 +148,13 @@ Sample deal:
   "owner_name": "Jennie",
   "currency": "USD",
   "deal_value": 1500,
+  "quoted_rate": 1500,
   "agreed_payment_terms": "50% upfront, 50% net 14 after approval",
   "deposit_required": true,
   "deposit_amount": 750,
   "work_start_condition": "deposit_received",
   "invoice_trigger": "deliverable_approved",
+  "usage_rights": "organic social for 90 days",
   "primary_channel": "email"
 }
 

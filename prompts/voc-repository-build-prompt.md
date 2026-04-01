@@ -8,10 +8,10 @@
 Build an MVP for a B2B SaaS product called "Voice-of-Customer Repository".
 
 Goal:
-Create a product that helps early-stage SaaS teams turn scattered customer conversations into structured evidence for product and messaging decisions.
+Create a product that helps early-stage SaaS teams turn scattered support, feature-request, and churn evidence into structured weekly decisions.
 
 Important framing:
-Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
+Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
 
 Target users:
 - Founders
@@ -21,21 +21,23 @@ Target users:
 at 10–100 person B2B SaaS teams.
 
 Core problem:
-Customer interviews, sales calls, support tickets, churn notes, cancellation surveys, and review snippets are scattered across notes, docs, support tools, and billing exports. Teams can collect data, but they struggle to turn that raw customer signal into recurring pain clusters, objections, feature requests, churn reasons, and decision-ready summaries.
+Customer interviews, sales calls, support tickets, churn notes, cancellation surveys, and feature requests are scattered across notes, docs, support tools, Slack, Jira, and billing exports. Teams can collect data, but they struggle to turn that raw customer signal into recurring pains, objections, feature requests, churn reasons, and decision-ready summaries.
 
 Product wedge:
 Do NOT build a generic note-taking app.
 Do NOT build a full CRM or helpdesk.
 Build an evidence layer that:
 1. accepts transcript/text uploads or paste input,
-2. extracts structured tags such as segment, JTBD, pain point, objection, feature request, churn reason, churn risk,
-3. groups recurring themes,
-4. generates a concise decision brief recommending what product/message/support changes deserve attention.
+2. extracts structured tags such as segment, ARR/ICP importance, JTBD, pain point, objection, feature request, churn reason, churn risk,
+3. preserves the original customer wording plus normalized reasoning,
+4. groups recurring themes,
+5. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
-2. Which churn or cancellation reasons are becoming concentrated in a specific segment?
-3. What product, messaging, or support change deserves action now?
+2. Which support or feature-request patterns are flooding the team without enough context?
+3. Which churn or cancellation reasons are becoming concentrated in a specific segment?
+4. What product, messaging, or support change deserves action now?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -70,8 +72,11 @@ Implementation contract for coding agent:
    - brief_generations
    - brief_items
    - benchmark_groups
+   - source_contexts
 
-   For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
+   For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, ARR band, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
+
+   For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, and account importance.
 2. Support these minimum routes:
    - POST /records
    - GET /records
@@ -94,6 +99,7 @@ Implementation contract for coding agent:
    - brief view with recommendation markdown
 5. Preserve evidence traceability:
    - every extracted signal must link back to source record ids and quoted snippets
+   - every normalized theme must preserve at least one raw example phrase
 6. Weekly decision brief contract:
    - generate 3-5 ranked brief items per run
    - each brief item must include:
@@ -112,9 +118,11 @@ Implementation contract for coding agent:
      - segment concentration
      - recency
      - source diversity
+     - account importance when available
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample conversation records
    - include one sample extraction output, one theme output, and one brief output in the repo
+   - ensure at least one seeded case covers support-request chaos and one covers churn-segmentation ambiguity
 
 Suggested artifacts to produce:
 1. product spec
@@ -133,6 +141,7 @@ Success criteria:
 - every brief item links to underlying themes and quoted source snippets
 - at least one brief item shows a cross-record pattern from multiple sources
 - the system distinguishes raw churn anecdotes from recurring normalized churn patterns
+- the system distinguishes raw feature asks from the underlying product problem and account context
 - the output is clearly more decision-oriented than a generic transcript summary
 
 Engineering preference:
@@ -143,9 +152,10 @@ Favor a simple stack and fast iteration. Choose implementation details that make
 ```text
 Sample conversation record:
 {
-  "title": "Support call - pricing confusion",
+  "title": "Support thread - pricing confusion and API access",
   "source_type": "support_ticket",
   "customer_segment": "seed-stage B2B SaaS",
+  "account_importance": "mid_arr",
   "content": "We like the product, but the pricing page makes it hard to know which plan includes API access..."
 }
 
@@ -154,6 +164,7 @@ Sample extraction output:
   "record_id": "rec_001",
   "jtbd": "evaluate pricing and plan fit",
   "pain_points": ["pricing confusion", "unclear API entitlement"],
+  "underlying_problem": "buyers cannot map plan differences to operational needs",
   "objections": ["cannot justify upgrade without API clarity"],
   "feature_requests": [],
   "churn_risk": "medium",
@@ -173,7 +184,7 @@ Sample theme output:
 Sample brief output:
 # Weekly Decision Brief
 - Theme: Pricing clarity gap
-- Why it matters: repeated pre-purchase confusion is slowing conversion
+- Why it matters: repeated pre-purchase confusion is slowing conversion and creating support burden
 - Recommended action: rewrite pricing page API entitlement copy and test a comparison table
 - Evidence: 4 records, including support_ticket rec_001
 ```

@@ -4,6 +4,8 @@
 - Why now: founder-led distribution, creator economy, AI-assisted workflow demand가 커졌고 기존 툴은 point-solution이 많아 통합/실행 레이어가 비어 있다.
 
 ## 조사 메모
-- 이번 1차 실행에서는 web_search/web_extract가 401 Invalid API key로 실패했다.
-- browser 기반 직접 조사도 Reddit/DDG/Google/Bing에서 bot/challenge 제한을 만나 완전 자동 수집이 막혔다.
-- 그래서 1차본은 실시간 원문 추출 대신 커뮤니티 반복 신호와 검색 링크를 기반으로 구조화했다.
+- `web_search` / `web_extract`는 이번 루프도 `401 Invalid API key`로 실패했다.
+- Reddit live page 접근은 여전히 불안정하지만, 이번 루프에서는 **PullPush Reddit mirror**를 통해 커뮤니티 pain 문장을 다수 회수했다.
+- X는 direct verification 대신 **Yahoo indexed snippet** 기반으로 회수했다.
+- Threads는 `site:threads.net` 기반 재탐색에서도 유의미한 net-new signal을 거의 주지 못했다.
+- 따라서 현재 조사 레이어는 `Reddit = PullPush mirror`, `X = indexed snippet`, `Threads = weak/blocked` 조합으로 운영 중이다.

@@ -4,79 +4,83 @@
 **Updated**: 2026-04-01
 
 ## One-line Thesis
-브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deposit · invoice · overdue follow-up · payment recovery**를 닫아주는 creator collections ops tool.
+브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice · payment follow-up · collections visibility**를 닫아주는 creator ops tool.
 
 ## Why it stayed backup, not primary
-이번 루프에서도 creator payment pain signal은 계속 강했다. 특히 WhatsApp invoicing, late payment, payment terms, deposit, overdue chasing이 반복됐다. 그래도 현재 레포는 VoC Repository 쪽 문서화와 실행 준비도가 더 앞서 있고, 이번 루프의 fresh signal도 SaaS churn/support decision layer 쪽이 더 강했으므로 지금은 `강한 backup`으로 유지한다.
+이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
 
 ## ICP
 - 월 브랜드딜이 꾸준한 솔로 크리에이터
 - 1~10명 크리에이터 에이전시
-- 스프레드시트로 협찬/송장/입금을 관리 중인 팀
-- 특히 cash flow stress가 큰 small agency / manager / operator
+- 여러 creator/deal을 동시에 운영하는 small operator team
+- 스프레드시트, Notion, DM, 이메일로 협찬 / 납기 / 송장 / 입금을 관리 중인 사용자
 
 ## Core Pain
-- 브랜드딜 pipeline, deliverable, invoice, payment follow-up이 분산됨
-- 미수금/지연입금/underpayment가 현금흐름 스트레스로 이어짐
-- formal invoice 대신 WhatsApp/account number 수준으로 청구해 추적성과 회계 맥락이 약함
-- payment terms가 길거나 모호해 follow-up 기준이 흔들린다
-- 선금 없이 일부터 시작해 리스크가 커진다
-- follow-up이 수작업이라 promise-to-pay와 actual payment가 계속 어긋난다
+- deal stage, deliverable status, invoice state, payment follow-up가 서로 다른 툴에 흩어진다.
+- `delivered`에서 `paid`까지의 구간이 가장 위험한데 가장 덜 구조화돼 있다.
+- 30/60/90일 payment terms와 repeated follow-up이 cash flow를 압박한다.
+- promised payment date와 actual payment가 계속 어긋난다.
+- partial payment / underpayment / ghosting이 visibility 없이 흘러간다.
+- usage rights, quoted rate, repeat-brand history 같은 운영 맥락이 payment 회수와 분리된다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
 
-> A creator collections ops tool that helps creators and small agencies track deposits, invoices, payment terms, and overdue follow-up before cash leaks.
+> A creator deal ops tool that helps creators and small agencies track deal stages, deliverables, invoices, promised payment dates, and overdue follow-up before cash leaks.
 
 즉 핵심은 discovery가 아니라:
-- deposit required / received 여부
+- deal stage visibility
 - deliverable due date와 invoice trigger 연결
 - invoice/payment status
-- promise-to-pay 기록
-- overdue follow-up sequence
-- underpayment / partial payment 추적
+- promised payment date log
+- overdue follow-up queue
+- partial / underpayment 추적
+- usage rights / repeat brand memory
 
 ## MVP Boundary
 ### 포함
 - post-agreement deal tracking
-- deliverable due date tracking
+- deliverable due date / submission / approval tracking
 - structured payment terms
-- deposit tracking
 - invoice/payment status
-- promised payment date log
+- promised payment date 기록
 - overdue follow-up log
-- manual WhatsApp / email follow-up tracking
+- manual WhatsApp / email / DM follow-up tracking
 - overdue / unpaid / underpaid view
 - next action queue for collections
+- quoted rate, usage rights, repeat-brand note 저장
 
 ### 제외
-- lead gen / brand discovery CRM
+- lead gen / creator discovery CRM
 - accounting suite
 - e-signature
-- deep email/calendar sync
+- deep inbox sync
 - marketplace/network features
-- contract workflow first
+- contract generation first
 
 ## Pricing Hypothesis
 - Solo: $29~79 / month
 - Agency: $149~499 / month
 
 ## Main Risk
-범용 CRM/Notion/시트와 비교될 때 가치가 흐려질 수 있으므로, 초반엔 `collections + overdue recovery + payment terms visibility` 중심 wedge가 중요하다. 또한 social signal은 강하지만, 아직 paying ICP의 예산 허용치와 실제 회수 성과 검증은 부족하다.
+범용 CRM/Notion/시트와 비교될 때 가치가 흐려질 수 있으므로, 초반엔 `deal execution + collections visibility + follow-up sequencing` 중심 wedge가 중요하다. 또한 social signal은 강하지만, paid ICP의 예산 허용치와 실제 회수 성과 검증은 더 필요하다.
 
 ## What changed this loop
-- `creator CRM`보다 `payment recovery ops`가 더 날카로운 wedge라는 점이 다시 확인됐다.
-- overdue뿐 아니라 **deposit / payment terms / promise-to-pay**가 first-class data여야 한다는 점이 더 또렷해졌다.
-- WhatsApp이 단순 커뮤니케이션 채널이 아니라 실제 invoice / reminder / chasing workflow의 핵심 surface로 보였다.
+- `creator CRM`보다 `deal ops + collections visibility`가 더 날카로운 wedge라는 점이 다시 확인됐다.
+- overdue만이 아니라 **deal stage / deliverable / promised payment date / follow-up queue**가 first-class data여야 한다.
+- creators와 agencies가 실제로 원하는 필드 목록이 더 명확해졌다: incoming inquiries, quoted rate, deliverables, usage rights, revenue totals, repeat brands, payment follow-up.
+- cash-flow pain은 invoice 발행 자체보다 **누가 아직 안 냈는지, 언제 다시 독촉해야 하는지, 무엇이 payment를 막는지**에 더 가깝다.
 
 ## Supporting Evidence
-- X indexed snippet: creators invoice clients with WhatsApp and an account number
+- Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack
+  - https://www.reddit.com/r/influencermarketing/comments/1rvi66q/how_are_agencies_actually_tracking_brand_deal/
+- Reddit / PullPush mirror: creators ask how to track incoming brand inquiries, follow-ups, quoted rates, deliverables, usage rights, revenue totals, and repeat brands
+  - https://www.reddit.com/r/PartneredYoutube/comments/1r3a35i/how_are_you_guys_organizing_sponsorships_and/
+- Reddit / PullPush mirror: full-time UGC creators explicitly ask how to manage invoices and payment follow-ups
+  - https://www.reddit.com/r/UGCcreators/comments/1rgfo0p/fulltime_ugc_creators_whats_your_backend_system/
+- Reddit / PullPush mirror: brand payments often stretch to 30–90 days and require repeated follow-up
+  - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
+- X indexed snippet: creators still invoice through WhatsApp-like chat messages
   - https://x.com/Dominus_Kelvin/status/2029573666388996145
-- X indexed snippet: AI that chases overdue invoices via WhatsApp for SMEs
-  - https://x.com/polsia/status/2033895987073454226
-- Reddit indexed snippet: payment terms on sponsored-content invoices are often 30/60/90 days
-  - https://www.reddit.com/r/influencermarketing/comments/1amt7so/payment_terms_on_invoices_for_sponsored_content/
-- Reddit indexed snippet: creators ask whether it is normal to request a deposit before doing a brand deal
-  - https://www.reddit.com/r/PartneredYoutube/comments/ox8vm3/is_it_normal_to_ask_for_a_deposit_before_doing_a/
-- Reddit indexed snippet: both brands and influencers still worry about what happens when one side does the work and the other side does not pay / deliver
-  - https://www.reddit.com/r/influencermarketing/comments/j8smty/influencersbrands_how_do_you_handle_payments/
+- X indexed snippet: invoice chasing / late payment follow-up is explicit enough to become its own product wedge
+  - https://x.com/Anubhavhing/status/2028627747158016340
