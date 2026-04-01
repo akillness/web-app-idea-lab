@@ -23,13 +23,16 @@
 - partial payment / underpayment / ghosting이 visibility 없이 흘러간다.
 - usage rights, quoted rate, repeat-brand history 같은 운영 맥락이 payment 회수와 분리된다.
 - 첫 deal 단계에서는 invoice recipient, required fields, AP instructions, AP contact, PO number / vendor reference, payment terms 같은 기본 invoice workflow 정보도 정리되지 않는다.
+- 어떤 경우엔 vendor onboarding / payment-system setup 상태조차 추적되지 않아, deal은 시작됐는데 payable 상태까지 가는 데만 몇 주가 날아간다.
 - follow-up copy보다 **언제 follow-up해야 하는지**가 더 큰 문제다.
 - follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
 - 일부 freelancers는 **due date 일주일 전**이나 **전날**에 미리 reminder를 보내며, 이 pre-due habit도 제품화 가치가 있다.
 - late fee, late-fee start rule, stop-work-until-paid, AP escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
 - project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
 - PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
+- 큰 조직/대행사 체인에서는 project owner 승인 뒤에도 recruiter/intermediary billing이 끼어, 실제 돈이 도는 경로를 별도로 기억해야 한다.
 - invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
+- late invoice는 bad client만의 문제가 아니라 **not properly booked**, **missed pay run**, **cash-flow timing** 같은 accounting-stage 상태일 수도 있다.
 - 이번 루프 신호처럼, late payment의 일부는 **bad client**보다 **weak payment system / weak clause setup**에서 오므로 deal memory 이전에 payment-system hygiene가 필요하다.
 
 ## Strongest Wedge
@@ -53,6 +56,9 @@
 - outstanding-balance blocks for future work
 - usage rights / repeat brand memory
 - invoice workflow readiness memory (recipient, required fields, portal/AP instructions)
+- vendor onboarding / payment-system setup stage visibility
+- intermediary billing path memory (e.g. recruiter / agency / AP handoff)
+- invoice booking / pay-run visibility when payment has been promised but not received
 
 ## MVP Boundary
 ### 포함
@@ -100,6 +106,7 @@
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 - 이번 루프 Reddit `r/freelance` recoveries는 reminder copy보다 **pre-due reminder habit**, **late-fee rule**, **work-stop policy**, **AP-list delay reality**가 더 제품적인 운영 규칙임을 보여줬다.
 - 이번 루프의 추가 Reddit recoveries는 **AP 담당자와 프로젝트 담당자 동시 라우팅**, **PO number/reference 기억**, **30일 이후 주간 late fee**, **미지급이면 신규 작업 중단**이 단순 노하우가 아니라 제품화 가능한 collections workflow라는 점을 더 강하게 보여줬다.
+- 여기에 더해 **vendor onboarding / payment-system setup delay**, **recruiter/intermediary billing chain**, **not properly booked / pay-run miss** 같은 accounting-stage blockage가 드러나, 제품이 `연체 후 메시지`만이 아니라 `돈이 시스템 어디에서 막혔는지`를 보여줘야 한다는 점이 선명해졌다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack
@@ -116,12 +123,20 @@
   - https://www.reddit.com/r/PartneredYoutube/comments/1cf7d33/pricing_sponsorships_and_usage_rights/
 - Reddit / PullPush mirror: brand payments often stretch to 30–90 days and require repeated follow-up
   - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
-- Reddit indexed snippet: freelancers explicitly route invoices to both the project owner and accounts payable contact
+- Reddit indexed snippet: some freelancers explicitly route invoices to both the project owner and accounts payable contact
   - https://www.reddit.com/r/freelance/comments/o7k3tm/getting_a_client_to_pay_invoices_help_please/
-- Reddit indexed snippet: if an accounting department exists, getting and reusing a PO number helps late-payment follow-up
+- Reddit indexed snippet: if an accounting department exists, getting and reusing a PO number helps late-payment follow-up move faster
   - https://www.reddit.com/r/freelance/comments/ej4uqx/took_a_gig_that_pays_net_45_still_havent_been/
 - Reddit indexed snippet: some freelancers pause new work until outstanding invoices are paid and add late-fee rules to the next contract
   - https://www.reddit.com/r/freelance/comments/10rbyln/my_client_has_a_habit_of_saying_hell_pay_me_today/
+- Reddit comment recovery: vendor due diligence and payment-system setup alone can push payment back about six weeks
+  - https://www.reddit.com/comments/kcepp/_/c2j51go
+- Reddit comment recovery: large organizations may pay ~90 days out via recruiter/intermediary billing chains
+  - https://www.reddit.com/comments/1d0g6pa/_/l5oc7sw
+- Reddit comment recovery: creator sponsors commonly operate on net-30 / net-60, with some net-90 terms
+  - https://www.reddit.com/comments/1jdqwng/_/mid9qmh
+- Reddit comment recovery: unpaid invoices can slip because they were not properly booked or missed a pay run
+  - https://www.reddit.com/comments/1kdav8k/_/mq9hw7v
 - X indexed snippet: awkward late-payment chasing appears often enough to be productized, and the best recovered framing explicitly suggested day 3 / day 7 / day 30 sequence steps
   - https://x.com/Anubhavhing/status/2028627747158016340
 - X indexed snippet: automated invoice reminders are being framed as their own product for freelancers and small service businesses

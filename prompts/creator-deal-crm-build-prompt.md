@@ -37,6 +37,7 @@ Treat invoice professionalism / readiness as a first-class problem too: many use
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
 Treat invoice routing completeness as a first-class gating problem. Before work starts or an invoice is sent, the MVP must make it obvious whether the creator has the AP recipient, the day-to-day/project-owner contact, any required PO number or vendor reference, and the correct submission path.
+Treat payment-system-stage visibility as first-class too. The MVP should make it explicit whether the deal is blocked on vendor onboarding, payment-system setup, recruiter/intermediary billing handoff, invoice booking, or the next AP pay run.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -49,7 +50,8 @@ The MVP should help a user answer these questions quickly:
 9. How did usage-rights scope change the quoted price during negotiation?
 10. Which deals are risky because the payment terms were never clarified before work started?
 11. Do I have the correct AP contact, project owner, PO/reference number, and submission path before I send or chase this invoice?
-12. Should this deal now move into `pause future work until paid` mode?
+12. Is the money actually late, or is it blocked in vendor onboarding, intermediary billing, invoice booking, or the next pay run?
+13. Should this deal now move into `pause future work until paid` mode?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -98,7 +100,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -128,6 +130,7 @@ Implementation contract for coding agent:
    - every deal detail should expose the reason a case is blocked from invoicing or closing
    - invoice readiness blockers must distinguish missing creator-side work from missing client-side invoice instructions
    - invoice readiness blockers must explicitly flag missing AP recipient, missing project-owner contact, missing PO/reference number, or unknown submission route
+   - payment blockers must explicitly distinguish: vendor onboarding delay, payment-system setup delay, intermediary/recruiter handoff, invoice not booked, waiting for next pay run, client dispute, or true non-response
    - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message

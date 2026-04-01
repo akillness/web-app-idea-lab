@@ -37,20 +37,22 @@ Build an evidence layer that:
 2. extracts structured tags such as segment, ARR/ICP importance, JTBD, pain point, objection, feature request, churn reason, churn risk,
 3. preserves the original customer wording plus normalized reasoning,
 4. normalizes messy requests into PM-ready fields such as JTBD / use case / desired outcome / impacted area / impact / effort,
-5. groups recurring themes,
-6. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
+5. preserves queue separation between raw support evidence, triaged planning candidates, and execution backlog references,
+6. groups recurring themes,
+7. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
 2. Which support or feature-request patterns are flooding the team without enough context?
-3. Which churn or cancellation reasons are becoming concentrated in a specific segment?
-4. Which churn is likely avoidable versus non-actionable or bad-fit churn?
-5. What product, messaging, or support change deserves action now?
-6. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
-7. What should stay intentionally uncommitted in the next 90 days because the evidence is weak, the roadmap is volatile, or bandwidth is uncertain?
-8. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
-9. Which customer-facing updates should be framed as roadmap themes versus release-plan specifics right now?
-10. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
+3. Which signals are still raw support evidence versus already triaged planning candidates versus actual committed work?
+4. Which churn or cancellation reasons are becoming concentrated in a specific segment?
+5. Which churn is likely avoidable versus non-actionable or bad-fit churn?
+6. What product, messaging, or support change deserves action now?
+7. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
+8. What should stay intentionally uncommitted in the next 90 days because the evidence is weak, the roadmap is volatile, or bandwidth is uncertain?
+9. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
+10. Which customer-facing updates should be framed as roadmap themes versus release-plan specifics right now?
+11. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -91,6 +93,7 @@ Implementation contract for coding agent:
    For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, ARR band, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
 
    For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, JTBD/use case, desired outcome, impacted area, expected value, urgency, account importance, requesting customer(s), revenue importance when known, and rough resource-cost / implementation-effort context when available.
+   Also preserve workflow-state context so the system knows whether a record is still raw support evidence, already triaged into a planning candidate, linked to an active execution item, or already being communicated as a customer-facing commitment.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
    For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, and recommended_external_wording so roadmap themes do not get misread as dated delivery commitments.

@@ -34,4 +34,12 @@
   - `How to commit to quarterly or yearly roadmap goals/deadlines ...`에서는 **just-in-time design/detail 환경에서 분기·연간 목표 commit 자체가 어렵다**는 tension이 다시 확인됐다.
 - Threads는 여전히 약했지만, 이번 루프 Yahoo Japan 검색에서는 broad query 기준으로 **1건의 indexed Threads result**가 보였다. `@counselforcreators` 스레드 계정 snippet은 **payment clause는 due date + late fee를 명시해야 한다**는 방향을 줬다. 다만 이건 커뮤니티 workflow breadth가 아니라 계정성/전문가성 advice에 가까워 confidence는 낮다.
 - X 쪽에서는 새로 **"late payments rarely come from bad clients; most stem from weak payment systems"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
-- 따라서 현재 조사 레이어는 `Reddit = Yahoo Japan indexed snippet + PullPush mirror`, `X = Yahoo Japan indexed snippet`, `Threads = weak but no longer hard-zero` 조합으로 운영 중이다.
+- 이번 루프에는 Reddit recovery path도 한 단계 진전됐다. 기본 요청은 막히기 쉬웠지만, **PullPush API + browser-like user-agent** 조합으로는 comment-level 회수가 가능했다.
+- 그 결과 creator 쪽에서는 새로:
+  - **vendor onboarding / payment-system setup만으로도 입금 시작이 약 6주 밀릴 수 있다**는 사례,
+  - **대기업/대형 조직은 recruiter/intermediary billing chain 때문에 승인된 작업도 약 90일 후 입금이 될 수 있다**는 사례,
+  - **creator sponsor payment는 net 30 / net 60이 흔하고 net 90도 드물지 않다**는 사례,
+  - **late invoice가 꼭 bad client 때문이 아니라 booking / pay-run 누락 때문일 수 있다**는 accounting-side 설명
+  이 추가됐다.
+- VoC 쪽에서는 Reddit/X 외에 discussion-index fallback을 통해, **customer-needs observability를 Jira 밖에서 유지해야 한다**, **support queue와 project queue는 데이터 모델이 다르다**, **support-origin request를 automation + AI로 triage해 planning으로 연결하는 운영 루프가 존재한다**, **release schedule과 roadmap 둘 다 고객-facing commitment artifact로 소비된다**는 실무 신호가 보였다. 이는 1순위 아이디어의 `repository`보다 `decision + commitment-safe communication` 해석을 더 강화한다.
+- 따라서 현재 조사 레이어는 `Reddit = Yahoo Japan indexed snippet + PullPush API(user-agent)`, `X = Yahoo Japan indexed snippet`, `Threads = weak but no longer hard-zero`, `adjacent discussion index = HN/PM discussions for workflow structure` 조합으로 운영 중이다.

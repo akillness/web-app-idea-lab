@@ -6,8 +6,9 @@
 - **Reddit**: direct live page는 불안정했지만, 이번 루프에도 **Yahoo Japan indexed Reddit snippets**가 가장 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 그리고 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **\"literal timeline이 아니다\"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**, **public roadmap transparency 자체는 신뢰를 주지만 날짜보다 status language가 더 안전하다**, **now/next/later는 시작점일 뿐이고 detail은 firm해질수록 단계적으로 덧붙여야 한다**는 신호까지 붙었다.
 - **X**: direct post reading은 막혔지만, Yahoo Japan indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다. 여기에 더해 **professional invoice template + net 30 + late fee + auto-reminders** 같은 framing도 보이면서, 돈이 늦게 들어오는 문제의 일부가 invoice readiness / professionalism gap이라는 점이 더 또렷해졌다. 이번 루프에는 특히 **late payments는 bad client만의 문제가 아니라 weak payment systems의 문제일 수 있다**는 framing이 추가돼, creator backup을 generic CRM보다 payment-system clarity 쪽으로 더 좁힐 근거가 생겼다.
 - **Threads**: 이번 루프의 broad query는 Yahoo Japan에서 **1건의 indexed result**를 돌려줬다. `@counselforcreators` 계정 snippet은 **solid payment clause = explicit due date + late fee**라는 방향을 줬다. 다만 여전히 community workflow breadth는 약해서, discovery source라기보다 low-confidence 보조 신호에 가깝다.
+- **Adjacency / discussion index**: Reddit/X/Threads 직접 읽기가 막히는 구간은 discussion-index fallback으로 보강했다. 여기서는 특히 **customer needs should not just fall into Jira tickets**, **complete observability of calls / presales notes / forum posts / Zendesk / services interactions**, **support-origin requests are triaged with automation + AI before planning**, **support queue and project queue need different data models**, **release schedule and product roadmap are both customer-facing commitments** 같은 실무 언어가 회수됐다. 이건 새로운 아이디어를 만든다기보다, Primary인 VoC가 왜 `repository`보다 `decision + commitment-safe communication layer`로 읽혀야 하는지를 더 또렷하게 만든다.
 
-이번 루프에서 더 선명해진 흐름은 세 가지다.
+이번 루프에서 더 선명해진 흐름은 네 가지다.
 
 1. **VoC 쪽 핵심 pain은 feedback 부족이 아니라 decision failure + commitment management failure**다.
    - support, churn, NPS, feature request는 이미 충분히 들어오고,
@@ -22,8 +23,12 @@
    - late payments, underpayments, ghosting, awkward chasing, `clear terms before work`, automated reminders 같은 신호가 더 누적됐다.
    - 이번 루프 Reddit `r/freelance` recoveries는 여기에 더해 **due date 전에 미리 reminder를 보낸다**, **late fee를 invoice/contract에 명시한다**, **연체되면 추가 작업을 멈춘다**, **작은 벤더는 AP queue에서 밀리기 쉽다**는 운영 습관까지 드러냈다.
    - 다만 이번 루프의 fresh creator evidence는 agency-wide ops보다 **freelancer / solo creator cash collection pain** 쪽에 더 많이 기울었다.
+4. **Creator 쪽 최신 additive pain은 `follow-up cadence`보다 한 단계 앞단과 중간단계까지 확장됐다.**
+   - 어떤 경우엔 연체 이전에 **vendor onboarding / payment-system setup 자체가 입금을 6주 밀어버린다**.
+   - 대형 조직에서는 **project owner 승인 → recruiter/intermediary billing → AP/pay run** 같은 체인이 생겨, 이미 납품/승인된 작업도 90일짜리 cash gap으로 변한다.
+   - payment가 밀리는 이유도 단순 불성실만이 아니라 **invoice booking 누락**, **pay run miss**, **cash-flow timing**일 수 있어, 제품은 reminder 발송보다 **지금 payment system 어디에서 막혔는지**를 알려줘야 한다.
 
-즉 이번 루프는 순위를 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `feedback repository`가 아니라 `decision problem + commitment-risk + safe roadmap/update communication solver`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`broad CRM`이 아니라 `deal execution + collections visibility + follow-up timing + payment-terms clarity + invoice readiness`**로 더 좁아졌다.
+즉 이번 루프는 순위를 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `feedback repository`가 아니라 `decision problem + commitment-risk + safe roadmap/update communication solver`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`broad CRM`이 아니라 `deal execution + collections visibility + follow-up timing + payment-terms clarity + invoice readiness + payment-system-stage visibility`**로 더 좁아졌다.
 
 ## Affected Users
 | Role | Responsibility | Skill Level |
@@ -51,15 +56,19 @@
 14. now / next / later를 써도 실제로는 `later가 언제냐`는 질문이 다시 들어와, ambiguity를 해소하는 별도 update surface가 필요하다.
 15. public roadmap은 now / next / soon / later 수준으로 쓰되, proven delivery history가 없으면 날짜를 피하는 식의 암묵 규칙이 존재한다.
 16. 실제 release cadence는 짧고 반복적일 수 있어, quarterly goal language와 biweekly shipping reality 사이 translation layer가 필요하다.
-17. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
-18. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
-19. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
-20. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
-21. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
-22. 어떤 경우에는 AP 담당자와 실무 담당자에게 동시에 보내야 하는데, 라우팅 정보가 메모 수준에 머문다.
-23. PO number / vendor reference가 없으면 payment chase가 반복되지만, 이 reference도 deal memory 안에 구조화되지 않는다.
-24. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
-25. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
+17. 일부 팀은 support-origin issue와 project-planning issue를 같은 queue에 넣어, `누가 무엇을 겪었는지`와 `우리가 다음에 무엇을 만들지`가 한데 엉킨다.
+18. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
+19. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
+20. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
+21. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
+22. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
+23. 어떤 경우에는 AP 담당자와 실무 담당자에게 동시에 보내야 하는데, 라우팅 정보가 메모 수준에 머문다.
+24. PO number / vendor reference가 없으면 payment chase가 반복되지만, 이 reference도 deal memory 안에 구조화되지 않는다.
+25. vendor onboarding / payment-system setup 상태를 deal metadata로 추적하지 않아, invoice를 보내기도 전에 몇 주가 증발한다.
+26. 대형 조직/에이전시 deal에서는 project owner 승인 뒤 recruiter/intermediary billing이나 AP pay-run 단계가 끼어도, 사용자는 그 중간 상태를 메모로만 관리한다.
+27. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
+28. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
+29. late invoice가 실제로는 booking 누락 / pay-run miss 때문이어도, 현재 툴은 이를 `아직 안 냄` 한 상태로만 뭉뚱그린다.
 
 ## Adjacent Problems
 - feedback는 쌓이는데 decision artifact는 남지 않는다.
@@ -279,8 +288,53 @@
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
+> "As a PM you need a place to register your customer needs. If you don't have a dedicated tool, needs mostly end up as tickets in Jira." — discussion-index snippet
+- https://news.ycombinator.com/item?id=39099780
+- Source path: HN discussion index, accessed 2026-04-01
+- Confidence: high
+
+> "To do objective, measurable, data driven roadmap prioritization ... you need complete observability of all customer interactions, i.e., meeting/call notes, presales notes, forum posts, Zendesk support tickets, services interactions, etc." — discussion-index snippet
+- https://news.ycombinator.com/item?id=39100671
+- Source path: HN discussion index, accessed 2026-04-01
+- Confidence: high
+
+> "Requests are triaged using automation and AI, and responsible teams include the reviews in their planning." — discussion-index snippet
+- https://news.ycombinator.com/item?id=37572187
+- Source path: HN discussion index, accessed 2026-04-01
+- Confidence: medium
+
+> "separate project management issue queue and support issue queue" — discussion-index snippet
+- https://news.ycombinator.com/item?id=11055489
+- Source path: HN discussion index, accessed 2026-04-01
+- Confidence: medium
+
+> "Most brands pay net 30-60, and some even net 90" — Reddit comment recovery
+- https://www.reddit.com/comments/1jdqwng/_/mid9qmh
+- Context thread: https://www.reddit.com/r/PartneredYoutube/comments/1jdqwng/do_sponsors_usually_send_money_before_the_video/
+- Source path: PullPush API comment recovery with browser-like user-agent, accessed 2026-04-01
+- Confidence: medium-high
+
+> "between due diligence from them, and getting setup as a vendor in their payment system, I've been pushed back about six weeks" — Reddit comment recovery
+- https://www.reddit.com/comments/kcepp/_/c2j51go
+- Context thread: https://www.reddit.com/r/Random_Acts_Of_Pizza/comments/kcepp/request_outstanding_ar_has_me_with_no_groceries/
+- Source path: PullPush API comment recovery with browser-like user-agent, accessed 2026-04-01
+- Confidence: medium
+
+> "they typically pay at least 90 days out ... recruiters ... centrally bill" — Reddit comment recovery
+- https://www.reddit.com/comments/1d0g6pa/_/l5oc7sw
+- Context thread: https://www.reddit.com/r/AskNYC/comments/1d0g6pa/worst_salary_youve_heard_for_a_job_in_nyc/
+- Source path: PullPush API comment recovery with browser-like user-agent, accessed 2026-04-01
+- Confidence: medium
+
+> "they forgot to include your invoice because it was not properly booked" — Reddit comment recovery
+- https://www.reddit.com/comments/1kdav8k/_/mq9hw7v
+- Context thread: https://www.reddit.com/r/BEFreelance/comments/1kdav8k/invoice_of_march_2025_not_paid_yet/
+- Source path: PullPush API comment recovery with browser-like user-agent, accessed 2026-04-01
+- Confidence: medium
+
 ## Collection Caveat
-- Reddit evidence는 이번 루프도 **Yahoo indexed Reddit snippet**이 핵심이었다. 이번에는 **Yahoo Japan** 쪽이 더 안정적이었고, live-page verification과 동일하지는 않다.
+- Reddit evidence는 여전히 **Yahoo indexed Reddit snippet**이 큰 비중을 차지하지만, 이번 루프에는 **PullPush API + browser-like user-agent**로 comment-level recovery도 가능했다. 둘 다 live-page verification과 동일하지는 않다.
 - X evidence도 계속 **Yahoo indexed snippet** 중심이다. 일부 URL은 stem/profile 수준만 읽혔고 direct post verification은 막혀 있었다.
 - Threads는 hard-zero는 아니었지만, broad query에서 **1건의 indexed result**만 나와 여전히 약한 discovery lane이다.
-- 이번 루프의 가장 큰 변화는 새로운 1등 아이디어 발견이 아니라, **VoC는 `decision problem + commitment-risk + safe roadmap/update communication` product**, **Creator는 `collections clarity + payment-system clarity + invoice readiness` product**라는 해석이 더 강해진 점이다.
+- VoC 쪽 일부 보강 신호는 Reddit/X/Threads 직접 원문이 아니라 **discussion-index fallback(HN PM/product discussions)** 에서 왔다. 이들은 market chatter라기보다 workflow-structure evidence로 취급했다.
+- 이번 루프의 가장 큰 변화는 새로운 1등 아이디어 발견이 아니라, **VoC는 `decision problem + commitment-risk + safe roadmap/update communication` product**, **Creator는 `collections clarity + payment-system clarity + invoice readiness + payment-system-stage visibility` product**라는 해석이 더 강해진 점이다.

@@ -15,7 +15,10 @@
 - feature request intake는 여전히 Google Form / MS Forms / spreadsheet와 weekly review에 의존한다.
 - 일부 팀은 formal intake를 도입해도 여전히 **fill-in-the-blank JTBD template**로 문제 정의를 강제한다.
 - PM은 Slack / email / meeting note를 ProductBoard에 넣고 다시 Jira로 옮기는 bridge workflow를 수동으로 운영한다.
+- 실무자들은 customer needs가 곧바로 Jira ticket으로 떨어지지 않게 **별도 discovery / observability layer**가 필요하다고 말한다.
+- 좋은 discovery 운영은 단순 note 저장이 아니라 **meeting/call notes, presales notes, forum posts, Zendesk tickets, services interactions**를 함께 보게 해 준다.
 - feature request grooming도 자동화되지 않았고, 여전히 **area / impact / effort** 같은 필드를 사람이 채우며 decision-ready 상태로 번역한다.
+- 일부 팀은 support-origin request를 **automation + AI로 triage**한 뒤 planning/milestone으로 넘기는 루프를 이미 만들고 있다.
 - 일부 팀은 feature request별로 **dollars / resource time / requesting customer**를 묶고 싶지만 구조화가 부족하다.
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
 - 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
@@ -44,11 +47,13 @@
 3. feature request를 requesting customer / ARR / dollars / resource time과 연결하지 못한다.
 4. churn reason은 남지만 ARR / ICP / lifecycle / avoidability 맥락이 사라진다.
 5. 월요일 회의 전에 support tickets, Intercom, Slack, Salesforce를 오가며 사람이 다시 판단한다.
-6. Productboard/Jira/시트가 있어도 discovery와 commitment hygiene가 분리돼 다시 사람이 중간 정리를 한다.
-7. CS, Sales, Product가 같은 evidence를 source-linked 상태로 공유하지 못한다.
-8. enterprise commitment와 일반 수요가 같은 backlog에 섞여 later dispute risk가 생긴다.
-9. 90일 이상 lock하기 어려운 roadmap 현실과 customer expectation을 같은 화면에서 reconcile하지 못한다.
-10. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
+6. customer needs / support evidence / execution backlog를 서로 다른 queue로 분리하지 못해, `무엇을 들었는지`와 `무엇을 만들지`가 한데 섞인다.
+7. Productboard/Jira/시트가 있어도 discovery와 commitment hygiene가 분리돼 다시 사람이 중간 정리를 한다.
+8. CS, Sales, Product가 같은 evidence를 source-linked 상태로 공유하지 못한다.
+9. enterprise commitment와 일반 수요가 같은 backlog에 섞여 later dispute risk가 생긴다.
+10. 90일 이상 lock하기 어려운 roadmap 현실과 customer expectation을 같은 화면에서 reconcile하지 못한다.
+11. roadmap과 release schedule은 둘 다 고객-facing commitment artifact인데, 이 둘의 안전한 경계를 제품이 지켜주지 못한다.
+12. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
@@ -70,6 +75,7 @@
 - support / CS / sales / churn evidence를 같은 ingestion surface로 묶음
 - raw request가 아니라 **problem, expected value, ARR/ICP context, segment concentration, request origin**을 같이 읽음
 - recurring signal을 pain / objection / feature request / churn reason / broken promise로 구조화
+- support evidence queue / triaged decision queue / execution queue를 섞지 않고 연결함
 - avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
@@ -144,6 +150,14 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/1bi0jqk/do_you_have_a_formal_request_intake_process/
 - Reddit indexed snippet: some teams still groom feature requests in JIRA using area / impact / effort fields
   - https://www.reddit.com/r/ProductManagement/comments/11s751k/what_info_to_ask_for_in_feature_requests/
+- Discussion-index snippet: customer needs should not simply fall into Jira tickets; PMs need a separate place to register and analyze customer needs
+  - https://news.ycombinator.com/item?id=39099780
+- Discussion-index snippet: objective roadmap prioritization needs complete observability of calls, presales notes, forum posts, Zendesk tickets, and services interactions
+  - https://news.ycombinator.com/item?id=39100671
+- Discussion-index snippet: some teams triage requests with automation + AI before planning/milestone review
+  - https://news.ycombinator.com/item?id=37572187
+- Discussion-index snippet: support queue and project-management queue should be separate because they answer different questions
+  - https://news.ycombinator.com/item?id=11055489
 - X indexed snippet: PMs manually read support tickets, Intercom, Slack, and Salesforce on Monday morning
   - https://x.com/valewrnt/status
 - X indexed snippet: some founders want a single Monday-morning view of what is healthy, at risk, and urgent
