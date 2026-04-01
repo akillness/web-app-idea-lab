@@ -14,7 +14,9 @@
   - https://userjot.com/blog/top-8-feedback-tools-b2b-saas-2025
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/CustomerSuccess` 2026-03-09 결과는 `pulling tickets, reviews, surveys, and call notes into a shared store, then using tagging or AI clustering`을 그대로 노출한다. 실제 운영 기본형은 여전히 **shared store + tagging/clustering**이다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com+CustomerSuccess+tickets+reviews+surveys+call+notes+shared+store+tagging+AI+clustering
-- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 검색 결과의 `r/ProductManagement` 2025-05-13 결과는 `Closest I've seen is some combo of AI tagging + sentiment + clustering, but nothing that nails the "what to build next" piece automatically.`라고 노출한다. 즉 현 대체재들은 정리와 군집화는 해도 **decision translation / what-to-build-next**를 아직 못 닫는다.  
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2025-05-13 결과는 `Closest I've seen is some combo of AI tagging + sentiment + clustering, but nothing that nails the "what to build next" piece automatically.`라고 노출한다. 즉 현 대체재들은 정리와 군집화는 해도 **decision translation / what-to-build-next**를 아직 못 닫는다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com+CustomerSuccess+tickets+reviews+surveys+call+notes+shared+store+tagging+AI+clustering
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2024-02-02 결과는 `Pendo (or Aha!)`로 요청을 저장하고 `Tana`로 미팅 노트를 따로 태깅한다고 노출한다. 2025-03-17 결과는 `Intercom`, `past support tickets`, `subscriptions` 같은 데이터 조합을 언급한다. 즉 실제 운영은 아직도 **formal feedback tool + support system + 개인 노트/문서** 조합에 머물러 있고, ingestion friction이 계속 남아 있다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com+CustomerSuccess+tickets+reviews+surveys+call+notes+shared+store+tagging+AI+clustering
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2025-02-26 결과는 `Okay, but WHEN is 'Later'?`를 그대로 노출하고, 2025-01-03 결과는 `your commitments are only near term`이라고 설명한다. 즉 now/next/later는 여전히 쓰이지만 **ambiguity-closing layer + commitment-window control**이 비어 있다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com+product+management+now+next+later+when+is+later+roadmap+customer+commitments
@@ -41,7 +43,7 @@
 ### 1) Voice-of-Customer Repository
 이번 루프에서도 여전히 가장 강한 쪽은 VoC다.
 - 시장은 단순 feedback inbox보다 **customer-level view + revenue-aware prioritization + planning translation**을 원한다.
-- 실제 팀 운영은 아직 shared store, tagging/AI clustering, multi-tool stack 단계에 머문다.
+- 실제 팀 운영은 아직 shared store, tagging/AI clustering, multi-tool stack 단계에 머문다. 특히 `formal feedback tool + support system + 개인 노트` 조합이 반복된다.
 - 최신 사용자 언어에서도 빈 곳은 명확하다: **정리된 신호를 what-to-build-next decision으로 바꿔주는 레이어**가 없다.
 - now/next/later를 써도 `when is later?`와 `why not now?`를 닫아주는 **bucket-definition + commitment-safe explanation** 레이어가 부족하다.
 - 따라서 strongest wedge는 repository 자체보다 **customer-level evidence board + weekly decision brief + commitment-safe external update draft**다.

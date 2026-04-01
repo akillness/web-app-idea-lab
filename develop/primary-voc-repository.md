@@ -12,7 +12,9 @@
 ### 포함
 - record paste/upload
 - source type 지정
+- source preset 선택 (`support ticket`, `CRM note`, `call note`, `Slack paste`, `review`, `survey`, `roadmap/customer commitment note`)
 - shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`)
+- low-friction note capture for personal docs / meeting notes
 - AI extraction
 - tagging + AI clustering
 - customer/account matching
@@ -51,7 +53,9 @@
 ## 4. Main screens
 ### `/records`
 - upload / paste
+- source preset chips
 - source filter
+- personal-note vs system-record badge
 - processing status
 - failed retry
 
@@ -108,6 +112,8 @@
 ### `records`
 - id
 - source_type
+- source_preset
+- capture_origin (`system`, `personal_note`, `meeting_note`, `manual_paste`)
 - raw_text
 - account_name
 - customer_name
@@ -330,6 +336,7 @@ Do not build:
 
 Important rules:
 - shared store and clustering are not the product end-state; decision translation is
+- the intake must accept both system records and messy personal notes with minimal friction
 - every top theme must show linked account/customer evidence
 - the product must explicitly answer `what should we build next?`
 - `now` can contain near-term commitments, `next/later` cannot

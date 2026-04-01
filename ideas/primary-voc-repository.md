@@ -9,7 +9,7 @@
 ## 핵심 문제
 팀은 feedback가 없는 게 아니라 너무 많다. 문제는 evidence가 Productboard, Jira, support queue, Slack, notes, CRM에 흩어져 있고, 그걸 매주 다시 읽어 **무엇이 악화됐는지 / 어떤 계정과 세그먼트가 위험한지 / 왜 어떤 항목이 점프했는지 / 무엇을 약속하면 안 되는지**로 번역하는 레이어가 없다는 점이다.
 
-또한 시장은 이미 tagging/AI clustering과 customer-level view를 탐색하고 있지만, 실제 팀은 여전히 shared store 이후 단계에서 멈춘다. 즉 부족한 것은 수집 기능보다 **account-aware decision translation**이며, 더 구체적으로는 **정리된 signal을 what-to-build-next 판단으로 바꾸는 operating layer**다.
+또한 시장은 이미 tagging/AI clustering과 customer-level view를 탐색하고 있지만, 실제 팀은 여전히 shared store 이후 단계에서 멈춘다. 현업 조합도 `Pendo/Aha 같은 요청 저장소 + Intercom/support ticket + 개인 노트(Tana 등)`처럼 끊겨 있다. 즉 부족한 것은 수집 기능보다 **account-aware decision translation**이며, 더 구체적으로는 **정리된 signal을 what-to-build-next 판단으로 바꾸는 operating layer**다. 동시에 개인 노트/콜 메모까지 마찰 없이 흡수하는 **low-friction ingestion layer**가 필요하다.
 
 ## 누구를 위한 제품인가
 - 10~100명 B2B SaaS 팀
