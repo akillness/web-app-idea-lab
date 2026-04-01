@@ -1,66 +1,81 @@
 # Context: Social Web/App Ideas
 
 ## Workflow Context
-이번 루프에서는 직접 플랫폼 원문 접근이 계속 막혀서, **검색엔진이 인덱싱한 Reddit / X / Threads 결과 스니펫**을 source-backed signal로 사용했다. 이번에 실제로 더 선명해진 pain은 두 갈래다.
+이번 루프에서도 직접 플랫폼 원문 접근은 계속 막혔다. 그래서 **Yahoo 검색 인덱스가 노출한 Reddit / X / Threads 결과 스니펫**을 근거 레이어로 사용했다. 이번에 더 또렷해진 흐름은 두 가지다.
 
-1. **크리에이터 브랜드딜 운영은 여전히 스프레드시트·DM·이메일에 묶여 있다.**
-2. **고객 피드백은 inbox와 티켓에 쌓이지만, 반복 패턴을 잡아 제품 의사결정으로 연결하기 어렵다.**
+1. **초기 SaaS 팀은 피드백 수집보다 의사결정 변환에서 막힌다.**
+   - support tickets, churn survey, NPS, cancellation notes, call notes는 이미 있지만
+   - 어떤 패턴을 우선순위로 올려야 하는지 체계적으로 읽지 못한다.
+2. **크리에이터 운영 pain은 여전히 돈 회수 단계에서 가장 선명하다.**
+   - deal 관리 자체보다 `invoice → follow-up → overdue recovery`가 더 날카로운 wedge로 보였다.
 
-즉, 이번 루프는 `generic productivity`보다 `운영 파편화가 돈/의사결정 손실로 이어지는 좁은 workflow`가 더 강하다는 쪽으로 신호가 보강됐다.
+즉, 이번 루프는 `generic AI summary`보다 **돈이 새는 운영 루프**와 **결정이 막히는 증거 루프**가 더 유망하다는 쪽으로 신호를 보강했다.
 
 ## Affected Users
 | Role | Responsibility | Skill Level |
 |------|----------------|-------------|
-| 솔로 크리에이터 | 브랜드딜 수주, 납기 관리, 인보이스, 입금 확인 | 중간 |
-| 소형 크리에이터 에이전시 | 다수 크리에이터 deal pipeline, 커뮤니케이션, deliverable 추적 | 중간~상 |
-| 초기 B2B SaaS 창업자 | 인터뷰/세일즈콜/지원티켓에서 반복 pain 추출 | 중간~상 |
-| PM / PMM / CS 리드 | 고객 신호 정리, 우선순위, 메시지 수정 | 중간~상 |
-| 소상공인/1인 운영자 | 여러 채널에서 들어오는 반복 문의와 고객 맥락 관리 | 낮음~중간 |
+| 초기 B2B SaaS 창업자 | churn/support/interview 신호를 제품 결정으로 연결 | 중간~상 |
+| PM / PMM / CS 리드 | 반복 pain, objection, segment 차이, why-now 정리 | 중간~상 |
+| 솔로 크리에이터 | 브랜드딜 납기, 인보이스, 입금 추적, 독촉 | 중간 |
+| 소형 크리에이터 에이전시 | 다수 creator deal / deliverable / payment ops 관리 | 중간~상 |
+| 소형 크리에이티브 에이전시 | 프로젝트·파일·인보이스를 WhatsApp/시트에서 운영 | 중간 |
 
 ## Current Workarounds
-1. 스프레드시트로 deal stage, 납기, 입금 상태를 수동 관리한다.
-2. Gmail / DM / 캘린더 / Notion을 사람이 머리로 연결해서 운영한다.
-3. support tickets, feedback emails, call notes를 inbox에 쌓아두고 LLM에 통째로 붙여넣어 패턴만 뽑는다.
-4. 회의/고객대화 요약은 하되, action owner / due date / follow-up은 다시 수동으로 옮긴다.
+1. support tickets, feedback emails, churn notes를 LLM에 통째로 붙여넣고 ad-hoc summary만 뽑는다.
+2. cancellation reasons와 support pain은 Stripe/export/CS inbox에 쌓아두고 사람이 회의 직전에 수동 정리한다.
+3. 크리에이터와 소형 에이전시는 deal stage, deliverable, invoice, payment 상태를 스프레드시트·DM·이메일로 이어 붙인다.
+4. overdue follow-up은 WhatsApp / 이메일 수작업 리마인드에 의존한다.
 
 ## Adjacent Problems
-- deal tracking 누락이 곧바로 미수금·납기 리스크로 이어진다.
-- customer feedback는 모아도 `반복 패턴`과 `의사결정 근거`로 정제되지 않는다.
-- AI 요약은 쉬워졌지만, 팀이 합의 가능한 evidence layer는 여전히 부족하다.
-- 검색엔진 인덱싱 품질이 플랫폼마다 달라 Threads는 usable signal이 거의 안 잡힌다.
+- 피드백 저장은 쉬워졌지만 `theme + frequency + segment + evidence` 합의 레이어는 약하다.
+- churn data를 읽지 못하면 retention/product/message 수정 모두 늦어진다.
+- creator payment ops는 감정노동이 섞여 있어 늦은 입금과 ghosting이 반복된다.
+- Threads는 검색 인덱싱 품질이 약해 빠른 증거 수집 채널로는 아직 효율이 낮다.
 
 ## User Voices
-> "I run an outdoor channel ... got tired of losing track of brand emails. So I built myself a tool. It's basically a YouTube creator CRM..." — Reddit / r/PartneredYoutube search snippet
-- https://www.reddit.com/r/PartneredYoutube/comments/1qjw1po/built_a_tool_to_track_my_own_brand_deals_need/
-- Source path: Brave Search indexed snippet, accessed 2026-04-01
-
-> "What do you all use for managing brand deals/payments ... managing payments, gifts, and projects for the brands" — Reddit / r/influencermarketing search snippet
-- https://www.reddit.com/r/influencermarketing/comments/17seflc/what_do_you_all_use_for_managing_brand/
+> "Most founders don't have a feedback problem. They have a decision problem ... users are telling you things every day through support tickets, churn, NPS scores, session replays ..." — X indexed snippet
+- https://x.com/jeebz_a/status/2029969484459462989
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
-> "Brands still manage creator relationships in spreadsheets." — X indexed snippet
-- https://x.com/polsia/status/2034926469835829637
+> "Most SaaS founders know their churn rate but have no idea why customers actually leave ... the cancellation data is sitting right there — in surveys, support tickets, Stripe fields — and nobody reads it systematically." — X indexed snippet
+- https://x.com/brianfofficial/status/2031850417718460521
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
-> "Talent agencies run on spreadsheets and DMs. So I built Dealboard." — X indexed snippet
-- https://x.com/polsia/status/2030280962647671102
-- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
-
-> "Cluster feedback into themes from support tickets/feedback emails and calculate frequency, JTBD, and workarounds." — X indexed snippet
+> "Cluster feedback into themes ... calculate how many customers mentioned it, what's the JTBD, what are they using as a workaround right now." — X indexed snippet
 - https://x.com/MillieMarconnni/status/2023363588099113093
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
-> "Creators invoice clients with WhatsApp and an account number, not formal invoices." — X indexed snippet
+> "I got tired of losing track of brand emails. So I built myself a tool. It's basically a YouTube creator CRM..." — Reddit / r/PartneredYoutube indexed snippet
+- https://www.reddit.com/r/PartneredYoutube/comments/1qjw1po/built_a_tool_to_track_my_own_brand_deals_need/
+- Source path: Brave Search indexed snippet from prior loop, retained as prior evidence
+- Confidence: medium
+
+> "What do you all use for managing brand deals/payments ... managing payments, gifts, and projects for the brands" — Reddit / r/influencermarketing indexed snippet
+- https://www.reddit.com/r/influencermarketing/comments/17seflc/what_do_you_all_use_for_managing_brand/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "A creator sent me a screenshot of how they invoice their clients. It was a WhatsApp message ... That's not an invoice." — X indexed snippet
 - https://x.com/Dominus_Kelvin/status/2029573666388996145
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
-> "SMEs bleed cash to late payments; AI chases overdue invoices." — X indexed snippet
-- https://x.com/polsia/status/2033895987073454226
+> "Late payments, underpayments, and ghosting creators is way too common." — X indexed snippet
+- https://x.com/mahlaku_m/status/2036378849487749441
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "A small creative agency [is] managing client projects over WhatsApp and spreadsheets." — X indexed snippet
+- https://x.com/ZapsAndFlow/status/2033872545670123846
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
 
 ## Collection Caveat
 - Reddit direct access: browser/curl 모두 network policy block.
 - X / Threads direct in-browser reading: login/captcha/anti-bot 제한이 강함.
-- 따라서 이번 문서는 **원문 전수 검증본이 아니라 search-indexed snippet 기반 2차 관측본**이다.
-- 다만 이전 루프의 `반복 pain 클러스터` 수준에서 한 단계 올라가, 이번에는 **구체 URL + 인덱싱 스니펫**까지 확보했다.
-- 새 증거 기준으로는 VoC 쪽이 `theme/frequency/JTBD/workaround` 구조를 더 또렷하게 보여줬고, Creator Deal CRM 쪽은 `invoice/payment follow-up`이 가장 강한 money wedge로 보강됐다.
+- 따라서 이번 문서는 **원문 전수 검증본이 아니라 search-indexed snippet 기반 관측본**이다.
+- 그래도 이번 루프는 VoC 쪽에서 `feedback storage`가 아니라 `decision problem`이라는 언어가 새로 보강됐고,
+  Creator 쪽에서는 `generic CRM`이 아니라 `invoice / overdue recovery`가 더 강한 wedge로 좁혀졌다.

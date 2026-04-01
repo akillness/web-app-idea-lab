@@ -18,16 +18,16 @@ Target users:
 at 10–100 person B2B SaaS teams.
 
 Core problem:
-Customer interviews, sales calls, support tickets, and review snippets are scattered across notes, docs, and support tools. Teams can collect data, but they struggle to turn that raw customer signal into recurring pain clusters, objections, feature requests, and decision-ready summaries.
+Customer interviews, sales calls, support tickets, churn notes, cancellation surveys, and review snippets are scattered across notes, docs, support tools, and billing exports. Teams can collect data, but they struggle to turn that raw customer signal into recurring pain clusters, objections, feature requests, churn reasons, and decision-ready summaries.
 
 Product wedge:
 Do NOT build a generic note-taking app.
 Do NOT build a full CRM or helpdesk.
 Build an evidence layer that:
 1. accepts transcript/text uploads or paste input,
-2. extracts structured tags such as segment, JTBD, pain point, objection, feature request, churn risk,
+2. extracts structured tags such as segment, JTBD, pain point, objection, feature request, churn reason, churn risk,
 3. groups recurring themes,
-4. generates a concise decision brief recommending what product/message changes deserve attention.
+4. generates a concise decision brief recommending what product/message/support changes deserve attention.
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.

@@ -4,43 +4,47 @@
 **Source basis**: Reddit/X recurring pain clusters + indexed snippets recovered on 2026-04-01
 **Updated**: 2026-04-01
 
-## Problem Statement
-초기 SaaS 팀은 고객 인터뷰, 세일즈 콜, 지원 티켓, 리뷰에 중요한 신호가 많지만 그 데이터가 Notion, Slack, Gong, Intercom, 메모에 흩어진다. 그 결과 고객 목소리는 존재하지만 제품 우선순위, 메시징, 세일즈 대응에 일관되게 반영되지 않는다.
+## One-line Thesis
+초기 B2B SaaS 팀의 churn/support/interview 데이터를 **무엇을 다음에 고쳐야 하는지 보여주는 주간 decision brief**로 바꿔주는 evidence layer.
 
-이번 루프에서 보강된 핵심 증거는 다음 문장으로 압축된다.
-- support tickets와 feedback emails를 **themes / frequency / JTBD / workarounds**로 구조화하려는 수요가 보였다.
-- 문제는 저장이 아니라 **반복 패턴을 놓치고, 그 패턴을 의사결정 포맷으로 못 바꾼다는 것**이다.
+## Problem Statement
+초기 SaaS 팀은 고객 피드백이 없는 게 아니다. support tickets, churn survey, NPS, sales call notes, interview transcripts, cancellation reasons는 이미 존재한다. 문제는 이 신호가 Stripe export, inbox, support tool, 노트, 문서에 흩어져 있어서 **반복 패턴을 읽고 우선순위 결정으로 바꾸는 체계가 없다**는 점이다.
+
+이번 루프에서 보강된 핵심 증거는 다음 세 문장으로 압축된다.
+- founders는 feedback problem보다 **decision problem**을 더 크게 느낀다.
+- churn reason은 존재하지만 support tickets / surveys / Stripe fields에 흩어져 있어 **systematic reading**이 안 된다.
+- 필요한 출력은 generic summary가 아니라 **theme / frequency / JTBD / workaround / evidence-backed recommendation**이다.
 
 ## ICP
 - 10~100명 B2B SaaS 팀
 - founder-led sales 또는 초기 PMF 탐색 단계
 - 전담 리서치 조직이 약한 팀
-- 인터뷰/콜/티켓은 늘고 있는데 인사이트 운영체계가 없는 팀
+- churn/support/interview 신호는 늘고 있는데 정기 decision ritual이 없는 팀
 
 ## High-Value User Pain
-1. 고객 대화를 모으는 데서 끝나고 실행 가능한 패턴이 안 나온다.
+1. 고객 대화와 churn reason을 모으는 데서 끝나고 실행 가능한 패턴이 안 나온다.
 2. 같은 pain이 반복되는데 팀마다 다르게 해석한다.
 3. 기능 우선순위와 메시지 수정의 근거가 약하다.
-4. CS, Sales, Product가 같은 고객 signal을 공유하지 못한다.
+4. CS, Sales, Product가 같은 고객 signal을 source-linked evidence로 공유하지 못한다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **주간 의사결정용 고객 증거 브리프**.
+"고객 대화 저장소"가 아니라 **Weekly Churn + Support Decision Brief**.
 
 핵심 포지셔닝 문장:
-> 초기 B2B SaaS 팀이 support tickets, feedback emails, sales call notes, interview transcripts를 매주 업로드하면 recurring pain pattern과 source-linked evidence를 묶은 weekly decision brief를 생성한다.
+> Early B2B SaaS teams upload support tickets, churn notes, feedback emails, sales call notes, and interview transcripts each week, then receive an evidence-backed decision brief that tells them what to fix, for which segment, and why now.
 
 핵심 차별점:
-- 인터뷰/콜/티켓을 JTBD / pain / objection / feature request / churn risk로 구조화
-- 빈도와 심각도를 기준으로 recurring signal 탐지
-- workaround와 job context까지 같이 잡아 why-now와 대체행동을 설명
-- 인사이트를 태스크/문서/우선순위 변경 추천으로 연결
+- 인터뷰/콜/티켓/취소사유를 JTBD / pain / objection / feature request / churn risk로 구조화
+- 빈도·심각도·segment concentration·source diversity 기준으로 recurring signal 탐지
+- workaround와 job context까지 같이 잡아 why-now를 설명
+- 인사이트를 제품/메시지/세일즈/지원 액션 추천으로 연결
 - generic AI summary가 아니라 **source-linked evidence brief**를 출력
 
 ## MVP Boundary
 ### 포함
 - 텍스트/문서 업로드 및 붙여넣기
-- support tickets / feedback emails 주간 배치 업로드
-- AI-assisted tagging (pain, segment, objection, request)
+- support tickets / feedback emails / churn notes 주간 배치 업로드
+- AI-assisted tagging (pain, segment, objection, request, churn reason)
 - recurring signal dashboard
 - evidence-linked decision brief
 - export to markdown / prompt-ready brief
@@ -58,13 +62,13 @@
 - 5~10개 초기 팀 인터뷰
 - 샘플 데이터 20~50개 업로드 기반 파일럿
 - 검증 질문:
-  - 지금 feedback source가 어디에 흩어져 있는가?
+  - 지금 churn/support source가 어디에 흩어져 있는가?
   - recurring pattern을 잡을 때 실제로 어떤 수동 작업을 하는가?
   - weekly decision brief가 있으면 어떤 회의/문서가 대체되는가?
 - 검증 지표:
   - 주 1회 이상 반복 업로드
-  - 실제 메시지/우선순위 변경 1건 이상
-  - "Notion보다 낫다" 반응 3팀 이상
+  - brief에서 나온 결정이 실제 우선순위 변경으로 이어진 사례 1건 이상
+  - 팀이 brief를 회의 artifact로 재사용한 비율
 
 ## Pricing Hypothesis
 - Team: $99~299 / month
@@ -76,10 +80,14 @@
 - 연동 요구가 너무 빨리 들어오면 범위가 커짐
 
 ## Why Now
-요약 도구는 많지만 실행 연결 레이어가 비어 있다. 초기 팀은 더 적은 인력으로 더 많은 고객 대화를 처리해야 하고, founder-led sales 및 AI-assisted product work가 늘면서 이 gap이 더 분명해졌다.
+요약 도구는 많지만 실행 연결 레이어가 비어 있다. 초기 팀은 더 적은 인력으로 더 많은 고객 대화와 churn reason을 처리해야 하고, founder-led sales 및 AI-assisted product work가 늘면서 **"what is this feedback actually telling us to build next?"** 라는 질문이 더 선명해졌다.
 
 ## Supporting Evidence
-- X indexed snippet: support tickets + feedback emails를 themes / frequency / JTBD / workarounds로 묶으려는 신호
+- X indexed snippet: founders don't have a feedback problem, they have a decision problem
+  - https://x.com/jeebz_a/status/2029969484459462989
+- X indexed snippet: churn data sits in surveys, support tickets, and Stripe fields; nobody reads it systematically
+  - https://x.com/brianfofficial/status/2031850417718460521
+- X indexed snippet: cluster support tickets + feedback emails into themes / frequency / JTBD / workarounds
   - https://x.com/MillieMarconnni/status/2023363588099113093
 - Survey artifact
   - `.survey/social-web-app-ideas/context.md`
