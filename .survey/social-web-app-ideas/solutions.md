@@ -3,8 +3,8 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | 인터뷰/세일즈콜/지원티켓을 구조화해 recurring signal과 decision brief 생성 | B2B team budget, decision wedge 명확 | generic AI notes와 혼동 위험 | 이번 루프에서 feedback inbox → pattern extraction 신호 보강 |
-| Creator Deal CRM | 브랜드딜·deliverable·invoice·payment follow-up 운영 툴 | pain가 아주 구체적이고 money leak와 직결 | solo creator 예산과 CRM 비교 저항 가능 | 이번 루프 기준 social signal 가장 강함 |
+| Voice-of-Customer Repository | 인터뷰/세일즈콜/지원티켓을 구조화해 recurring signal과 decision brief 생성 | B2B team budget, decision wedge 명확 | generic AI notes와 혼동 위험 | 이번 루프에서 feedback inbox → theme/frequency/JTBD/workaround extraction 신호로 보강 |
+| Creator Deal CRM | 브랜드딜·deliverable·invoice·payment follow-up 운영 툴 | pain가 아주 구체적이고 money leak와 직결 | solo creator 예산과 CRM 비교 저항 가능 | 이번 루프 기준 social signal 가장 강함, 특히 invoicing/late payment wedge 강화 |
 | Meeting Decision Tracker | 회의 요약보다 결정·담당자·마감 추적에 집중 | summary tool 대비 차별점 선명 | PM tool과 경계 겹침 | 여전히 유효하나 이번 루프 신호는 약함 |
 | SMB Unified Inbox | 리뷰/DM/예약/문의 통합 인박스 | 매출 보존 가치 직접적 | 채널 연동 복잡 | 보류 후보 |
 | FAQ Support Copilot | 반복 문의 자동응답 + 정책 기반 응답 | 즉시 효율 개선 | knowledge base 품질 의존 | 보류 후보 |
@@ -45,13 +45,15 @@
 - https://x.com/polsia/status/2034926469835829637
 - https://x.com/polsia/status/2030280962647671102
 - https://x.com/MillieMarconnni/status/2023363588099113093
+- https://x.com/Dominus_Kelvin/status/2029573666388996145
+- https://x.com/polsia/status/2033895987073454226
 
 ### Threads
 - Direct usable signal not recovered this loop; indexed results were mostly low-context generic entries.
 
 ## Key Gaps
-- creator revenue ops는 pain이 선명한데 `deal → deliverable → invoice → payment`를 가볍게 닫아주는 툴이 여전히 드물다.
-- feedback synthesis는 가능해졌지만, 팀이 신뢰할 수 있는 `evidence-backed decision brief` 계층은 비어 있다.
+- creator revenue ops는 pain이 선명한데 `deal → deliverable → invoice → payment`를 가볍게 닫아주고 overdue chase까지 맡는 툴이 여전히 드물다.
+- feedback synthesis는 가능해졌지만, 팀이 신뢰할 수 있는 `theme + frequency + JTBD + workaround + evidence-backed decision brief` 계층은 비어 있다.
 - Threads는 검색 인덱싱 품질이 약해 빠른 루프 조사 대상으로는 효율이 낮다.
 
 ## Contradictions
@@ -60,4 +62,4 @@
 - 피드백은 넘치지만 product/team 의사결정 체계로 연결되는 저장소는 부족하다.
 
 ## Key Insight
-이번 루프의 핵심은 **primary/backup 구도가 유지되더라도 social signal intensity는 Creator Deal CRM 쪽이 더 강했다**는 점이다. 다만 레포의 실행 준비도와 팀 예산형 wedge는 아직 Voice-of-Customer Repository가 앞서므로, 현재 최적 전략은 `VoC primary 유지 + Creator Deal CRM을 강한 대안으로 계속 압박`하는 것이다.
+이번 루프의 핵심은 **Creator Deal CRM이 social pain intensity에서는 여전히 우세하지만, VoC Repository는 증거 구조화 방식이 더 선명해졌고 repo execution path도 더 앞서 있다**는 점이다. 따라서 현재 최적 전략은 `VoC primary 유지 + Creator Deal CRM을 invoice/late-payment wedge 중심 강한 backup으로 계속 압박`하는 것이다.

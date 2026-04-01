@@ -66,6 +66,19 @@ Voice-of-Customer Repository는 인터뷰, 세일즈 콜, 지원 티켓, 리뷰 
 - model_name
 - created_at
 
+### `evidence_spans`
+- id
+- extraction_id
+- record_id
+- signal_type
+- signal_label
+- normalized_label
+- quote_text
+- start_char
+- end_char
+- confidence
+- created_at
+
 ### `themes`
 - id
 - workspace_id
@@ -87,6 +100,21 @@ Voice-of-Customer Repository는 인터뷰, 세일즈 콜, 지원 티켓, 리뷰 
 - source_theme_ids_json
 - created_at
 
+### `brief_items`
+- id
+- brief_id
+- title
+- decision_type
+- recommendation
+- why_now
+- confidence
+- impacted_segments_json
+- source_theme_ids_json
+- evidence_span_ids_json
+- counterevidence_or_gaps
+- rank_order
+- created_at
+
 ## AI Pipeline
 ### Stage 1: Extraction
 입력 레코드 1건 기준으로 구조화 JSON 생성.
@@ -97,8 +125,16 @@ pain/objection/request label을 normalize해서 중복 표현을 줄인다.
 ### Stage 3: Theme Clustering
 여러 extraction 결과를 theme로 묶고 frequency, segment, representative evidence를 계산한다.
 
+### Stage 3.5: Theme Scoring
+각 theme는 아래 신호를 합쳐 우선순위를 계산한다.
+- frequency across records
+- average severity
+- segment concentration
+- recency
+- source diversity
+
 ### Stage 4: Decision Brief Generation
-가장 강한 signal을 바탕으로 제품/메시지 관점의 markdown brief를 생성한다.
+상위 theme만 brief item 후보로 승격시키고, 제품/메시지 관점의 markdown brief를 생성한다.
 
 ## Async Jobs
 비동기로 처리할 것:
@@ -117,6 +153,8 @@ pain/objection/request label을 normalize해서 중복 표현을 줄인다.
 - confidence가 낮으면 unknown 또는 weak signal로 표시한다.
 - 사용자는 theme별 근거 record를 역추적할 수 있어야 한다.
 - "요약"이 아니라 "근거 문장 + 해석" 쌍을 보여준다.
+- brief item은 연결된 theme와 evidence span까지 역추적 가능해야 한다.
+- generic summary와 구분하기 위해 `why now`, `supporting evidence count`, `counterevidence_or_gaps`를 함께 노출한다.
 
 ## MVP Stack Suggestion
 - Frontend: Next.js

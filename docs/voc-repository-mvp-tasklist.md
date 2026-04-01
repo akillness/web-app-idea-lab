@@ -19,25 +19,29 @@
 1. extraction prompt wiring
 2. structured JSON validation
 3. extraction result storage
-4. failed record retry flow
+4. evidence span extraction/storage
+5. failed record retry flow
 
 ## Phase 3 — Theme view
 1. normalization rule 정의
 2. theme clustering job 구현
-3. recurring theme list UI
-4. evidence snippet drill-down
+3. theme priority scoring 구현
+4. recurring theme list UI
+5. evidence snippet drill-down
 
 ## Phase 4 — Decision brief
 1. decision brief prompt wiring
-2. markdown brief 생성
-3. export/download 기능
-4. brief regeneration trigger
+2. brief item generation with ranking
+3. markdown brief 생성
+4. export/download 기능
+5. brief regeneration trigger
 
 ## Phase 5 — Validation loop
 1. 10~20개 샘플 record 투입
 2. false clustering / weak evidence 체크
-3. PM/founder 3명에게 brief usefulness 검증
-4. wording/structure 개선
+3. generic summary vs evidence-backed brief 비교 fixture 추가
+4. PM/founder 3명에게 brief usefulness 검증
+5. wording/structure 개선
 
 ## Fastest validation path
 - auth 생략 또는 매우 단순화

@@ -29,6 +29,14 @@ Build an evidence layer that:
 3. groups recurring themes,
 4. generates a concise decision brief recommending what product/message changes deserve attention.
 
+Primary user outcome:
+The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
+The brief must:
+1. synthesize cross-record patterns rather than single-record summaries,
+2. rank issues by frequency + severity + segment concentration + source diversity,
+3. show only source-linked claims,
+4. recommend concrete product/message/support actions.
+
 MVP scope:
 - single workspace
 - upload/paste text records
@@ -48,8 +56,10 @@ Implementation contract for coding agent:
 1. Use these canonical entities:
    - conversation_records
    - record_extractions
+   - evidence_spans
    - themes
-   - decision_briefs
+   - brief_generations
+   - brief_items
 2. Support these minimum routes:
    - POST /records
    - GET /records
@@ -72,7 +82,25 @@ Implementation contract for coding agent:
    - brief view with recommendation markdown
 5. Preserve evidence traceability:
    - every extracted signal must link back to source record ids and quoted snippets
-6. Start with fixtures and local-first iteration:
+6. Weekly decision brief contract:
+   - generate 3-5 ranked brief items per run
+   - each brief item must include:
+     - title
+     - decision_type: product | messaging | sales_enablement | support
+     - recommendation
+     - why_now
+     - confidence: high | medium | low
+     - impacted_segments
+     - supporting_theme_ids
+     - supporting_evidence: at least 2 quoted snippets from different records when possible
+     - counterevidence_or_gaps
+   - theme priority score should use:
+     - frequency across records
+     - average severity
+     - segment concentration
+     - recency
+     - source diversity
+7. Start with fixtures and local-first iteration:
    - seed at least 10 sample conversation records
    - include one sample extraction output, one theme output, and one brief output in the repo
 
@@ -89,7 +117,9 @@ Suggested artifacts to produce:
 Success criteria:
 - a user can input 10+ customer conversation records
 - the system can show recurring pains and objections with source evidence
-- the system can produce a short decision brief in markdown
+- the system can produce a weekly markdown brief with 3-5 ranked decisions
+- every brief item links to underlying themes and quoted source snippets
+- at least one brief item shows a cross-record pattern from multiple sources
 - the output is clearly more decision-oriented than a generic transcript summary
 
 Engineering preference:

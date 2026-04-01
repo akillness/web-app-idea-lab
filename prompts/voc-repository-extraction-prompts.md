@@ -34,6 +34,22 @@ Schema:
       "evidence": ["string"]
     }
   ],
+  "normalized_signals": [
+    {
+      "raw_label": "string",
+      "normalized_label": "string",
+      "signal_type": "pain|objection|feature_request|jtbd"
+    }
+  ],
+  "evidence_spans": [
+    {
+      "quote": "string",
+      "start_char": 0,
+      "end_char": 0,
+      "signal_type": "pain|objection|feature_request|jtbd",
+      "signal_label": "string"
+    }
+  ],
   "sentiment": "positive|mixed|negative",
   "churn_risk": "low|medium|high|unknown",
   "buying_signal": "low|medium|high|unknown",
@@ -46,6 +62,8 @@ Rules:
 - If unsure, use "unknown" or an empty array.
 - Keep labels short and reusable.
 - Favor concrete pains over vague themes.
+- Populate evidence_spans whenever a signal is asserted.
+- Normalize labels aggressively enough to support downstream clustering.
 ```
 
 ## 2. Theme Clustering Prompt
@@ -83,16 +101,46 @@ Rules:
 
 ## 3. Decision Brief Prompt
 ```text
-You are generating a product decision brief from clustered customer evidence.
+You are generating a weekly product decision brief from clustered customer evidence.
 
 Input:
-Recurring themes with frequencies, segment context, and evidence.
+Recurring themes with frequencies, segment context, evidence, and confidence signals.
 
-Output:
-Write a concise markdown brief with these sections:
-- Top recurring pains
-- Important objections
-- Feature requests worth monitoring
+Task:
+1. Promote only the strongest recurring patterns into decision candidates.
+2. Separate "recommended now" from "monitor, but not enough evidence".
+3. Prefer multi-record, multi-source evidence over single-record anecdotes.
+4. Return structured JSON first, then render markdown from it.
+
+JSON schema:
+{
+  "brief_title": "Weekly Decision Brief",
+  "time_window": "string",
+  "top_decisions": [
+    {
+      "title": "string",
+      "decision_type": "product|messaging|sales_enablement|support",
+      "recommendation": "string",
+      "why_now": "string",
+      "confidence": "high|medium|low",
+      "theme_ids": ["string"],
+      "evidence": [
+        { "record_id": "string", "quote": "string" }
+      ],
+      "counterevidence_or_gaps": "string"
+    }
+  ],
+  "monitor_only": [
+    {
+      "theme_id": "string",
+      "reason": "string"
+    }
+  ]
+}
+
+Markdown sections:
+- Top decisions this week
+- What changed vs weak signals
 - Message/positioning implications
 - Recommended next actions
 - Source-backed evidence highlights
@@ -102,4 +150,5 @@ Rules:
 - Distinguish between high-confidence and weak-signal conclusions.
 - Avoid pretending certainty where evidence is thin.
 - Optimize for product and messaging decisions, not generic summary.
+- Every claim in the markdown must map back to structured evidence.
 ```

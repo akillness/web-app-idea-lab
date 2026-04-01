@@ -46,8 +46,16 @@
 - https://x.com/polsia/status/2030280962647671102
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 
-> "I had 247 support tickets and feedback emails sitting in my inbox. Claude found the patterns I completely missed." — X indexed snippet
+> "Cluster feedback into themes from support tickets/feedback emails and calculate frequency, JTBD, and workarounds." — X indexed snippet
 - https://x.com/MillieMarconnni/status/2023363588099113093
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+
+> "Creators invoice clients with WhatsApp and an account number, not formal invoices." — X indexed snippet
+- https://x.com/Dominus_Kelvin/status/2029573666388996145
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+
+> "SMEs bleed cash to late payments; AI chases overdue invoices." — X indexed snippet
+- https://x.com/polsia/status/2033895987073454226
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 
 ## Collection Caveat
@@ -55,3 +63,4 @@
 - X / Threads direct in-browser reading: login/captcha/anti-bot 제한이 강함.
 - 따라서 이번 문서는 **원문 전수 검증본이 아니라 search-indexed snippet 기반 2차 관측본**이다.
 - 다만 이전 루프의 `반복 pain 클러스터` 수준에서 한 단계 올라가, 이번에는 **구체 URL + 인덱싱 스니펫**까지 확보했다.
+- 새 증거 기준으로는 VoC 쪽이 `theme/frequency/JTBD/workaround` 구조를 더 또렷하게 보여줬고, Creator Deal CRM 쪽은 `invoice/payment follow-up`이 가장 강한 money wedge로 보강됐다.

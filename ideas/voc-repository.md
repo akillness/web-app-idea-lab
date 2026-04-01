@@ -8,8 +8,8 @@
 초기 SaaS 팀은 고객 인터뷰, 세일즈 콜, 지원 티켓, 리뷰에 중요한 신호가 많지만 그 데이터가 Notion, Slack, Gong, Intercom, 메모에 흩어진다. 그 결과 고객 목소리는 존재하지만 제품 우선순위, 메시징, 세일즈 대응에 일관되게 반영되지 않는다.
 
 이번 루프에서 보강된 핵심 증거는 다음 문장으로 압축된다.
-- "247 support tickets and feedback emails sitting in my inbox" 같은 상태는 흔하다.
-- 문제는 저장이 아니라 **반복 패턴을 놓치고 있다는 것**이다.
+- support tickets와 feedback emails를 **themes / frequency / JTBD / workarounds**로 구조화하려는 수요가 보였다.
+- 문제는 저장이 아니라 **반복 패턴을 놓치고, 그 패턴을 의사결정 포맷으로 못 바꾼다는 것**이다.
 
 ## ICP
 - 10~100명 B2B SaaS 팀
@@ -24,31 +24,35 @@
 4. CS, Sales, Product가 같은 고객 signal을 공유하지 못한다.
 
 ## Product Wedge
-"고객 대화 저장소"가 아니라 **의사결정용 고객 증거 레이어**.
+"고객 대화 저장소"가 아니라 **주간 의사결정용 고객 증거 브리프**.
 
 핵심 포지셔닝 문장:
-> 초기 B2B SaaS 팀이 support tickets, sales call notes, interview transcripts를 매주 업로드하면 제품 우선순위와 메시지 수정에 바로 쓸 수 있는 evidence-backed weekly decision brief를 생성한다.
+> 초기 B2B SaaS 팀이 support tickets, feedback emails, sales call notes, interview transcripts를 매주 업로드하면 recurring pain pattern과 source-linked evidence를 묶은 weekly decision brief를 생성한다.
 
 핵심 차별점:
 - 인터뷰/콜/티켓을 JTBD / pain / objection / feature request / churn risk로 구조화
 - 빈도와 심각도를 기준으로 recurring signal 탐지
+- workaround와 job context까지 같이 잡아 why-now와 대체행동을 설명
 - 인사이트를 태스크/문서/우선순위 변경 추천으로 연결
 - generic AI summary가 아니라 **source-linked evidence brief**를 출력
 
 ## MVP Boundary
 ### 포함
 - 텍스트/문서 업로드 및 붙여넣기
+- support tickets / feedback emails 주간 배치 업로드
 - AI-assisted tagging (pain, segment, objection, request)
 - recurring signal dashboard
 - evidence-linked decision brief
 - export to markdown / prompt-ready brief
 
 ### 제외
+- generic research repository UX 확장
 - 실시간 SaaS 연동
 - 고급 권한관리
 - full CRM/helpdesk replacement
 - 다국어 고정밀 분류
 - workflow automation beyond export
+- broad search/copilot UX first
 
 ## Validation Plan
 - 5~10개 초기 팀 인터뷰
@@ -75,7 +79,7 @@
 요약 도구는 많지만 실행 연결 레이어가 비어 있다. 초기 팀은 더 적은 인력으로 더 많은 고객 대화를 처리해야 하고, founder-led sales 및 AI-assisted product work가 늘면서 이 gap이 더 분명해졌다.
 
 ## Supporting Evidence
-- X indexed snippet: support tickets + feedback emails에서 패턴을 놓친다는 신호
+- X indexed snippet: support tickets + feedback emails를 themes / frequency / JTBD / workarounds로 묶으려는 신호
   - https://x.com/MillieMarconnni/status/2023363588099113093
 - Survey artifact
   - `.survey/social-web-app-ideas/context.md`

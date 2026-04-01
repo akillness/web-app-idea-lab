@@ -30,6 +30,9 @@ Requirements:
 6. Include error handling and confidence/traceability design.
 7. Explain how source evidence should be shown so the user can trust outputs.
 8. Provide a realistic MVP implementation plan for a small team.
+9. Define the ranking/scoring logic that decides which themes are promoted into the weekly decision brief.
+10. Define the storage model for snippet-level evidence traceability.
+11. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
 
 Constraints:
 - Prefer a simple web app stack.
