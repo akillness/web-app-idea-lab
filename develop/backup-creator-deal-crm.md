@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 deal 이후의 invoice/payment 흐름을 구조화해서 **오늘 회수해야 할 돈과 다음 행동**을 볼 수 있게 한다.
 
-핵심은 generic creator CRM이 아니라, collections 단계에서 `지금 어디서 막혔는지`를 보여주는 **cash-ops operating layer**다.
+핵심은 generic creator CRM이 아니라, collections 단계에서 `지금 어디서 막혔는지`를 보여주는 **cash-ops operating layer**다. 최신 재검색 기준으로는 `invoice destination`, `remittance-proof`를 핵심 thesis로 과장하지 말고, **AP owner / pay-run / blockage recovery**를 중심축으로 두는 편이 맞다.
 
 ## 2. MVP scope
 ### 포함
@@ -15,14 +15,14 @@
 - named AP owner 기록
 - payment terms / PO / reference 저장
 - AP contact와 invoice destination을 분리해 저장
-- invoice destination 저장
+- invoice destination 저장 (보조 운영 필드)
 - invoice readiness checklist
 - due date / promised payment date tracking
 - pay-run / onboarding blockage 상태 관리
 - payer-side manual AP process 상태 관리
 - overdue cadence queue
 - underpaid / ghosted / escalated state tracking
-- remittance-proof 상태 기록
+- remittance-proof 상태 기록 (보조 운영 필드)
 - next-step recommendation
 
 ### 제외

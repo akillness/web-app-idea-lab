@@ -7,7 +7,7 @@
 크리에이터와 소형 에이전시의 deal 이후 단계에서 **invoice readiness, AP routing, pay-run visibility, overdue follow-up**를 관리하는 collections-first cash-ops tool.
 
 ## 핵심 문제
-크리에이터가 deal을 따온 뒤 실제 돈이 들어오기까지의 과정은 여전히 시트, DM, 이메일, 메모에 흩어져 있다. 가장 큰 pain은 관계 관리가 아니라 `지금 돈이 어디서 막혔는지`를 모르는 것이다. 실제 blockage는 ghosting뿐 아니라 AP contact 부재, vendor onboarding 누락, payment terms 오해, pay-run miss, invoice destination 오류에서 자주 나온다.
+크리에이터가 deal을 따온 뒤 실제 돈이 들어오기까지의 과정은 여전히 시트, DM, 이메일, 메모에 흩어져 있다. 가장 큰 pain은 관계 관리가 아니라 `지금 돈이 어디서 막혔는지`를 모르는 것이다. 실제 blockage는 ghosting뿐 아니라 AP contact 부재, vendor onboarding 누락, payment terms 오해, pay-run miss에서 자주 나온다. `invoice destination`과 `remittance-proof`도 운영 필드로는 유의미하지만, 이번 재검색 기준에서는 핵심 시장 wedge를 세울 만큼 강한 외부 demand evidence는 아직 얇다.
 
 ## 누구를 위한 제품인가
 - 월 브랜드딜이 꾸준한 솔로 크리에이터
@@ -36,7 +36,8 @@
 - pain은 매우 선명하다.
 - broad CRM보다 collections wedge가 훨씬 날카롭다.
 - 다만 ICP가 solo creator / freelancer / small agency로 아직 섞여 있어 primary보다 우선순위가 낮다.
-- reminder automation 카테고리는 이미 보이지만, blockage visibility와 routing verification 레이어는 아직 덜 정리돼 있다.
+- reminder automation 카테고리는 이미 보이지만, blockage visibility와 routing/AP-owner verification 레이어는 아직 덜 정리돼 있다.
+- 반면 `invoice destination`, `remittance-proof`는 제품 내부 필드로는 유지하되 현재는 **보조 운영 필드**로 두는 편이 맞다.
 
 ## 제품 wedge
 "creator CRM"이 아니라 **collections visibility + payment-stage clarity + AP-routing control**.

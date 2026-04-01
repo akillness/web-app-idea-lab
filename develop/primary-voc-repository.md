@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**를 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work가 잡아먹는 strategy-time tax를 줄이는 운영 레이어**가 필요하다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden**이 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다.
 
 ## 2. MVP scope
 ### 포함
@@ -31,6 +31,7 @@
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
 - stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `internal exec`)
 - commitment-overhead queue 생성
+- customer-roadmap communication queue 생성
 - markdown export
 
 ### 제외
@@ -52,7 +53,8 @@
 9. weekly brief 생성
 10. external update draft 생성
 11. commitment-overhead queue 생성
-12. markdown export
+12. customer-roadmap communication queue 생성
+13. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -122,6 +124,13 @@
 - suggested ambiguity-closing answer
 - suggested safer directional wording
 - owner + due-next-action
+
+### `/queue/customer-roadmap-calls`
+- accounts repeatedly asking for roadmap walkthroughs
+- open customer/executive explanation requests
+- why-this-priority / why-not-now response starter
+- latest safe roadmap wording draft
+- owner + next scheduled response/action
 
 ## 5. Core entities
 ### `records`
@@ -233,6 +242,18 @@
 - next_action_at
 - status
 
+### `roadmap_call_queue_items`
+- id
+- account_id
+- request_surface (`customer_call`, `sales_followup`, `exec_review`)
+- request_summary
+- linked_theme_ids
+- linked_rationale_id
+- draft_response
+- owner
+- next_action_at
+- status
+
 ## 6. Ranking logic
 초기 점수 가중치:
 - frequency 20
@@ -304,6 +325,13 @@
 - risky dated promises
 - suggested owner
 - suggested safe answer
+- next action due
+
+### Customer-Roadmap Communication Queue
+- repeated roadmap-call / explanation requests
+- linked why-this-priority / why-not-now rationale
+- latest safe wording draft
+- suggested owner
 - next action due
 
 ## 8. Product rules
