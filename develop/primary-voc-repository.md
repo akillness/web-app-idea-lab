@@ -14,6 +14,7 @@
 - source type 지정
 - source preset 선택 (`support ticket`, `CRM note`, `call note`, `Slack paste`, `review`, `survey`, `roadmap/customer commitment note`)
 - shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`)
+- one-table intake baseline for mixed sources (`sales calls`, `CS tickets`, `Intercom`, `notes`)
 - low-friction note capture for personal docs / meeting notes
 - AI extraction
 - tagging + AI clustering
@@ -83,6 +84,7 @@
 - internal notes vs customer-facing implications split
 - `decision trace` block
 - `what changed since last review` block
+- `what should we build next` answer block
 
 ### `/updates/latest`
 - customer-safe roadmap / progress wording

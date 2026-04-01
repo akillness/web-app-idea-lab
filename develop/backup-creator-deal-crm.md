@@ -14,6 +14,7 @@
 - AP / project owner / intermediary routing
 - named AP owner 기록
 - payment terms / PO / reference 저장
+- AP contact와 invoice destination을 분리해 저장
 - invoice destination 저장
 - invoice readiness checklist
 - due date / promised payment date tracking
@@ -134,6 +135,7 @@
 - underpaid / ghosted flag 표시
 - outstanding unpaid → new work risk 표시
 - pay-run miss → blockage queue 이동
+- pay-run miss 후 재확인 날짜 자동 재계산
 - remittance promised but not received → proof request 추천
 - invoice destination 미확인 / PO 누락 / onboarding 미완료 / named AP owner 없음 시 `send reminder`보다 먼저 `fix routing` 추천
 - reminder-only 자동화가 아니라 blockage type 기준으로 next step 추천
