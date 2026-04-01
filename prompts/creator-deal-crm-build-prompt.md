@@ -17,17 +17,21 @@ Do NOT build a full accounting suite.
 Build a creator deal-ops and collections-visibility workflow tool.
 
 Target users:
-- Solo creators with recurring brand deals
+- Solo creators / freelancers with recurring brand deals
 - Small creator agencies (1-10 people)
 - Operators/managers who currently run brand deal tracking in spreadsheets, Notion, WhatsApp, DMs, and email
 
+ICP note:
+Start with a solo-creator / freelancer-first workflow even if the data model can later support agencies. Current social evidence is strongest around individual cash-collection pain.
+
 Core problem:
-Creators and small agencies often manage brand deals across inboxes, chat apps, spreadsheets, and memory. They lose track of deliverables, usage rights, invoice status, promised payment dates, partial payments, follow-up timing, and overdue receivables. The result is awkward manual chasing, late payments, underpayments, and poor cash visibility.
+Creators and small agencies often manage brand deals across inboxes, chat apps, spreadsheets, and memory. They lose track of deliverables, usage rights, invoice status, promised payment dates, partial payments, follow-up timing, and overdue receivables. The result is awkward manual chasing, late payments, underpayments, ghosting, and poor cash visibility. Another recurring failure happens before invoicing: payment terms, invoice recipient details, and AP instructions are often unclear before work starts.
 
 Product wedge:
 Optimize the MVP for creator deal execution plus collections visibility, not generic deal management.
 Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 Treat `follow-up timing` as a first-class product problem, not just a copy-generation afterthought.
+Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -37,6 +41,7 @@ The MVP should help a user answer these questions quickly:
 6. What payment terms or promised dates were missed, and what should happen next?
 7. What invoice workflow details still need to be confirmed before I send or chase an invoice?
 8. How did usage-rights scope change the quoted price during negotiation?
+9. Which deals are risky because the payment terms were never clarified before work started?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:

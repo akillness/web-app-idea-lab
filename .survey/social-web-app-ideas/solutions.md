@@ -3,48 +3,58 @@
 ## Solution List
 | Name | Approach | Strengths | Weaknesses | Notes |
 |------|----------|-----------|------------|-------|
-| Voice-of-Customer Repository | support ticket / feature request / churn evidence를 `Monday-morning decision brief + commitment-risk review`로 바꾸는 evidence layer | 이번 루프의 fresh Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이면 약해지고, live integration 요구가 빨리 붙을 수 있음 | 이번 루프에서 `support-to-product intake`, `ARR/ICP churn segmentation`, `enterprise commitment tracking`, `Monday review` 신호가 강화됨 |
-| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator communities의 실제 workflow pain과 직접 연결 | vertical SaaS budget 저항, 범용 CRM/시트 비교 위험 | 이번 루프에서 `spreadsheet + Notion + email`, `30~90 day payments`, `invoice readiness`, `usage-rights ambiguity` 근거가 보강됨 |
-| Churn Segmentation Copilot | churn reasons를 ARR / ICP / lifecycle 기준으로 정규화하는 분석 layer | VoC 내부의 고가치 sub-problem | 단독 제품이면 깊이가 부족할 수 있음 | standalone보다는 VoC의 module로 자연스러움 |
-| Support-to-Product Intake Hub | support / CS 요청을 dedupe·contextualize·prioritize하는 intake layer | support chaos와 roadmap noise를 직접 겨냥 | standalone이면 PM tool/feedback tool과 경계가 겹침 | VoC primary의 핵심 wedge를 이루는 인접 레이어 |
-| Creator Collections Assistant | overdue invoice, promised date, follow-up sequence에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context가 빠질 수 있음 | Creator Deal CRM의 더 좁은 entry point로 적합 |
+| Voice-of-Customer Repository | support / churn / feature request / commitment evidence를 **Monday-morning decision brief**로 바꾸는 decision layer | 이번 루프의 Reddit + X signal과 가장 직접적으로 맞물림 | repository처럼 보이거나 benchmark/network product로 커지면 흐려짐 | `decision problem, not feedback problem`, weekly spreadsheet review, ProductBoard→Jira bridging, revenue/resource tie-back signal이 추가로 강화됨 |
+| Creator Deal CRM | creator/agency의 deal status·deliverable·invoice·payment follow-up·collections 상태를 묶는 ops tool | creator payment pain과 cash visibility 욕구가 선명함 | broad CRM처럼 보이거나 agency/solo ICP가 섞이면 약해짐 | 이번 루프는 특히 `late payment`, `underpayment`, `ghosting`, `clear payment terms before work`, `automated reminders` 신호를 보강함 |
+| Support-to-Product Decision Hub | support/CS 요청을 dedupe·contextualize·impact-aware prioritization으로 바꾸는 intake layer | VoC의 가장 강한 하위 wedge | standalone이면 Productboard/Jira 보조툴처럼 보일 위험 | dollars/resource time tie-back과 request-origin tracking이 이번 루프에서 더 또렷해짐 |
+| Creator Collections Assistant | overdue invoice, promised date, follow-up sequence, reminder timing에 특화된 회수 보조 툴 | pain가 매우 선명하고 ROI 설명이 쉬움 | 너무 좁으면 deal context와 rights memory가 빠짐 | solo/freelancer skew가 강한 entry wedge로는 유효 |
+| Churn Decision Copilot | churn rate가 아니라 churn reason / segment / avoidability / unit-econ impact를 연결하는 분석 레이어 | `why`와 `so what`을 동시에 풀 수 있음 | 단독 제품이면 intake/evidence layer 없이 약할 수 있음 | VoC의 module로는 강하지만 standalone 1순위는 아님 |
 
 ## Categories
-### Evidence / retention intelligence
+### Decision / evidence systems
 - Voice-of-Customer Repository
-- Churn Segmentation Copilot
-- Support-to-Product Intake Hub
+- Support-to-Product Decision Hub
+- Churn Decision Copilot
 
-### Revenue ops / creator collections
+### Creator ops / collections
 - Creator Deal CRM
 - Creator Collections Assistant
 
 ## What People Actually Use
-- SaaS 팀은 support와 feature request를 이미 많이 받지만, 여전히 Slack / Jira / email / docs로 흩어진 상태에서 수동 triage한다.
-- churn feedback는 survey나 CS note로 남기되, ARR / ICP / lifecycle segment 기준으로 구조화하지 못한다.
-- 심지어 churn을 읽더라도 `avoidable vs non-actionable` 구분 없이 한 덩어리로 보는 경우가 많다.
-- PM은 월요일 아침 support tickets, churn notes, complaints를 다시 읽고 우선순위를 추정한다.
-- 일부 운영자는 여기에 `한 화면에서 건강/리스크/즉시 액션`을 보고 싶어 하며, benchmark percentile curiosity도 보이지만 실제 데이터 정리는 여전히 multi-source / messy-data 작업이다.
-- enterprise 고객이 roadmap date를 압박하면 팀은 feature demand와 customer promise exposure를 한 backlog에서 동시에 감당한다.
-- creators와 소형 에이전시는 여러 deal을 spreadsheet + Notion + email + DM 조합으로 운영한다.
-- payment follow-up은 여전히 사람이 일정과 톤을 관리하며 반복 발송하고, 실제 pain은 invoice 작성보다 **언제 follow-up해야 하는지**에 더 가깝다.
-- first-time creator도 sponsor invoice workflow를 커뮤니티에 묻고, usage rights 가격도 deal-by-deal로 다시 계산한다.
-- 즉 사람들이 원하는 것은 `AI summary`보다 **decision ritual artifact** 또는 **collections workflow queue + invoice/usage-rights memory + follow-up timing visibility**다.
+- SaaS 팀은 여전히 Google Forms, email, MS Forms, spreadsheets로 request를 모으고 weekly review를 한다.
+- Slack / email / meeting note를 ProductBoard에 넣고 Jira로 다시 넘기는 식의 multi-tool bridge가 흔하다.
+- feature request prioritization은 여전히 `누가 요청했는지`, `얼마짜리 고객인지`, `얼마나 많은 resource time이 드는지`를 수동으로 연결한다.
+- founders는 feedback가 없는 게 아니라 support/churn/NPS가 많아서 **무엇을 결정해야 하는지**가 더 어려워진다.
+- PM은 월요일 아침 support tickets, Intercom, Slack, Salesforce를 오가며 상황을 재구성한다.
+- churn은 여전히 rate로 먼저 보지만, 실제로는 unit economics와 연결된 decision pressure를 만든다.
+- creators와 freelancers는 여전히 invoice sending, overdue follow-up, promised payment, underpayment, ghosting을 수동으로 처리한다.
+- creator 쪽 최신 X 결과는 agency dashboard보다 `awkward chasing`, `clear terms before work`, `automated reminders`, `money stuck` 같은 solo operator pain을 더 많이 보여준다.
+- 즉 사람들이 원하는 것은 generic dashboard보다 **결정용 한 화면** 또는 **오늘 회수해야 할 돈/행동 큐**다.
 
 ## Frequency Ranking
 1. Voice-of-Customer Repository
 2. Creator Deal CRM
-3. Support-to-Product Intake Hub
+3. Support-to-Product Decision Hub
 4. Creator Collections Assistant
-5. Churn Segmentation Copilot
+5. Churn Decision Copilot
 
 ## Curated Sources
-### Reddit / PullPush mirror recoveries
+### Reddit / Yahoo indexed snippets
+- https://www.reddit.com/r/ProductManagement/comments/y3pmqg/managing_and_tracking_customer_feature_request/
+- https://www.reddit.com/r/ProductManagement/comments/10g15dz/tools_for_tracking_customer_requests/
+- https://www.reddit.com/r/ProductManagement/comments/vjpy9n/what_tools_do_you_use_to_gather_feature_requests/
+- https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
+- https://www.reddit.com/r/ProductManagement/comments/11xkty3/roadmapping_tools/
+- https://www.reddit.com/r/ProductManagement/comments/13d599t/how_do_you_manage_enterprise_saas_customers_who/
+- https://www.reddit.com/r/ProductManagement/comments/zsuyqn/how_do_you_documenttrack_costumer_committments/
+- https://www.reddit.com/r/CustomerSuccess/comments/13zqul2/best_way_to_minimize_churn_in_saas/
+- https://www.reddit.com/r/CustomerSuccess/comments/19b0xvo/how_do_you_handle_churn/
+- https://www.reddit.com/r/PartneredYoutube/comments/rdh39k/first_brand_deal_wondering_how_to_invoice_the/
+- https://www.reddit.com/r/PartneredYoutube/comments/1d21p8k/is_there_a_formula_for_how_much_i_should_charge/
+- https://www.reddit.com/r/PartneredYoutube/comments/1cf7d33/pricing_sponsorships_and_usage_rights/
+
+### Reddit / PullPush mirror recoveries carried forward
 - https://www.reddit.com/r/ProductManagement/comments/1jrlxxe/challenge_with_our_customer_support_team/
 - https://www.reddit.com/r/CustomerSuccess/comments/1jkq1wt/how_were_using_ai_to_transform_customer_support/
-- https://www.reddit.com/r/CustomerSuccess/comments/13zqul2/best_way_to_minimize_churn_in_saas/
-- https://www.reddit.com/r/ProductManagement/comments/y3pmqg/managing_and_tracking_customer_feature_request/
-- https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
 - https://www.reddit.com/r/influencermarketing/comments/1rvi66q/how_are_agencies_actually_tracking_brand_deal/
 - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
 - https://www.reddit.com/r/PartneredYoutube/comments/1r3a35i/how_are_you_guys_organizing_sponsorships_and/
@@ -52,45 +62,38 @@
 
 ### X / Yahoo indexed snippets
 - https://x.com/brianfofficial/status/2031850417718460521
-- https://x.com/valewnrt/status/2031470425675354199
-- https://x.com/polsia/status/2035027604550689279
 - https://x.com/_kamsyed/status/2033983166759793024
-- https://x.com/Ibk_egwu/status/2030939886304321786
-- https://x.com/Dominus_Kelvin/status/2029573666388996145
-- https://x.com/Anubhavhing/status/2028627747158016340
-- https://x.com/toddsaunders/status/2025932667834015851
-- https://x.com/dupayme/status/2028878071172915535
-
-### X / browser-rendered indexed snippets
+- https://x.com/valewrnt/status
+- https://x.com/jeebz_a/status
+- https://x.com/polsia/status/2035027604550689279
+- https://x.com/fbrsaas/status
+- https://x.com/Anubhavi/status
+- https://x.com/shubh19/status
+- https://x.com/canusign/status
+- https://x.com/mahlaku_m/status
 - https://x.com/ManojBuilds/status
-- https://x.com/Invoice_Ovaro/status
+- https://x.com/Indiepat2026/status
 
 ### Threads
-- Direct usable signal still not recovered this loop; targeted `site:threads.net` queries again failed to add material net-new evidence.
+- Focused query `site:threads.net creator invoice payment follow up brand deal` returned zero Yahoo results this loop.
 
 ## Key Gaps
-- feedback tooling 시장에는 저장/요약 툴은 많지만, **support → product → weekly decision brief**를 한 줄로 닫아주는 레이어는 여전히 약하다.
-- enterprise feature-request/commitment를 evidence-linked risk view로 다루는 툴 정의도 여전히 약하다.
-- roadmap date pressure까지 포함한 `promise exposure` view는 더더욱 비어 있다.
-- churn insight는 중요하지만 `why customers leave`와 `ARR/ICP/lifecycle context`를 같이 다루는 제품 정의가 드물다.
-- percentile / peer benchmark curiosity는 존재하지만, 실제 팀이 먼저 막히는 지점은 여전히 `messy multi-source evidence cleanup + weekly decision ritual`이다.
-- 특히 `avoidable vs non-actionable churn`을 분리해 보여주는 decision layer는 거의 보이지 않는다.
-- creator tooling은 많아 보여도 실제 사용자들은 여전히 deal progress와 payment follow-up을 시트/메일/DM으로 이어 붙인다.
-- creator tooling은 usage rights·invoice recipient·AP instructions 같은 deal-memory 필드를 제대로 first-class로 다루지 못하는 경우가 많다.
-- collections-only 툴은 있을 수 있지만 deliverable / deal context가 빠지면 creator workflow 전체 pain을 절반만 해결한다.
-- Threads는 discovery channel로서 계속 효율이 낮다.
+- feedback tooling 시장에는 저장/태깅 툴은 많아 보이지만, **support → churn → request → commitment → Monday decision brief**를 한 줄로 닫아주는 레이어는 여전히 약하다.
+- request를 revenue impact / resource time / customer importance와 연결해 의사결정하는 lightweight layer도 부족하다.
+- benchmark curiosity는 존재하지만, 현장의 더 급한 pain은 still messy evidence cleanup + weekly decision ritual이다.
+- churn tooling도 많지만 `why`, `which segment`, `what action`, `what unit-econ risk`를 동시에 보여주는 decision layer는 드물다.
+- creator tooling은 invoice creation을 말해도 실제 사용자는 **late payment / underpayment / ghosting / follow-up timing**에서 막힌다.
+- creator tooling은 payment terms before work, promised payment date, invoice instructions, rights/pricing memory를 first-class로 다루지 않는 경우가 많다.
+- Threads는 discovery source로서 계속 효율이 낮다.
 
 ## Contradictions
-- 사용자들은 feedback를 못 모으는 게 아니라 **product decision ritual로 못 바꾼다**.
-- benchmark curiosity는 존재하지만, 실제 현장은 peer percentile보다 먼저 `support ticket / churn / billing / activity log`를 한 문맥으로 정리하는 것에서 막힌다.
-- feature request 툴은 많지만 현장에서는 여전히 conflicting list와 ad-hoc forwarding이 반복된다.
-- feature request 툴이 있어도 `already-promised commitment`와 `general demand`를 같은 backlog에 섞어 관리하는 문제가 남는다.
-- churn advice는 많지만 실제 팀은 churn reasons를 segment 맥락으로 읽지 못하고, `good churn`까지 같은 알람으로 묶기 쉽다.
-- creator CRM은 많지만 creators는 실제로 `누가 아직 안 냈는지`, `언제 follow-up할지`, `deliverable이 invoice를 막고 있는지`를 수동으로 본다.
-- creator 툴은 invoice sending을 내세워도 실제 사용자가 아파하는 지점은 **invoice 작성 그 자체보다 payment chasing timing**이다.
-- creator 툴은 탭을 늘리기 쉽지만, 사용자가 진짜 원하는 것은 더 많은 화면이 아니라 **돈이 언제 들어오는지 보이는 것**이다.
-- creator CRM처럼 보여도 실제론 `invoice를 누구에게 어떤 포맷으로 보내야 하는지`, `usage rights 때문에 quote가 왜 달라졌는지`를 기억하지 못하는 경우가 많다.
-- AI message generation은 쉬워도 payment follow-up sequence와 promised-date tracking은 여전히 비어 있다.
+- 사용자들은 feedback를 못 모으는 게 아니라 **무엇을 결정할지 못 정한다**.
+- tool을 하나 더 추가해도 ProductBoard→Jira→spreadsheet 같은 bridge work는 계속 남는다.
+- benchmark percentile curiosity는 있지만, 실제 현장은 peer rank보다 먼저 `weekly decision surface`가 필요하다.
+- churn problem은 retention dashboard처럼 보이지만, 실제 pain은 unit economics pressure가 걸린 prioritization 문제다.
+- creator CRM은 많지만 creators가 아픈 건 broad relationship management보다 **돈이 왜/어디서 막혔는지**다.
+- invoice tool이 있어도 `before work payment terms clarity`가 없으면 cash leak는 계속된다.
+- reminder copy generation은 쉬워도 `why follow up now`, `what sequence step`, `what promise was missed`는 여전히 비어 있다.
 
 ## Key Insight
-이번 루프의 핵심은 **Primary와 Backup을 바꿀 만큼 새로운 1등 아이디어가 나온 것이 아니라, 두 아이디어의 entry wedge가 더 선명해졌다는 점**이다. Primary인 VoC Repository는 이제 `feedback repository`가 아니라 **messy multi-source evidence cleanup + support-to-product intake + churn segmentation + commitment-risk review + Monday-morning decision brief**로 이해하는 편이 정확하다. `percentile` 같은 benchmark curiosity는 보였지만, 현재 stronger wedge는 peer ranking보다 **한 화면에서 건강/리스크/즉시 액션을 보여주는 decision layer**다. Backup인 Creator Deal CRM은 `generic CRM`이 아니라 **deal execution + invoice workflow readiness + usage-rights memory + collections visibility + overdue follow-up queue + follow-up timing guidance**로 좁혀야 한다. Creator 쪽은 특히 `more tabs`가 아니라 `cash arrival visibility`, 그리고 invoice creation보다 **payment chasing timing**이 가치의 핵심이라는 framing이 더 강해졌다.
+이번 루프의 핵심은 **Primary/Backup 순위를 바꾸는 게 아니라, 두 아이디어의 operational wedge를 더 명확히 닫는 것**이었다. Primary인 Voice-of-Customer Repository는 이제 `feedback repository`보다 **support/churn/request/commitment를 decision artifact로 바꾸는 Monday-morning operating system**으로 보는 편이 정확하다. 특히 이번 루프는 `decision problem`, `weekly spreadsheet review`, `ProductBoard→Jira bridge`, `revenue/resource tie-back`, `unit-econ pressure`가 한 흐름으로 연결됐다. Backup인 Creator Deal CRM은 `creator CRM`보다 **cash-arrival visibility + payment-terms clarity + overdue follow-up timing + underpayment/ghosting handling**으로 더 좁혀야 한다. Creator 쪽 최신 X evidence는 솔로/프리랜서 skew가 강했기 때문에, broad agency OS보다 **collections clarity entry wedge**가 더 실전적이다.

@@ -22,7 +22,7 @@ Target users:
 at 10–100 person B2B SaaS teams.
 
 Core problem:
-Customer interviews, sales calls, support tickets, churn notes, cancellation surveys, and feature requests are scattered across notes, docs, support tools, Slack, Jira, and billing exports. Teams can collect data, but they struggle to turn that raw customer signal into recurring pains, objections, feature requests, churn reasons, and decision-ready summaries.
+Customer interviews, sales calls, support tickets, churn notes, cancellation surveys, and feature requests are scattered across notes, docs, support tools, Slack, spreadsheets, ProductBoard, Jira, and billing exports. Teams do not have a feedback shortage; they have a decision problem. They can collect data, but they struggle to turn that raw customer signal into recurring pains, objections, feature requests, churn reasons, revenue/segment risk, and decision-ready summaries.
 
 Product wedge:
 Do NOT build a generic note-taking app.
@@ -41,6 +41,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 4. Which churn is likely avoidable versus non-actionable or bad-fit churn?
 5. What product, messaging, or support change deserves action now?
 6. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
+7. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -80,7 +81,7 @@ Implementation contract for coding agent:
 
    For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, ARR band, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
 
-   For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, and account importance.
+   For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, account importance, requesting customer(s), revenue importance when known, and rough resource-cost / implementation-effort context when available.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
@@ -127,6 +128,8 @@ Implementation contract for coding agent:
      - recency
      - source diversity
      - account importance when available
+     - request-linked revenue importance when available
+     - rough resource-cost pressure when available
      - commitment pressure when available
    - include at least one explicit section or flag in the brief for: committed features at risk this quarter
 7. Start with fixtures and local-first iteration:
