@@ -1,9 +1,0 @@
-{
-  "name": "web-app-idea-lab",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Voice-of-customer ranking engine domain core",
-  "scripts": {
-    "test": "node --test"
-  }
-}
