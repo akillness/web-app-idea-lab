@@ -38,6 +38,8 @@ Requirements:
 14. Clearly distinguish raw extraction, normalized signal, clustered theme, and promoted brief recommendation.
 15. Define how the product should represent `near-term commitment`, `roadmap theme only`, and `timing still ambiguous` without collapsing them into one roadmap state.
 16. Define a roadmap-communication contract that distinguishes `direction_only` bucket language from `working_horizon` bucket language and explains how the system answers the stakeholder question: `when is later?` safely.
+17. Define a thin **priority-override model** for cases where external customer commitments, customer shipments, priority company objectives, technology inflections, or market timing legitimately outrank default demand scoring.
+18. Show how that override model stays auditable without turning the product into roadmap or project-management software.
 
 Constraints:
 - Prefer a simple web app stack.
@@ -57,6 +59,7 @@ Output format:
 - Evidence and trust UX
 - External update / ambiguity-closure UX
 - Roadmap communication contract (`direction_only` vs `working_horizon`)
+- Priority override model and audit trail
 - MVP implementation phases
 - Open questions
 ```

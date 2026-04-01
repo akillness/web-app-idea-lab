@@ -24,6 +24,7 @@
 - spreadsheet가 여러 개가 되면 enterprise request prioritization이 팀이 원래 만들고 싶은 로드맵에서 벗어나기 시작한다.
 - 어떤 팀은 request/deal이 너무 많아서 Sales/CSM이 commitments 사이 우선순위를 **분기마다 다시 조정**한다.
 - 같은 맥락에서 commitment hygiene는 단순 roadmap 커뮤니케이션 문제가 아니라 **close deals / plan effectively / meet customer commitments** 수준의 사업 실행 문제로도 읽힌다.
+- 이번 루프의 추가 Reddit indexed signal은 우선순위가 실제로 **external customer commitments / customer shipments / priority company objectives / technology inflections / market timing** 때문에 override된다는 점을 보여줬다. 즉 제품은 `무엇이 많이 요청됐는가`만이 아니라 `왜 이 요청이 지금 기본 scoring을 덮고 올라왔는가`를 남겨야 한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
@@ -59,6 +60,7 @@
 10. 90일 이상 lock하기 어려운 roadmap 현실과 customer expectation을 같은 화면에서 reconcile하지 못한다.
 11. roadmap과 release schedule은 둘 다 고객-facing commitment artifact인데, 이 둘의 안전한 경계를 제품이 지켜주지 못한다.
 12. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
+13. external commitment / shipment / company objective가 들어왔을 때 왜 기존 우선순위를 override했는지 기록되지 않아, 예외가 곧 정치처럼 보인다.
 
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
@@ -70,6 +72,8 @@
 - rough effort / implementation weight
 - requesting customer / account importance
 - commitment status
+- priority override reason (external commitment / customer shipment / company objective / market timing / tech inflection / none)
+- override evidence source and override expiry / reassessment trigger
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
 - roadmap layer vs release-plan layer distinction
 - bucket definition guidance (default: `now` = recently shipped through ~2 months out, `next` = next quarter, `later` = ~6–12 months; editable by team)
@@ -86,6 +90,7 @@
 - recurring signal을 pain / objection / feature request / churn reason / broken promise로 구조화
 - support evidence queue / triaged decision queue / explicit customer-commitment queue / execution queue를 섞지 않고 연결함
 - named customer commitments를 `generic demand`와 분리해 close-plan risk / trust risk / reprioritization pressure를 따로 읽게 함
+- generic scoring을 뒤집는 **priority override**가 생기면 why-now를 commitment / shipment / company-objective 문맥으로 명시함
 - avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
@@ -107,6 +112,7 @@
 - health / risk review brief
 - lightweight commitment tracking for already-promised customer asks
 - next-90-days commitment-risk summary
+- priority override log for requests elevated by external commitments / shipments / company objectives
 - evidence-linked decision brief export to markdown
 - requesting account / revenue importance / estimated resource cost 같은 decision context 필드
 
@@ -146,6 +152,7 @@
 - commitment tracking을 과하게 확장하면 roadmap system-of-record처럼 보여 scope가 커질 수 있음
 - percentile / peer benchmark 기대치를 너무 빨리 올리면 decision wedge보다 benchmark product처럼 보일 수 있음
 - request tie-back 필드를 너무 많이 넣으면 운영툴처럼 무거워질 수 있음
+- priority override workflow를 과하게 키우면 roadmap/project-management software처럼 보여 scope가 커질 수 있음
 
 ## Why Now
 support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것을 product decision ritual로 바꾸지 못한다. 요약 도구는 많아졌지만 **`what got worse this week?`, `which segment is newly at risk?`, `which requests are worth time now?`, `what revenue or commitment is exposed?`** 를 source-linked 상태로 말해주는 레이어는 여전히 희박하다.

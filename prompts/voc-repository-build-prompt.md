@@ -40,8 +40,9 @@ Build an evidence layer that:
 4. normalizes messy requests into PM-ready fields such as JTBD / use case / desired outcome / impacted area / impact / effort,
 5. preserves queue separation between raw support evidence, triaged planning candidates, explicit customer commitments, and execution backlog references,
 6. treats named customer commitments as a dedicated operating flow with their own owner, target window, confidence, and risk state,
-7. groups recurring themes,
-8. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
+7. captures when an item is being promoted because of a legitimate priority override such as external customer commitment, customer shipment, priority company objective, technology inflection, or market timing,
+8. groups recurring themes,
+9. generates a concise Monday-morning decision brief recommending what product/message/support changes deserve attention.
 
 The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
@@ -55,6 +56,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 9. Which requests are tied to strategically important customers or enough revenue/resource impact to justify immediate attention?
 10. Which customer-facing updates should be framed as roadmap themes versus release-plan specifics right now?
 11. Which roadmap items are generating avoidable ambiguity because the team has only a theme, not a near-term commitment?
+12. Which items are rising because the evidence is strong versus because an explicit external commitment or shipment pressure is forcing a priority override?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -95,6 +97,9 @@ Roadmap Communication Contract:
    - `customer_safe_answer_to_when`
    - `reason_not_committed`
    - `next_reassessment_trigger`
+   - `priority_override_reason`
+   - `priority_override_note`
+   - `override_review_at`
 3. Enforce rendering rules:
    - any item labeled `next` or `later` must also show what that label means in the current workspace
    - any `direction_only` item must explicitly say that the label expresses intention, not schedule certainty

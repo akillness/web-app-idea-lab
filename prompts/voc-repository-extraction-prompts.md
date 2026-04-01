@@ -38,6 +38,8 @@ Schema:
     {
       "label": "string",
       "commitment_status": "named_commitment|near_term_focus|theme_only|timing_ambiguous|unknown",
+      "priority_override_reason": "external_customer_commitment|customer_shipment|priority_company_objective|technology_inflection|market_timing|none|unknown",
+      "priority_override_confidence": "high|medium|low|unknown",
       "bucket_mode": "direction_only|working_horizon|none|unknown",
       "customer_safe_answer_to_when": "string",
       "evidence": ["string"]
@@ -75,6 +77,7 @@ Rules:
 - Normalize labels aggressively enough to support downstream clustering.
 - If the record implies roadmap communication risk, capture whether the ask is a named commitment, only a roadmap theme, or still timing-ambiguous.
 - When roadmap language appears, also capture whether it is being used as direction-only language or as a bucket with an implied working horizon, and draft a safe answer to `when is later?` when the pressure is explicit.
+- When the record implies that something should outrank ordinary demand scoring because of an external commitment, customer shipment, company objective, technology inflection, or market timing, capture that as `priority_override_reason` instead of burying it in freeform summary text.
 ```
 
 ## 2. Theme Clustering Prompt
@@ -109,6 +112,7 @@ Rules:
 - Preserve segment differences when they matter.
 - Suggested action must be decision-oriented, not generic.
 - Keep commitment/timeline ambiguity visible when it changes what can be safely communicated externally.
+- Preserve priority-override signals separately from normal frequency-based demand so downstream scoring can stay auditable.
 ```
 
 ## 3. Decision Brief Prompt
@@ -141,7 +145,9 @@ JSON schema:
       ],
       "counterevidence_or_gaps": "string",
       "update_mode": "roadmap_theme|release_plan_update|explicit_non_commitment|at_risk_progress_report",
-      "timing_ambiguity_note": "string"
+      "timing_ambiguity_note": "string",
+      "priority_override_reason": "external_customer_commitment|customer_shipment|priority_company_objective|technology_inflection|market_timing|none",
+      "priority_override_note": "string"
     }
   ],
   "monitor_only": [
@@ -165,4 +171,5 @@ Rules:
 - Avoid pretending certainty where evidence is thin.
 - Optimize for product and messaging decisions, not generic summary.
 - Every claim in the markdown must map back to structured evidence.
+- If a theme is being promoted partly because of external commitment pressure rather than pure frequency/severity, say so explicitly in structured output.
 ```

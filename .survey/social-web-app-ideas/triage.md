@@ -38,12 +38,14 @@
 - Creator 쪽 Yahoo Japan Reddit 재검색에서는 `PO number` 관련 late-payment query가 다시 살아 있었고, snippet 수준에서도 **회계팀이 있으면 PO number를 확보하고 이후 연체 reminder에서 계속 reference하라**는 운영 규칙이 명확히 보였다.
 - 이번 루프 Yahoo Japan ProductManagement 검색에서는 **"customer commitments는 별도 flow로 관리한다"**는 문장이 다시 확인됐다. 즉 feature demand 전체와 named commitment를 같은 backlog 레이어에 두지 않는 운영 습관이 직접적으로 보였다.
 - 같은 검색 결과 묶음에서 **"close deals, plan effectively, or meet customer commitments"**가 한 문장으로 붙어 나타나, commitment hygiene 문제가 단순 PM 정리 습관이 아니라 세일즈/계획/신뢰 문제와도 직결된다는 신호가 추가됐다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 `The number one thing that keeps you from getting a promotion` 결과도 잡혔다. snippet 수준이지만 **external customer commitments / customer shipments / priority company objectives / technology inflections / market timing**이 붙으면 우선순위가 달라진다는 문맥이 보여, VoC 제품이 단순 scoring보다 **priority-override rationale**까지 보여줘야 한다는 근거가 추가됐다.
 - creator 쪽 Yahoo Japan Reddit 검색에서는 late payment/late fee 운영 규칙도 더 구체화됐다.
   - `When would you recommend invoicing a fee for a late ...`에서는 **3일 이상 연체 시 1% fee compounded daily** 같은 강한 late-fee 정책 예시가 보였다.
   - `Steps when a client is late on payment`에서는 **payment terms와 unpaid invoice late fee는 계약 단계에서 미리 정의되어야 한다**는 흐름이 재확인됐다.
 - 이번 루프 Yahoo Japan Reddit 재검색에서는 `How to approach multi-year Roadmapping and prioritization?`가 잡혔고, snippet 수준에서 **now / next / later는 정확한 타임라인보다 flexibility와 intention을 주기 위한 장치**라는 framing이 확인됐다.
 - 동시에 `Presented roadmap / prioritization ...` 재확인으로 **"literal timeline이 아니다"라고 선을 그어도 결국 상대는 later가 언제인지 다시 묻는다**는 tension이 여전히 유지된다는 점도 다시 확인됐다.
 - creator 쪽 exact workflow query(`site:reddit.com/r/freelance invoice pay run booked AP PO number late payment`)는 Yahoo Japan에서 **0건**이었다. 즉 accounting-stage blockage는 broad recovery query나 prior PullPush comment recovery 쪽이 여전히 더 효율적이다.
+- 추가 targeted creator query(`site:reddit.com/r/freelance invoice portal AP instructions late payment`)도 Yahoo Japan에서 **0건**이었다. 즉 invoice portal / AP submission-path 문제는 제품 설계상 중요해 보여도, 현 시점 social evidence는 아직 얇다.
 - `web_search` / `web_extract`는 이번 루프에도 다시 직접 테스트했고 둘 다 `401 Invalid API key`였다.
 - 이번 루프에는 Reddit recovery path도 한 단계 진전됐다. 기본 요청은 막히기 쉬웠지만, **PullPush API + browser-like user-agent** 조합으로는 comment-level 회수가 가능했다.
 - 그 결과 creator 쪽에서는 새로:
