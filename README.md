@@ -23,3 +23,11 @@ Social platforms에서 웹/앱 아이디어를 지속 수집하고, 구조화하
 3. 상위 후보 구체화
 4. 멀티에이전트 토론/합의
 5. 문서 갱신 후 GitHub push
+
+## 핵심 문서
+- `docs/voc-repository-tech-spec.md`
+- `docs/voc-repository-json-schema.md`
+- `docs/voc-repository-mvp-tasklist.md`
+- `prompts/voc-repository-build-prompt.md`
+- `prompts/voc-repository-system-design-prompt.md`
+- `prompts/voc-repository-extraction-prompts.md`
