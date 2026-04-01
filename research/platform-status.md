@@ -2,29 +2,32 @@
 
 | Platform | Status | Notes |
 |---|---|---|
-| Reddit | Partial | Direct browser/curl access still blocked by Reddit network policy. Search-indexed snippets via Yahoo remain usable for post title + excerpt + URL recovery. |
-| Threads | Weak Partial | Direct page access still lands on login wall. Yahoo indexed results again returned mostly generic or ad-heavy entries with little usable snippet context. |
-| X | Partial | Direct in-browser reading is constrained, but Yahoo indexed snippets produced usable post-level evidence again this loop, including founder feedback-decision pain and creator late-payment pain. |
-| web_search / web_extract | Blocked | Both still return `401 Invalid API key`. |
+| Reddit | Partial | Direct browser/curl access is still unreliable. Search-indexed snippets via Yahoo remain the most usable fallback for title + excerpt + URL recovery. |
+| Threads | Weak Partial | Direct page access still lands on login wall, and this loop's Yahoo queries returned **0 parseable result blocks** for targeted idea-search queries. |
+| X | Partial | Direct reading is still constrained, but Yahoo indexed snippets again produced usable post-level evidence for churn, weekly risk review, and creator payment pain. |
+| web_search / web_extract | Blocked | Re-tested this loop; both still return `401 Invalid API key`. |
 
 ## Current blockers
-- `web_search` / `web_extract`: `401 Invalid API key`
-- Reddit direct access: browser + curl both hit network/security block
+- `web_search` / `web_extract`: `401 Invalid API key` (confirmed again this loop)
+- Reddit direct access: browser/curl still inconsistent or blocked by platform/network policy
 - X / Threads direct reading: login wall, captcha, or anti-bot friction
-- Yahoo works better than Brave right now, but result quality for Threads is still weak
+- Threads indexed coverage remains weak for focused product-idea discovery
 
 ## This loop's fallback that worked
-1. Use Yahoo Search HTML results for `site:x.com ...` and selected `site:reddit.com ...` queries.
-2. Treat all recovered social evidence as `indexed snippet`, not `directly verified source`, unless the raw post page was actually opened.
-3. Prefer X queries that contain explicit workflow nouns (`support tickets`, `churn`, `NPS`, `invoice`, `late payments`, `WhatsApp`) because they recover higher-context snippets.
+1. Use Yahoo Search HTML results for `site:x.com ...` and `site:reddit.com ...` queries.
+2. Parse indexed snippets only; label them as `indexed snippet`, not direct verification.
+3. Prefer queries with explicit workflow nouns:
+   - VoC side: `churn`, `support tickets`, `cancellation`, `Monday view`, `feedback`
+   - Creator side: `invoice`, `deposit`, `payment terms`, `overdue`, `WhatsApp`
 4. This loop's strongest recoveries were:
-   - X indexed snippet: founders do not have a feedback problem, they have a decision problem
-   - X indexed snippet: churn reasons sit in surveys/support tickets/Stripe fields and nobody reads them systematically
-   - X indexed snippet: creators still invoice through WhatsApp + bank account text
-   - X indexed snippet: late payments / underpayments / ghosting creators are common
-   - X indexed snippet: small creative agencies still manage projects over WhatsApp and spreadsheets
+   - X indexed snippet: founders know churn rate but not **why** customers leave; the evidence sits in surveys/support tickets/Stripe fields
+   - X indexed snippet: founders often do not know whether churn is **normal** without benchmark context
+   - X indexed snippet: teams want one **Monday-morning health / risk view** instead of digging through Slack
+   - Reddit indexed snippet: cancellation-flow feedback is a **treasure trove of insights** when collected at cancel time
+   - Reddit indexed snippet: teams want support workflows inside the customer workflow, not another detached tool
+   - X / Reddit indexed snippets: creator payment pain still centers on invoices, deposits, overdue follow-up, and manual chasing
 
 ## Reliability notes
-- **High confidence**: URL existence + search-indexed snippet text recovered in same run
-- **Medium confidence**: platform inferred from search result but original page not opened
+- **High confidence**: URL + snippet recovered in the same run
+- **Medium confidence**: platform inferred but original page not opened
 - **Low confidence**: generic or low-context indexed result, especially on Threads

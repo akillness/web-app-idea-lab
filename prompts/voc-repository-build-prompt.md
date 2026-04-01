@@ -10,6 +10,9 @@ Build an MVP for a B2B SaaS product called "Voice-of-Customer Repository".
 Goal:
 Create a product that helps early-stage SaaS teams turn scattered customer conversations into structured evidence for product and messaging decisions.
 
+Important framing:
+Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
+
 Target users:
 - Founders
 - Product managers
@@ -29,19 +32,25 @@ Build an evidence layer that:
 3. groups recurring themes,
 4. generates a concise decision brief recommending what product/message/support changes deserve attention.
 
+The MVP should help a team answer these Monday-morning questions quickly:
+1. What customer problems worsened this week?
+2. Which churn or cancellation reasons are becoming concentrated in a specific segment?
+3. What product, messaging, or support change deserves action now?
+
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
 The brief must:
 1. synthesize cross-record patterns rather than single-record summaries,
 2. rank issues by frequency + severity + segment concentration + source diversity,
 3. show only source-linked claims,
-4. recommend concrete product/message/support actions.
+4. recommend concrete product/message/support actions,
+5. default to the structure: Health overview -> Risk review -> Ranked actions -> Evidence and gaps.
 
 MVP scope:
 - single workspace
 - upload/paste text records
 - AI-assisted tagging pipeline
-- recurring theme summary dashboard or list
+- Monday-morning review dashboard with health/risk summary, ranked themes, and linked evidence
 - evidence detail view with linked source snippets
 - export to markdown
 
@@ -60,6 +69,9 @@ Implementation contract for coding agent:
    - themes
    - brief_generations
    - brief_items
+   - benchmark_groups
+
+   For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
 2. Support these minimum routes:
    - POST /records
    - GET /records
@@ -120,6 +132,7 @@ Success criteria:
 - the system can produce a weekly markdown brief with 3-5 ranked decisions
 - every brief item links to underlying themes and quoted source snippets
 - at least one brief item shows a cross-record pattern from multiple sources
+- the system distinguishes raw churn anecdotes from recurring normalized churn patterns
 - the output is clearly more decision-oriented than a generic transcript summary
 
 Engineering preference:
