@@ -23,6 +23,10 @@ function clampMetric(value, name) {
     throw new TypeError(`Metric ${name} must be a number.`);
   }
 
+  if (!Number.isInteger(value)) {
+    throw new TypeError(`Metric ${name} must be an integer.`);
+  }
+
   if (value < 0 || value > 100) {
     throw new RangeError(`Metric ${name} must be between 0 and 100.`);
   }
@@ -42,6 +46,10 @@ function normalizeOverrideReasons(reasons) {
   const deduped = [...new Set(reasons)];
 
   for (const reason of deduped) {
+    if (typeof reason !== 'string') {
+      throw new TypeError('priority_override_reason values must be strings.');
+    }
+
     if (!ALLOWED_PRIORITY_OVERRIDE_REASONS.includes(reason)) {
       throw new RangeError(
         `priority_override_reason must be one of: ${ALLOWED_PRIORITY_OVERRIDE_REASONS.join(', ')}`,
@@ -52,16 +60,48 @@ function normalizeOverrideReasons(reasons) {
   return deduped;
 }
 
-function buildRecommendation(totalScore) {
+function assertCompleteMetrics(metrics) {
+  if (!metrics || typeof metrics !== 'object') {
+    throw new TypeError('Theme metrics are required.');
+  }
+
+  for (const metricName of METRIC_NAMES) {
+    if (!Object.hasOwn(metrics, metricName)) {
+      throw new TypeError(`Metric ${metricName} is required.`);
+    }
+  }
+
+  for (const metricName of Object.keys(metrics)) {
+    if (!METRIC_NAMES.includes(metricName)) {
+      throw new RangeError(`Unknown metric ${metricName} is not supported.`);
+    }
+  }
+}
+
+function buildRecommendationLabel(totalScore) {
   if (totalScore >= 70) {
-    return { label: 'build_now', rationale: 'High combined urgency and account impact.' };
+    return 'build_now';
   }
 
   if (totalScore >= 40) {
-    return { label: 'validate_next', rationale: 'Worth near-term validation or scoped delivery.' };
+    return 'validate_next';
   }
 
-  return { label: 'hold', rationale: 'Track for evidence growth before committing capacity.' };
+  return 'hold';
+}
+
+function assertOverrideConsistency(priorityOverrideScore, overrideReasons) {
+  if (priorityOverrideScore > 0 && overrideReasons.length === 0) {
+    throw new RangeError(
+      'priorityOverride must be 0 unless at least one priority_override_reason is provided.',
+    );
+  }
+
+  if (overrideReasons.length > 0 && priorityOverrideScore <= 0) {
+    throw new RangeError(
+      'priorityOverride must be greater than 0 when priority_override_reason is provided.',
+    );
+  }
 }
 
 function scoreTheme(theme) {
@@ -69,37 +109,43 @@ function scoreTheme(theme) {
     throw new TypeError('Theme input is required.');
   }
 
-  if (!theme.metrics || typeof theme.metrics !== 'object') {
-    throw new TypeError('Theme metrics are required.');
-  }
+  assertCompleteMetrics(theme.metrics);
 
   const overrideReasons = normalizeOverrideReasons(theme.priority_override_reason);
   const scoreBreakdown = {};
 
   for (const metricName of METRIC_NAMES) {
-    const rawValue = clampMetric(theme.metrics[metricName] ?? 0, metricName);
-    scoreBreakdown[metricName] = Number(((rawValue / 100) * WEIGHTS[metricName]).toFixed(2));
+    const rawValue = clampMetric(theme.metrics[metricName], metricName);
+    scoreBreakdown[metricName] = (rawValue / 100) * WEIGHTS[metricName];
   }
 
-  if (overrideReasons.length > 0 && scoreBreakdown.priorityOverride <= 0) {
-    throw new RangeError(
-      'priority override metric must be greater than 0 when priority_override_reason is present.',
-    );
-  }
+  assertOverrideConsistency(theme.metrics.priorityOverride, overrideReasons);
 
-  const totalScore = Number(
-    Object.values(scoreBreakdown)
-      .reduce((sum, value) => sum + value, 0)
-      .toFixed(2),
-  );
+  const totalScore = Object.values(scoreBreakdown).reduce((sum, value) => sum + value, 0);
 
   return {
     ...theme,
+    metrics: { ...theme.metrics },
     scoreBreakdown,
     totalScore,
     priority_override_reason: overrideReasons,
-    recommendation: buildRecommendation(totalScore),
+    recommendation: buildRecommendationLabel(totalScore),
   };
+}
+
+function compareRankOrder(left, right) {
+  if (right.totalScore !== left.totalScore) {
+    return right.totalScore - left.totalScore;
+  }
+
+  const leftId = String(left.id ?? '');
+  const rightId = String(right.id ?? '');
+
+  if (leftId !== rightId) {
+    return leftId.localeCompare(rightId);
+  }
+
+  return String(left.label ?? '').localeCompare(String(right.label ?? ''));
 }
 
 function rankThemes(themes) {
@@ -109,13 +155,7 @@ function rankThemes(themes) {
 
   return themes
     .map(scoreTheme)
-    .sort((left, right) => {
-      if (right.totalScore !== left.totalScore) {
-        return right.totalScore - left.totalScore;
-      }
-
-      return String(left.id ?? left.label ?? '').localeCompare(String(right.id ?? right.label ?? ''));
-    })
+    .sort(compareRankOrder)
     .map((theme, index) => ({
       ...theme,
       rank: index + 1,

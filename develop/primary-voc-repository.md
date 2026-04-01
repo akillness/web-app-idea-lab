@@ -427,22 +427,17 @@ Success:
 
 ## 13. Current implementation slice
 ### Selected task
-Build a zero-dependency prototype shell for the primary idea that:
-- accepts record intake in the browser
-- derives account/theme/commitment signals from sample and user-added records
-- renders the core decision artifacts (`accounts`, `themes`, `build-next`, `brief`, `updates`, `commitments`)
-- keeps `next/later` output commitment-safe
+Scaffold a dependency-light ranking engine for the primary idea that:
+- turns theme metrics into a ranked build-next queue
+- enforces the documented score weights and override taxonomy
+- emits per-theme score breakdowns and recommendation labels
+- is covered by executable tests so later UI/ingestion work can build on stable domain logic
 
 ### Planned files
-- Create: `prototype/voc-repository/index.html`
-- Create: `prototype/voc-repository/styles.css`
-- Create: `prototype/voc-repository/src/data/sample-records.js`
-- Create: `prototype/voc-repository/src/lib/voc.js`
-- Create: `prototype/voc-repository/src/main.js`
-- Create: `prototype/voc-repository/tests/voc.test.js`
-- Create: `prototype/voc-repository/package.json`
+- Create: `package.json`
+- Create: `src/voc/ranking.js`
+- Create: `tests/voc-ranking.test.js`
 - Modify: `README.md`
 
 ### Verification
-- `node --test prototype/voc-repository/tests/voc.test.js`
-- smoke-check the prototype in a local browser session
+- `npm test`
