@@ -20,9 +20,12 @@
 - commitment risk detection
 - priority override labeling
 - `why this jumped` / `why not now` explanation 생성
+- `what should we build next?` decision queue 생성
 - customer-level evidence board
 - weekly decision brief 생성
 - now/next/later-safe external update draft 생성
+- bucket definition note 생성
+- ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
 - markdown export
 
 ### 제외
@@ -39,10 +42,11 @@
 4. account matching
 5. theme cluster 생성
 6. ranked theme board 표시
-7. decision rationale 생성
-8. weekly brief 생성
-9. external update draft 생성
-10. markdown export
+7. decision queue 생성
+8. decision rationale 생성
+9. weekly brief 생성
+10. external update draft 생성
+11. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -66,6 +70,7 @@
 - linked commitments / override reasons
 - `why this theme moved` explanation
 - `why not now` explanation
+- `build-next candidate` badge
 
 ### `/briefs/latest`
 - weekly decision brief
@@ -73,6 +78,7 @@
 - export markdown
 - internal notes vs customer-facing implications split
 - `decision trace` block
+- `what changed since last review` block
 
 ### `/updates/latest`
 - customer-safe roadmap / progress wording
@@ -89,6 +95,14 @@
 - promise type (`date`, `range`, `directional`)
 - suggested safer wording
 - confidence / evidence link
+
+### `/queue/build-next`
+- ranked build-next candidates
+- why this jumped now
+- why not the alternatives
+- linked account concentration
+- linked churn / revenue / commitment signals
+- override reason badge
 
 ## 5. Core entities
 ### `records`
@@ -150,6 +164,17 @@
 - linked_account_ids
 - confidence
 
+### `decision_queue_items`
+- id
+- theme_id
+- queue_rank
+- recommendation_type (`build_now`, `validate_next`, `hold`)
+- why_build_next
+- why_not_alternative
+- linked_override_reasons
+- linked_account_ids
+- confidence
+
 ### `brief_items`
 - id
 - brief_type
@@ -197,6 +222,10 @@
 - 왜 이 항목이 이번 주에 점프했는가?
 - 왜 다른 항목은 아직 now에 들어가지 않는가?
 
+`decision_queue_items`는 아래 두 질문을 항상 채운다.
+- 그래서 지금 build next 후보는 무엇인가?
+- 다른 후보보다 이 항목을 먼저 다뤄야 하는 이유는 무엇인가?
+
 ## 7. Required outputs
 ### Customer-Level Evidence Board
 반드시 아래가 보여야 한다.
@@ -216,6 +245,7 @@
 - priority overrides and why
 - why this jumped
 - why not now
+- build next recommendation
 - what stays intentionally uncommitted
 - evidence highlights
 
@@ -236,6 +266,7 @@
 - customer-level evidence가 없는 theme summary는 incomplete로 취급한다.
 - 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
 - deferred item에도 `왜 아직 now가 아닌지`를 남긴다.
+- `build next` 추천은 linked account evidence 없이 생성하지 않는다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
 
 ## 9. Build order
@@ -244,15 +275,17 @@
 3. account matching + account summary card
 4. theme ranking board
 5. commitment risk + priority override labeling
-6. decision rationale generation
-7. weekly brief generation
-8. external update draft
-9. export/editing
+6. decision queue generation
+7. decision rationale generation
+8. weekly brief generation
+9. external update draft
+10. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
 - 5개 이상 theme 생성
 - 3개 이상 account summary 생성
+- ranked build-next queue 1개 생성
 - brief 1개 생성
 - evidence linked output 확인 가능
 - commitment risk item 최소 1개 노출
@@ -266,6 +299,7 @@
 - `왜 이 고객군/계정이 중요한지`가 더 빨리 읽힌다는 피드백 확보.
 - `why this jumped the queue` 설명이 납득된다는 피드백 확보.
 - `why not now` 설명이 customer-facing 팀에도 유용하다는 반응 확보.
+- `지금 무엇을 build next 해야 하는지`를 linked evidence 기준으로 말할 수 있다는 반응 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
 
 ## 12. Build prompt
@@ -273,7 +307,7 @@
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a ranked build-next decision queue, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
@@ -283,6 +317,7 @@ Must-have capabilities:
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
+- ranked build-next queue
 - why-this-jumped / why-not-now rationale generation
 - weekly brief generation
 - commitment-safe external update draft
@@ -296,11 +331,13 @@ Do not build:
 Important rules:
 - shared store and clustering are not the product end-state; decision translation is
 - every top theme must show linked account/customer evidence
+- the product must explicitly answer `what should we build next?`
 - `now` can contain near-term commitments, `next/later` cannot
 - the product must answer both `why this jumped` and `why not now`
 
 Success:
 - a PM/founder can review linked customer evidence before the weekly meeting
 - the brief explains what changed, who is affected, and why priorities moved
+- the build-next queue is explainable from linked evidence
 - the external draft is safer than ad-hoc now/next/later messaging
 ```
