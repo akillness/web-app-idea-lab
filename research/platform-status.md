@@ -2,16 +2,16 @@
 
 | Platform | Status | Notes |
 |---|---|---|
-| Reddit | Partial-Strong | Direct live Reddit page access is still inconsistent, but this loop recovered multiple usable pain posts through Yahoo indexed Reddit results plus prior PullPush-style mirror recovery. Best source again this loop. |
-| Threads | Weak Partial | Re-tested with targeted `site:threads.net` searches; creator invoice/payment query returned zero results in Yahoo, and no meaningful net-new signals appeared for VoC/churn/support either. |
-| X | Partial | Direct reading remains constrained, but Yahoo indexed snippets again produced usable post-level evidence for churn analysis, Monday-morning review workflow, and creator invoice/payment pain. |
+| Reddit | Partial-Strong | Direct live Reddit page access is still inconsistent, but this loop recovered multiple usable pain posts through Yahoo indexed Reddit results plus prior PullPush-style mirror recovery. Best source again this loop, especially for enterprise commitment and roadmap-date pain. |
+| Threads | Weak Partial | Re-tested with targeted `site:threads.net` searches; creator invoice/payment query effectively produced no usable organic evidence in Yahoo, and no meaningful net-new signals appeared for VoC/churn/support either. |
+| X | Partial | Direct reading remains constrained, but Yahoo indexed snippets again produced usable post-level evidence for churn analysis, Monday-morning review workflow, creator invoice/payment pain, and a sharper "freelancers need money, not more tabs" framing. |
 | web_search / web_extract | Blocked | Re-tested this loop; both still return `401 Invalid API key`. |
 
 ## Current blockers
 - `web_search` / `web_extract`: `401 Invalid API key` (confirmed again this loop)
 - Direct Reddit page fetches remain unreliable from this environment even when post URLs are known
 - X / Threads direct reading: login wall, captcha, or anti-bot friction
-- Threads indexed coverage remains weak for focused product-idea discovery
+- Threads indexed coverage remains weak for focused product-idea discovery; this loop's creator invoice/payment query surfaced ads but effectively no usable organic Threads evidence
 - `curl`/direct HTML fetches were not dependable here for search-result extraction, so browser-based Yahoo snapshots were the reliable fallback for indexed snippets
 
 ## This loop's fallback that worked
@@ -35,13 +35,16 @@
 - **Reddit / Yahoo indexed snippets**
   - PM teams explicitly describe too many enterprise deals and too many feature requests, forcing quarterly prioritization between commitments
   - PMs ask how to track customer commitments with deadlines once promises are made to close business
+  - enterprise SaaS PMs describe customers demanding roadmap dates even when the feature is not near-term, reinforcing the need for commitment-risk tracking rather than raw request logging
   - creators still ask basic first-deal invoicing questions, which suggests invoice workflow setup is still under-structured
   - creators repeatedly treat usage-rights pricing as ambiguous and negotiable rather than stored, reusable deal memory
 - **X / Yahoo indexed snippets**
   - founders know churn rate but not **why** customers leave because evidence sits across surveys, support tickets, and Stripe fields
   - PMs still spend Monday morning manually reading support tickets, Slack complaints, and churn notes to guess priorities
+  - X also surfaced a sharper churn nuance: operators explicitly distinguish **good churn vs bad churn**, which strengthens the case for avoidable/non-actionable churn labeling in the VoC brief
   - creator/freelancer invoice chasing is explicit enough that some founders are productizing follow-up scripts and recovery workflows
   - creators still send pseudo-invoices through WhatsApp/chat instead of structured invoice systems
+  - a fresh creator-payment framing showed up again: freelancers do not want more tabs; they want money to land on time, which reinforces collections visibility over generic CRM breadth
 
 ## Reliability notes
 - **High confidence**: URL + specific snippet text recovered in the same run, or PullPush mirror content directly recovered

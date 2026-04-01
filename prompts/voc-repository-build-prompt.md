@@ -38,8 +38,9 @@ The MVP should help a team answer these Monday-morning questions quickly:
 1. What customer problems worsened this week?
 2. Which support or feature-request patterns are flooding the team without enough context?
 3. Which churn or cancellation reasons are becoming concentrated in a specific segment?
-4. What product, messaging, or support change deserves action now?
-5. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
+4. Which churn is likely avoidable versus non-actionable or bad-fit churn?
+5. What product, messaging, or support change deserves action now?
+6. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -81,6 +82,7 @@ Implementation contract for coding agent:
    For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, and account importance.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
+   For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
 2. Support these minimum routes:
    - POST /records
    - GET /records

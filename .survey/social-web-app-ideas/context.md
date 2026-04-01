@@ -14,6 +14,8 @@
    - PM은 conflicting request list를 안고,
    - churn feedback은 ARR / ICP / segment 맥락 없이 흩어진다.
    - enterprise 영업/CS 약속이 섞이면 `어떤 요청이 단순 수요인지`, `어떤 요청이 이미 약속된 commitment인지` 구분도 흐려진다.
+   - 게다가 enterprise 고객이 roadmap date를 요구하는 순간, 팀은 raw backlog가 아니라 `promise exposure`까지 같이 관리해야 한다.
+   - churn 자체도 전부 같은 churn이 아니다. 이번 루프에서는 `good churn vs bad churn` 구분이 다시 보여서, 단순 churn count보다 **avoidable / non-actionable churn labeling**이 더 중요하다는 점이 선명해졌다.
    - 결국 월요일 아침마다 support ticket, Slack complaint, churn note를 손으로 읽고 우선순위를 추정하고, 분기 planning에서는 commitment끼리 다시 충돌한다.
 2. **Creator 쪽 진짜 pain은 generic CRM이 아니라 deal execution과 cash collection 사이의 운영 공백**이다.
    - creators와 small teams는 여전히 spreadsheet + Notion + email + DM 조합으로 진행 상황을 기억하고,
@@ -45,8 +47,10 @@
 ## Adjacent Problems
 - support 팀이 product intake를 대신하지만 dedupe / prioritization / evidence ranking이 없다.
 - raw feature request list가 길어질수록 problem framing과 expected value가 사라진다.
-- customer commitment까지 섞이면 request backlog가 `promised work registry` 역할까지 떠안아 더 혼란스러워진다.
+- customer commitment까지 섞이면 request backlog가 `promised work registry` 역할까지 떠안아 더 혼란스러진다.
+- enterprise 고객이 roadmap date를 집요하게 요구하는 순간, 팀은 feature request 관리가 아니라 expectation / promise-risk 관리 문제를 맞게 된다.
 - churn reason을 모아도 segment / ARR / lifecycle context가 없으면 잘못 해석하기 쉽다.
+- 모든 churn을 같은 severity로 읽으면 `bad fit`나 구조적으로 되돌리기 어려운 churn까지 같은 backlog로 섞여 잘못된 액션이 나온다.
 - creator deal은 `delivered`와 `paid` 사이에 큰 공백이 있는데 범용 CRM은 이 구간에 약하다.
 - usage rights, promised payment date, partial payment 같은 creator 운영 필드는 범용 툴에서 주변화된다.
 - invoice recipient, required fields, payment portal 안내 같은 invoice readiness 정보도 종종 구조화되지 않는다.
@@ -93,6 +97,16 @@
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
+> "I'm finding that these customers are always asking about when we will have X feature, when we may not work on it until later in the year" — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/13d599t/how_do_you_manage_enterprise_saas_customers_who/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "There’s good churn and bad churn ... Management will never acknowledge good churn, but it exists" — Reddit indexed snippet
+- https://www.reddit.com/r/CustomerSuccess/comments/19b0xvo/how_do_you_handle_churn/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
 > "most teams are still doing this in spreadsheets or some frankenstack of Notion + email" while tracking negotiation, delivery, and payment status across creators. — Reddit / PullPush mirror
 - https://www.reddit.com/r/influencermarketing/comments/1rvi66q/how_are_agencies_actually_tracking_brand_deal/
 - Source path: PullPush Reddit mirror recovery, accessed 2026-04-01
@@ -123,9 +137,20 @@
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
+> "Founder 2: $8k/month (invoice chasing for freelancers) ... 'how do I chase late payments without being awkward'" — X indexed snippet
+- https://x.com/Anubhavhing/status/2028627747158016340
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "Freelancers don’t need more tabs. They need money to show up." — X indexed snippet
+- https://x.com/MilesCraftDev/status
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: medium
+
 ## Collection Caveat
 - Reddit evidence는 이번 루프부터 **PullPush mirror 기반 회수**가 중심이다. live-page verification과 동일하지 않다.
 - 이번 루프는 일부 Reddit 근거를 **Yahoo indexed Reddit snippet**으로도 회수했다. 이 역시 live-page verification은 아니다.
 - X evidence는 여전히 **Yahoo indexed snippet 기반**이다.
 - Threads는 creator invoice/payment query에서 **검색 결과 0건**이 나올 정도로 회수 효율이 낮아 현재는 보조 채널 이하로 본다.
 - 그래도 이번 루프는 `feedback repository`보다 **support-to-product/churn/commitment decision ritual**, `creator CRM`보다 **invoice-ready, usage-rights-aware, collections-aware deal ops**가 더 강한 wedge라는 점을 한 단계 더 명확하게 만들었다.
+- 특히 이번 루프의 net-new nuance는 **VoC에서 avoidable vs non-actionable churn 구분**, **Creator 쪽에서 "more tabs"보다 cash-arrival visibility가 중요하다는 framing**이다.

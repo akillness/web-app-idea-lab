@@ -7,7 +7,7 @@
 브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice · payment follow-up · collections visibility**를 닫아주는 creator ops tool.
 
 ## Why it stayed backup, not primary
-이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn/commitment decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
+이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 여기에 이번 루프에서는 **"Freelancers don’t need more tabs. They need money to show up"** 라는 framing까지 추가돼, 사용자가 원하는 가치가 generic CRM breadth가 아니라 **cash-arrival visibility**라는 점이 더 분명해졌다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn/commitment decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
 
 ## ICP
 - 월 브랜드딜이 꾸준한 솔로 크리에이터
@@ -72,6 +72,7 @@
 - `creator CRM`보다 `deal ops + collections visibility`가 더 날카로운 wedge라는 점이 다시 확인됐다.
 - overdue만이 아니라 **deal stage / deliverable / promised payment date / follow-up queue**가 first-class data여야 한다.
 - creators와 agencies가 실제로 원하는 필드 목록이 더 명확해졌다: incoming inquiries, quoted rate, deliverables, usage rights, revenue totals, repeat brands, payment follow-up.
+- UI breadth보다 `이번 주 돈이 어디서 막히는지`가 먼저 보여야 한다. 즉 dashboard보다 **cash-arrival visibility**가 우선 가치다.
 - cash-flow pain은 invoice 발행 자체보다 **누가 아직 안 냈는지, 언제 다시 독촉해야 하는지, 무엇이 payment를 막는지**에 더 가깝다.
 - 하지만 이번 루프는 invoice 발행 전 단계의 readiness도 중요하다는 점을 추가로 보여줬다: first-time creators는 sponsor invoice workflow 자체를 묻고 시작한다.
 - usage rights는 단순 메모 필드가 아니라 **quote variance를 설명하는 pricing memory** 역할까지 해야 한다.
@@ -95,3 +96,5 @@
   - https://x.com/Dominus_Kelvin/status/2029573666388996145
 - X indexed snippet: invoice chasing / late payment follow-up is explicit enough to become its own product wedge
   - https://x.com/Anubhavhing/status/2028627747158016340
+- X indexed snippet: freelancers do not want more tabs; they want money to show up, which reinforces collections visibility over generic CRM breadth
+  - https://x.com/MilesCraftDev/status

@@ -26,6 +26,7 @@ Creators and small agencies often manage brand deals across inboxes, chat apps, 
 
 Product wedge:
 Optimize the MVP for creator deal execution plus collections visibility, not generic deal management.
+Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 The MVP should help a user answer these questions quickly:
 1. Which deals are unpaid, underpaid, or overdue?
 2. What deliverable is blocking invoice readiness?
@@ -42,7 +43,8 @@ By the end of a session, the user should be able to see:
 - deal stage and deliverable status,
 - invoice/payment state,
 - next follow-up action,
-- and a clean overdue queue.
+- a clean overdue queue,
+- and the fastest answer to: `where is my money stuck right now?`
 
 MVP scope:
 - single workspace

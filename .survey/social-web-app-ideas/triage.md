@@ -5,7 +5,9 @@
 
 ## 조사 메모
 - `web_search` / `web_extract`는 이번 루프도 `401 Invalid API key`로 실패했다.
-- Reddit live page 접근은 여전히 불안정하지만, 이번 루프에서는 **PullPush Reddit mirror**를 통해 커뮤니티 pain 문장을 다수 회수했다.
+- Reddit live page 접근은 여전히 불안정하지만, 이번 루프에서는 **Yahoo indexed Reddit snippets**로 enterprise commitment / roadmap-date pain을 추가 회수했다.
+- 기존 **PullPush Reddit mirror** 근거는 여전히 유효하며, live verification 대체 경로로 계속 사용 중이다.
 - X는 direct verification 대신 **Yahoo indexed snippet** 기반으로 회수했다.
-- Threads는 `site:threads.net` 기반 재탐색에서도 유의미한 net-new signal을 거의 주지 못했다.
-- 따라서 현재 조사 레이어는 `Reddit = PullPush mirror`, `X = indexed snippet`, `Threads = weak/blocked` 조합으로 운영 중이다.
+- 이번 루프 X에서는 기존 churn / invoice pain 외에도 **"good vs bad churn"**, **"benchmark percentile curiosity"**, **"freelancers don't need more tabs, they need money to show up"** 같은 framing이 추가로 보였다.
+- Threads는 `site:threads.net` 기반 재탐색에서도 유의미한 net-new signal을 거의 주지 못했고, creator invoice/payment query는 사실상 검색 결과가 막힌 수준이었다.
+- 따라서 현재 조사 레이어는 `Reddit = indexed snippet + PullPush mirror`, `X = indexed snippet`, `Threads = weak/blocked` 조합으로 운영 중이다.

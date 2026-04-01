@@ -10,11 +10,13 @@
 ## Problem Statement
 초기 SaaS 팀은 고객 신호가 없는 게 아니다. support tickets, churn survey, cancellation reasons, sales call notes, CS escalations, feature requests는 이미 많다. 문제는 이 신호가 support inbox, Slack, Jira, billing export, 문서, 개인 메모에 흩어져 있어서 **무엇이 악화됐는지, 어느 세그먼트에 몰리는지, 어떤 요청이 진짜 product problem인지**를 한 번에 보지 못한다는 점이다.
 
-이번 루프에서 더 강해진 핵심 증거는 아래 다섯 가지다.
+이번 루프에서 더 강해진 핵심 증거는 아래 일곱 가지다.
 - support가 고객 요청을 product/dev에 그대로 전달해 roadmap noise가 커진다.
 - PM은 conflicting feature request list를 들고도 problem framing과 expected value를 잃는다.
 - enterprise deal/renewal 문맥에서는 어떤 요청이 실제 commitment인지, 어떤 요청이 단순 demand인지 분리하기 어렵다.
+- enterprise 고객이 roadmap date를 계속 요구하는 순간 팀은 단순 request backlog가 아니라 `promise exposure`를 관리해야 한다.
 - churn 감소 논의는 많지만 ARR / ICP / lifecycle context로 reason을 구조화하지 못한다.
+- 게다가 churn도 모두 같은 churn이 아니다. `good churn vs bad churn`을 나누지 않으면 잘못된 우선순위가 나온다.
 - 결국 월요일 아침마다 support ticket, complaints, churn notes를 수동으로 읽고 우선순위를 추정하고, 분기 planning에서는 commitments를 다시 손으로 reconcile한다.
 
 ## ICP
@@ -30,6 +32,7 @@
 4. 월요일 회의 전에 누가 무엇을 뒤져야 할지부터 비효율적이다.
 5. CS, Sales, Product가 같은 evidence를 source-linked 상태로 공유하지 못한다.
 6. enterprise commitment나 promised feature delivery가 scattered state로 남아 later dispute risk가 생긴다.
+7. avoidable churn과 non-actionable churn을 구분하지 못해 잘못된 제품 액션으로 이어지기 쉽다.
 
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review**.
@@ -41,6 +44,7 @@
 - support / CS / sales / churn evidence를 같은 ingestion surface로 묶음
 - raw request가 아니라 **problem, expected value, ARR/ICP context, segment concentration**을 같이 읽음
 - recurring signal을 pain / objection / feature request / churn reason / broken promise로 구조화
+- avoidable churn vs non-actionable churn을 구분해 false alarm을 줄임
 - weekly brief에서 health overview → risk review → ranked actions → evidence & gaps 순으로 제시
 - weekly brief 안에서 `commitments at risk this quarter`를 별도 블록으로 제시
 - generic AI summary가 아니라 **source-linked decision artifact**를 출력
@@ -49,7 +53,7 @@
 ### 포함
 - 텍스트/문서 업로드 및 붙여넣기
 - support tickets / feedback emails / churn notes / cancellation reasons / feature-request context 업로드
-- AI-assisted tagging (pain, segment, objection, request, churn reason, lifecycle stage, ARR/ICP importance)
+- AI-assisted tagging (pain, segment, objection, request, churn reason, lifecycle stage, ARR/ICP importance, avoidable-vs-non-actionable churn)
 - recurring signal dashboard
 - support-to-product intake summary
 - health / risk review brief
@@ -109,8 +113,12 @@ support와 churn 데이터는 이미 많지만, 초기 팀은 여전히 그것�
   - https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
 - Reddit indexed snippet: PMs ask what tool/process should track customer commitments with deadlines once promises are made
   - https://www.reddit.com/r/ProductManagement/comments/zsuyqn/how_do_you_documenttrack_costumer_committments/
+- Reddit indexed snippet: enterprise customers keep demanding roadmap dates even when the feature may not land until much later
+  - https://www.reddit.com/r/ProductManagement/comments/13d599t/how_do_you_manage_enterprise_saas_customers_who/
 - Reddit / PullPush mirror: churn work should start by understanding reasons and segmenting by ARR / growth potential / ICP
   - https://www.reddit.com/r/CustomerSuccess/comments/13zqul2/best_way_to_minimize_churn_in_saas/
+- Reddit indexed snippet: churn must be separated into good churn and bad churn instead of treating all cancellations as equal
+  - https://www.reddit.com/r/CustomerSuccess/comments/19b0xvo/how_do_you_handle_churn/
 - Survey artifact
   - `.survey/social-web-app-ideas/context.md`
   - `.survey/social-web-app-ideas/solutions.md`
