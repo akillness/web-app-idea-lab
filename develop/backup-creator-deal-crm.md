@@ -19,6 +19,7 @@
 - invoice readiness checklist
 - due date / promised payment date tracking
 - pay-run / onboarding blockage 상태 관리
+- payer-side manual AP process 상태 관리
 - overdue cadence queue
 - underpaid / ghosted / escalated state tracking
 - remittance-proof 상태 기록
@@ -56,7 +57,7 @@
 - 3/7/14/30 day overdue buckets
 - next action recommendation
 - tone stage (`gentle`, `firm`, `escalate`)
-- blockage-first grouping (`routing`, `AP review`, `pay-run`, `proof missing`, `wrong destination`)
+- blockage-first grouping (`routing`, `AP review`, `manual AP process`, `pay-run`, `proof missing`, `wrong destination`)
 
 ### `/deals/:id`
 - invoice readiness checklist
@@ -88,6 +89,7 @@
 - next_pay_run_at
 - payment_status
 - blockage_status
+- payer_process_mode (`manual_ap`, `scheduled_pay_run`, `unknown`)
 
 ### `contacts`
 - deal_id
@@ -143,7 +145,7 @@
 ## 7. Product rules
 - broad CRM처럼 deal 전체를 관리하지 않고 **payment-stage visibility**에만 집중한다.
 - follow-up 문구 생성보다 먼저 `invoice correctness`, `invoice destination`, `AP owner`, `pay-run date`를 확인한다.
-- `AP review`, `pay-run miss`, `wrong destination`, `proof missing`, `no named AP owner`는 서로 다른 blockage로 유지한다.
+- `AP review`, `manual AP process`, `pay-run miss`, `wrong destination`, `proof missing`, `no named AP owner`는 서로 다른 blockage로 유지한다.
 - overdue queue는 날짜 기준이지만, 추천 액션은 blockage 기준으로 만든다.
 
 ## 8. Build order

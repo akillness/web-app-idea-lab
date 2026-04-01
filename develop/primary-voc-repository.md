@@ -29,6 +29,7 @@
 - now/next/later-safe external update draft 생성
 - bucket definition note 생성
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
+- stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `internal exec`)
 - commitment-overhead queue 생성
 - markdown export
 
@@ -94,6 +95,7 @@
 - tone selector
 - bucket definition note (`now`, `next`, `later`)
 - ambiguity explanation block
+- stakeholder mode selector (`customer`, `sales`, `exec`)
 - `near-term commitments only` validation badge
 - `when is later?` answer helper
 - `why this is not committed yet` helper
@@ -213,6 +215,7 @@
 - bucket_definition_note
 - ambiguity_note
 - safe_wording_notes
+- audience_mode (`customer`, `sales`, `exec`)
 - commitment_window_rule (`near_term_only`)
 - timeline_confidence_note
 - answer_when_is_later
@@ -305,6 +308,7 @@
 
 ## 8. Product rules
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
+- `when is later?` 대응은 PM 내부만이 아니라 customer / sales / exec 대화 표면까지 지원해야 한다.
 - `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
 - customer-level evidence가 없는 theme summary는 incomplete로 취급한다.
 - 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
