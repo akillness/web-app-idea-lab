@@ -33,6 +33,7 @@ Treat `cash-arrival visibility` as the north-star UX, not dashboard breadth.
 Treat `follow-up timing` as a first-class product problem, not just a copy-generation afterthought.
 Treat `payment terms clarity before work starts` as a first-class risk-control problem, not a buried notes field.
 Treat `weak payment system / weak payment clause setup` as a core root-cause diagnosis, not just an after-the-fact collections excuse.
+Treat payment clause completeness as a first-class setup problem: the MVP should make due timing, late-fee policy, and late-fee start rule explicit before work starts whenever possible.
 Treat invoice professionalism / readiness as a first-class problem too: many users still send weak, incomplete, or chat-style invoices without clear terms, late-fee expectations, or reminder setup.
 Assume the default manual collections workflow often wants explicit checkpoints like **7 days before due date, 1 day before due date, day 3 after due date, day 7 after due date, and day 30 after due date or promised payment date**.
 Preserve collections policy memory too: users may want late-fee rules, stop-work-until-paid rules, and escalation thresholds tracked per deal.
@@ -100,7 +101,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, AP recipient, project owner / day-to-day contact, required fields, PO number or vendor reference, submission method, supporting docs, payment portal or AP instructions if known), payment-clause completeness fields (explicit_due_timing, late_fee_policy, late_fee_start_rule, clause_confirmed_before_work), invoice-quality fields (due date clarity, late-fee policy, late-fee start rule, reminder defaults, professional-template readiness), stop-work-until-paid policy, payment-system-stage fields (vendor onboarding status, payment-system setup status, intermediary/recruiter billing involvement, invoice booked status, next expected pay-run date when known), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals

@@ -28,6 +28,7 @@
 - follow-up은 그냥 reminder가 아니라 **day 3 / day 7 / day 30** 같은 cadence로 관리될 때 가치가 생긴다.
 - 일부 freelancers는 **due date 일주일 전**이나 **전날**에 미리 reminder를 보내며, 이 pre-due habit도 제품화 가치가 있다.
 - late fee, late-fee start rule, stop-work-until-paid, AP escalation 여부 같은 collection policy를 deal별로 기억해야 한다.
+- Threads/X의 최신 신호처럼, 좋은 payment clause는 **payment due timing + late fee**를 upfront에 명시해야 한다. 즉 collection policy는 연체 후 메모가 아니라 deal setup 단계의 first-class field여야 한다.
 - project owner에게만 chase하면 안 되고 AP contact에도 같이 보내야 하는 경우가 많다.
 - PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
 - 큰 조직/대행사 체인에서는 project owner 승인 뒤에도 recruiter/intermediary billing이 끼어, 실제 돈이 도는 경로를 별도로 기억해야 한다.
@@ -103,6 +104,7 @@
 - 일부 creators는 여전히 **WhatsApp message 수준의 invoicing**을 하고 있어 invoice readiness / professionalism gap도 entry pain으로 읽힌다.
 - 이번 루프에는 **professional invoice template + net 30 + late fee + auto-reminders**가 실제 회수 속도를 높인다는 framing도 추가돼, invoice setup quality를 별도 wedge로 둘 근거가 생겼다.
 - Yahoo Japan indexed X/Threads 결과는 creator pain의 뿌리를 **weak payment systems / solid payment clauses** 쪽으로도 밀어, CRM보다 payment-system clarity를 더 전면에 둘 이유를 보강했다.
+- 이번 루프에는 Threads targeted query가 **2건 중 1건만 materially useful**했다는 점도 확인됐다. 즉 Threads는 방향성 보조 근거로는 쓸 수 있지만, 아직 discovery ranking을 바꿀 만큼 강하지 않다.
 - 이번 루프의 최신 X evidence는 agency보다 solo/freelancer cash pain에 더 기울었다. 즉 entry wedge는 solo-first로 검증해도 된다.
 - 이번 루프 Reddit `r/freelance` recoveries는 reminder copy보다 **pre-due reminder habit**, **late-fee rule**, **work-stop policy**, **AP-list delay reality**가 더 제품적인 운영 규칙임을 보여줬다.
 - 이번 루프의 추가 Reddit recoveries는 **AP 담당자와 프로젝트 담당자 동시 라우팅**, **PO number/reference 기억**, **30일 이후 주간 late fee**, **미지급이면 신규 작업 중단**이 단순 노하우가 아니라 제품화 가능한 collections workflow라는 점을 더 강하게 보여줬다.

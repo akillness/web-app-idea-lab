@@ -3,9 +3,9 @@
 ## Workflow Context
 이번 루프에서도 플랫폼별 신호 품질 차이는 유지됐다.
 
-- **Reddit**: direct live page는 불안정했지만, 이번 루프에도 **Yahoo Japan indexed Reddit snippets**가 가장 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 그리고 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **\"literal timeline이 아니다\"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**, **public roadmap transparency 자체는 신뢰를 주지만 날짜보다 status language가 더 안전하다**, **now/next/later는 시작점일 뿐이고 detail은 firm해질수록 단계적으로 덧붙여야 한다**는 신호까지 붙었다.
+- **Reddit**: direct live page는 불안정했지만, 이번 루프에도 **Yahoo Japan indexed Reddit snippets**가 가장 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 그리고 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **\"literal timeline이 아니다\"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**, **public roadmap transparency 자체는 신뢰를 주지만 날짜보다 status language가 더 안전하다**, **now/next/later는 시작점일 뿐이고 detail은 firm해질수록 단계적으로 덧붙여야 한다**는 신호까지 붙었다. 이번 루프의 추가 Reddit recovery는 이 bucket을 더 operational하게 만들었다. 한 indexed snippet은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 horizon 자체를 정의하고 있었고, 이건 `safe roadmap/update communication` 레이어를 단순 bucket label이 아니라 **설명 가능한 약속 범위**로 다뤄야 한다는 점을 더 분명히 했다.
 - **X**: direct post reading은 막혔지만, Yahoo Japan indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다. 여기에 더해 **professional invoice template + net 30 + late fee + auto-reminders** 같은 framing도 보이면서, 돈이 늦게 들어오는 문제의 일부가 invoice readiness / professionalism gap이라는 점이 더 또렷해졌다. 이번 루프에는 특히 **late payments는 bad client만의 문제가 아니라 weak payment systems의 문제일 수 있다**는 framing이 추가돼, creator backup을 generic CRM보다 payment-system clarity 쪽으로 더 좁힐 근거가 생겼다.
-- **Threads**: 이번 루프의 broad query는 Yahoo Japan에서 **1건의 indexed result**를 돌려줬다. `@counselforcreators` 계정 snippet은 **solid payment clause = explicit due date + late fee**라는 방향을 줬다. 다만 여전히 community workflow breadth는 약해서, discovery source라기보다 low-confidence 보조 신호에 가깝다.
+- **Threads**: 이번 루프의 broad query는 Yahoo Japan에서 **1건의 indexed result**를 돌려줬고, 추가로 targeted quoted query (`site:threads.net "payment clause" creator late fee`)는 **2건**을 돌려줬다. 하지만 그중 실질적으로 쓸 만한 것은 여전히 `@counselforcreators` 계정 snippet 하나였고, 내용도 **solid payment clause = explicit due timing + late fee** 수준의 directional advice에 가까웠다. 즉 Threads는 hard-zero는 아니지만, 여전히 community workflow breadth가 약한 discovery source다.
 - **Adjacency / discussion index**: Reddit/X/Threads 직접 읽기가 막히는 구간은 discussion-index fallback으로 보강했다. 여기서는 특히 **customer needs should not just fall into Jira tickets**, **complete observability of calls / presales notes / forum posts / Zendesk / services interactions**, **support-origin requests are triaged with automation + AI before planning**, **support queue and project queue need different data models**, **release schedule and product roadmap are both customer-facing commitments** 같은 실무 언어가 회수됐다. 이건 새로운 아이디어를 만든다기보다, Primary인 VoC가 왜 `repository`보다 `decision + commitment-safe communication layer`로 읽혀야 하는지를 더 또렷하게 만든다.
 
 이번 루프에서 더 선명해진 흐름은 네 가지다.
@@ -50,25 +50,26 @@
 8. Productboard 같은 도구를 써도 quarterly planning 중심으로 굳어 discovery/backlog weighing은 다른 곳에서 다시 처리한다.
 9. enterprise request/commitment는 spreadsheet 여러 개나 backlog 툴 여기저기에 흩어져 prioritization drift가 생긴다.
 10. scope/date commitment는 90일 이상 잠그기 어려워도, 팀은 고객 커뮤니케이션과 내부 planning 사이를 수동으로 reconcile해야 한다.
-11. 3개월 roadmap도 2주 단위로 흔들리는데 commitment ledger는 그 변화 속도를 못 따라간다.
-12. hard date가 불가능할 때도 팀은 high-level roadmap, sprint/release plan, progress report를 수동으로 조합해 customer expectation을 관리한다.
-13. roadmap과 release plan을 명확히 구분하지 못하면 public communication이 곧 날짜 약속처럼 읽힌다.
-14. now / next / later를 써도 실제로는 `later가 언제냐`는 질문이 다시 들어와, ambiguity를 해소하는 별도 update surface가 필요하다.
-15. public roadmap은 now / next / soon / later 수준으로 쓰되, proven delivery history가 없으면 날짜를 피하는 식의 암묵 규칙이 존재한다.
-16. 실제 release cadence는 짧고 반복적일 수 있어, quarterly goal language와 biweekly shipping reality 사이 translation layer가 필요하다.
-17. 일부 팀은 support-origin issue와 project-planning issue를 같은 queue에 넣어, `누가 무엇을 겪었는지`와 `우리가 다음에 무엇을 만들지`가 한데 엉킨다.
-18. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
-19. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
-20. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
-21. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
-22. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
-23. 어떤 경우에는 AP 담당자와 실무 담당자에게 동시에 보내야 하는데, 라우팅 정보가 메모 수준에 머문다.
-24. PO number / vendor reference가 없으면 payment chase가 반복되지만, 이 reference도 deal memory 안에 구조화되지 않는다.
-25. vendor onboarding / payment-system setup 상태를 deal metadata로 추적하지 않아, invoice를 보내기도 전에 몇 주가 증발한다.
-26. 대형 조직/에이전시 deal에서는 project owner 승인 뒤 recruiter/intermediary billing이나 AP pay-run 단계가 끼어도, 사용자는 그 중간 상태를 메모로만 관리한다.
-27. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
-28. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
-29. late invoice가 실제로는 booking 누락 / pay-run miss 때문이어도, 현재 툴은 이를 `아직 안 냄` 한 상태로만 뭉뚱그린다.
+11. 일부 팀은 now / next / later도 그냥 쓰지 않고 **Now ≈ 최근/향후 2개월, Next ≈ 다음 분기, Later ≈ 6~12개월**처럼 암묵 horizon을 둔다.
+12. 3개월 roadmap도 2주 단위로 흔들리는데 commitment ledger는 그 변화 속도를 못 따라간다.
+13. hard date가 불가능할 때도 팀은 high-level roadmap, sprint/release plan, progress report를 수동으로 조합해 customer expectation을 관리한다.
+14. roadmap과 release plan을 명확히 구분하지 못하면 public communication이 곧 날짜 약속처럼 읽힌다.
+15. now / next / later를 써도 실제로는 `later가 언제냐`는 질문이 다시 들어와, ambiguity를 해소하는 별도 update surface가 필요하다.
+16. public roadmap은 now / next / soon / later 수준으로 쓰되, proven delivery history가 없으면 날짜를 피하는 식의 암묵 규칙이 존재한다.
+17. 실제 release cadence는 짧고 반복적일 수 있어, quarterly goal language와 biweekly shipping reality 사이 translation layer가 필요하다.
+18. 일부 팀은 support-origin issue와 project-planning issue를 같은 queue에 넣어, `누가 무엇을 겪었는지`와 `우리가 다음에 무엇을 만들지`가 한데 엉킨다.
+19. creators와 freelancers는 invoice/payment 상태를 spreadsheet, Notion, email, DM, WhatsApp처럼 섞어서 관리한다.
+20. late payment follow-up은 사람이 기억에 의존해 보내고, underpayment/ghosting도 체계 없이 처리한다.
+21. 일부 freelancers는 due date 일주일 전이나 전날 reminder를 미리 보내지만, 이 cadence는 시스템이 아니라 개인 습관에 의존한다.
+22. follow-up cadence도 ad hoc인 경우가 많아 day 3 / day 7 / day 30 같은 sequence를 머릿속으로만 운영한다.
+23. payment terms, invoice recipient, AP instructions를 deal 시작 전에 구조화하지 않아 뒤늦게 cash가 막힌다.
+24. 어떤 경우에는 AP 담당자와 실무 담당자에게 동시에 보내야 하는데, 라우팅 정보가 메모 수준에 머문다.
+25. PO number / vendor reference가 없으면 payment chase가 반복되지만, 이 reference도 deal memory 안에 구조화되지 않는다.
+26. vendor onboarding / payment-system setup 상태를 deal metadata로 추적하지 않아, invoice를 보내기도 전에 몇 주가 증발한다.
+27. 대형 조직/에이전시 deal에서는 project owner 승인 뒤 recruiter/intermediary billing이나 AP pay-run 단계가 끼어도, 사용자는 그 중간 상태를 메모로만 관리한다.
+28. 연체 시 추가 작업 중단, late fee 적용, escalate 여부 같은 collection policy도 각자 메모/감으로 운영한다.
+29. invoice 자체도 `scribbled note`처럼 느슨하게 보내는 경우가 있어 professionalism / late-fee / reminder setup이 약하다.
+30. late invoice가 실제로는 booking 누락 / pay-run miss 때문이어도, 현재 툴은 이를 `아직 안 냄` 한 상태로만 뭉뚱그린다.
 
 ## Adjacent Problems
 - feedback는 쌓이는데 decision artifact는 남지 않는다.
@@ -136,6 +137,11 @@
 > "We usually define a roadmap for the next three months ... however in reality, the roadmap changes every two weeks ..." — Reddit indexed snippet
 - https://www.reddit.com/r/ProductManagement/comments/t9oymm/realistically_how_often_do_you_actually_hit_your/
 - Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I use Now for 1 month ago through 2 months out, Next is next quarter. Later is 6-12 months." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1iyqoq1/if_you_use_a_roadmap_without_specific_timelines/
+- Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
 > "I set up a Google Form for feature requests that went into a spreadsheet ... capturing what the feedback was and who it originated from." — Reddit indexed snippet
@@ -260,6 +266,11 @@
 
 > "Late payments rarely come from ‘bad clients’. Most stem from weak payment systems." — X indexed snippet
 - https://x.com/ruulnow
+- Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
+- Confidence: medium
+
+> "A solid payment clause does three things: defines exactly when payment is due ... adds a late fee for overdue invoices ..." — Threads indexed snippet
+- https://www.threads.net/@counselforcreators
 - Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
 - Confidence: medium
 

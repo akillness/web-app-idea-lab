@@ -17,6 +17,7 @@ The MVP should also support customer-facing expectation management when hard dat
 Keep roadmap themes and release-plan specifics distinct. A roadmap theme must never silently become a dated promise.
 Assume now/next/later buckets alone are not enough. Users will still ask "when is later?" so the system should explicitly state why timing is still ambiguous, what is near-term committed, and what is only safe to communicate as a theme or progress update.
 Treat roadmap communication maturity as a first-class output. For any customer-facing roadmap or commitment-related item, the MVP must force the agent to classify the safest communication level as one of: now_committed, next_candidate, later_exploratory, release_window_defined, or no_date_safe. Each classification must include a plain-language explanation of what is known, what is not yet firm, and what can be said externally without creating a false promise.
+Do not treat now/next/later as empty labels. The MVP must support team-defined bucket semantics, with a sensible default such as: `now = recently shipped through ~2 months out`, `next = next quarter`, `later = ~6–12 months`. Every customer-facing item using these buckets must store both the chosen bucket and the active bucket-definition snapshot used when the wording was generated.
 Assume many teams already use Productboard/Jira/spreadsheets for planning, but those tools do not fully solve ongoing discovery, commitment hygiene, or roadmap-volatility communication.
 
 Target users:
@@ -96,7 +97,7 @@ Implementation contract for coding agent:
    Also preserve workflow-state context so the system knows whether a record is still raw support evidence, already triaged into a planning candidate, linked to an active execution item, or already being communicated as a customer-facing commitment.
 
    For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
-   For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, and recommended_external_wording so roadmap themes do not get misread as dated delivery commitments.
+   For roadmap-communication-related records and outputs, also preserve communication maturity context. Track current_customer_language, safest_update_level (now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe), timing_confidence, blocking_unknowns, recommended_external_wording, chosen_bucket_definition, and bucket_definition_source (team_default | workspace_override | item_override) so roadmap themes do not get misread as dated delivery commitments.
    For churn and cancellation-related records, also classify whether the signal appears avoidable/actionable, non-actionable/bad-fit, or still unclear. The brief should avoid escalating churn themes that are mostly bad-fit noise unless they cluster in a strategically important segment.
 2. Support these minimum routes:
    - POST /records
@@ -139,6 +140,7 @@ Implementation contract for coding agent:
      - safest_update_level: now_committed | next_candidate | later_exploratory | release_window_defined | no_date_safe
      - timing_explanation: what is firm, what is still ambiguous, and why
      - recommended_external_wording: 1-3 sentences a PM/CSM can send without overcommitting
+     - chosen_bucket_definition: the active `now/next/later` semantics used for this wording
    - theme priority score should use:
      - frequency across records
      - average severity

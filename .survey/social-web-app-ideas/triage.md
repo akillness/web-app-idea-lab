@@ -32,8 +32,11 @@
   - `how to write a product roadmap?`에서는 **roadmap을 start/end date가 있는 timeline으로 오해하지만, 그건 roadmap이 아니라 release plan**이라는 구분이 드러났다.
   - `Product Roadmap Template?`에서는 **public roadmap은 now / next / soon / later 수준으로 두고, proven delivery history 없으면 날짜를 피하라**는 운영 조언이 보였다.
   - `How to commit to quarterly or yearly roadmap goals/deadlines ...`에서는 **just-in-time design/detail 환경에서 분기·연간 목표 commit 자체가 어렵다**는 tension이 다시 확인됐다.
-- Threads는 여전히 약했지만, 이번 루프 Yahoo Japan 검색에서는 broad query 기준으로 **1건의 indexed Threads result**가 보였다. `@counselforcreators` 스레드 계정 snippet은 **payment clause는 due date + late fee를 명시해야 한다**는 방향을 줬다. 다만 이건 커뮤니티 workflow breadth가 아니라 계정성/전문가성 advice에 가까워 confidence는 낮다.
-- X 쪽에서는 새로 **"late payments rarely come from bad clients; most stem from weak payment systems"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
+- Threads는 여전히 약했지만, 이번 루프 Yahoo Japan 검색에서는 broad query 재확인 이후 **targeted quoted query** (`site:threads.net "payment clause" creator late fee`)도 돌려 봤다. 결과는 **2건**이었고, 그중 실질적으로 쓸 만한 것은 `@counselforcreators` 1건뿐이었다. 이 snippet은 **payment clause는 explicit due timing + late fee를 명시해야 한다**는 방향을 줬다. 다른 1건은 generic contract/dispute clause에 가까워 discovery quality는 낮았다.
+- X 쪽에서는 새로 **\"late payments rarely come from bad clients; most stem from weak payment systems\"**라는 구조적 framing이 보여, creator backup idea를 generic CRM보다 **payment-system clarity / clause clarity / collections discipline** 쪽으로 더 좁힐 근거가 생겼다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 `If you use a roadmap without specific timelines ...` 류 결과가 더 구체적으로 잡혔다. 한 indexed snippet은 **Now = recently shipped through ~2 months out, Next = next quarter, Later = ~6–12 months**처럼 bucket 자체를 operational horizon으로 정의하고 있었다. 이건 VoC 아이디어의 `safe roadmap/update communication` 레이어를 더 구현 가능한 형태로 바꿔 준다.
+- Creator 쪽 Yahoo Japan Reddit 재검색에서는 `PO number` 관련 late-payment query가 다시 살아 있었고, snippet 수준에서도 **회계팀이 있으면 PO number를 확보하고 이후 연체 reminder에서 계속 reference하라**는 운영 규칙이 명확히 보였다.
+- `web_search` / `web_extract`는 이번 루프에도 다시 직접 테스트했고 둘 다 `401 Invalid API key`였다.
 - 이번 루프에는 Reddit recovery path도 한 단계 진전됐다. 기본 요청은 막히기 쉬웠지만, **PullPush API + browser-like user-agent** 조합으로는 comment-level 회수가 가능했다.
 - 그 결과 creator 쪽에서는 새로:
   - **vendor onboarding / payment-system setup만으로도 입금 시작이 약 6주 밀릴 수 있다**는 사례,
