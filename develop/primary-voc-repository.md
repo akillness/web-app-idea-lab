@@ -4,9 +4,9 @@
 **Updated**: 2026-04-02
 
 ## 1. Build goal
-사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **주간 의사결정 브리프**와 **commitment-safe external update draft**를 생성한다.
+사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **commitment-safe external update draft**를 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **internal decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다.
 
 ## 2. MVP scope
 ### 포함
@@ -15,10 +15,12 @@
 - shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`)
 - AI extraction
 - tagging + AI clustering
+- customer/account matching
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
 - `why this jumped` / `why not now` explanation 생성
+- customer-level evidence board
 - weekly decision brief 생성
 - now/next/later-safe external update draft 생성
 - markdown export
@@ -34,12 +36,13 @@
 1. record 업로드
 2. extraction job 실행
 3. signals 저장
-4. theme cluster 생성
-5. ranked theme board 표시
-6. decision rationale 생성
-7. weekly brief 생성
-8. external update draft 생성
-9. markdown export
+4. account matching
+5. theme cluster 생성
+6. ranked theme board 표시
+7. decision rationale 생성
+8. weekly brief 생성
+9. external update draft 생성
+10. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -47,6 +50,13 @@
 - source filter
 - processing status
 - failed retry
+
+### `/accounts`
+- customer-level evidence board
+- account risk summary
+- linked requests / churn / support / commitment signals
+- ARR / segment context
+- latest customer-safe wording note
 
 ### `/themes`
 - theme list
@@ -93,9 +103,20 @@
 - uploaded_at
 - status
 
+### `accounts`
+- id
+- name
+- segment
+- arr_band
+- health_risk_level
+- open_commitment_count
+- latest_update_mode
+- evidence_summary
+
 ### `signals`
 - id
 - record_id
+- account_id
 - signal_type
 - label
 - severity
@@ -155,11 +176,12 @@
 
 ## 6. Ranking logic
 초기 점수 가중치:
-- frequency 25
+- frequency 20
 - severity 20
 - ARR/account importance 20
 - commitment risk 20
-- recency 10
+- customer concentration 10
+- recency 5
 - priority override 5
 
 규칙 기반 점수 + LLM 해석 보조로 시작한다.
@@ -176,10 +198,19 @@
 - 왜 다른 항목은 아직 now에 들어가지 않는가?
 
 ## 7. Required outputs
+### Customer-Level Evidence Board
+반드시 아래가 보여야 한다.
+- account summary
+- open pain themes
+- churn / expansion / commitment signals
+- latest supporting evidence
+- recommended customer-safe wording
+
 ### Weekly Decision Brief
 반드시 아래 섹션이 있어야 한다.
 - what got worse
 - segment at risk
+- account concentration risk
 - commitments at risk
 - recommended actions now
 - priority overrides and why
@@ -202,6 +233,7 @@
 ## 8. Product rules
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
 - `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
+- customer-level evidence가 없는 theme summary는 incomplete로 취급한다.
 - 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
 - deferred item에도 `왜 아직 now가 아닌지`를 남긴다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
@@ -209,16 +241,18 @@
 ## 9. Build order
 1. record intake
 2. extraction JSON validation
-3. theme ranking board
-4. commitment risk + priority override labeling
-5. decision rationale generation
-6. weekly brief generation
-7. external update draft
-8. export/editing
+3. account matching + account summary card
+4. theme ranking board
+5. commitment risk + priority override labeling
+6. decision rationale generation
+7. weekly brief generation
+8. external update draft
+9. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
 - 5개 이상 theme 생성
+- 3개 이상 account summary 생성
 - brief 1개 생성
 - evidence linked output 확인 가능
 - commitment risk item 최소 1개 노출
@@ -229,6 +263,7 @@
 - founder/PM이 실제 weekly review 전에 본다.
 - brief를 회의에서 그대로 사용한다.
 - `무엇이 악화됐는지 빨리 읽힌다`는 피드백 확보.
+- `왜 이 고객군/계정이 중요한지`가 더 빨리 읽힌다는 피드백 확보.
 - `why this jumped the queue` 설명이 납득된다는 피드백 확보.
 - `why not now` 설명이 customer-facing 팀에도 유용하다는 반응 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
@@ -238,38 +273,34 @@
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a weekly decision brief, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
 - structured extraction
+- customer/account matching
+- customer-level evidence board
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
 - why-this-jumped / why-not-now rationale generation
 - weekly brief generation
-- customer-safe now/next/later update draft
-- explicit answer helper for "when is later?"
-- markdown export
+- commitment-safe external update draft
 
 Do not build:
-- deep integrations
-- enterprise auth
-- generic note-taking app
-- roadmap system of record
+- helpdesk replacement
+- full roadmap system of record
+- deep Productboard/Jira integrations first
+- outbound automation first
 
 Important rules:
-- only near-term commitments can appear in `now`
-- `next/later` must remain directional
-- every moved priority needs a reason
-- every deferred item needs a why-not-now explanation
-- keep internal decision logic separate from customer-facing wording
+- shared store and clustering are not the product end-state; decision translation is
+- every top theme must show linked account/customer evidence
+- `now` can contain near-term commitments, `next/later` cannot
+- the product must answer both `why this jumped` and `why not now`
 
 Success:
-- 10+ records in
-- meaningful ranked themes out
-- one weekly brief generated with source evidence
-- one commitment-safe update draft generated
-- one clear explanation of why an item jumped priority
-- one clear explanation of why another item is not committed yet
+- a PM/founder can review linked customer evidence before the weekly meeting
+- the brief explains what changed, who is affected, and why priorities moved
+- the external draft is safer than ad-hoc now/next/later messaging
 ```
