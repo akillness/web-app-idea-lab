@@ -28,3 +28,15 @@
 ## 현재 결론
 - Primary idea: **Voice-of-Customer Repository**
 - Backup idea: **Creator Deal CRM**
+
+## Ranking engine domain core
+- `src/voc/ranking.js`는 theme metrics를 ranked build-next queue로 변환한다.
+- 런타임 의존성은 없고, Node 내장 테스트 러너만 사용한다.
+- 가중치는 정확히 다음을 사용한다: frequency 20, severity 20, ARR/account importance 20, commitment risk 20, customer concentration 10, recency 5, priority override 5.
+- `priority_override_reason` 허용값: `customer_commitment`, `churn_risk`, `strategic_segment`, `company_objective`, `technical_foundation`.
+- 출력에는 theme별 `scoreBreakdown`, `totalScore`, `recommendation`, `rank`가 포함된다.
+
+## Verification
+```bash
+npm test
+```
