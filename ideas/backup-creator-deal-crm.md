@@ -20,6 +20,7 @@
 3. promised payment date와 실제 입금 사이 추적이 약하다.
 4. underpaid / ghosted / pay-run miss / onboarding blocked 같은 상태가 분리되지 않는다.
 5. follow-up copy보다 `오늘 누구에게 무엇을 보내야 하는지`가 더 중요하다.
+6. overdue follow-up 전에 `named AP owner`와 `현재 pay-run 상태`를 확인하는 운영 단계가 별도로 필요하다.
 
 ## 제품이 제공해야 하는 핵심 결과물
 - today collections queue
@@ -27,6 +28,7 @@
 - AP / project-owner routing map
 - overdue cadence tracking
 - promised-payment miss tracker
+- pay-run miss recovery queue
 - remittance-proof / partial-payment tracking
 - next-step recommendation
 
@@ -34,6 +36,7 @@
 - pain은 매우 선명하다.
 - broad CRM보다 collections wedge가 훨씬 날카롭다.
 - 다만 ICP가 solo creator / freelancer / small agency로 아직 섞여 있어 primary보다 우선순위가 낮다.
+- reminder automation 카테고리는 이미 보이지만, blockage visibility와 routing verification 레이어는 아직 덜 정리돼 있다.
 
 ## 제품 wedge
 "creator CRM"이 아니라 **collections visibility + payment-stage clarity + AP-routing control**.
@@ -51,3 +54,4 @@
 - 사용자가 시트 대신 오늘의 회수 큐를 이 제품에서 본다.
 - overdue / underpaid / ghosted / blocked 상태 분리가 유용하다는 반응이 나온다.
 - invoice readiness checklist와 routing 정보가 실제 cash leak를 줄이는 데 도움된다는 피드백이 나온다.
+- `누구에게 보내야 하는지`와 `payment run을 놓쳤는지`가 빠르게 읽힌다는 반응이 나온다.

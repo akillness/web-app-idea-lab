@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **주간 의사결정 브리프**와 **commitment-safe external update draft**를 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **internal decision layer**와 **external communication layer**로 번역하는 것이다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **internal decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다.
 
 ## 2. MVP scope
 ### 포함
@@ -18,6 +18,7 @@
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
+- `why this jumped` / `why not now` explanation 생성
 - weekly decision brief 생성
 - now/next/later-safe external update draft 생성
 - markdown export
@@ -35,9 +36,10 @@
 3. signals 저장
 4. theme cluster 생성
 5. ranked theme board 표시
-6. weekly brief 생성
-7. external update draft 생성
-8. markdown export
+6. decision rationale 생성
+7. weekly brief 생성
+8. external update draft 생성
+9. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -52,12 +54,15 @@
 - evidence drawer
 - linked accounts / segments
 - linked commitments / override reasons
+- `why this theme moved` explanation
+- `why not now` explanation
 
 ### `/briefs/latest`
 - weekly decision brief
 - edit / regenerate
 - export markdown
 - internal notes vs customer-facing implications split
+- `decision trace` block
 
 ### `/updates/latest`
 - customer-safe roadmap / progress wording
@@ -66,6 +71,7 @@
 - ambiguity explanation block
 - `near-term commitments only` validation badge
 - `when is later?` answer helper
+- `why this is not committed yet` helper
 
 ### `/commitments`
 - promises at risk
@@ -113,6 +119,16 @@
 - override_score
 - total_score
 
+### `decision_rationales`
+- id
+- theme_id
+- status (`jumped`, `held`, `deferred`)
+- why_this_jumped
+- why_not_now
+- linked_override_reasons
+- linked_account_ids
+- confidence
+
 ### `brief_items`
 - id
 - brief_type
@@ -121,6 +137,7 @@
 - confidence
 - source_theme_ids
 - affected_account_ids
+- rationale_id
 
 ### `update_drafts`
 - id
@@ -134,6 +151,7 @@
 - commitment_window_rule (`near_term_only`)
 - timeline_confidence_note
 - answer_when_is_later
+- answer_why_not_committed
 
 ## 6. Ranking logic
 초기 점수 가중치:
@@ -153,6 +171,10 @@
 - company objective
 - technical foundation
 
+`decision_rationales`는 아래 두 질문을 항상 채운다.
+- 왜 이 항목이 이번 주에 점프했는가?
+- 왜 다른 항목은 아직 now에 들어가지 않는가?
+
 ## 7. Required outputs
 ### Weekly Decision Brief
 반드시 아래 섹션이 있어야 한다.
@@ -161,6 +183,8 @@
 - commitments at risk
 - recommended actions now
 - priority overrides and why
+- why this jumped
+- why not now
 - what stays intentionally uncommitted
 - evidence highlights
 
@@ -171,6 +195,7 @@
 - bucket definition note
 - ambiguity explanation
 - answer to `when is later?`
+- answer to `why isn't this committed yet?`
 - non-commitment-safe wording
 - rule: `now`에만 near-term commitment 허용, `next/later`는 방향성 표현만 허용
 
@@ -178,6 +203,7 @@
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
 - `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
 - 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
+- deferred item에도 `왜 아직 now가 아닌지`를 남긴다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
 
 ## 9. Build order
@@ -185,9 +211,10 @@
 2. extraction JSON validation
 3. theme ranking board
 4. commitment risk + priority override labeling
-5. weekly brief generation
-6. external update draft
-7. export/editing
+5. decision rationale generation
+6. weekly brief generation
+7. external update draft
+8. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
@@ -196,12 +223,14 @@
 - evidence linked output 확인 가능
 - commitment risk item 최소 1개 노출
 - `when is later?`에 답하는 safe draft 한 개 생성
+- `why this jumped / why not now` rationale 한 세트 생성
 
 ## 11. Validation
 - founder/PM이 실제 weekly review 전에 본다.
 - brief를 회의에서 그대로 사용한다.
 - `무엇이 악화됐는지 빨리 읽힌다`는 피드백 확보.
 - `why this jumped the queue` 설명이 납득된다는 피드백 확보.
+- `why not now` 설명이 customer-facing 팀에도 유용하다는 반응 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
 
 ## 12. Build prompt
@@ -209,7 +238,7 @@
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a weekly decision brief and a commitment-safe external update draft for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a weekly decision brief, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
@@ -217,6 +246,7 @@ Must-have capabilities:
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
+- why-this-jumped / why-not-now rationale generation
 - weekly brief generation
 - customer-safe now/next/later update draft
 - explicit answer helper for "when is later?"
@@ -231,6 +261,8 @@ Do not build:
 Important rules:
 - only near-term commitments can appear in `now`
 - `next/later` must remain directional
+- every moved priority needs a reason
+- every deferred item needs a why-not-now explanation
 - keep internal decision logic separate from customer-facing wording
 
 Success:
@@ -239,4 +271,5 @@ Success:
 - one weekly brief generated with source evidence
 - one commitment-safe update draft generated
 - one clear explanation of why an item jumped priority
+- one clear explanation of why another item is not committed yet
 ```

@@ -12,6 +12,7 @@
 ### 포함
 - deal 등록
 - AP / project owner / intermediary routing
+- named AP owner 기록
 - payment terms / PO / reference 저장
 - invoice destination 저장
 - invoice readiness checklist
@@ -37,7 +38,8 @@
 5. invoice sent 기록
 6. due/promised/pay-run 정보 추적
 7. overdue cadence queue 생성
-8. paid / underpaid / escalated 종료
+8. pay-run miss / AP review recovery
+9. paid / underpaid / escalated 종료
 
 ## 4. Main screens
 ### `/deals`
@@ -46,6 +48,7 @@
 - payment status
 - blockage badge
 - invoice correctness badge
+- named AP owner badge
 
 ### `/collections/today`
 - follow-up due today
@@ -61,6 +64,7 @@
 - payment events
 - remittance-proof status
 - promised date vs actual status delta
+- pay-run recovery notes
 
 ### `/blockages`
 - onboarding blocked
@@ -69,6 +73,7 @@
 - wrong invoice destination
 - missing PO/reference
 - missing remittance proof
+- no named AP owner
 
 ## 5. Core entities
 ### `deals`
@@ -89,6 +94,7 @@
 - name
 - email
 - phone
+- is_primary_ap_owner
 
 ### `invoice_profiles`
 - invoice_recipient
@@ -118,6 +124,8 @@
 - note
 - proof_requested_at
 - proof_received_at
+- promised_pay_run_at
+- missed_pay_run_flag
 
 ## 6. Required automation
 - invoice sent → due date tracking 시작
@@ -127,13 +135,13 @@
 - outstanding unpaid → new work risk 표시
 - pay-run miss → blockage queue 이동
 - remittance promised but not received → proof request 추천
-- invoice destination 미확인 / PO 누락 / onboarding 미완료 시 `send reminder`보다 먼저 `fix routing` 추천
+- invoice destination 미확인 / PO 누락 / onboarding 미완료 / named AP owner 없음 시 `send reminder`보다 먼저 `fix routing` 추천
 - reminder-only 자동화가 아니라 blockage type 기준으로 next step 추천
 
 ## 7. Product rules
 - broad CRM처럼 deal 전체를 관리하지 않고 **payment-stage visibility**에만 집중한다.
 - follow-up 문구 생성보다 먼저 `invoice correctness`, `invoice destination`, `AP owner`, `pay-run date`를 확인한다.
-- `AP review`, `pay-run miss`, `wrong destination`, `proof missing`은 서로 다른 blockage로 유지한다.
+- `AP review`, `pay-run miss`, `wrong destination`, `proof missing`, `no named AP owner`는 서로 다른 blockage로 유지한다.
 - overdue queue는 날짜 기준이지만, 추천 액션은 blockage 기준으로 만든다.
 
 ## 8. Build order
@@ -141,7 +149,8 @@
 2. invoice readiness checklist + routing fields
 3. overdue cadence queue
 4. blockage states + payment transitions
-5. next-step recommendation
+5. pay-run miss / AP owner recovery rules
+6. next-step recommendation
 
 ## 9. First milestone
 - 10개 deal 등록 가능
@@ -149,13 +158,14 @@
 - overdue / underpaid / ghosted / blocked 분리
 - next action 추천 표시
 - invoice readiness 누락 필드 경고 표시
-- wrong destination / AP review / pay-run miss가 서로 다른 상태로 보임
+- wrong destination / AP review / pay-run miss / no named AP owner가 서로 다른 상태로 보임
 
 ## 10. Validation
 - 사용자가 시트 대신 이 화면을 회수 source of truth로 본다.
 - follow-up timing보다 `지금 어디서 막혔는지`가 더 빨리 보인다는 반응이 나온다.
 - invoice readiness checklist와 AP routing 정보가 실제로 빠진 정보를 줄인다.
 - `누구에게 무엇을 보내야 하는지`가 바로 결정된다는 피드백 확보.
+- `payment run을 놓쳤는지`가 한 번에 읽힌다는 반응 확보.
 
 ## 11. Build prompt
 ```text
@@ -167,6 +177,7 @@ Help creators and small agencies track invoice readiness, AP routing, payment-st
 Must-have:
 - deal tracking
 - AP/project-owner/intermediary routing
+- named AP owner
 - invoice readiness checklist
 - invoice destination verification
 - invoice destination + terms + PO/reference
@@ -183,7 +194,7 @@ Do not build:
 - reminder-only auto-send messaging
 
 Important rules:
-- treat AP review, wrong invoice destination, pay-run miss, and proof missing as separate states
+- treat AP review, wrong invoice destination, pay-run miss, proof missing, and missing AP owner as separate states
 - fix routing before sending another chase email when core invoice fields are incomplete
 - optimize for collections visibility, not CRM completeness
 
@@ -192,4 +203,5 @@ Success:
 - overdue and blocked cases are categorized clearly
 - next step is obvious per deal
 - invoice correctness problems are caught before another reminder is sent
+- missing AP owner and missed pay-run are immediately visible
 ```
