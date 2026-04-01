@@ -33,6 +33,8 @@ The MVP should help a user answer these questions quickly:
 4. What message should I send next without sounding chaotic?
 5. What usage rights, quoted rate, and deliverable commitments were agreed?
 6. What payment terms or promised dates were missed, and what should happen next?
+7. What invoice workflow details still need to be confirmed before I send or chase an invoice?
+8. How did usage-rights scope change the quoted price during negotiation?
 
 Primary user outcome:
 By the end of a session, the user should be able to see:
@@ -46,8 +48,9 @@ MVP scope:
 - single workspace
 - create and manage post-agreement payment-tracked deals
 - attach one or more deliverables to each deal
-- capture structured payment terms and deposit requirements
+- capture structured payment terms, invoice workflow requirements, and deposit requirements
 - capture quoted rate, usage rights, and repeat-brand notes
+- capture usage-rights pricing deltas and negotiation notes
 - log invoices manually
 - log payments manually, including partial payment and underpayment
 - record promised payment dates
@@ -77,7 +80,7 @@ Implementation contract for coding agent:
    - follow_up_sequences
    - usage_rights
 
-   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, and the recommended follow-up sequence.
+   Each deal must store structured payment terms, deposit expectations, invoice trigger conditions, promised payment dates, quoted rate history, usage rights, usage-rights pricing adjustments, invoice workflow requirements (invoice recipient, required fields, submission method, supporting docs, payment portal or AP instructions if known), and the recommended follow-up sequence.
 2. Support these minimum routes:
    - POST /deals
    - GET /deals
@@ -105,6 +108,8 @@ Implementation contract for coding agent:
    - every underpayment must remain visible until resolved
    - every follow-up must store channel, suggested message, actual message sent, and response status
    - every deal detail should expose the reason a case is blocked from invoicing or closing
+   - invoice readiness blockers must distinguish missing creator-side work from missing client-side invoice instructions
+   - quoted rate history must make usage-rights-driven price changes visible
 6. Follow-up generation contract:
    - recommend the next step in a collections sequence, not just a standalone message
    - valid next actions include: gentle reminder | payment date confirmation | resend invoice details | firmer escalation | final notice / pause future work
@@ -115,7 +120,7 @@ Implementation contract for coding agent:
    - keep WhatsApp variants short and sendable
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample deals
-   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, ghosted client, and payment-promised-then-missed
+   - include examples for: on-time payment, partial payment, overdue invoice, missing deliverable, ghosted client, payment-promised-then-missed, missing invoice instructions, and a usage-rights expansion that changed the quoted rate
 
 Suggested artifacts to produce:
 1. product spec
@@ -132,6 +137,8 @@ Success criteria:
 - the system surfaces overdue, underpaid, and promised-date-missed deals correctly
 - the system can suggest follow-up drafts for WhatsApp and email
 - the system can show what operational fact is blocking payment progress
+- the system makes invoice workflow questions explicit before an invoice is sent
+- the system shows how usage-rights negotiation changed the deal value or follow-up recommendation
 - a user can tell what to do next without opening a spreadsheet
 - the output is clearly more focused on deal ops and collections visibility than a generic CRM
 

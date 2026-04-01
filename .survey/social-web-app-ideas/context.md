@@ -13,13 +13,15 @@
    - support는 고객 요청을 product/dev로 그대로 던지고,
    - PM은 conflicting request list를 안고,
    - churn feedback은 ARR / ICP / segment 맥락 없이 흩어진다.
-   - 결국 월요일 아침마다 support ticket, Slack complaint, churn note를 손으로 읽고 우선순위를 추정한다.
+   - enterprise 영업/CS 약속이 섞이면 `어떤 요청이 단순 수요인지`, `어떤 요청이 이미 약속된 commitment인지` 구분도 흐려진다.
+   - 결국 월요일 아침마다 support ticket, Slack complaint, churn note를 손으로 읽고 우선순위를 추정하고, 분기 planning에서는 commitment끼리 다시 충돌한다.
 2. **Creator 쪽 진짜 pain은 generic CRM이 아니라 deal execution과 cash collection 사이의 운영 공백**이다.
    - creators와 small teams는 여전히 spreadsheet + Notion + email + DM 조합으로 진행 상황을 기억하고,
    - deliverable 완료 후 payment follow-up이 늦어지며,
    - invoice/payment 상태와 promised date가 분리돼 cash-flow risk가 커진다.
+   - 게다가 첫 deal 단계에서는 `어떻게 invoice를 보내는지`, 협상 단계에서는 `usage rights를 얼마로 봐야 하는지` 자체가 흔들린다.
 
-즉 이번 루프는 기존 방향을 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `support-to-product intake + churn segmentation + Monday review brief`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`deal status + deliverable tracking + invoice/payment follow-up + collections visibility`**로 더 구체화됐다.
+즉 이번 루프는 기존 방향을 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `support-to-product intake + churn segmentation + customer-commitment risk + Monday review brief`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`deal status + deliverable tracking + invoice workflow readiness + usage-rights memory + collections visibility`**로 더 구체화됐다.
 
 ## Affected Users
 | Role | Responsibility | Skill Level |
@@ -34,16 +36,20 @@
 1. support 요청과 feature request를 Jira/Slack/email에 흩뿌린 뒤 PM이 수동 정리한다.
 2. churn feedback는 survey나 note로 남기지만 ARR / ICP / segment 기준으로 정규화하지 못한다.
 3. 월요일 아침 회의 전에 support tickets, Slack complaints, churn notes를 사람이 직접 뒤진다.
-4. enterprise feature commitment는 이메일이나 Productboard/Jira에 나뉘어 남아 추적이 깨진다.
+4. enterprise feature commitment는 이메일이나 Productboard/Jira에 나뉘어 남아 추적이 깨지고 분기 우선순위와 충돌한다.
 5. creators와 small agencies는 deal / deliverable / invoice / payment 상태를 spreadsheet, Notion, email, DM으로 붙여서 관리한다.
 6. overdue follow-up은 사람이 기억에 의존해 WhatsApp, 이메일, DM을 수동 발송한다.
+7. 첫 sponsorship deal을 잡은 creator도 invoice workflow 자체를 커뮤니티에 묻고 시작한다.
+8. usage rights 가격과 기간 조건이 deal memory에 남지 않아 quote consistency가 무너진다.
 
 ## Adjacent Problems
 - support 팀이 product intake를 대신하지만 dedupe / prioritization / evidence ranking이 없다.
 - raw feature request list가 길어질수록 problem framing과 expected value가 사라진다.
+- customer commitment까지 섞이면 request backlog가 `promised work registry` 역할까지 떠안아 더 혼란스러워진다.
 - churn reason을 모아도 segment / ARR / lifecycle context가 없으면 잘못 해석하기 쉽다.
 - creator deal은 `delivered`와 `paid` 사이에 큰 공백이 있는데 범용 CRM은 이 구간에 약하다.
 - usage rights, promised payment date, partial payment 같은 creator 운영 필드는 범용 툴에서 주변화된다.
+- invoice recipient, required fields, payment portal 안내 같은 invoice readiness 정보도 종종 구조화되지 않는다.
 - Threads는 현재 조사 채널로서 반복 가치가 낮다.
 
 ## User Voices
@@ -77,6 +83,16 @@
 - Source path: PullPush Reddit mirror recovery, accessed 2026-04-01
 - Confidence: high
 
+> "The problem we have now is that there are too many deals and too many feature requests, so I make the Sales & CSM team prioritize between commitments every quarter." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/1bhv13s/how_to_track_feature_requests_for_enterprise/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "We try to avoid feature commitments with a strong deadline ... What tool/process do you use to keep track and communicate of all these commitments?" — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/zsuyqn/how_do_you_documenttrack_costumer_committments/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
 > "most teams are still doing this in spreadsheets or some frankenstack of Notion + email" while tracking negotiation, delivery, and payment status across creators. — Reddit / PullPush mirror
 - https://www.reddit.com/r/influencermarketing/comments/1rvi66q/how_are_agencies_actually_tracking_brand_deal/
 - Source path: PullPush Reddit mirror recovery, accessed 2026-04-01
@@ -85,6 +101,16 @@
 > "How do you manage invoices and payment follow-ups?" — Reddit / PullPush mirror
 - https://www.reddit.com/r/UGCcreators/comments/1rgfo0p/fulltime_ugc_creators_whats_your_backend_system/
 - Source path: PullPush Reddit mirror recovery, accessed 2026-04-01
+- Confidence: high
+
+> "How do you invoice your sponsor?" — Reddit indexed snippet
+- https://www.reddit.com/r/PartneredYoutube/comments/rdh39k/first_brand_deal_wondering_how_to_invoice_the/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
+- Confidence: high
+
+> "I always hear the advice of 'charge extra' when brands want to re-use your content ... but I haven't seen much advice about what you should actually charge and how long you should let them re-use your content for" — Reddit indexed snippet
+- https://www.reddit.com/r/PartneredYoutube/comments/1d21p8k/is_there_a_formula_for_how_much_i_should_charge/
+- Source path: Yahoo Search indexed snippet, accessed 2026-04-01
 - Confidence: high
 
 > "most seem to sit in that 30 to 90 day window ... didn't pay until I followed up multiple times" — Reddit / PullPush mirror
@@ -99,6 +125,7 @@
 
 ## Collection Caveat
 - Reddit evidence는 이번 루프부터 **PullPush mirror 기반 회수**가 중심이다. live-page verification과 동일하지 않다.
+- 이번 루프는 일부 Reddit 근거를 **Yahoo indexed Reddit snippet**으로도 회수했다. 이 역시 live-page verification은 아니다.
 - X evidence는 여전히 **Yahoo indexed snippet 기반**이다.
-- Threads는 focused query 대비 회수 효율이 낮아 현재는 보조 채널 이하로 본다.
-- 그래도 이번 루프는 `feedback repository`보다 **support-to-product/churn decision ritual**, `creator CRM`보다 **collections-aware deal ops**가 더 강한 wedge라는 점을 한 단계 더 명확하게 만들었다.
+- Threads는 creator invoice/payment query에서 **검색 결과 0건**이 나올 정도로 회수 효율이 낮아 현재는 보조 채널 이하로 본다.
+- 그래도 이번 루프는 `feedback repository`보다 **support-to-product/churn/commitment decision ritual**, `creator CRM`보다 **invoice-ready, usage-rights-aware, collections-aware deal ops**가 더 강한 wedge라는 점을 한 단계 더 명확하게 만들었다.

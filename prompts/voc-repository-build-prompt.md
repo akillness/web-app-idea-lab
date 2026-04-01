@@ -12,6 +12,7 @@ Create a product that helps early-stage SaaS teams turn scattered support, featu
 
 Important framing:
 Optimize the MVP for a Monday-morning review ritual. Users upload the last week's support tickets, churn notes, cancellation reasons, feature-request context, feedback emails, and interview/call notes, then receive a health-and-risk decision brief before the weekly prioritization meeting.
+Also support a quarterly planning use case: teams should be able to separate generic feature demand from named customer commitments already made by sales, success, or product, then review which commitments deserve escalation, reaffirmation, or de-prioritization in the next quarter.
 
 Target users:
 - Founders
@@ -38,6 +39,7 @@ The MVP should help a team answer these Monday-morning questions quickly:
 2. Which support or feature-request patterns are flooding the team without enough context?
 3. Which churn or cancellation reasons are becoming concentrated in a specific segment?
 4. What product, messaging, or support change deserves action now?
+5. Which customer-facing feature commitments are accumulating risk or conflict with current quarterly priorities?
 
 Primary user outcome:
 The MVP's main output is NOT a repository UI. It is a weekly decision brief generated from messy feedback sources.
@@ -77,6 +79,8 @@ Implementation contract for coding agent:
    For churn and cancellation-related records, preserve normalization context. Distinguish raw wording from normalized churn reasons and attach context such as plan tier, segment, lifecycle stage, ARR band, benchmark group, and time window so teams do not overreact to anecdotal churn signals.
 
    For support and feature-request-related records, preserve request context. Distinguish raw asks from inferred problem, expected value, urgency, and account importance.
+
+   For enterprise-facing feature-request records, also preserve commitment context. Track whether the request reflects a named commitment already made to an account, who made that commitment, target quarter if known, commitment confidence (confirmed | implied | uncertain), renewal or expansion risk, and whether multiple accounts are asking for the same committed capability.
 2. Support these minimum routes:
    - POST /records
    - GET /records
@@ -102,7 +106,7 @@ Implementation contract for coding agent:
    - every normalized theme must preserve at least one raw example phrase
 6. Weekly decision brief contract:
    - generate 3-5 ranked brief items per run
-   - each brief item must include:
+   - brief item must include:
      - title
      - decision_type: product | messaging | sales_enablement | support
      - recommendation
@@ -112,6 +116,7 @@ Implementation contract for coding agent:
      - supporting_theme_ids
      - supporting_evidence: at least 2 quoted snippets from different records when possible
      - counterevidence_or_gaps
+     - commitment_risk_summary when enterprise commitments are involved
    - theme priority score should use:
      - frequency across records
      - average severity
@@ -119,10 +124,12 @@ Implementation contract for coding agent:
      - recency
      - source diversity
      - account importance when available
+     - commitment pressure when available
+   - include at least one explicit section or flag in the brief for: committed features at risk this quarter
 7. Start with fixtures and local-first iteration:
    - seed at least 10 sample conversation records
    - include one sample extraction output, one theme output, and one brief output in the repo
-   - ensure at least one seeded case covers support-request chaos and one covers churn-segmentation ambiguity
+   - ensure at least one seeded case covers support-request chaos, one covers churn-segmentation ambiguity, and one covers an enterprise commitment that conflicts with current roadmap capacity
 
 Suggested artifacts to produce:
 1. product spec
@@ -142,6 +149,7 @@ Success criteria:
 - at least one brief item shows a cross-record pattern from multiple sources
 - the system distinguishes raw churn anecdotes from recurring normalized churn patterns
 - the system distinguishes raw feature asks from the underlying product problem and account context
+- the system separates general demand from explicit customer commitments and can surface which commitments should be revisited in quarterly prioritization
 - the output is clearly more decision-oriented than a generic transcript summary
 
 Engineering preference:

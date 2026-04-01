@@ -2,8 +2,8 @@
 
 | Platform | Status | Notes |
 |---|---|---|
-| Reddit | Partial-Strong | Direct live Reddit page access is still inconsistent, but this loop recovered multiple usable pain posts through the PullPush Reddit mirror plus indexed URLs. Best source this loop. |
-| Threads | Weak Partial | Re-tested with targeted `site:threads.net` searches; still no meaningful net-new signals for VoC/churn/support or creator payment ops. |
+| Reddit | Partial-Strong | Direct live Reddit page access is still inconsistent, but this loop recovered multiple usable pain posts through Yahoo indexed Reddit results plus prior PullPush-style mirror recovery. Best source again this loop. |
+| Threads | Weak Partial | Re-tested with targeted `site:threads.net` searches; creator invoice/payment query returned zero results in Yahoo, and no meaningful net-new signals appeared for VoC/churn/support either. |
 | X | Partial | Direct reading remains constrained, but Yahoo indexed snippets again produced usable post-level evidence for churn analysis, Monday-morning review workflow, and creator invoice/payment pain. |
 | web_search / web_extract | Blocked | Re-tested this loop; both still return `401 Invalid API key`. |
 
@@ -12,14 +12,16 @@
 - Direct Reddit page fetches remain unreliable from this environment even when post URLs are known
 - X / Threads direct reading: login wall, captcha, or anti-bot friction
 - Threads indexed coverage remains weak for focused product-idea discovery
+- `curl`/direct HTML fetches were not dependable here for search-result extraction, so browser-based Yahoo snapshots were the reliable fallback for indexed snippets
 
 ## This loop's fallback that worked
 1. Use **PullPush Reddit mirror** for Reddit submission discovery and quote extraction.
 2. Use **Yahoo Search HTML indexed snippets** for `site:x.com ...` and `site:threads.net ...` queries.
-3. Label evidence explicitly:
+3. Use **browser-based Yahoo search snapshots** when tool/API access is blocked and direct terminal fetches are flaky.
+4. Label evidence explicitly:
    - `PullPush mirror`: mirror/indexed Reddit recovery, not live-page verification
    - `Yahoo indexed snippet`: search snippet + URL recovery, not direct X/Threads post verification
-4. Prefer workflow-specific queries over generic idea terms:
+5. Prefer workflow-specific queries over generic idea terms:
    - VoC side: `support tickets`, `feature request`, `customer support`, `churn`, `Monday morning`, `enterprise commitments`
    - Creator side: `deliverables`, `invoice`, `payment follow-up`, `overdue`, `brand deal status`, `WhatsApp`
 
@@ -30,6 +32,11 @@
   - churn reduction advice repeatedly points to capturing reasons, segmenting by ARR/ICP, and linking feedback to product changes
   - creator / influencer / UGC communities still manage deals in spreadsheets + Notion + email, especially around deliverables and payment status
   - creators repeatedly mention 30/60/90-day payment windows, repeated follow-up, and fear of not getting paid after delivery
+- **Reddit / Yahoo indexed snippets**
+  - PM teams explicitly describe too many enterprise deals and too many feature requests, forcing quarterly prioritization between commitments
+  - PMs ask how to track customer commitments with deadlines once promises are made to close business
+  - creators still ask basic first-deal invoicing questions, which suggests invoice workflow setup is still under-structured
+  - creators repeatedly treat usage-rights pricing as ambiguous and negotiable rather than stored, reusable deal memory
 - **X / Yahoo indexed snippets**
   - founders know churn rate but not **why** customers leave because evidence sits across surveys, support tickets, and Stripe fields
   - PMs still spend Monday morning manually reading support tickets, Slack complaints, and churn notes to guess priorities

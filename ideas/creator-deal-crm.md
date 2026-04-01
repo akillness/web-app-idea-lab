@@ -7,7 +7,7 @@
 브랜드딜 CRM 전체를 하려는 게 아니라, 크리에이터와 소형 에이전시의 **deal status · deliverable · invoice · payment follow-up · collections visibility**를 닫아주는 creator ops tool.
 
 ## Why it stayed backup, not primary
-이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
+이번 루프에서도 creator payment / workflow pain은 여전히 강했다. 특히 `spreadsheet + Notion + email`, `30~90 day payment window`, `follow-up fatigue`, `delivered but not paid`, `How do you manage invoices and payment follow-ups?` 같은 문장이 반복됐다. 다만 현재 레포의 문서화와 구현 준비도는 VoC 쪽이 더 앞서 있고, fresh evidence도 이번에는 support/churn/commitment decision ritual 쪽이 더 넓고 깊었다. 그래서 지금은 **강한 backup**으로 유지한다.
 
 ## ICP
 - 월 브랜드딜이 꾸준한 솔로 크리에이터
@@ -22,6 +22,8 @@
 - promised payment date와 actual payment가 계속 어긋난다.
 - partial payment / underpayment / ghosting이 visibility 없이 흘러간다.
 - usage rights, quoted rate, repeat-brand history 같은 운영 맥락이 payment 회수와 분리된다.
+- 첫 deal 단계에서는 invoice recipient, required fields, AP instructions 같은 invoice workflow 정보도 정리되지 않는다.
+- usage rights 가격과 기간 조건이 deal memory에 남지 않아 매번 비슷한 협상을 다시 한다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
@@ -36,6 +38,7 @@
 - overdue follow-up queue
 - partial / underpayment 추적
 - usage rights / repeat brand memory
+- invoice workflow readiness memory (recipient, required fields, portal/AP instructions)
 
 ## MVP Boundary
 ### 포함
@@ -70,6 +73,8 @@
 - overdue만이 아니라 **deal stage / deliverable / promised payment date / follow-up queue**가 first-class data여야 한다.
 - creators와 agencies가 실제로 원하는 필드 목록이 더 명확해졌다: incoming inquiries, quoted rate, deliverables, usage rights, revenue totals, repeat brands, payment follow-up.
 - cash-flow pain은 invoice 발행 자체보다 **누가 아직 안 냈는지, 언제 다시 독촉해야 하는지, 무엇이 payment를 막는지**에 더 가깝다.
+- 하지만 이번 루프는 invoice 발행 전 단계의 readiness도 중요하다는 점을 추가로 보여줬다: first-time creators는 sponsor invoice workflow 자체를 묻고 시작한다.
+- usage rights는 단순 메모 필드가 아니라 **quote variance를 설명하는 pricing memory** 역할까지 해야 한다.
 
 ## Supporting Evidence
 - Reddit / PullPush mirror: agencies still track negotiation, delivery, and payment status in spreadsheets or a Notion + email frankenstack
@@ -78,6 +83,12 @@
   - https://www.reddit.com/r/PartneredYoutube/comments/1r3a35i/how_are_you_guys_organizing_sponsorships_and/
 - Reddit / PullPush mirror: full-time UGC creators explicitly ask how to manage invoices and payment follow-ups
   - https://www.reddit.com/r/UGCcreators/comments/1rgfo0p/fulltime_ugc_creators_whats_your_backend_system/
+- Reddit indexed snippet: first-time creators still ask basic sponsor invoicing workflow questions
+  - https://www.reddit.com/r/PartneredYoutube/comments/rdh39k/first_brand_deal_wondering_how_to_invoice_the/
+- Reddit indexed snippet: creators need concrete guidance on usage-rights pricing and duration, not just a note field
+  - https://www.reddit.com/r/PartneredYoutube/comments/1d21p8k/is_there_a_formula_for_how_much_i_should_charge/
+- Reddit indexed snippet: agency practice treats one year of usage rights as a material extra line item
+  - https://www.reddit.com/r/PartneredYoutube/comments/1cf7d33/pricing_sponsorships_and_usage_rights/
 - Reddit / PullPush mirror: brand payments often stretch to 30–90 days and require repeated follow-up
   - https://www.reddit.com/r/influencermarketing/comments/1pj7ztr/how_are_you_all_speeding_up_brand_payments_mine/
 - X indexed snippet: creators still invoice through WhatsApp-like chat messages
