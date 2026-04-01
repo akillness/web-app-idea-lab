@@ -67,3 +67,10 @@
   - `I asked a client about some unpaid invoices, what does his response mean?`에서는 **다음 reminder를 2주 후로 잡는다**는 문장이 보여, creator cash-ops에서는 day 3/day 7/day 30 같은 짧은 cadence만이 아니라 promised-date 이후의 중기 re-nudge cadence도 존재함이 보였다.
 - 이번 루프 X broad query 재테스트는 대부분 noisy하거나 profile-page 결과로 흘렀고, **Ruul의 weak payment systems framing 이상으로 discovery ranking을 바꿀 새 organic snippet은 회수하지 못했다**. X는 여전히 보조 확인 레이어다.
 - Threads broad query도 재테스트했지만 여전히 **실질적으로 쓸 만한 건 `@counselforcreators` 1건 수준**이었다. Threads는 hard-zero는 아니지만 여전히 ranking을 바꿀 discovery lane은 아니다.
+- 이번 루프 Threads 같은 targeted quoted query를 다시 돌려 보니 **총 3건**이 잡혔고, 그중 2건은 creator cash-ops에 실질적으로 쓸 만했다.
+  - `@counselforcreators`: **solid payment clause = explicit due timing + late fee**
+  - `@thetrademarkattorney_`: **late payment clause를 넣는 것이 follow-up reminder 자체보다 cash flow에 더 큰 영향**
+  - 나머지 1건은 conditional payment clause 일반론이라 discovery quality는 낮았다.
+- 이번 루프 Yahoo Japan Reddit 검색에서는 creator 쪽에 `Client asking for a paid invoice?`도 잡혔다. snippet 수준이지만 **paid invoice / receipt artifact를 `remittance advice`라고 부른다**는 명시적 용어가 나왔다. 즉 creator 제품은 단순 `proof requested`보다 **proof artifact type**도 저장하는 편이 맞다.
+- 이번 루프 Yahoo Japan ProductManagement 검색에서는 `Report: Trialling Basecamp's Shape Up methodology`가 추가로 잡혔고, snippet 수준에서 **customer commitments와 3일~2주짜리 small work item을 같은 운영 현실 안에서 다룬다**는 hybrid signal이 보였다. 즉 VoC는 큰 roadmap layer만이 아니라 **작은 약속성 작업이 전략 시간을 잠식하는지**도 읽어줘야 한다.
+- 이번 루프 X는 broad query가 다시 noisy/profile-heavy였지만, quoted query `site:x.com "late payments" "weak payment systems"`는 **Ruul 1건만 명확히 회수**했다. 즉 X는 여전히 creator backup의 구조적 framing 확인용이지 discovery breadth source는 아니다.

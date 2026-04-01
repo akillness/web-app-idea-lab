@@ -35,11 +35,13 @@
 - 어떤 경우엔 invoice가 늦어서가 아니라 **AP가 처리/감사할 시간을 아직 못 받은 것**이 문제일 수 있어, invoice 제출 lead time 자체를 관리해야 한다.
 - 또 AP를 잘 통과하느냐는 **direct client가 내부 결제 프로세스를 얼마나 잘 아느냐**에도 좌우되므로, 제품은 단순 contact 저장을 넘어서 `internal champion quality`를 기억해야 한다.
 - client가 `payment sent`라고 말해도 실제 입금 전에는 **payment documentation / receipt**를 다시 받아야 하는 경우가 있다. 즉 `paid claimed`와 `proof received`는 다른 상태다.
+- 이번 루프에는 paid-invoice receipt artifact를 **`remittance advice`**라고 부르는 실무 용어도 확인됐다. 즉 proof는 단순 boolean이 아니라 artifact type까지 저장하는 편이 맞다.
 - PO number나 vendor reference가 없으면 follow-up이 느려지고 책임이 흐려진다.
 - 큰 조직/대행사 체인에서는 project owner 승인 뒤에도 recruiter/intermediary billing이 끼어, 실제 돈이 도는 경로를 별도로 기억해야 한다.
 - invoice 자체도 professional template, payment terms, late-fee expectation, auto-reminder setup이 약하면 회수 확률이 떨어진다.
 - late invoice는 bad client만의 문제가 아니라 **not properly booked**, **missed pay run**, **cash-flow timing** 같은 accounting-stage 상태일 수도 있다.
 - 이번 루프 신호처럼, late payment의 일부는 **bad client**보다 **weak payment system / weak clause setup**에서 오므로 deal memory 이전에 payment-system hygiene가 필요하다.
+- Threads 재테스트에서는 **late payment clause를 넣는 것이 follow-up reminder를 더 많이 보내는 것보다 cash flow에 더 효과적**이라는 보조 신호도 추가됐다. 즉 제품은 cadence 엔진만이 아니라 **payment clause strength 진단**을 함께 제공해야 한다.
 
 ## Strongest Wedge
 `creator CRM`처럼 넓게 시작하지 말고, 초반 wedge는 아래로 고정한다.
@@ -64,6 +66,8 @@
 - invoice workflow readiness memory (recipient, required fields, portal/AP instructions)
 - AP processing/audit lead-time memory and `invoice in advance by` guidance
 - direct-client AP-navigation confidence / internal champion quality
+- payment clause strength (`strong`, `partial`, `weak`, `missing`)와 missing clause fields 진단
+- remittance proof artifact type (`receipt`, `remittance_advice`, `bank_proof`, `other`)
 - vendor onboarding / payment-system setup stage visibility
 - intermediary billing path memory (e.g. recruiter / agency / AP handoff)
 - invoice booking / pay-run visibility when payment has been promised but not received

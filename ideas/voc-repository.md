@@ -27,6 +27,7 @@
 - 이번 루프의 fresh Reddit indexed snippet은 여기서 한 발 더 나아가, **customer commitments를 맞추려다 strategy에 쓸 시간이 먼저 사라진다**고 말한다. 즉 제품은 commitment-aware prioritization뿐 아니라 **strategy-time protection**도 제공해야 한다.
 - 이번 루프의 추가 Reddit indexed signal은 우선순위가 실제로 **external customer commitments / customer shipments / priority company objectives / technology inflections / market timing** 때문에 override된다는 점을 보여줬다. 즉 제품은 `무엇이 많이 요청됐는가`만이 아니라 `왜 이 요청이 지금 기본 scoring을 덮고 올라왔는가`를 남겨야 한다.
 - 같은 결의 fresh PM indexed snippet은 customer-commitment conflict가 어느 순간부터는 **exec decision**이 된다고 말한다. 즉 override workflow는 이유 기록만으로 끝나지 않고, **누가 최종 결정을 내려야 하는지 / escalation owner가 누구인지**도 드러내야 한다.
+- 이번 루프의 추가 Shape Up 관련 indexed snippet은 일부 팀이 **customer commitments와 3일~2주짜리 small work item**을 같은 운영 현실 안에서 다룬다는 점도 보여줬다. 즉 제품은 `큰 roadmap bet`만이 아니라 `작은 commitment-saving work`도 분리해 읽어줘야 한다.
 - Productboard를 써도 quarterly planning에는 맞지만 discovery / backlog weighing에는 답답하다는 신호가 있다.
 - 날짜 약속이 비현실적일 때는 high-level roadmap + release/sprint plan + progress report로 겨우 expectation을 관리한다.
 - roadmap을 timeline과 동일시하면 곧 date promise처럼 읽힌다는 practitioner signal이 있다.
@@ -64,6 +65,7 @@
 12. churn 문제를 늦게 읽으면 unit economics와 성장 의사결정까지 같이 흔들린다.
 13. external commitment / shipment / company objective가 들어왔을 때 왜 기존 우선순위를 override했는지 기록되지 않아, 예외가 곧 정치처럼 보인다.
 14. customer commitment reconciliation이 길어질수록 strategy work가 밀리는데, 현재 팀은 이 `strategy-time tax`를 측정하거나 설명하지 못한다.
+15. 일부 customer ask는 사실 큰 프로젝트가 아니라 **3일~2주짜리 small save**로 처리될 수 있는데, 현재 팀은 이걸 일반 roadmap bet과 같은 언어로만 다뤄 작은 약속성 작업이 전략 시간을 얼마나 먹는지 구분하지 못한다.
 
 ## Product Wedge
 "고객 대화 저장소"가 아니라 **Monday-Morning Support + Churn Review + Commitment Risk Review + Strategy-Time Protection View + Now/Next/Later Roadmap Communication + Next-90-Days Decision View + Customer-Facing Progress Report Surface**.
@@ -78,6 +80,9 @@
 - priority override reason (external commitment / customer shipment / company objective / market timing / tech inflection / none)
 - override evidence source and override expiry / reassessment trigger
 - escalation owner / final decision owner when a conflict has moved beyond normal PM triage into explicit exec-level arbitration
+- work size band (`small_3d`, `small_1w`, `small_2w`, `larger_bet`, `unknown`)
+- commitment fit (`small_patch_candidate`, `roadmap_candidate`, `unsafe_to_commit`)
+- can this satisfy the commitment without derailing strategy? (`yes`, `no`, `unclear`)
 - external update mode (high-level roadmap / sprint or release update / explicit non-commitment / at-risk progress report)
 - roadmap layer vs release-plan layer distinction
 - bucket definition guidance (default: `now` = recently shipped through ~2 months out, `next` = next quarter, `later` = ~6–12 months; editable by team)

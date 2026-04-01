@@ -5,7 +5,7 @@
 
 - **Reddit**: direct live page는 불안정했지만, 이번 루프에도 **Yahoo Japan indexed Reddit snippets**가 가장 잘 먹혔다. 팀들은 아직도 **Google Form → spreadsheet → weekly review**, **Slack/email/meeting note → ProductBoard → Jira**, **feature request별 dollars/resource time tie-back**, **enterprise request tracking용 multiple spreadsheets** 같은 수동 구조를 쓰고 있었다. 이번 루프에는 여기에 더해 **fill-in-the-blank JTBD intake template**, **JIRA feature request project**, **area / impact / effort grooming field**뿐 아니라, **Productboard는 quarterly planning에 묶이고 discovery/backlog weighing은 여전히 어렵다**, **90일 이상 scope/date commitment를 잠그기 어렵다**, **3개월 roadmap도 2주 단위로 흔들린다**, **feature request가 너무 많아 Sales/CSM이 commitments 사이 우선순위를 분기마다 다시 조정한다**, **hard date는 비현실적이라 high-level roadmap + release/sprint plan + progress report로 버틴다**, **roadmap과 release plan은 같은 것이 아니며 roadmap을 timeline처럼 다루면 곧 커뮤니케이션이 꼬인다**, **public roadmap은 now / next / soon / later 수준이 더 현실적이고 proven delivery history 없으면 날짜를 피한다**, **실제 SaaS release는 2주 cadence 같은 운영 현실에 맞춰 돌아간다**는 기존 흐름이 유지됐다. 이번 루프에는 여기에 더해 더 직접적인 commitment workflow 신호도 붙었다. 한 indexed snippet은 **customer commitments를 별도 flow로 관리한다**고 말했고, 다른 snippet은 **close deals, plan effectively, or meet customer commitments**를 한 묶음 문제로 다뤘다. 즉 named commitment는 generic demand와 같은 backlog layer에 두기 어렵고, commitment hygiene는 단순 PM 정리 문제가 아니라 세일즈/계획/신뢰 문제까지 건드린다. 여기에 새롭게 **external customer commitments, customer shipments, priority company objectives, technology inflections, market timing**이 붙으면 우선순위가 달라진다는 snippet도 잡혔다. 즉 제품은 단순 scoring이 아니라 **왜 지금 이 요청이 기본 ranking을 override했는지**를 남기는 얇은 rule layer도 필요하다. 이번 루프에는 `Content vs Process` 결과에서 **customer commitments를 맞추려다 strategy에 쓸 시간이 먼저 사라진다**는 더 직접적인 strategy-tax 신호도 붙었다. 즉 제품은 단순 `what got overridden` 기록을 넘어서 **무엇이 전략 시간을 잠식하고 있는지**도 읽어줘야 한다. 그리고 여기서 한 발 더 나아가 **now/next/later의 commitment는 근거리 범위에만 유효하다**, **\"literal timeline이 아니다\"라고 말해도 고객은 결국 later가 언제인지 묻는다**, **NOW/NEXT/LATER roadmap 자체가 clarity/commitment 부족으로 읽힐 수 있다**, **public roadmap transparency 자체는 신뢰를 주지만 날짜보다 status language가 더 안전하다**, **now/next/later는 시작점일 뿐이고 detail은 firm해질수록 단계적으로 덧붙여야 한다**, **multi-year roadmap에서도 now/next/later는 정확한 약속보다 flexibility와 intention을 주는 장치로 이... [truncated]
 - **X**: direct post reading은 막혔지만, Yahoo Japan indexed snippets로는 `decision problem, not feedback problem`, `Monday-morning one view`, `support/Intercom/Slack/Salesforce hopping`, `percentile curiosity`, `7% churn + $20 ARPU` 같은 sharper framing이 유지됐다. Creator 쪽에서는 **day 3 / day 7 / day 30 follow-up cadence**, **late payment / underpayment / ghosting**, **WhatsApp-style invoicing**가 더 실무적인 pain으로 회수됐다. 여기에 더해 **professional invoice template + net 30 + late fee + auto-reminders** 같은 framing도 보이면서, 돈이 늦게 들어오는 문제의 일부가 invoice readiness / professionalism gap이라는 점이 더 또렷해졌다. 이번 루프에는 특히 **late payments는 bad client만의 문제가 아니라 weak payment systems의 문제일 수 있다**는 framing이 추가돼, creator backup을 generic CRM보다 payment-system clarity 쪽으로 더 좁힐 근거가 생겼다. 다만 이번 루프 broad X 재테스트는 대부분 noisy하거나 profile-page 결과로 흘러, **새로운 organic signal은 Ruul의 weak-payment-system framing을 넘어서지 못했다**. 즉 X는 여전히 방향 확인용 보조 레이어다.
-- **Threads**: 이번 루프의 broad query는 Yahoo Japan에서 **1건의 indexed result**를 돌려줬고, 추가로 targeted quoted query (`site:threads.net "payment clause" creator late fee`)는 **2건**을 돌려줬다. 하지만 그중 실질적으로 쓸 만한 것은 여전히 `@counselforcreators` 계정 snippet 하나였고, 내용도 **solid payment clause = explicit due timing + late fee** 수준의 directional advice에 가까웠다. 이번 루프 재테스트에서도 실질 usable result 수는 늘지 않았다. 즉 Threads는 hard-zero는 아니지만, 여전히 community workflow breadth가 약한 discovery source다.
+- **Threads**: 이번 루프 targeted quoted query (`site:threads.net "payment clause" creator late fee`)를 다시 돌려 보니 **총 3건**이 잡혔다. 그중 실질적으로 쓸 만한 것은 2건이었다. 하나는 기존과 같은 `@counselforcreators`의 **solid payment clause = explicit due timing + late fee**였고, 다른 하나는 `@thetrademarkattorney_`의 **late payment clause를 넣는 것이 follow-up reminder를 더 많이 보내는 것보다 cash flow에 더 효과적이었다**는 framing이었다. 즉 Threads는 여전히 얇지만, 이제는 `clause clarity > reminder intensity`라는 creator backup 해석을 보조하는 secondary signal 정도는 제공한다. 나머지 1건은 conditional payment clause 일반론이라 discovery quality가 낮았다.
 - **Adjacency / discussion index**: Reddit/X/Threads 직접 읽기가 막히는 구간은 discussion-index fallback으로 보강했다. 여기서는 특히 **customer needs should not just fall into Jira tickets**, **complete observability of calls / presales notes / forum posts / Zendesk / services interactions**, **support-origin requests are triaged with automation + AI before planning**, **support queue and project queue need different data models**, **release schedule and product roadmap are both customer-facing commitments** 같은 실무 언어가 회수됐다. 이건 새로운 아이디어를 만든다기보다, Primary인 VoC가 왜 `repository`보다 `decision + commitment-safe communication layer`로 읽혀야 하는지를 더 또렷하게 만든다.
 
 이번 루프에서 더 선명해진 흐름은 네 가지다.
@@ -29,6 +29,7 @@
    - 대형 조직에서는 **project owner 승인 → recruiter/intermediary billing → AP/pay run** 같은 체인이 생겨, 이미 납품/승인된 작업도 90일짜리 cash gap으로 변한다.
    - payment가 밀리는 이유도 단순 불성실만이 아니라 **invoice booking 누락**, **pay run miss**, **cash-flow timing**일 수 있어, 제품은 reminder 발송보다 **지금 payment system 어디에서 막혔는지**를 알려줘야 한다.
   - 이번 루프에는 여기에 더해 **accounts payable가 invoice를 처리·감사할 시간을 벌기 위해 사전 제출/advance invoicing이 필요할 수 있다**, **AP 네비게이션 품질은 direct client가 내부 결제 프로세스를 얼마나 잘 아느냐에 좌우된다**는 신호도 추가됐다. 즉 follow-up timing 이전에 **AP lead time**과 **internal champion quality**가 cash-arrival을 좌우할 수 있다.
+  - 이번 루프에는 creator 쪽 Reddit indexed result에서 **paid invoice / receipt artifact를 `remittance advice`라고 부른다**는 용어도 잡혔다. 즉 `payment proof`는 자유 텍스트가 아니라, 최소한 `receipt / remittance advice / bank proof`처럼 artifact type까지 구분하는 편이 맞다.
    - 이번 루프 Yahoo Japan Reddit 검색은 여기에 더해 **PO number를 late reminder에 계속 재사용하라**, **late fee는 계약에서 미리 정의되어야 한다**, **3일 이상 연체 시 1% compounded daily 같은 강한 late-fee policy 예시도 실무적으로 논의된다**는 점을 보여줬다. 즉 collection policy는 단순 메모가 아니라 structured field여야 한다.
 
 즉 이번 루프는 순위를 뒤집지 않았다. 대신 **Primary인 VoC Repository는 `feedback repository`가 아니라 `decision problem + commitment-risk + safe roadmap/update communication solver`로 더 또렷해졌고**, Backup인 Creator Deal CRM은 **`broad CRM`이 아니라 `deal execution + collections visibility + follow-up timing + payment-terms clarity + invoice readiness + payment-system-stage visibility`**로 더 좁아졌다.
@@ -60,6 +61,8 @@
 15. now / next / later를 써도 실제로는 `later가 언제냐`는 질문이 다시 들어와, ambiguity를 해소하는 별도 update surface가 필요하다.
 16. public roadmap은 now / next / soon / later 수준으로 쓰되, proven delivery history가 없으면 날짜를 피하는 식의 암묵 규칙이 존재한다.
 17. 실제 release cadence는 짧고 반복적일 수 있어, quarterly goal language와 biweekly shipping reality 사이 translation layer가 필요하다.
+18. 최근 Shape Up 관련 indexed snippet은 **customer commitments와 3일~2주짜리 small work item**을 같은 운영 현실 안에서 다룬다. 즉 팀은 큰 roadmap bet만이 아니라 작은 약속성 작업도 별도 판단해야 한다.
+19. 이런 small work item이 누적되면 전략 시간이 더 먼저 잠식될 수 있으므로, 제품은 `big bet vs small commitment save` 구분도 보여줘야 한다.
 18. external customer commitment, shipment, company objective, market timing 같은 예외가 들어오면 우선순위가 바뀌지만, 그 override reason은 보통 회의 기억 속에만 남는다.
 19. 최근 indexed PM 신호는 customer-commitment conflict가 어느 순간부터 **exec decision**으로 넘어간다는 점도 보여줬다. 즉 override는 rule만이 아니라 escalation owner까지 필요하다.
 20. 일부 팀은 support-origin issue와 project-planning issue를 같은 queue에 넣어, `누가 무엇을 겪었는지`와 `우리가 다음에 무엇을 만들지`가 한데 엉킨다.
@@ -396,6 +399,21 @@
 - https://www.reddit.com/r/freelance/comments/wps58g/client_says_they_paid_my_invoice_but_i_received/
 - Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-01
 - Confidence: high
+
+> "If you're in the UK, this is often called a Remittance Advice - it's basically a receipt saying the invoice has been paid." — Reddit indexed snippet
+- https://www.reddit.com/r/freelance/comments/cg8zl2/client_asking_for_a_paid_invoice/
+- Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-02
+- Confidence: high
+
+> "Adding a late payment clause has done more for my cash flow than sending follow up payment reminders." — Threads indexed snippet
+- https://www.threads.net/@thetrademarkattorney_
+- Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-02
+- Confidence: medium
+
+> "... customer commitments and small work items between 3 days and 2 weeks ..." — Reddit indexed snippet
+- https://www.reddit.com/r/ProductManagement/comments/194y0oy/report_trialling_basecamps_shape_up_methodology/
+- Source path: Yahoo Japan Search indexed snippet, accessed 2026-04-02
+- Confidence: medium
 
 > "The next reminder is scheduled in two weeks." — Reddit indexed snippet
 - https://www.reddit.com/r/freelance/comments/ivipfs/i_asked_a_client_about_some_unpaid_invoices_what/
