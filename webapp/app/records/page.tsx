@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { records, VocRecord, SignalType, RecordStatus } from '../lib/sample-data'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { accounts, records, VocRecord, SignalType, RecordStatus } from '../lib/sample-data'
 import { signalBadge, signalLabel } from '../lib/ui-config'
 import RecordModal from './RecordModal'
 
@@ -31,9 +32,25 @@ export default function RecordsPage() {
   const [activeFilter, setActiveFilter] = useState<SignalType | null>(null)
   const [extraRecords, setExtraRecords] = useState<VocRecord[]>([])
   const [showModal, setShowModal] = useState(false)
+  const [accountFilter, setAccountFilter] = useState<string | null>(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    // Query-string hydration only runs once on mount for account drill-down deep links.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAccountFilter(params.get('account'))
+  }, [])
+
+  const filteredAccount = accountFilter
+    ? accounts.find((account) => account.id === accountFilter) ?? null
+    : null
 
   const allRecords = [...extraRecords, ...records]
-  const filtered = activeFilter ? allRecords.filter(r => r.signal_type === activeFilter) : allRecords
+  const filtered = allRecords.filter((record) => {
+    if (activeFilter && record.signal_type !== activeFilter) return false
+    if (filteredAccount && record.account_id !== filteredAccount.id) return false
+    return true
+  })
 
   function handleAddRecord(record: VocRecord) {
     setExtraRecords(prev => [record, ...prev])
@@ -46,12 +63,25 @@ export default function RecordsPage() {
         <RecordModal onClose={() => setShowModal(false)} onSubmit={handleAddRecord} />
       )}
 
-      <div className="mb-6 flex items-start justify-between">
+      <div className="mb-6 flex items-start justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white">Records</h2>
           <p className="mt-1 text-sm text-slate-400">
             {filtered.length} of {allRecords.length} VOC signals
           </p>
+          {filteredAccount && (
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <span className="rounded-full border border-sky-700 bg-sky-950 px-3 py-1 font-medium text-sky-300">
+                Account: {filteredAccount.name}
+              </span>
+              <Link
+                href="/records"
+                className="text-slate-400 transition-colors hover:text-white"
+              >
+                Clear account filter
+              </Link>
+            </div>
+          )}
         </div>
         <button
           onClick={() => setShowModal(true)}

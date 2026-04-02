@@ -148,6 +148,18 @@ test.describe('Accounts', () => {
     // "Evidence Summary" header lives in the div after </summary> (not the group-open:hidden hint)
     await expect(firstCard.locator('div p.text-xs.font-semibold').first()).toBeVisible()
   })
+
+  test('linked records view-all opens the records page with the account filter applied', async ({ page }) => {
+    const acmeCard = page.locator('details').filter({ hasText: 'Acme Corp' })
+    await acmeCard.locator('summary').click()
+
+    await acmeCard.getByRole('link', { name: 'View all →' }).click()
+    await expect(page).toHaveURL(/\/records\/?\?account=acc-001/)
+    await expect(page.getByText('Account: Acme Corp')).toBeVisible()
+    await expect(page.locator('tbody tr')).toHaveCount(4)
+    await expect(page.getByRole('cell', { name: 'Acme Corp' })).toHaveCount(4)
+    await expect(page.getByText('Clear account filter')).toBeVisible()
+  })
 })
 
 // ── Themes ────────────────────────────────────────────────────────────────
