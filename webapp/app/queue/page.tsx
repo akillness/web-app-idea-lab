@@ -1,25 +1,5 @@
 import { decisionQueue, RecommendationType } from '../lib/sample-data'
-
-const recConfig: Record<RecommendationType, { label: string; row: string; badge: string; bar: string }> = {
-  build_now: {
-    label: 'Build Now',
-    row: 'border-l-4 border-l-emerald-500',
-    badge: 'bg-emerald-900 text-emerald-300 border-emerald-700',
-    bar: 'bg-emerald-500',
-  },
-  validate_next: {
-    label: 'Validate Next',
-    row: 'border-l-4 border-l-blue-500',
-    badge: 'bg-blue-900 text-blue-300 border-blue-700',
-    bar: 'bg-blue-500',
-  },
-  hold: {
-    label: 'Hold',
-    row: 'border-l-4 border-l-slate-600',
-    badge: 'bg-slate-700 text-slate-400 border-slate-600',
-    bar: 'bg-slate-500',
-  },
-}
+import { recConfig } from '../lib/ui-config'
 
 export default function QueuePage() {
   const sorted = [...decisionQueue].sort((a, b) => a.rank - b.rank)

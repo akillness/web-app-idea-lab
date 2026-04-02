@@ -27,6 +27,23 @@
 | **Briefs** | Weekly decision brief with markdown export |
 | **Build Queue** | Ranked build-next decision queue with linked evidence |
 
+### 🖼 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><strong>Dashboard</strong><br><img src="webapp/public/screenshots/dashboard.png" alt="Dashboard" width="400"/></td>
+    <td align="center"><strong>Records</strong><br><img src="webapp/public/screenshots/records.png" alt="Records" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Accounts</strong><br><img src="webapp/public/screenshots/accounts.png" alt="Accounts" width="400"/></td>
+    <td align="center"><strong>Themes</strong><br><img src="webapp/public/screenshots/themes.png" alt="Themes" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Weekly Brief</strong><br><img src="webapp/public/screenshots/briefs.png" alt="Briefs" width="400"/></td>
+    <td align="center"><strong>Build Queue</strong><br><img src="webapp/public/screenshots/queue.png" alt="Build Queue" width="400"/></td>
+  </tr>
+</table>
+
 ### 🏗 Architecture
 
 ```

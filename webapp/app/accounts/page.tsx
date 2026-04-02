@@ -1,4 +1,5 @@
 import { accounts, HealthRiskLevel, SignalType } from '../lib/sample-data'
+import { signalLabel } from '../lib/ui-config'
 
 const riskConfig: Record<HealthRiskLevel, { label: string; color: string; dot: string }> = {
   critical: { label: 'Critical', color: 'border-red-700 bg-red-950', dot: 'bg-red-500' },
@@ -12,14 +13,6 @@ const riskTextColor: Record<HealthRiskLevel, string> = {
   high: 'text-orange-400',
   medium: 'text-yellow-400',
   low: 'text-emerald-400',
-}
-
-const signalLabel: Record<SignalType, string> = {
-  feature_request: 'Feature Request',
-  support_escalation: 'Support Escalation',
-  churn_risk: 'Churn Risk',
-  sales_commitment: 'Sales Commitment',
-  rfp: 'RFP',
 }
 
 const signalColor: Record<SignalType, string> = {

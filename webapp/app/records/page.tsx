@@ -1,20 +1,8 @@
+'use client'
+
+import { useState } from 'react'
 import { records, SignalType, RecordStatus } from '../lib/sample-data'
-
-const signalBadge: Record<SignalType, string> = {
-  feature_request: 'bg-blue-900 text-blue-300 border-blue-800',
-  support_escalation: 'bg-orange-900 text-orange-300 border-orange-800',
-  churn_risk: 'bg-red-900 text-red-300 border-red-800',
-  sales_commitment: 'bg-yellow-900 text-yellow-300 border-yellow-800',
-  rfp: 'bg-purple-900 text-purple-300 border-purple-800',
-}
-
-const signalLabel: Record<SignalType, string> = {
-  feature_request: 'Feature Request',
-  support_escalation: 'Support Escalation',
-  churn_risk: 'Churn Risk',
-  sales_commitment: 'Sales Commitment',
-  rfp: 'RFP',
-}
+import { signalBadge, signalLabel } from '../lib/ui-config'
 
 const statusBadge: Record<RecordStatus, string> = {
   new: 'bg-slate-700 text-slate-300',
@@ -39,29 +27,42 @@ const signalTypes: SignalType[] = [
 ]
 
 export default function RecordsPage() {
+  const [activeFilter, setActiveFilter] = useState<SignalType | null>(null)
+  const filtered = activeFilter ? records.filter(r => r.signal_type === activeFilter) : records
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      {/* Header */}
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white">Records</h2>
         <p className="mt-1 text-sm text-slate-400">
-          {records.length} VOC signals across all accounts
+          {filtered.length} of {records.length} VOC signals
         </p>
       </div>
 
       {/* Filter chips */}
       <div className="flex flex-wrap gap-2 mb-6">
         <span className="text-xs text-slate-500 self-center mr-1">Filter:</span>
+        <button
+          onClick={() => setActiveFilter(null)}
+          className={`inline-flex items-center gap-1.5 border text-xs px-3 py-1 rounded-full font-medium cursor-pointer transition-all
+            ${activeFilter === null
+              ? 'bg-white text-slate-900 border-white'
+              : 'bg-slate-700 text-slate-300 border-slate-600 hover:border-slate-400'}`}
+        >
+          All <span className="opacity-70">({records.length})</span>
+        </button>
         {signalTypes.map((type) => {
           const count = records.filter((r) => r.signal_type === type).length
+          const isActive = activeFilter === type
           return (
-            <span
+            <button
               key={type}
-              className={`inline-flex items-center gap-1.5 border text-xs px-3 py-1 rounded-full font-medium ${signalBadge[type]}`}
+              onClick={() => setActiveFilter(isActive ? null : type)}
+              className={`inline-flex items-center gap-1.5 border text-xs px-3 py-1 rounded-full font-medium cursor-pointer transition-all
+                ${signalBadge[type]} ${isActive ? 'ring-2 ring-white/40' : 'hover:opacity-80'}`}
             >
-              {signalLabel[type]}
-              <span className="opacity-70">({count})</span>
-            </span>
+              {signalLabel[type]} <span className="opacity-70">({count})</span>
+            </button>
           )
         })}
       </div>
@@ -83,7 +84,7 @@ export default function RecordsPage() {
               </tr>
             </thead>
             <tbody>
-              {records.map((rec, i) => (
+              {filtered.map((rec, i) => (
                 <tr
                   key={rec.id}
                   className={`border-t border-slate-700 ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-900'} hover:bg-slate-700 transition-colors`}
@@ -97,9 +98,7 @@ export default function RecordsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`font-bold text-base ${severityColor(rec.severity)}`}>
-                      {rec.severity}
-                    </span>
+                    <span className={`font-bold text-base ${severityColor(rec.severity)}`}>{rec.severity}</span>
                     <span className="text-slate-600 text-xs">/5</span>
                   </td>
                   <td className="px-4 py-3">
@@ -107,9 +106,7 @@ export default function RecordsPage() {
                       {rec.status.replace('_', ' ')}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-300 max-w-xs truncate" title={rec.summary}>
-                    {rec.summary}
-                  </td>
+                  <td className="px-4 py-3 text-slate-300 max-w-xs truncate" title={rec.summary}>{rec.summary}</td>
                   <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">{rec.date}</td>
                 </tr>
               ))}
@@ -118,7 +115,7 @@ export default function RecordsPage() {
         </div>
       </div>
 
-      {/* Summary counts by signal type */}
+      {/* Summary counts */}
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
         {signalTypes.map((type) => {
           const count = records.filter((r) => r.signal_type === type).length
