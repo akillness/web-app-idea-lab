@@ -451,26 +451,24 @@ Success:
 
 ## 13. Current implementation slice
 ### Selected task
-Scaffold a dependency-light ranking engine for the primary idea that:
-- turns theme metrics into a ranked build-next queue
-- enforces the documented score weights and override taxonomy
-- emits per-theme score breakdowns and recommendation labels
-- is covered by executable tests so later UI/ingestion work can build on stable domain logic
-
-**Execution note (this run)**: implement the pure ranking module first, keep it dependency-light, and verify it with the built-in `node:test` runner before any UI or ingestion scaffolding.
+정리된 최신-file 구조를 유지하면서, 이 문서를 **실제 구현 직전의 source-of-truth spec**으로 고정한다. 즉 별도 코드 스캐폴딩을 이 저장소에 다시 쌓지 않고, 아래 항목이 바로 구현 가능한 수준으로 남아 있어야 한다.
+- intake → extraction → account matching → ranking → brief/update generation 흐름
+- entity contract (`records`, `accounts`, `signals`, `themes`, `decision_queue_items` 등)
+- `build-next`, `why this jumped`, `why not now`, `when is later?` 산출물 규칙
+- commitment-safe wording / explanation workload reduction 원칙
 
 ### Planned files
-- Create: `package.json`
-- Create: `src/voc/ranking.js`
-- Create: `tests/voc-ranking.test.js`
-- Modify: `README.md`
+- Maintain: `develop/primary-voc-repository.md`
+- Reference: `search/latest-market-map.md`
+- Reference: `ideas/primary-voc-repository.md`
 
 ### Short implementation plan
-1. Bootstrap a dependency-light Node test harness with the built-in `node:test` runner.
-2. Implement a pure ranking module that validates the documented override taxonomy and score ranges.
-3. Encode the MVP weight table into deterministic weighted scoring + recommendation thresholds.
-4. Gate recommendations on linked account evidence so queue items do not overstate confidence.
-5. Cover the module with executable tests for scoring, validation, and ranked output ordering.
+1. 이 문서의 entity / queue / output contract를 기준으로 첫 구현 범위를 자른다.
+2. 첫 코드 슬라이스는 `record intake + extraction validation + account matching + ranked build-next queue`까지만 잡는다.
+3. customer-facing wording 생성은 초기엔 template-assisted mode로 두고, free-form generation은 후순위로 둔다.
+4. `build-next` 추천은 linked account evidence 없이는 승격되지 않도록 유지한다.
+5. 구현 저장소나 실제 앱 scaffold가 시작되면, 그쪽에서만 코드/테스트 파일을 만들고 여기에는 최신 계획 문서만 유지한다.
 
 ### Verification
-- `npm test`
+- 현재 저장소에는 approved latest files만 남아 있어야 한다.
+- 이 문서만 읽고도 첫 구현 범위와 데이터 contract를 바로 옮길 수 있어야 한다.
