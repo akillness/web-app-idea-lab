@@ -4,12 +4,12 @@
 **Updated**: 2026-04-02
 
 ## One-line definition
-초기 B2B SaaS 팀의 support / churn / feature request / customer commitment / RFP pressure evidence를 **customer-level evidence board, 주간 의사결정 브리프, build-next queue, commitment-safe update draft, sales/CS 대응용 explanation pack**으로 바꿔주는 decision + explanation layer.
+초기 B2B SaaS 팀의 support / churn / feature request / customer commitment / RFP pressure evidence를 **customer-level evidence board, 주간 의사결정 브리프, build-next queue, commitment-safe update draft, sales/CS/support 대응용 explanation pack**으로 바꿔주는 decision + explanation layer.
 
 ## 핵심 문제
 팀은 feedback가 없는 게 아니라 너무 많다. 문제는 evidence가 Productboard, Jira, support queue, Slack, notes, CRM에 흩어져 있고, 그걸 매주 다시 읽어 **무엇이 악화됐는지 / 어떤 계정과 세그먼트가 위험한지 / 왜 어떤 항목이 점프했는지 / 무엇을 약속하면 안 되는지 / 무엇을 다음에 만들어야 하는지**로 번역하는 레이어가 없다는 점이다.
 
-또한 시장은 이미 tagging/AI clustering과 customer-level view를 탐색하고 있지만, 실제 팀은 여전히 shared store 이후 단계에서 멈춘다. 최신 사용자 언어도 `tag + cluster + manual prioritization` 운영을 반복하고, 현업 조합도 `Pendo/Aha 같은 요청 저장소 + support data + 개인 노트/설명 작업`처럼 끊겨 있다. 즉 부족한 것은 수집 기능보다 **account-aware decision translation**이며, 더 구체적으로는 **정리된 signal을 what-to-build-next 판단과 why-now/why-not-now 설명으로 바꾸는 operating layer**다. 이번 재확인에서는 여기서 한 단계 더 나아가, **sales가 계약/엔터프라이즈 딜 과정에서 사실상 commitments를 팔아버리는 상황**, **3~12개월짜리 날짜 요구**, **repeated customer roadmap call**, 그리고 **RFP/revenue asks와 strategic roadmap 사이를 설명 가능한 방식으로 중재해야 하는 우선순위 override 문제**까지 product/CS/founder 시간을 잡아먹는다는 점이 더 선명해졌다.
+또한 시장은 이미 tagging/AI clustering과 customer-level view를 탐색하고 있지만, 실제 팀은 여전히 shared store 이후 단계에서 멈춘다. 최신 사용자 언어도 `tag + cluster + manual prioritization` 운영을 반복하고, 현업 조합도 `Pendo/Aha 같은 요청 저장소 + support data + 개인 노트/설명 작업`처럼 끊겨 있다. 즉 부족한 것은 수집 기능보다 **account-aware decision translation**이며, 더 구체적으로는 **정리된 signal을 what-to-build-next 판단과 why-now/why-not-now 설명으로 바꾸는 operating layer**다. 이번 재확인에서는 여기서 한 단계 더 나아가, **sales가 계약/엔터프라이즈 딜 과정에서 사실상 commitments를 팔아버리는 상황**, **3~12개월짜리 날짜 요구**, **repeated customer roadmap call**, 그리고 **RFP/revenue asks와 strategic roadmap 사이를 설명 가능한 방식으로 중재해야 하는 우선순위 override 문제**까지 product/CS/founder 시간을 잡아먹는다는 점이 더 선명해졌다. 추가로 support 현장도 별도 아이디어가 아니라, **major-account roadmap guarantee와 escalation pressure를 decision layer로 바로 연결해야 하는 relay surface**로 보는 편이 맞다는 신호가 확인됐다.
 
 ## 누구를 위한 제품인가
 - 10~100명 B2B SaaS 팀
@@ -47,8 +47,9 @@
 - bucket definition note + ambiguity-closing answer
 - commitment-overhead queue
 - customer-roadmap communication queue
-- sales/CS reusable explanation pack
+- sales/CS/support reusable explanation pack
 - contract / RFP pressure trace
+- support escalation relay queue
 
 ## 왜 지금 이 아이디어를 유지하는가
 - 신호 밀도가 가장 높다.
@@ -56,8 +57,8 @@
 - output artifact가 뚜렷하고 검증 가능하다.
 - account/revenue weighting 덕분에 B2B 팀 단위 과금 논리가 자연스럽다.
 - 현재 대체재들은 tagging/AI clustering과 customer-level view까지는 가도 `what to build next`, `why behind priorities`, `commitment-safe explanation`을 충분히 닫아주지 못한다.
-- 이번 재확인으로 `sales-sold commitments`, `enterprise date pressure`, `repeated roadmap explanation work`, `RFP-vs-strategy override trade-off`까지 한꺼번에 잡는 제품 표면이 더 또렷해졌다.
-- 즉 최근 신호상 줄여줘야 하는 것은 `결정`뿐 아니라 `결정을 고객/세일즈/경영진에게 안전하게 설명하고 override 이유를 방어하는 운영 비용`이다.
+- 이번 재확인으로 `sales-sold commitments`, `enterprise date pressure`, `repeated roadmap explanation work`, `RFP-vs-strategy override trade-off`, `support escalation relay`까지 한꺼번에 잡는 제품 표면이 더 또렷해졌다.
+- 즉 최근 신호상 줄여줘야 하는 것은 `결정`뿐 아니라 `결정을 고객/세일즈/서포트/경영진에게 안전하게 설명하고 override 이유를 방어하는 운영 비용`이다.
 
 ## 제품 wedge
 "고객 피드백 저장소"가 아니라 **support/churn/request/commitment를 customer-level evidence board와 weekly operating artifact로 바꾸고, sales/customer-facing expectation pressure까지 흡수하는 decision system**.

@@ -26,6 +26,8 @@
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2023-04-28 결과는 `How to not be on every customer roadmap call? ... We do have customer facing versions of the roadmaps that they should be able ...`를 노출한다. artifact가 있어도 **반복 roadmap explanation workload**는 계속 남는다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20%22customer%20roadmap%20call%22%20PM
+- **Yahoo Japan indexed snippet (browser-rendered, medium-high confidence)**: `r/ProductManagement` 2024-04-04 결과는 `Support should report into Product ... They've also committed to major accounts guarantees about roadmap ...`를 노출한다. 즉 support-to-product relay는 별도 아이디어가 아니라 **major-account commitment pressure를 product decision layer로 바로 연결하는 sub-module**로 보는 편이 맞다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22support%20should%20report%20into%20product%22%20major%20accounts%20committed
 
 ### 2) Backup — Creator Deal CRM
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/freelance` 2021-01-15 결과는 `accounts payable department`와 `payment run`을 함께 언급한다. creator-side pain은 일반 독촉보다 **named AP owner + pay-run visibility** 쪽이 더 구조적이다.  
@@ -47,10 +49,11 @@
 
 ## 순위 유지 이유
 ### 1) Voice-of-Customer Repository
-이번 루프에서도 가장 강한 쪽은 VoC다.
+- 이번 루프에서도 가장 강한 쪽은 VoC다.
 - 시장 요구가 `feedback 저장`보다 **planning translation / build-next decision / account-aware prioritization** 쪽으로 더 선명하다.
 - 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, sales-sold commitments, repeated roadmap explanation workload, RFP-vs-strategy override trade-off**까지 묶어 처리하는 operating layer다.
-- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + override-defense layer**다.
+- 추가로 support-to-product relay 자체도 별도 카테고리보다 **major-account commitment pressure를 decision layer에 연결하는 sub-module**로 흡수하는 편이 맞다는 신호가 보였다.
+- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + support-relay sub-module + override-defense layer**다.
 
 ### 2) Creator Deal CRM
 backup pain도 여전히 선명하지만 더 좁다.

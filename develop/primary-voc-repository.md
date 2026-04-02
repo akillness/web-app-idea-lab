@@ -4,9 +4,9 @@
 **Updated**: 2026-04-02
 
 ## 1. Build goal
-사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**, **sales/CS reusable explanation pack**을 생성한다.
+사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**, **sales/CS/support reusable explanation pack**을 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure / RFP-vs-strategy override trade-off**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure / RFP override justification에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure / RFP-vs-strategy override trade-off / support escalation relay**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure / RFP override justification / support escalation summary에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
 
 ## 2. MVP scope
 ### 포함
@@ -30,7 +30,7 @@
 - now/next/later-safe external update draft 생성
 - bucket definition note 생성
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
-- stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `internal exec`)
+- stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `support`, `internal exec`)
 - commitment-overhead queue 생성
 - customer-roadmap communication queue 생성
 - sales commitment pressure queue 생성
@@ -136,6 +136,13 @@
 - why-this-priority / why-not-now response starter
 - latest safe roadmap wording draft
 - owner + next scheduled response/action
+
+### `/queue/support-relay`
+- support escalations tied to roadmap/commitment pressure
+- affected major accounts and ARR/segment context
+- linked theme rationale + latest safe wording
+- suggested escalation owner (`PM`, `CS`, `sales`, `support lead`)
+- next action due
 
 ### `/queue/sales-commitments`
 - deals/accounts carrying sales-made commitments or RFP pressure
@@ -303,6 +310,18 @@
 - next_action_at
 - status
 
+### `support_relay_items`
+- id
+- account_id
+- source_record_id
+- escalation_type (`roadmap_question`, `dated_promise_risk`, `major_account_pressure`, `repeat_explanation`)
+- linked_theme_ids
+- linked_rationale_id
+- latest_safe_wording
+- suggested_owner
+- next_action_at
+- status
+
 ## 6. Ranking logic
 초기 점수 가중치:
 - frequency 20
@@ -383,6 +402,12 @@
 - suggested owner
 - next action due
 
+### Support Relay Queue
+- roadmap/commitment-related support escalations
+- major-account context and linked evidence
+- latest safe wording + suggested escalation owner
+- next action due
+
 ### Sales Commitment Pressure Queue
 - contract / RFP / verbal commitment pressure items
 - linked evidence and confidence gap
@@ -392,7 +417,7 @@
 
 ## 8. Product rules
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
-- `when is later?` 대응은 PM 내부만이 아니라 customer / sales / exec 대화 표면까지 지원해야 한다.
+- `when is later?` 대응은 PM 내부만이 아니라 customer / sales / support / exec 대화 표면까지 지원해야 한다.
 - `now`에만 구체 약속 후보를 허용하고, `next/later`는 directional wording만 허용한다.
 - customer-level evidence가 없는 theme summary는 incomplete로 취급한다.
 - 대형 계정 / churn / objective로 우선순위가 바뀌면 반드시 `왜 점프했는지`를 brief에 남긴다.
@@ -465,6 +490,7 @@ Must-have capabilities:
 - commitment-safe external update draft
 - commitment-overhead queue
 - reusable answer packs for recurring roadmap questions
+- support relay queue for roadmap/commitment escalations
 - explicit handling for sales-sold commitments / RFP pressure
 
 Do not build:
