@@ -491,30 +491,33 @@ Success:
 ```
 
 ## 13. Current implementation slice
-### Selected task
-이 run에서는 **첫 실행 가능한 도메인 슬라이스**로 `linked evidence가 있는 ranked build-next queue`를 구현한다. 범위는 UI 전체가 아니라, 아래 규칙을 코드와 테스트로 고정하는 것이다.
-- account / signal / theme / decision queue의 최소 contract
-- queue score 계산 (`frequency`, `severity`, `ARR importance`, `commitment risk`, `customer concentration`, `recency`, `priority override`)
-- linked account evidence가 없는 theme는 `build_now` 승격 금지
-- output에 `why_build_next`, `why_not_alternative`, `linked_account_ids`, `linked_override_reasons` 포함
+### Completed in repo
+이번 run 기준으로 **첫 실행 가능한 도메인 슬라이스**인 `linked evidence가 있는 ranked build-next queue`는 이미 코드와 테스트로 고정됐다.
+- `src/voc_repository/models.py`에 `AccountEvidence`, `ThemeEvidenceInput`, `DecisionQueueItem` 최소 contract 반영
+- `src/voc_repository/ranking.py`에 초기 가중치 기반 ranking engine 반영
+- linked account evidence가 없는 theme는 고득점이어도 `build_now` 승격 금지
+- output에 `why_build_next`, `why_not_alternative`, `linked_account_ids`, `linked_override_reasons`, `confidence` 포함
+- override reason propagation과 out-of-range score validation까지 테스트로 고정
 
-### Planned files
+### Locked files
 - Maintain: `develop/primary-voc-repository.md`
-- Create: `src/voc_repository/models.py`
-- Create: `src/voc_repository/ranking.py`
-- Create: `tests/test_build_next_queue.py`
-- Create: `pyproject.toml`
+- Implemented: `src/voc_repository/models.py`
+- Implemented: `src/voc_repository/ranking.py`
+- Implemented: `tests/test_build_next_queue.py`
+- Maintain: `pyproject.toml`
 - Reference: `search/latest-market-map.md`
 - Reference: `ideas/primary-voc-repository.md`
 
-### Short implementation plan
-1. `ThemeEvidenceInput` / `DecisionQueueItem` 중심의 최소 typed model을 만든다.
-2. spec의 초기 가중치를 그대로 쓰는 ranking engine을 만든다.
-3. `build_now`, `validate_next`, `hold` recommendation을 점수와 evidence completeness로 결정한다.
-4. `why_build_next` / `why_not_alternative` 설명 문자열을 deterministic template로 만든다.
-5. sample-based pytest로 ranking order, evidence gate, override reason propagation을 고정한다.
+### Next implementation slice
+다음 우선순위는 **raw record → linked theme evidence assembly**다. 지금 ranker는 이미 있으므로, 다음에는 입력 근거를 만드는 upstream slice를 붙여야 한다.
+1. `records` / `signals` / `themes` 샘플 fixture와 ingest contract를 정의한다.
+2. raw note/support/sales/RFP record에서 `ThemeEvidenceInput`으로 집계하는 assembler를 만든다.
+3. account linkage, override reason, commitment risk가 어떻게 score input으로 변환되는지 deterministic rule을 고정한다.
+4. ranker 입력/출력을 잇는 end-to-end sample test를 추가한다.
+5. build-next queue가 실제 evidence span을 다시 따라갈 수 있도록 trace field 초안을 만든다.
 
 ### Verification
 - `python3 -m pytest -q`
-- 상위 recommendation은 linked account evidence를 반드시 포함해야 한다.
-- queue item output이 spec의 explanation fields를 빠뜨리지 않아야 한다.
+- ranker 입력은 raw record 묶음에서 재현 가능해야 한다.
+- linked account evidence / override reason / commitment risk가 assembler output에 빠지지 않아야 한다.
+- queue 상위 항목이 어떤 raw evidence에서 나왔는지 trace 가능해야 한다.
