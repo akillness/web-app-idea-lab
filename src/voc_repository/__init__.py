@@ -1,0 +1,1 @@
+"""VOC repository prototype package."""
