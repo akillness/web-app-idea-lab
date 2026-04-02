@@ -1,0 +1,9 @@
+{
+  "name": "web-app-idea-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Executable domain slices for the Web App Idea Lab repository.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

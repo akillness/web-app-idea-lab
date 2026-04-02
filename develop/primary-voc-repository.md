@@ -457,6 +457,8 @@ Scaffold a dependency-light ranking engine for the primary idea that:
 - emits per-theme score breakdowns and recommendation labels
 - is covered by executable tests so later UI/ingestion work can build on stable domain logic
 
+**Execution note (this run)**: implement the pure ranking module first, keep it dependency-light, and verify it with the built-in `node:test` runner before any UI or ingestion scaffolding.
+
 ### Planned files
 - Create: `package.json`
 - Create: `src/voc/ranking.js`
