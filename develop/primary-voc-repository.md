@@ -528,11 +528,14 @@ Success:
 - `src/voc_repository/assembly.py`에 raw evidence를 `ThemeEvidenceInput`으로 집계하는 deterministic assembler 반영
 - `src/voc_repository/markdown.py`에 deterministic build-next queue markdown exporter 반영
 - `src/voc_repository/pipeline.py`에 raw JSON payload를 `assemble -> rank -> markdown export`까지 묶는 pipeline 추가
+- `src/voc_repository/briefing.py`에 ranked queue를 weekly decision brief markdown으로 재구성하는 deterministic exporter 추가
 - `src/voc_repository/cli.py`에 `python -m voc_repository.cli` / `voc-build-next-queue` 실행 경로 추가
 - CLI가 stdout 기본 출력과 `--output` 파일 출력을 모두 지원
 - payload boundary에서 missing key, invalid JSON, non-object item, wrong scalar type, invalid `signal_type`, write error를 clean error로 차단
+- package entrypoint에서 `export_weekly_decision_brief`를 바로 import할 수 있게 노출
 - README와 package entrypoint를 업데이트해 샘플 payload와 실행 방법을 문서화
 - assembler -> ranker -> exporter -> CLI success/error path까지 테스트로 고정
+- `tests/test_briefing.py`로 populated queue / empty queue / mixed recommendation / tie ordering / evidence fallback까지 brief output을 고정
 
 ### Locked files
 - Maintain: `develop/primary-voc-repository.md`
@@ -554,19 +557,18 @@ Success:
 - Reference: `ideas/primary-voc-repository.md`
 
 ### Next implementation slice
-다음 우선순위는 **build-next queue markdown → weekly decision brief artifact**다. 이제 raw evidence에서 shareable queue markdown까지는 한 번에 생성되므로, 다음에는 queue와 trace를 재사용해 PM/founder가 바로 읽는 weekly brief surface를 붙이는 편이 가장 자연스럽다.
-1. queue output 상위 항목을 `what got worse`, `build next recommendation`, `evidence highlights` 블록으로 재조합하는 brief contract를 정의한다.
-2. `DecisionQueueItem`의 linked account / override / decision trace를 brief section으로 재배치하는 exporter를 만든다.
-3. `build_now`, `validate_next`, `hold` 항목을 brief summary에서 분리해 이번 주 action 중심으로 읽히게 한다.
-4. empty queue / mixed recommendation / missing trace edge case를 deterministic brief output으로 고정한다.
-5. 기존 CLI에 `--format build-next|brief` 같은 얇은 확장 또는 별도 brief entrypoint를 붙일지 결정한다.
+다음 우선순위는 **weekly decision brief artifact → reusable export surface**다. 이제 raw evidence에서 ranked build-next queue와 shareable weekly brief markdown까지는 코드와 테스트로 고정됐으므로, 다음에는 이 brief를 CLI/automation에서 바로 호출하고 이후 `/briefs/latest` 화면이나 batch export에 재사용할 수 있게 얇은 실행 표면을 붙이는 편이 가장 자연스럽다.
+1. `build_next_queue_from_payload` 결과를 weekly brief로 바로 변환하는 pipeline helper를 추가한다.
+2. CLI에 `--format build-next|brief` 같은 최소 옵션을 붙여 markdown queue와 weekly brief를 모두 출력할 수 있게 한다.
+3. brief output에서 `build_now`, `validate_next`, `hold` 요약 counts를 summary block으로 붙일지 결정하고, 필요하면 deterministic 섹션으로 고정한다.
+4. README에 brief export 실행 예시를 추가해 artefact 생성 경로를 문서화한다.
+5. 이후 `/briefs/latest` UI/API에서 그대로 재사용할 수 있도록 brief contract field naming을 더 명확히 다듬는다.
 
 #### Immediate coding slice for next run
-- `src/voc_repository/briefing.py`에 weekly decision brief exporter를 추가한다.
-- brief가 `what got worse`, `build next`, `why not now`, `evidence highlights` 섹션을 고정적으로 출력하게 한다.
-- `src/voc_repository/__init__.py`에 brief export entrypoint를 노출한다.
-- `tests/test_briefing.py`에서 populated queue / empty queue / mixed recommendation 케이스를 검증한다.
-- 필요하면 CLI에서 brief export를 호출할 수 있는 최소 옵션을 추가한다.
+- `src/voc_repository/pipeline.py`에 `build_weekly_decision_brief_from_payload` 같은 helper를 추가한다.
+- `src/voc_repository/cli.py`에 `--format build-next|brief` 최소 옵션을 붙인다.
+- `tests/test_pipeline.py`와 `tests/test_cli.py`에 brief format success/error path를 추가한다.
+- README에 brief markdown export 실행 예시를 추가한다.
 
 ### Verification
 - `python3 -m pytest -q`

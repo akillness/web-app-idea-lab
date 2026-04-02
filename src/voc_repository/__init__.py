@@ -1,6 +1,7 @@
 """VOC repository prototype package."""
 
 from voc_repository.assembly import AssemblyError, assemble_theme_evidence
+from voc_repository.briefing import export_weekly_decision_brief
 from voc_repository.markdown import export_build_next_queue_markdown
 from voc_repository.models import (
     AccountEvidence,
@@ -30,6 +31,7 @@ __all__ = [
     "build_next_queue_from_payload",
     "build_next_queue_markdown_from_payload",
     "export_build_next_queue_markdown",
+    "export_weekly_decision_brief",
     "load_payload",
     "rank_build_next_queue",
 ]
