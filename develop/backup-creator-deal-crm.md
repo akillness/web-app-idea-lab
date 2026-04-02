@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 deal 이후의 invoice/payment 흐름을 구조화해서 **오늘 회수해야 할 돈과 다음 행동**을 볼 수 있게 한다.
 
-핵심은 generic creator CRM이 아니라, collections 단계에서 `지금 어디서 막혔는지`를 보여주는 **cash-ops operating layer**다. 최신 재검색 기준으로는 `invoice destination`, `remittance-proof`를 핵심 thesis로 과장하지 말고, **AP owner / AP review lead time / pay-run / blockage recovery**를 중심축으로 두는 편이 맞다. 또한 일부 실무자는 pay-run을 놓치지 않기 위해 invoice를 미리 넣기 때문에, MVP도 `독촉 시점`뿐 아니라 **invoice-ahead timing**을 다뤄야 한다.
+핵심은 generic creator CRM이 아니라, collections 단계에서 `지금 어디서 막혔는지`를 보여주는 **cash-ops operating layer**다. 최신 재검색 기준으로는 `invoice destination`, `remittance-proof`를 핵심 thesis로 과장하지 말고, **AP owner / AP review lead time / pay-run / blockage recovery**를 중심축으로 두는 편이 맞다. 또한 일부 실무자는 pay-run을 놓치지 않기 위해 invoice를 미리 넣고, 어떤 payer는 **invoice가 monthly payment-run cutoff 시점에 이미 overdue/ready 상태여야 그 사이클에 태운다**는 운영 현실도 보였다. 따라서 MVP는 `독촉 시점`뿐 아니라 **invoice-ahead timing + cutoff risk detection**을 다뤄야 한다.
 
 ## 2. MVP scope
 ### 포함
@@ -26,6 +26,7 @@
 - remittance-proof 상태 기록 (보조 운영 필드)
 - next-step recommendation
 - invoice-ahead recommendation for pay-run-sensitive deals
+- payment-run cutoff risk detection
 
 ### 제외
 - creator discovery CRM
@@ -44,7 +45,8 @@
 7. AP review lead time 확인
 8. overdue cadence queue 생성
 9. pay-run miss / AP review recovery
-10. paid / underpaid / escalated 종료
+10. payment-run cutoff risk 계산
+11. paid / underpaid / escalated 종료
 
 ## 4. Main screens
 ### `/deals`
@@ -72,6 +74,7 @@
 - AP review started / cleared timestamps
 - promised date vs actual status delta
 - pay-run recovery notes
+- payment-run cutoff risk + latest safe-submit date
 
 ### `/blockages`
 - onboarding blocked
@@ -92,6 +95,7 @@
 - invoice_due_at
 - promised_payment_at
 - next_pay_run_at
+- payment_run_cutoff_at
 - payment_status
 - blockage_status
 - payer_process_mode (`manual_ap`, `scheduled_pay_run`, `unknown`)
@@ -144,6 +148,7 @@
 - promised date 입력 → follow-up 기준 재계산
 - due+3 / due+7 / due+14 / due+30 queue 생성
 - upcoming pay-run window + AP review state 기준으로 invoice-ahead recommendation 생성
+- `payment_run_cutoff_at` 대비 현재 상태를 계산해 cutoff risk warning 생성
 - underpaid / ghosted flag 표시
 - outstanding unpaid → new work risk 표시
 - pay-run miss → blockage queue 이동
@@ -158,6 +163,7 @@
 - `AP review`, `manual AP process`, `pay-run miss`, `wrong destination`, `proof missing`, `no named AP owner`는 서로 다른 blockage로 유지한다.
 - overdue queue는 날짜 기준이지만, 추천 액션은 blockage 기준으로 만든다.
 - scheduled pay-run이 보이면 overdue가 아니어도 `invoice-ahead` 추천을 낼 수 있어야 한다.
+- `payment_run_cutoff_at`이 있으면 `이미 cutoff를 놓쳤는지`, `이번 사이클에 태우려면 언제까지 invoice가 ready/overdue여야 하는지`를 별도 경고로 보여줘야 한다.
 
 ## 8. Build order
 1. deal + status model
@@ -167,6 +173,7 @@
 5. pay-run miss / AP owner / AP review recovery rules
 6. next-step recommendation
 7. invoice-ahead timing recommendation
+8. payment-run cutoff risk detection
 
 ## 9. First milestone
 - 10개 deal 등록 가능
@@ -176,6 +183,7 @@
 - invoice readiness 누락 필드 경고 표시
 - wrong destination / AP review / pay-run miss / no named AP owner가 서로 다른 상태로 보임
 - pay-run-sensitive case에서 invoice-ahead recommendation 1개 이상 생성
+- cutoff가 있는 payer에서 `latest safe-submit date`와 `이번 사이클 miss risk`가 보인다.
 
 ## 10. Validation
 - 사용자가 시트 대신 이 화면을 회수 source of truth로 본다.

@@ -7,7 +7,7 @@
 크리에이터와 소형 에이전시의 deal 이후 단계에서 **invoice readiness, AP routing, AP review lead time, pay-run visibility, overdue follow-up**를 관리하는 collections-first cash-ops tool.
 
 ## 핵심 문제
-크리에이터가 deal을 따온 뒤 실제 돈이 들어오기까지의 과정은 여전히 시트, DM, 이메일, 메모에 흩어져 있다. 가장 큰 pain은 관계 관리가 아니라 `지금 돈이 어디서 막혔는지`를 모르는 것이다. 실제 blockage는 ghosting뿐 아니라 AP contact 부재, vendor onboarding 누락, payment terms 오해, pay-run miss에서 자주 나온다. 이번 재확인에서는 여기에 더해 **AP가 invoice를 process/audit하는 리드타임 자체**와 **pay-run에 맞추기 위해 invoice를 미리 넣는 운영 습관**이 보여서, 독촉 이전 단계의 timing control도 제품 표면으로 잡아야 한다는 점이 더 분명해졌다.
+크리에이터가 deal을 따온 뒤 실제 돈이 들어오기까지의 과정은 여전히 시트, DM, 이메일, 메모에 흩어져 있다. 가장 큰 pain은 관계 관리가 아니라 `지금 돈이 어디서 막혔는지`를 모르는 것이다. 실제 blockage는 ghosting뿐 아니라 AP contact 부재, vendor onboarding 누락, payment terms 오해, pay-run miss에서 자주 나온다. 이번 재확인에서는 여기에 더해 **AP가 invoice를 process/audit하는 리드타임 자체**, **pay-run에 맞추기 위해 invoice를 미리 넣는 운영 습관**, 그리고 경우에 따라 **invoice가 monthly payment-run cutoff 시점에 이미 overdue/ready 상태여야 그 사이클에 실린다**는 운영 현실이 보여서, 독촉 이전 단계의 timing control도 제품 표면으로 잡아야 한다는 점이 더 분명해졌다.
 
 `invoice destination`과 `remittance-proof`도 운영 필드로는 유의미하지만, 현재 시장 wedge를 세우는 핵심은 여전히 **AP owner + AP review + payment run + blockage recovery**다.
 
@@ -25,6 +25,7 @@
 6. overdue follow-up 전에 `named AP owner`와 `현재 pay-run 상태`를 확인하는 운영 단계가 별도로 필요하다.
 7. `언제 독촉할지` 못지않게 `언제 invoice를 먼저 넣어야 pay-run을 안 놓치는지`가 중요하다.
 8. AP가 아직 invoice를 검토/감사 중인지, 이미 pay-run을 놓친 건지 구분이 안 되면 다음 행동이 잘못된다.
+9. 어떤 payer는 invoice가 monthly payment-run cutoff 시점에 이미 overdue/ready 상태여야 처리하므로, cutoff 역산 없이 follow-up만 하면 한 사이클이 통째로 밀린다.
 
 ## 제품이 제공해야 하는 핵심 결과물
 - today collections queue
@@ -37,6 +38,7 @@
 - remittance-proof / partial-payment tracking
 - next-step recommendation
 - invoice-ahead recommendation for pay-run-sensitive deals
+- payment-run cutoff risk warning
 
 ## 왜 지금 backup으로 유지하는가
 - pain은 매우 선명하다.

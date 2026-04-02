@@ -44,6 +44,8 @@
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20PartneredYoutube%20%22accounts%20payable%22%20follow%20up%20again
 - **Yahoo Japan indexed snippet (browser-rendered, medium confidence)**: `r/freelance` 2017-09-19 결과는 `It gives accounts payable time to process and audit your invoice.`를 노출한다. 즉 미수금 문제 전에도 **AP 검토 리드타임**이 실무 단계로 존재한다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22process%20and%20audit%20your%20invoice%22%20creator%20freelance
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 이번 재확인에서 `r/videography` 2018-11-17 결과는 `In order for a big business to pay your invoice, it has to be overdue on the monthly date that the payment run ... accounts payable department ...`를 노출했다. 즉 실무 pain은 단순 overdue가 아니라 **monthly payment-run cutoff를 넘기면 한 사이클이 통째로 밀리는 구조**다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22payment%20run%22%20%22accounts%20payable%22%20freelance
 - **Yahoo Japan indexed snippet (browser-rendered, medium confidence)**: `r/freelance` 2023-02-07, `r/PPC` 2023-06-12 결과는 `creating invoice in advance` / `invoice in advance and get the payment before ads run`을 노출한다. 일부 실무자는 리마인더보다 **pay-run에 맞추기 위한 선제 invoicing**으로 대응한다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22invoice%20in%20advance%22%20freelance%20accounts%20payable
 - **Direct page retrieval**: Chaser 페이지 제목은 `Automated email payment reminders`, 메타 설명은 `Streamline your accounts receivable process with Chaser`다. reminder automation은 이미 카테고리화돼 있으므로 빈 곳은 자동 리마인더보다 **blockage visibility + AP timing clarity + next-step clarity**다.  
@@ -65,8 +67,8 @@
 ### 2) Creator Deal CRM
 backup pain도 여전히 선명하지만 더 좁다.
 - reminder automation 자체는 이미 카테고리화돼 있다.
-- 실제 운영 pain은 `AP review`, `manual AP process`, `payment run`, `AP owner 확보`, `invoice를 언제/어떻게 먼저 넣어야 하는지`, `다음으로 누구에게 무엇을 보낼지`에 집중된다.
-- 그래서 넓은 CRM보다 **collections operating layer**로 잡는 편이 여전히 맞다.
+- 실제 운영 pain은 `AP review`, `manual AP process`, `payment run`, `AP owner 확보`, `invoice를 언제/어떻게 먼저 넣어야 하는지`, `monthly payment-run cutoff를 안 놓치려면 언제 invoice가 overdue/ready 상태여야 하는지`, `다음으로 누구에게 무엇을 보낼지`에 집중된다.
+- 그래서 넓은 CRM보다 **collections operating layer**로 잡는 편이 여전히 맞고, 그 안에서도 `payment-run cutoff 관리`가 더 명확한 wedge로 보인다.
 - 다만 evidence 밀도와 팀 단위 확장성은 아직 VoC보다 약하다.
 
 ## 이번 루프 판단
