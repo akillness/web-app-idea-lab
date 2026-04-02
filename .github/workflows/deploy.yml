@@ -20,6 +20,7 @@ jobs:
   build:
     name: Build Next.js App
     runs-on: ubuntu-latest
+    if: github.repository == 'akillness/web-app-idea-lab'
     defaults:
       run:
         working-directory: webapp
@@ -30,8 +31,6 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
