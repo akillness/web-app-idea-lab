@@ -159,6 +159,29 @@ npx playwright test e2e/voc-app.spec.ts
 
 즉, **PR에서 기능을 검증하고, canonical repo에서 실배포하는 방식**이 현재 가장 안정적인 동작 경로다.
 
+### 데모 시나리오 3개
+
+#### 1) PM 우선순위 정렬 시나리오
+1. `/` 에서 전체 상태와 strategy-tax를 확인한다.
+2. `/themes` 로 이동해 Build Now / Validate Next / Hold 필터를 바꿔본다.
+3. `/queue` 에서 ranked build-next 항목을 확인한다.
+
+이 시나리오는 “무엇을 먼저 만들지”를 설명할 때 적합하다.
+
+#### 2) CSM / Account Risk 점검 시나리오
+1. `/accounts` 에서 health risk 필터를 바꾼다.
+2. linked records drill-down으로 특정 계정 evidence를 본다.
+3. `/commitments` 에서 위험한 약속/커밋먼트가 어디에 몰려 있는지 확인한다.
+
+이 시나리오는 “어떤 고객 대응이 급한지”를 보여줄 때 적합하다.
+
+#### 3) Leadership Briefing 시나리오
+1. `/briefs` 에서 주간 decision brief를 본다.
+2. Markdown export를 실행해 공유 가능한 초안을 만든다.
+3. 필요하면 Python CLI로 evidence payload를 queue markdown으로 변환해 비교한다.
+
+이 시나리오는 “evidence → decision brief → 공유 문서” 흐름을 설명할 때 적합하다.
+
 ---
 
 ### 🔧 Tech Stack
