@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**, **sales/CS reusable explanation pack**을 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure / RFP-vs-strategy override trade-off**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure / RFP override justification에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
 
 ## 2. MVP scope
 ### 포함
@@ -22,6 +22,7 @@
 - account/revenue-aware ranking
 - commitment risk detection
 - priority override labeling
+- RFP-vs-strategy trade-off labeling
 - `why this jumped` / `why not now` explanation 생성
 - `what should we build next?` decision queue 생성
 - customer-level evidence board
@@ -93,6 +94,7 @@
 - `decision trace` block
 - `what changed since last review` block
 - `what should we build next` answer block
+- `RFP vs strategy trade-off` block
 - `strategy-time tax this week` block
 
 ### `/updates/latest`
@@ -139,6 +141,7 @@
 - deals/accounts carrying sales-made commitments or RFP pressure
 - promise type (`contract`, `RFP`, `verbal`, `expansion ask`)
 - linked product confidence / evidence gap
+- `override accepted / rejected / unresolved` state
 - suggested safe wording for sales follow-up
 - owner + next alignment action
 
@@ -189,6 +192,7 @@
 - commitment_surface (`support`, `sales`, `contract`, `RFP`, `exec`)
 - external_update_mode
 - priority_override_reason
+- override_tradeoff_note
 
 ### `themes`
 - id
@@ -280,6 +284,8 @@
 - pressure_type (`contract_commitment`, `RFP_date_ask`, `sales_promise`, `expansion_deadline`)
 - linked_theme_ids
 - confidence_gap_note
+- override_resolution (`accepted`, `rejected`, `unresolved`)
+- override_reasoning
 - suggested_sales_followup
 - owner
 - next_action_at

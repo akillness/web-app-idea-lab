@@ -22,7 +22,9 @@
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-03-18 스니펫은 `Our sales team has sold more and more enterprise deals with "commitments" of sorts in the contracts.`를 노출한다. 최신 wedge는 단순 feedback repository가 아니라 **sales-sold commitments / RFP pressure / roadmap expectation**까지 evidence graph에 묶는 operating layer다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
-- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2023-04-28 결과는 `How to not be on every customer roadmap call? ... We do have customer facing versions of the roadmaps ...`를 노출한다. artifact가 있어도 **반복 roadmap explanation workload**는 계속 남는다.  
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-12-18 스니펫은 `How does your team prioritize what to build? And how do you balance business RFP needs versus building a strategic customer centric product?`를 노출한다. 즉 override pain은 단순한 특수 케이스가 아니라 **RFP / enterprise revenue asks vs strategic roadmap** 사이의 설명 가능한 trade-off 문제다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2023-04-28 결과는 `How to not be on every customer roadmap call? ... We do have customer facing versions of the roadmaps that they should be able ...`를 노출한다. artifact가 있어도 **반복 roadmap explanation workload**는 계속 남는다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20%22customer%20roadmap%20call%22%20PM
 
 ### 2) Backup — Creator Deal CRM
@@ -47,8 +49,8 @@
 ### 1) Voice-of-Customer Repository
 이번 루프에서도 가장 강한 쪽은 VoC다.
 - 시장 요구가 `feedback 저장`보다 **planning translation / build-next decision / account-aware prioritization** 쪽으로 더 선명하다.
-- 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, sales-sold commitments, repeated roadmap explanation workload**까지 묶어 처리하는 operating layer다.
-- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer**다.
+- 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, sales-sold commitments, repeated roadmap explanation workload, RFP-vs-strategy override trade-off**까지 묶어 처리하는 operating layer다.
+- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + override-defense layer**다.
 
 ### 2) Creator Deal CRM
 backup pain도 여전히 선명하지만 더 좁다.
@@ -59,6 +61,6 @@ backup pain도 여전히 선명하지만 더 좁다.
 
 ## 이번 루프 판단
 - **순위 변경 없음**
-- Primary는 계속 1위지만, 이번 재확인으로 핵심 wedge가 **what-to-build-next + commitment/explanation workload + sales-sold commitment pressure**까지 확장돼 더 명확해졌다.
+- Primary는 계속 1위지만, 이번 재확인으로 핵심 wedge가 **what-to-build-next + commitment/explanation workload + sales-sold commitment pressure + RFP-vs-strategy override defense**까지 확장돼 더 명확해졌다.
 - Backup은 계속 `독촉 자동화`보다 `AP owner + payment-run visibility + AP review lead time + blockage-first next step`이 맞다.
 - 다음 개발 우선순위는 계속 Primary다.
