@@ -60,6 +60,10 @@ def assemble_theme_evidence(
     total_signal_count = len(signals)
     assembled: list[ThemeEvidenceInput] = []
     for theme_id, theme_signals in sorted(grouped.items()):
+        theme_signals = sorted(
+            theme_signals,
+            key=lambda signal: (signal.record_id, signal.signal_id, signal.evidence_span),
+        )
         canonical_label = theme_signals[0].canonical_label
         if any(signal.canonical_label != canonical_label for signal in theme_signals[1:]):
             raise AssemblyError(f"theme {theme_id} has inconsistent canonical_label values")
@@ -81,6 +85,9 @@ def assemble_theme_evidence(
 
         override_reasons = sorted(seen_override_reasons)
         linked_accounts = tuple(_build_linked_accounts(account_records, account_signals))
+        trace_record_ids = tuple(signal.record_id for signal in theme_signals)
+        trace_signal_ids = tuple(signal.signal_id for signal in theme_signals)
+        trace_evidence_spans = tuple(signal.evidence_span for signal in theme_signals)
         frequency = len(theme_signals) / total_signal_count
         severity = _average(signal.severity for signal in theme_signals)
         arr_importance = max(account.arr_importance for account in linked_accounts)
@@ -102,6 +109,9 @@ def assemble_theme_evidence(
                 priority_override=round(priority_override, 4),
                 linked_accounts=linked_accounts,
                 override_reasons=tuple(override_reasons),
+                trace_record_ids=trace_record_ids,
+                trace_signal_ids=trace_signal_ids,
+                trace_evidence_spans=trace_evidence_spans,
             )
         )
 

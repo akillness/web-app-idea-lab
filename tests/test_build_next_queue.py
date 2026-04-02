@@ -5,7 +5,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from voc_repository.models import AccountEvidence, ThemeEvidenceInput
+import pytest
+
+from voc_repository.models import AccountEvidence, DecisionQueueItem, ThemeEvidenceInput
 from voc_repository.ranking import RankingError, rank_build_next_queue
 
 
@@ -27,6 +29,9 @@ def test_rank_build_next_queue_orders_highest_weighted_theme_first() -> None:
                 recency=0.6,
                 priority_override=0.0,
                 linked_accounts=(_account("acct-2", "Bravo"),),
+                trace_record_ids=("rec-2",),
+                trace_signal_ids=("sig-2",),
+                trace_evidence_spans=("Need scheduled exports",),
             ),
             ThemeEvidenceInput(
                 theme_id="theme-commitment",
@@ -42,6 +47,9 @@ def test_rank_build_next_queue_orders_highest_weighted_theme_first() -> None:
                     _account("acct-1", "Acme", arr_importance=1.0),
                     _account("acct-3", "Cyan", arr_importance=0.9),
                 ),
+                trace_record_ids=("rec-1", "rec-3"),
+                trace_signal_ids=("sig-1", "sig-3"),
+                trace_evidence_spans=("Renewal deadline pressure", "Committed roadmap date"),
             ),
         ]
     )
@@ -49,6 +57,9 @@ def test_rank_build_next_queue_orders_highest_weighted_theme_first() -> None:
     assert [item.theme_id for item in queue] == ["theme-commitment", "theme-export"]
     assert queue[0].recommendation_type == "build_now"
     assert queue[0].linked_account_ids == ("acct-1", "acct-3")
+    assert queue[0].trace_record_ids == ("rec-1", "rec-3")
+    assert queue[0].trace_signal_ids == ("sig-1", "sig-3")
+    assert queue[0].trace_evidence_spans == ("Renewal deadline pressure", "Committed roadmap date")
     assert "Build now because Commitment-safe roadmap updates scored" in queue[0].why_build_next
 
 
@@ -77,6 +88,45 @@ def test_theme_without_linked_account_evidence_never_becomes_build_now() -> None
     assert "has no linked account evidence" in queue[0].why_not_alternative
 
 
+def test_rank_build_next_queue_breaks_exact_score_ties_by_canonical_label() -> None:
+    queue = rank_build_next_queue(
+        [
+            ThemeEvidenceInput(
+                theme_id="theme-zebra",
+                canonical_label="Zebra workflows",
+                frequency=0.7,
+                severity=0.6,
+                arr_importance=0.8,
+                commitment_risk=0.75,
+                customer_concentration=0.5,
+                recency=0.4,
+                priority_override=0.2,
+                linked_accounts=(_account("acct-2", "Bravo"),),
+                trace_record_ids=("rec-2",),
+                trace_signal_ids=("sig-2",),
+                trace_evidence_spans=("zebra trace",),
+            ),
+            ThemeEvidenceInput(
+                theme_id="theme-alpha",
+                canonical_label="Alpha workflows",
+                frequency=0.7,
+                severity=0.6,
+                arr_importance=0.8,
+                commitment_risk=0.75,
+                customer_concentration=0.5,
+                recency=0.4,
+                priority_override=0.2,
+                linked_accounts=(_account("acct-1", "Acme"),),
+                trace_record_ids=("rec-1",),
+                trace_signal_ids=("sig-1",),
+                trace_evidence_spans=("alpha trace",),
+            ),
+        ]
+    )
+
+    assert [item.canonical_label for item in queue] == ["Alpha workflows", "Zebra workflows"]
+
+
 def test_override_reasons_propagate_to_output_and_explanations() -> None:
     queue = rank_build_next_queue(
         [
@@ -92,12 +142,18 @@ def test_override_reasons_propagate_to_output_and_explanations() -> None:
                 priority_override=0.8,
                 linked_accounts=(_account("acct-rfp", "Delta", arr_importance=0.95),),
                 override_reasons=("active enterprise RFP", "sales-made commitment"),
+                trace_record_ids=("rec-rfp",),
+                trace_signal_ids=("sig-rfp",),
+                trace_evidence_spans=("Audit logs required for RFP shortlist",),
             )
         ]
     )
 
     item = queue[0]
     assert item.linked_override_reasons == ("active enterprise RFP", "sales-made commitment")
+    assert item.trace_record_ids == ("rec-rfp",)
+    assert item.trace_signal_ids == ("sig-rfp",)
+    assert item.trace_evidence_spans == ("Audit logs required for RFP shortlist",)
     assert "override reasons: active enterprise RFP, sales-made commitment" in item.why_build_next
     assert item.confidence >= 0.8
 
@@ -122,6 +178,44 @@ def test_low_scoring_theme_becomes_hold() -> None:
 
     assert queue[0].recommendation_type == "hold"
     assert "does not clear the validate_next threshold" in queue[0].why_build_next
+
+
+def test_theme_evidence_input_rejects_inconsistent_trace_tuple_lengths() -> None:
+    with pytest.raises(ValueError, match="ThemeEvidenceInput theme-invalid trace fields must have matching tuple lengths"):
+        ThemeEvidenceInput(
+            theme_id="theme-invalid",
+            canonical_label="Invalid trace alignment",
+            frequency=0.5,
+            severity=0.5,
+            arr_importance=0.5,
+            commitment_risk=0.5,
+            customer_concentration=0.5,
+            recency=0.5,
+            priority_override=0.5,
+            linked_accounts=(_account("acct-invalid", "Foxtrot"),),
+            trace_record_ids=("rec-1",),
+            trace_signal_ids=("sig-1", "sig-2"),
+            trace_evidence_spans=("trace-1",),
+        )
+
+
+def test_decision_queue_item_rejects_inconsistent_trace_tuple_lengths() -> None:
+    with pytest.raises(ValueError, match="DecisionQueueItem theme-invalid trace fields must have matching tuple lengths"):
+        DecisionQueueItem(
+            theme_id="theme-invalid",
+            canonical_label="Invalid queue trace alignment",
+            queue_rank=1,
+            recommendation_type="hold",
+            total_score=12.5,
+            why_build_next="",
+            why_not_alternative="",
+            linked_account_ids=(),
+            linked_override_reasons=(),
+            trace_record_ids=("rec-1",),
+            trace_signal_ids=("sig-1",),
+            trace_evidence_spans=(),
+            confidence=0.2,
+        )
 
 
 def test_invalid_weight_input_raises_ranking_error() -> None:

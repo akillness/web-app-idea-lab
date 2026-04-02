@@ -26,13 +26,12 @@ def rank_build_next_queue(themes: list[ThemeEvidenceInput]) -> list[DecisionQueu
     scored = [(_score_theme(theme), theme) for theme in themes]
     scored.sort(
         key=lambda item: (
-            item[0],
-            item[1].commitment_risk,
-            item[1].arr_importance,
-            item[1].frequency,
+            -item[0],
+            -item[1].commitment_risk,
+            -item[1].arr_importance,
+            -item[1].frequency,
             item[1].canonical_label,
-        ),
-        reverse=True,
+        )
     )
 
     queue: list[DecisionQueueItem] = []
@@ -50,6 +49,9 @@ def rank_build_next_queue(themes: list[ThemeEvidenceInput]) -> list[DecisionQueu
                 why_not_alternative=_why_not_alternative(theme, recommendation, total_score, linked_account_ids),
                 linked_account_ids=linked_account_ids,
                 linked_override_reasons=tuple(theme.override_reasons),
+                trace_record_ids=tuple(theme.trace_record_ids),
+                trace_signal_ids=tuple(theme.trace_signal_ids),
+                trace_evidence_spans=tuple(theme.trace_evidence_spans),
                 confidence=_confidence(theme, total_score, linked_account_ids),
             )
         )

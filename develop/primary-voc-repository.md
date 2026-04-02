@@ -548,10 +548,10 @@ Success:
 5. build-next queue가 실제 evidence span을 다시 따라갈 수 있도록 trace field 초안을 만든다.
 
 #### Immediate coding slice for this run
-- `src/voc_repository/models.py`에 raw ingestion용 최소 record/signal contract를 추가한다.
-- `src/voc_repository/assembly.py`에 raw record 묶음을 `ThemeEvidenceInput`으로 집계하는 deterministic assembler를 구현한다.
-- account linkage / ARR importance / override reasons / commitment risk / recency가 assembler output에 반영되도록 고정한다.
-- `tests/test_assembly.py`에서 assembler → ranker 흐름을 검증하는 end-to-end sample test를 추가한다.
+- `src/voc_repository/models.py`에 build-next queue가 raw evidence까지 다시 따라갈 수 있는 최소 trace contract를 추가한다.
+- `src/voc_repository/assembly.py`가 theme별 `record_id` / `signal_id` / evidence span을 deterministic하게 모아 trace 필드로 고정한다.
+- `src/voc_repository/ranking.py`가 queue output에도 trace를 그대로 실어 downstream brief/update 초안이 근거를 잃지 않게 한다.
+- `tests/test_assembly.py`, `tests/test_build_next_queue.py`에서 trace propagation과 deterministic ordering을 검증한다.
 
 ### Verification
 - `python3 -m pytest -q`

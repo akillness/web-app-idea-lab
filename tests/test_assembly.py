@@ -42,6 +42,7 @@ def _signal(
     commitment_risk: float,
     priority_override: float = 0.0,
     override_reason: str = "",
+    evidence_span: str = "",
 ) -> ExtractedSignal:
     return ExtractedSignal(
         signal_id=signal_id,
@@ -53,6 +54,7 @@ def _signal(
         commitment_risk=commitment_risk,
         priority_override=priority_override,
         override_reason=override_reason,
+        evidence_span=evidence_span,
     )
 
 
@@ -73,6 +75,7 @@ def test_assemble_theme_evidence_aggregates_linked_accounts_and_override_reasons
                 commitment_risk=0.95,
                 priority_override=0.8,
                 override_reason="active enterprise RFP",
+                evidence_span="Customer asked for roadmap-safe commits by Q2.",
             ),
             _signal(
                 "sig-2",
@@ -83,6 +86,7 @@ def test_assemble_theme_evidence_aggregates_linked_accounts_and_override_reasons
                 commitment_risk=0.85,
                 priority_override=0.6,
                 override_reason="sales-made commitment",
+                evidence_span="Sales committed to delivery in renewal thread.",
             ),
             _signal(
                 "sig-3",
@@ -91,6 +95,7 @@ def test_assemble_theme_evidence_aggregates_linked_accounts_and_override_reasons
                 "Export automation",
                 severity=0.5,
                 commitment_risk=0.3,
+                evidence_span="Need scheduled CSV exports.",
             ),
         ],
     )
@@ -106,6 +111,12 @@ def test_assemble_theme_evidence_aggregates_linked_accounts_and_override_reasons
     assert roadmap.recency == 0.85
     assert roadmap.priority_override == 0.8
     assert roadmap.override_reasons == ("active enterprise RFP", "sales-made commitment")
+    assert roadmap.trace_record_ids == ("rec-1", "rec-2")
+    assert roadmap.trace_signal_ids == ("sig-1", "sig-2")
+    assert roadmap.trace_evidence_spans == (
+        "Customer asked for roadmap-safe commits by Q2.",
+        "Sales committed to delivery in renewal thread.",
+    )
     assert roadmap.linked_accounts[0].account_id == "acct-1"
     assert roadmap.linked_accounts[0].is_recent is True
 
@@ -113,6 +124,53 @@ def test_assemble_theme_evidence_aggregates_linked_accounts_and_override_reasons
     assert export.frequency == 0.3333
     assert export.linked_accounts[0].account_id == "acct-2"
     assert export.linked_accounts[0].is_recent is False
+
+
+def test_assemble_theme_evidence_collects_trace_fields_in_deterministic_order() -> None:
+    assembled = assemble_theme_evidence(
+        records=[
+            _record("rec-2", "acct-2", "Bravo", arr_importance=0.8, recency=0.8),
+            _record("rec-1", "acct-1", "Acme", arr_importance=0.9, recency=0.9),
+            _record("rec-3", "acct-3", "Cyan", arr_importance=0.7, recency=0.7),
+        ],
+        signals=[
+            _signal(
+                "sig-2",
+                "rec-2",
+                "theme-roadmap",
+                "Commitment-safe roadmap updates",
+                severity=0.8,
+                commitment_risk=0.8,
+                evidence_span="",
+            ),
+            _signal(
+                "sig-3",
+                "rec-3",
+                "theme-roadmap",
+                "Commitment-safe roadmap updates",
+                severity=0.7,
+                commitment_risk=0.7,
+                evidence_span="third trace span",
+            ),
+            _signal(
+                "sig-1",
+                "rec-1",
+                "theme-roadmap",
+                "Commitment-safe roadmap updates",
+                severity=0.9,
+                commitment_risk=0.9,
+                evidence_span="first trace span",
+            ),
+        ],
+    )
+
+    assert assembled[0].trace_record_ids == ("rec-1", "rec-2", "rec-3")
+    assert assembled[0].trace_signal_ids == ("sig-1", "sig-2", "sig-3")
+    assert assembled[0].trace_evidence_spans == (
+        "first trace span",
+        "",
+        "third trace span",
+    )
 
 
 def test_assemble_theme_evidence_uses_max_account_values_across_repeated_records() -> None:

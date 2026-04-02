@@ -34,6 +34,17 @@ class ThemeEvidenceInput:
     priority_override: float
     linked_accounts: tuple[AccountEvidence, ...] = field(default_factory=tuple)
     override_reasons: tuple[str, ...] = field(default_factory=tuple)
+    trace_record_ids: tuple[str, ...] = field(default_factory=tuple)
+    trace_signal_ids: tuple[str, ...] = field(default_factory=tuple)
+    trace_evidence_spans: tuple[str, ...] = field(default_factory=tuple)
+
+    def __post_init__(self) -> None:
+        _validate_trace_tuple_lengths(
+            trace_record_ids=self.trace_record_ids,
+            trace_signal_ids=self.trace_signal_ids,
+            trace_evidence_spans=self.trace_evidence_spans,
+            context=f"ThemeEvidenceInput {self.theme_id}",
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -49,7 +60,18 @@ class DecisionQueueItem:
     why_not_alternative: str
     linked_account_ids: tuple[str, ...]
     linked_override_reasons: tuple[str, ...]
+    trace_record_ids: tuple[str, ...]
+    trace_signal_ids: tuple[str, ...]
+    trace_evidence_spans: tuple[str, ...]
     confidence: float
+
+    def __post_init__(self) -> None:
+        _validate_trace_tuple_lengths(
+            trace_record_ids=self.trace_record_ids,
+            trace_signal_ids=self.trace_signal_ids,
+            trace_evidence_spans=self.trace_evidence_spans,
+            context=f"DecisionQueueItem {self.theme_id}",
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -81,3 +103,20 @@ class ExtractedSignal:
     priority_override: float = 0.0
     override_reason: str = ""
     evidence_span: str = ""
+
+
+def _validate_trace_tuple_lengths(
+    *,
+    trace_record_ids: tuple[str, ...],
+    trace_signal_ids: tuple[str, ...],
+    trace_evidence_spans: tuple[str, ...],
+    context: str,
+) -> None:
+    lengths = {
+        "trace_record_ids": len(trace_record_ids),
+        "trace_signal_ids": len(trace_signal_ids),
+        "trace_evidence_spans": len(trace_evidence_spans),
+    }
+    if len(set(lengths.values())) != 1:
+        formatted_lengths = ", ".join(f"{field}={length}" for field, length in lengths.items())
+        raise ValueError(f"{context} trace fields must have matching tuple lengths; got {formatted_lengths}")
