@@ -256,11 +256,13 @@ test.describe('Briefs', () => {
     await expect(section).toBeVisible()
   })
 
-  test('"Export as Markdown" button is present and clickable', async ({ page }) => {
-    const exportBtn = page.getByRole('button', { name: /Export as Markdown/i })
-    await expect(exportBtn).toBeVisible()
-    // Click should not throw (no navigation expected, just triggers download/copy)
-    await exportBtn.click()
+  test('"Export as Markdown" button downloads the weekly brief markdown file', async ({ page }) => {
+    const button = page.getByRole('button', { name: 'Export as Markdown' })
+    await expect(button).toBeVisible()
+    const downloadPromise = page.waitForEvent('download')
+    await button.click()
+    const download = await downloadPromise
+    await expect(download.suggestedFilename()).toBe('voc-brief-2026-04-04.md')
   })
 
   test('"Decision Trace" section is visible', async ({ page }) => {

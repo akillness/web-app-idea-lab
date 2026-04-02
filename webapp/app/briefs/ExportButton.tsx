@@ -43,8 +43,11 @@ export default function ExportButton({ brief }: { brief: WeeklyBrief }) {
     const a = document.createElement('a')
     a.href = url
     a.download = `voc-brief-${brief.week_ending}.md`
+    a.style.display = 'none'
+    document.body.appendChild(a)
     a.click()
-    URL.revokeObjectURL(url)
+    a.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 0)
   }
 
   return (
