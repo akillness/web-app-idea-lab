@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/web-app-idea-lab next build",
+    "preview:pages": "python3 -m http.server 4173 --directory out",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",

@@ -14,6 +14,38 @@
 >
 > Support / churn / feature request / commitment records를 **customer-level evidence board, 주간 의사결정 브리프, ranked build-next queue, commitment-safe update draft**로 바꿔주는 decision + explanation layer.
 
+### 프로젝트 목적
+
+이 프로젝트는 흩어진 고객 신호를 한 번에 읽고, 팀이 같은 우선순위로 의사결정하게 만드는 **VOC 운영 인터페이스**를 데모 가능한 형태로 보여주기 위한 것이다.
+
+핵심 질문은 네 가지다.
+- 지금 어떤 account가 가장 위험한가?
+- 어떤 theme를 바로 build 해야 하는가?
+- 어떤 commitment가 위험하게 관리되고 있는가?
+- PM / CSM / Founder가 같은 evidence를 보고 같은 결론에 도달할 수 있는가?
+
+### 용도
+
+- 제품 아이디어 검증용 interactive demo
+- PM/경영진 공유용 GitHub Pages showcase
+- 이후 실제 backend를 붙이기 전 UX 기준 화면
+- PR/포트폴리오에서 설명 가능한 working prototype
+
+### 실제 현재 동작 방식
+
+현재 구현은 **두 층**으로 나뉜다.
+
+1. `webapp/`
+   - Next.js 기반 read-only 제품 데모
+   - typed sample data로 dashboard / records / accounts / themes / commitments / briefs / queue를 렌더링
+   - GitHub Pages에 static export 가능
+
+2. `src/voc_repository/`
+   - raw evidence JSON을 ranked build-next queue markdown으로 바꾸는 Python CLI
+   - 제품 컨셉의 우선순위 로직을 작은 실행 가능 형태로 검증
+
+즉, 이 저장소는 “아이디어 문서”만 있는 게 아니라 **실제 UI 데모 + 실제 CLI 프로토타입**이 같이 들어 있는 구조다.
+
 ### 🚀 Live Demo
 **[https://akillness.github.io/web-app-idea-lab/](https://akillness.github.io/web-app-idea-lab/)**
 
@@ -84,15 +116,48 @@ web-app-idea-lab/
 └── develop/                         # Development plans
 ```
 
-### ⚡ Local Development
+### ⚡ 실제 사용 방법
 
+#### 웹앱 로컬 실행
 ```bash
 cd webapp
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # Static export to /out
-npx playwright test e2e/voc-app.spec.ts   # 49 E2E tests
 ```
+
+#### GitHub Pages와 동일한 경로로 로컬 확인
+```bash
+cd webapp
+npm run build:pages
+npm run preview:pages
+# http://localhost:4173/web-app-idea-lab/
+```
+
+#### Python CLI 실행
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .[test]
+python -m voc_repository.cli payload.json
+```
+
+#### 검증
+```bash
+cd webapp
+npm run typecheck
+npm run lint
+npm run build
+npm run build:pages
+npx playwright test e2e/voc-app.spec.ts
+```
+
+### 배포가 실제로 동작하는 방식
+
+- 실제 GitHub Pages 배포 repo: `akillness/web-app-idea-lab`
+- fork repo(`JEO-tech-ai/web-app-idea-lab`)에서는 test/lint 위주 CI만 수행
+- Pages deploy job은 canonical repo에서만 실행되도록 workflow를 분리해 fork 권한 문제를 피함
+
+즉, **PR에서 기능을 검증하고, canonical repo에서 실배포하는 방식**이 현재 가장 안정적인 동작 경로다.
 
 ---
 
