@@ -9,6 +9,9 @@ description = "Minimal ranked build-next queue prototype for VOC repository"
 requires-python = ">=3.11"
 dependencies = []
 
+[project.scripts]
+voc-build-next-queue = "voc_repository.cli:run"
+
 [project.optional-dependencies]
 test = ["pytest>=8.0"]
 

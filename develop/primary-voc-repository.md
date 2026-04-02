@@ -518,40 +518,51 @@ Success:
 
 ## 13. Current implementation slice
 ### Completed in repo
-이번 run 기준으로 **첫 실행 가능한 도메인 슬라이스**인 `linked evidence가 있는 ranked build-next queue`와 그 upstream인 `raw record -> theme evidence assembly`가 코드와 테스트로 고정됐다.
-- `src/voc_repository/models.py`에 `AccountEvidence`, `ThemeEvidenceInput`, `DecisionQueueItem` 최소 contract 반영
-- `src/voc_repository/models.py`에 `RawRecord`, `ExtractedSignal` raw ingestion contract 추가
+이번 run 기준으로 `linked evidence가 있는 ranked build-next queue` 도메인 슬라이스 위에 **assembled evidence JSON → executable markdown artifact** 경로까지 코드와 테스트로 고정됐다.
+- `src/voc_repository/models.py`에 `AccountEvidence`, `ThemeEvidenceInput`, `DecisionQueueItem`, `RawRecord`, `ExtractedSignal` contract 반영
 - `src/voc_repository/ranking.py`에 초기 가중치 기반 ranking engine 반영
 - `src/voc_repository/assembly.py`에 raw evidence를 `ThemeEvidenceInput`으로 집계하는 deterministic assembler 반영
-- linked account evidence가 없는 theme는 고득점이어도 `build_now` 승격 금지
-- output에 `why_build_next`, `why_not_alternative`, `linked_account_ids`, `linked_override_reasons`, `confidence` 포함
-- duplicate record/signal, inconsistent labels/account names, out-of-range normalized inputs를 assembler 단계에서 차단
-- assembler -> ranker end-to-end sample test까지 고정
+- `src/voc_repository/markdown.py`에 deterministic build-next queue markdown exporter 반영
+- `src/voc_repository/pipeline.py`에 raw JSON payload를 `assemble -> rank -> markdown export`까지 묶는 pipeline 추가
+- `src/voc_repository/cli.py`에 `python -m voc_repository.cli` / `voc-build-next-queue` 실행 경로 추가
+- CLI가 stdout 기본 출력과 `--output` 파일 출력을 모두 지원
+- payload boundary에서 missing key, invalid JSON, non-object item, wrong scalar type, invalid `signal_type`, write error를 clean error로 차단
+- README와 package entrypoint를 업데이트해 샘플 payload와 실행 방법을 문서화
+- assembler -> ranker -> exporter -> CLI success/error path까지 테스트로 고정
 
 ### Locked files
 - Maintain: `develop/primary-voc-repository.md`
 - Implemented: `src/voc_repository/models.py`
 - Implemented: `src/voc_repository/assembly.py`
 - Implemented: `src/voc_repository/ranking.py`
+- Implemented: `src/voc_repository/markdown.py`
+- Implemented: `src/voc_repository/pipeline.py`
+- Implemented: `src/voc_repository/cli.py`
+- Implemented: `src/voc_repository/__init__.py`
 - Implemented: `tests/test_build_next_queue.py`
 - Implemented: `tests/test_assembly.py`
+- Implemented: `tests/test_markdown.py`
+- Implemented: `tests/test_pipeline.py`
+- Implemented: `tests/test_cli.py`
 - Maintain: `pyproject.toml`
+- Maintain: `README.md`
 - Reference: `search/latest-market-map.md`
 - Reference: `ideas/primary-voc-repository.md`
 
 ### Next implementation slice
-다음 우선순위는 **ranked build-next queue → markdown decision brief/export**다. 지금 queue output에는 linked account와 trace 근거가 있으므로, 다음에는 이를 사람이 바로 공유 가능한 artifact로 바꾸는 downstream slice를 붙인다.
-1. `DecisionQueueItem` 기반 markdown export contract를 정의한다.
-2. queue 상위 항목을 `what should we build next` 형식으로 요약하는 exporter를 만든다.
-3. 각 queue item의 `why_build_next`, `why_not_alternative`, linked account, override reason, trace evidence를 `decision trace` 블록으로 노출한다.
-4. 빈 queue / override 없음 / evidence span 없음 케이스까지 deterministic markdown output으로 고정한다.
-5. downstream brief/update 초안이 재사용할 수 있게 export entrypoint를 package public API에 연결한다.
+다음 우선순위는 **build-next queue markdown → weekly decision brief artifact**다. 이제 raw evidence에서 shareable queue markdown까지는 한 번에 생성되므로, 다음에는 queue와 trace를 재사용해 PM/founder가 바로 읽는 weekly brief surface를 붙이는 편이 가장 자연스럽다.
+1. queue output 상위 항목을 `what got worse`, `build next recommendation`, `evidence highlights` 블록으로 재조합하는 brief contract를 정의한다.
+2. `DecisionQueueItem`의 linked account / override / decision trace를 brief section으로 재배치하는 exporter를 만든다.
+3. `build_now`, `validate_next`, `hold` 항목을 brief summary에서 분리해 이번 주 action 중심으로 읽히게 한다.
+4. empty queue / mixed recommendation / missing trace edge case를 deterministic brief output으로 고정한다.
+5. 기존 CLI에 `--format build-next|brief` 같은 얇은 확장 또는 별도 brief entrypoint를 붙일지 결정한다.
 
-#### Immediate coding slice for this run
-- `src/voc_repository/markdown.py`에 build-next queue 전용 markdown exporter를 추가한다.
-- exporter가 summary, ranked items, linked account evidence, override reasons, decision trace bullet을 deterministic order로 출력하게 한다.
-- `src/voc_repository/__init__.py`에 markdown export entrypoint를 노출한다.
-- `tests/test_markdown.py`에서 populated queue / empty queue / missing optional trace fields를 검증한다.
+#### Immediate coding slice for next run
+- `src/voc_repository/briefing.py`에 weekly decision brief exporter를 추가한다.
+- brief가 `what got worse`, `build next`, `why not now`, `evidence highlights` 섹션을 고정적으로 출력하게 한다.
+- `src/voc_repository/__init__.py`에 brief export entrypoint를 노출한다.
+- `tests/test_briefing.py`에서 populated queue / empty queue / mixed recommendation 케이스를 검증한다.
+- 필요하면 CLI에서 brief export를 호출할 수 있는 최소 옵션을 추가한다.
 
 ### Verification
 - `python3 -m pytest -q`

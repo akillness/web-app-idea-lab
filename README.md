@@ -28,3 +28,56 @@
 ## 현재 결론
 - Primary idea: **Voice-of-Customer Repository**
 - Backup idea: **Creator Deal CRM**
+
+## VOC build-next queue CLI
+`voc_repository` 패키지는 raw evidence JSON을 ranked build-next queue markdown으로 바꾸는 작은 파이프라인/CLI를 포함한다.
+
+### Minimal payload example
+```json
+{
+  "records": [
+    {
+      "record_id": "rec-1",
+      "source_type": "support",
+      "source_preset": "support ticket",
+      "account_id": "acct-1",
+      "account_name": "Acme",
+      "arr_importance": 0.95,
+      "recency": 0.9
+    }
+  ],
+  "signals": [
+    {
+      "signal_id": "sig-1",
+      "record_id": "rec-1",
+      "theme_id": "theme-roadmap",
+      "canonical_label": "Commitment-safe roadmap updates",
+      "signal_type": "support_escalation",
+      "severity": 0.95,
+      "commitment_risk": 1.0,
+      "priority_override": 0.8,
+      "override_reason": "renewal pressure",
+      "evidence_span": "Customer asked for safer roadmap guidance before renewal."
+    }
+  ]
+}
+```
+
+### Usage
+```bash
+python -m voc_repository.cli payload.json
+python -m voc_repository.cli payload.json --output build-next-queue.md
+```
+
+`signals[].signal_type`는 아래 값만 허용한다.
+- `feature_request`
+- `support_escalation`
+- `churn_risk`
+- `sales_commitment`
+- `rfp`
+
+설치된 패키지에서는 console script도 사용할 수 있다.
+
+```bash
+voc-build-next-queue payload.json
+```

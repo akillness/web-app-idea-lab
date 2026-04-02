@@ -9,6 +9,12 @@ from voc_repository.models import (
     RawRecord,
     ThemeEvidenceInput,
 )
+from voc_repository.pipeline import (
+    PipelineError,
+    build_next_queue_from_payload,
+    build_next_queue_markdown_from_payload,
+    load_payload,
+)
 from voc_repository.ranking import RankingError, rank_build_next_queue
 
 __all__ = [
@@ -16,10 +22,14 @@ __all__ = [
     "AssemblyError",
     "DecisionQueueItem",
     "ExtractedSignal",
+    "PipelineError",
     "RankingError",
     "RawRecord",
     "ThemeEvidenceInput",
     "assemble_theme_evidence",
+    "build_next_queue_from_payload",
+    "build_next_queue_markdown_from_payload",
     "export_build_next_queue_markdown",
+    "load_payload",
     "rank_build_next_queue",
 ]
