@@ -518,18 +518,23 @@ Success:
 
 ## 13. Current implementation slice
 ### Completed in repo
-이번 run 기준으로 **첫 실행 가능한 도메인 슬라이스**인 `linked evidence가 있는 ranked build-next queue`는 이미 코드와 테스트로 고정됐다.
+이번 run 기준으로 **첫 실행 가능한 도메인 슬라이스**인 `linked evidence가 있는 ranked build-next queue`와 그 upstream인 `raw record -> theme evidence assembly`가 코드와 테스트로 고정됐다.
 - `src/voc_repository/models.py`에 `AccountEvidence`, `ThemeEvidenceInput`, `DecisionQueueItem` 최소 contract 반영
+- `src/voc_repository/models.py`에 `RawRecord`, `ExtractedSignal` raw ingestion contract 추가
 - `src/voc_repository/ranking.py`에 초기 가중치 기반 ranking engine 반영
+- `src/voc_repository/assembly.py`에 raw evidence를 `ThemeEvidenceInput`으로 집계하는 deterministic assembler 반영
 - linked account evidence가 없는 theme는 고득점이어도 `build_now` 승격 금지
 - output에 `why_build_next`, `why_not_alternative`, `linked_account_ids`, `linked_override_reasons`, `confidence` 포함
-- override reason propagation과 out-of-range score validation까지 테스트로 고정
+- duplicate record/signal, inconsistent labels/account names, out-of-range normalized inputs를 assembler 단계에서 차단
+- assembler -> ranker end-to-end sample test까지 고정
 
 ### Locked files
 - Maintain: `develop/primary-voc-repository.md`
 - Implemented: `src/voc_repository/models.py`
+- Implemented: `src/voc_repository/assembly.py`
 - Implemented: `src/voc_repository/ranking.py`
 - Implemented: `tests/test_build_next_queue.py`
+- Implemented: `tests/test_assembly.py`
 - Maintain: `pyproject.toml`
 - Reference: `search/latest-market-map.md`
 - Reference: `ideas/primary-voc-repository.md`
@@ -541,6 +546,12 @@ Success:
 3. account linkage, override reason, commitment risk가 어떻게 score input으로 변환되는지 deterministic rule을 고정한다.
 4. ranker 입력/출력을 잇는 end-to-end sample test를 추가한다.
 5. build-next queue가 실제 evidence span을 다시 따라갈 수 있도록 trace field 초안을 만든다.
+
+#### Immediate coding slice for this run
+- `src/voc_repository/models.py`에 raw ingestion용 최소 record/signal contract를 추가한다.
+- `src/voc_repository/assembly.py`에 raw record 묶음을 `ThemeEvidenceInput`으로 집계하는 deterministic assembler를 구현한다.
+- account linkage / ARR importance / override reasons / commitment risk / recency가 assembler output에 반영되도록 고정한다.
+- `tests/test_assembly.py`에서 assembler → ranker 흐름을 검증하는 end-to-end sample test를 추가한다.
 
 ### Verification
 - `python3 -m pytest -q`

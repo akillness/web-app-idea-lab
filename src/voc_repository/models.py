@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 RecommendationType = Literal["build_now", "validate_next", "hold"]
+SignalType = Literal["feature_request", "support_escalation", "churn_risk", "sales_commitment", "rfp"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -49,3 +50,34 @@ class DecisionQueueItem:
     linked_account_ids: tuple[str, ...]
     linked_override_reasons: tuple[str, ...]
     confidence: float
+
+
+@dataclass(frozen=True, slots=True)
+class RawRecord:
+    """Normalized raw record contract before theme assembly."""
+
+    record_id: str
+    source_type: str
+    source_preset: str
+    account_id: str
+    account_name: str
+    arr_importance: float
+    recency: float
+    capture_origin: str = "manual_paste"
+    segment: str = ""
+
+
+@dataclass(frozen=True, slots=True)
+class ExtractedSignal:
+    """Structured signal extracted from a raw record."""
+
+    signal_id: str
+    record_id: str
+    theme_id: str
+    canonical_label: str
+    signal_type: SignalType
+    severity: float
+    commitment_risk: float
+    priority_override: float = 0.0
+    override_reason: str = ""
+    evidence_span: str = ""
