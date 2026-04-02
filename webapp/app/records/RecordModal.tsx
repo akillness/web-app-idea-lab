@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import type { VocRecord, SignalType, RecordStatus } from '../lib/sample-data'
+import { useMemo, useState } from 'react'
+import type { Account, VocRecord, SignalType, RecordStatus } from '../lib/sample-data'
 
 type SourceType =
   | 'support ticket'
@@ -28,20 +28,35 @@ const defaultForm: FormState = {
 }
 
 interface Props {
+  accounts: Account[]
+  initialAccount?: Account | null
   onClose: () => void
   onSubmit: (record: VocRecord) => void
 }
 
-export default function RecordModal({ onClose, onSubmit }: Props) {
-  const [form, setForm] = useState<FormState>(defaultForm)
+const normalizeAccountName = (value: string) => value.trim().toLowerCase()
+
+export default function RecordModal({ accounts, initialAccount = null, onClose, onSubmit }: Props) {
+  const [form, setForm] = useState<FormState>({
+    ...defaultForm,
+    account_name: initialAccount?.name ?? defaultForm.account_name,
+  })
+
+  const matchedAccount = useMemo(() => {
+    if (initialAccount && normalizeAccountName(form.account_name) === normalizeAccountName(initialAccount.name)) {
+      return initialAccount
+    }
+
+    return accounts.find((account) => normalizeAccountName(account.name) === normalizeAccountName(form.account_name)) ?? null
+  }, [accounts, form.account_name, initialAccount])
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const today = new Date().toISOString().split('T')[0]
     const newRecord: VocRecord = {
       id: `rec-${Date.now()}`,
-      account_id: 'acct-custom',
-      account_name: form.account_name,
+      account_id: matchedAccount?.id ?? 'acct-custom',
+      account_name: matchedAccount?.name ?? form.account_name.trim(),
       source_type: form.source_type,
       signal_type: form.signal_type,
       severity: form.severity,
@@ -82,6 +97,11 @@ export default function RecordModal({ onClose, onSubmit }: Props) {
               className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-slate-400"
               placeholder="e.g. Acme Corp"
             />
+            {matchedAccount && (
+              <p className="mt-2 text-xs text-emerald-300">
+                Linked to existing account: {matchedAccount.name}
+              </p>
+            )}
           </div>
 
           {/* Source Type */}

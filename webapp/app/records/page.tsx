@@ -60,7 +60,12 @@ export default function RecordsPage() {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {showModal && (
-        <RecordModal onClose={() => setShowModal(false)} onSubmit={handleAddRecord} />
+        <RecordModal
+          accounts={accounts}
+          initialAccount={filteredAccount}
+          onClose={() => setShowModal(false)}
+          onSubmit={handleAddRecord}
+        />
       )}
 
       <div className="mb-6 flex items-start justify-between gap-4">

@@ -97,6 +97,23 @@ test.describe('Records', () => {
     // Sample data has severity 5 records — should see "5" in table
     await expect(page.locator('tbody').getByText('5').first()).toBeVisible()
   })
+
+  test('adding a record from an account deep-link keeps the account filter linkage intact', async ({ page }) => {
+    await page.goto('/records?account=acc-001')
+    await expect(page.locator('tbody tr')).toHaveCount(4)
+
+    await page.getByRole('button', { name: 'Add Record' }).click()
+    const modal = page.locator('form')
+    await expect(page.getByText('Linked to existing account: Acme Corp')).toBeVisible()
+    await expect(modal.locator('input[required]').first()).toHaveValue('Acme Corp')
+
+    await modal.locator('textarea').fill('New retention escalation from filtered account')
+    await modal.getByRole('button', { name: 'Add Record' }).click()
+
+    await expect(page.locator('tbody tr')).toHaveCount(5)
+    await expect(page.getByRole('cell', { name: 'Acme Corp' })).toHaveCount(5)
+    await expect(page.getByText('5 of 16 VOC signals')).toBeVisible()
+  })
 })
 
 // ── Accounts ──────────────────────────────────────────────────────────────
