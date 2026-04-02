@@ -540,21 +540,21 @@ Success:
 - Reference: `ideas/primary-voc-repository.md`
 
 ### Next implementation slice
-다음 우선순위는 **raw record → linked theme evidence assembly**다. 지금 ranker는 이미 있으므로, 다음에는 입력 근거를 만드는 upstream slice를 붙여야 한다.
-1. `records` / `signals` / `themes` 샘플 fixture와 ingest contract를 정의한다.
-2. raw note/support/sales/RFP record에서 `ThemeEvidenceInput`으로 집계하는 assembler를 만든다.
-3. account linkage, override reason, commitment risk가 어떻게 score input으로 변환되는지 deterministic rule을 고정한다.
-4. ranker 입력/출력을 잇는 end-to-end sample test를 추가한다.
-5. build-next queue가 실제 evidence span을 다시 따라갈 수 있도록 trace field 초안을 만든다.
+다음 우선순위는 **ranked build-next queue → markdown decision brief/export**다. 지금 queue output에는 linked account와 trace 근거가 있으므로, 다음에는 이를 사람이 바로 공유 가능한 artifact로 바꾸는 downstream slice를 붙인다.
+1. `DecisionQueueItem` 기반 markdown export contract를 정의한다.
+2. queue 상위 항목을 `what should we build next` 형식으로 요약하는 exporter를 만든다.
+3. 각 queue item의 `why_build_next`, `why_not_alternative`, linked account, override reason, trace evidence를 `decision trace` 블록으로 노출한다.
+4. 빈 queue / override 없음 / evidence span 없음 케이스까지 deterministic markdown output으로 고정한다.
+5. downstream brief/update 초안이 재사용할 수 있게 export entrypoint를 package public API에 연결한다.
 
 #### Immediate coding slice for this run
-- `src/voc_repository/models.py`에 build-next queue가 raw evidence까지 다시 따라갈 수 있는 최소 trace contract를 추가한다.
-- `src/voc_repository/assembly.py`가 theme별 `record_id` / `signal_id` / evidence span을 deterministic하게 모아 trace 필드로 고정한다.
-- `src/voc_repository/ranking.py`가 queue output에도 trace를 그대로 실어 downstream brief/update 초안이 근거를 잃지 않게 한다.
-- `tests/test_assembly.py`, `tests/test_build_next_queue.py`에서 trace propagation과 deterministic ordering을 검증한다.
+- `src/voc_repository/markdown.py`에 build-next queue 전용 markdown exporter를 추가한다.
+- exporter가 summary, ranked items, linked account evidence, override reasons, decision trace bullet을 deterministic order로 출력하게 한다.
+- `src/voc_repository/__init__.py`에 markdown export entrypoint를 노출한다.
+- `tests/test_markdown.py`에서 populated queue / empty queue / missing optional trace fields를 검증한다.
 
 ### Verification
 - `python3 -m pytest -q`
-- ranker 입력은 raw record 묶음에서 재현 가능해야 한다.
-- linked account evidence / override reason / commitment risk가 assembler output에 빠지지 않아야 한다.
-- queue 상위 항목이 어떤 raw evidence에서 나왔는지 trace 가능해야 한다.
+- markdown export는 queue rank 순서를 그대로 유지해야 한다.
+- 각 queue item은 `why_build_next`, `why_not_alternative`, linked accounts, trace 근거를 잃지 않아야 한다.
+- 빈 queue도 깨지지 않고 shareable fallback markdown을 반환해야 한다.

@@ -13,7 +13,7 @@ def export_build_next_queue_markdown(queue: list[DecisionQueueItem]) -> str:
             "Add more evidence to generate the next queue.\"_\n"
         )
 
-    ranked_queue = sorted(queue, key=lambda item: item.queue_rank)
+    ranked_queue = sorted(queue, key=lambda item: (item.queue_rank, item.canonical_label, item.theme_id))
     build_now_count = sum(1 for item in ranked_queue if item.recommendation_type == "build_now")
     validate_next_count = sum(1 for item in ranked_queue if item.recommendation_type == "validate_next")
     hold_count = sum(1 for item in ranked_queue if item.recommendation_type == "hold")

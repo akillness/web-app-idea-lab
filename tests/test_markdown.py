@@ -54,6 +54,45 @@ def test_export_build_next_queue_markdown_returns_shareable_empty_state() -> Non
     assert markdown == """# Build-Next Queue\n\n_No ranked themes are ready yet. Share this update as: \"No build-next themes are currently ranked. Add more evidence to generate the next queue.\"_\n"""
 
 
+def test_export_build_next_queue_markdown_breaks_duplicate_rank_ties_deterministically() -> None:
+    queue = [
+        DecisionQueueItem(
+            theme_id="theme-zebra",
+            canonical_label="Zebra workflows",
+            queue_rank=1,
+            recommendation_type="validate_next",
+            total_score=62.0,
+            why_build_next="Validate next because Zebra workflows need more confirmation.",
+            why_not_alternative="Not build_now because Zebra workflows remain below the build threshold.",
+            linked_account_ids=("acct-z",),
+            linked_override_reasons=(),
+            trace_record_ids=(),
+            trace_signal_ids=(),
+            trace_evidence_spans=(),
+            confidence=0.61,
+        ),
+        DecisionQueueItem(
+            theme_id="theme-alpha",
+            canonical_label="Alpha workflows",
+            queue_rank=1,
+            recommendation_type="build_now",
+            total_score=75.0,
+            why_build_next="Build now because Alpha workflows have stronger evidence.",
+            why_not_alternative="Alternatives rank lower because Alpha workflows have a stronger score.",
+            linked_account_ids=("acct-a",),
+            linked_override_reasons=(),
+            trace_record_ids=("rec-a",),
+            trace_signal_ids=("sig-a",),
+            trace_evidence_spans=("alpha trace",),
+            confidence=0.78,
+        ),
+    ]
+
+    markdown = export_build_next_queue_markdown(queue)
+
+    assert markdown.index("### #1 Alpha workflows") < markdown.index("### #1 Zebra workflows")
+
+
 def test_export_build_next_queue_markdown_handles_missing_optional_trace_fields() -> None:
     queue = [
         DecisionQueueItem(
@@ -78,3 +117,27 @@ def test_export_build_next_queue_markdown_handles_missing_optional_trace_fields(
     assert "- Linked accounts: None" in markdown
     assert "- Override reasons: None" in markdown
     assert "  - record `rec-10` / signal `sig-10`: No evidence span captured." in markdown
+
+
+def test_export_build_next_queue_markdown_handles_missing_trace_tuples() -> None:
+    queue = [
+        DecisionQueueItem(
+            theme_id="theme-no-trace",
+            canonical_label="No trace theme",
+            queue_rank=3,
+            recommendation_type="hold",
+            total_score=20.0,
+            why_build_next="Hold because trace capture is incomplete.",
+            why_not_alternative="Not prioritized because stronger themes exist.",
+            linked_account_ids=(),
+            linked_override_reasons=(),
+            trace_record_ids=(),
+            trace_signal_ids=(),
+            trace_evidence_spans=(),
+            confidence=0.15,
+        )
+    ]
+
+    markdown = export_build_next_queue_markdown(queue)
+
+    assert "  - No decision trace available." in markdown
