@@ -1,6 +1,7 @@
 """VOC repository prototype package."""
 
 from voc_repository.assembly import AssemblyError, assemble_theme_evidence
+from voc_repository.markdown import export_build_next_queue_markdown
 from voc_repository.models import (
     AccountEvidence,
     DecisionQueueItem,
@@ -19,5 +20,6 @@ __all__ = [
     "RawRecord",
     "ThemeEvidenceInput",
     "assemble_theme_evidence",
+    "export_build_next_queue_markdown",
     "rank_build_next_queue",
 ]
