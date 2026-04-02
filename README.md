@@ -19,26 +19,6 @@
 - `develop/primary-voc-repository.md`
 - `develop/backup-creator-deal-crm.md`
 
-## 현재 구현 중인 코드 슬라이스
-- `src/voc/ranking.js` — Voice-of-Customer idea용 weighted ranking engine
-- `tests/voc-ranking.test.js` — ranking engine executable tests
-- `package.json` — dependency-light Node test harness (`npm test` → built-in `node:test`)
-
-## 빠른 실행
-```bash
-npm test
-```
-
-## Ranking engine contract
-- 입력 metrics는 `0..1` 범위의 normalized score여야 한다.
-- score weight는 `20 / 20 / 20 / 20 / 10 / 5 / 5`로 고정된다.
-- override taxonomy는 `customer commitment`, `churn risk`, `strategic segment`, `company objective`, `technical foundation`만 허용한다.
-- linked account evidence는 `linkedAccountIds`가 비어 있지 않고 `evidenceCount > 0`일 때만 인정한다.
-- linked account evidence가 없으면 high score여도 `build_now`로 승격하지 않고, 검증 후보(`validate_next`)까지만 유지한다.
-- 기본 threshold는 `buildNow=70`, `validateNext=45`이며 `0..100` 범위를 벗어나거나 역전되면 validation error를 낸다.
-- `totalScore`는 rounded breakdown 합계가 아니라 raw weighted value 합계를 기준으로 계산해 threshold drift를 막는다.
-- 동점일 때는 linked account count → `id` → `label` → original input order 순서로 deterministic 정렬한다.
-
 ## 운영 원칙
 - 단계별 최신 파일만 유지한다.
 - 루프 과정 로그, 중간 메모, 반복 토론 파일은 남기지 않는다.
