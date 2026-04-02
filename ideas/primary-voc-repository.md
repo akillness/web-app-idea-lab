@@ -4,7 +4,7 @@
 **Updated**: 2026-04-02
 
 ## One-line definition
-초기 B2B SaaS 팀의 support / churn / feature request / customer commitment evidence를 **customer-level evidence board, 주간 의사결정 브리프, commitment-safe update draft**로 바꿔주는 decision layer.
+초기 B2B SaaS 팀의 support / churn / feature request / customer commitment evidence를 **customer-level evidence board, 주간 의사결정 브리프, commitment-safe update draft, 반복 roadmap 설명 대응 큐**로 바꿔주는 decision + explanation layer.
 
 ## 핵심 문제
 팀은 feedback가 없는 게 아니라 너무 많다. 문제는 evidence가 Productboard, Jira, support queue, Slack, notes, CRM에 흩어져 있고, 그걸 매주 다시 읽어 **무엇이 악화됐는지 / 어떤 계정과 세그먼트가 위험한지 / 왜 어떤 항목이 점프했는지 / 무엇을 약속하면 안 되는지 / 무엇을 다음에 만들어야 하는지**로 번역하는 레이어가 없다는 점이다.

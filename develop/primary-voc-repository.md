@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**를 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden**이 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden**이 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
 
 ## 2. MVP scope
 ### 포함
@@ -132,6 +132,13 @@
 - latest safe roadmap wording draft
 - owner + next scheduled response/action
 
+### `/answers`
+- reusable answer pack for `when is later?`, `why not now?`, `what changed?`
+- audience mode (`customer`, `sales`, `exec`)
+- linked account evidence + linked theme rationale
+- safe wording draft + editable short/long version
+- last-used answer and account reuse history
+
 ## 5. Core entities
 ### `records`
 - id
@@ -229,6 +236,19 @@
 - timeline_confidence_note
 - answer_when_is_later
 - answer_why_not_committed
+
+### `answer_packs`
+- id
+- account_id
+- theme_id
+- rationale_id
+- audience_mode (`customer`, `sales`, `exec`)
+- question_type (`when_is_later`, `why_not_now`, `what_changed`, `why_this_priority`)
+- short_answer
+- long_answer
+- linked_evidence_ids
+- last_used_at
+- reuse_count
 
 ### `commitment_overhead_items`
 - id
@@ -344,6 +364,7 @@
 - `build next` 추천은 linked account evidence 없이 생성하지 않는다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
 - `commitment_overhead_items`는 separate queue로 유지해 decision work와 explanation work를 같이 보되 섞지 않는다.
+- 반복 질문에 대한 응답은 ad-hoc 작성으로 끝내지 않고 `answer_packs`로 저장해 account/audience별 재사용이 가능해야 한다.
 
 ## 9. Build order
 1. record intake
@@ -356,7 +377,8 @@
 8. weekly brief generation
 9. external update draft
 10. commitment-overhead queue
-11. export/editing
+11. reusable answer packs
+12. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
@@ -369,6 +391,7 @@
 - `when is later?`에 답하는 safe draft 한 개 생성
 - `why this jumped / why not now` rationale 한 세트 생성
 - commitment-overhead queue item 최소 1개 노출
+- 재사용 가능한 answer pack 최소 1개 생성
 
 ## 11. Validation
 - founder/PM이 실제 weekly review 전에 본다.
@@ -401,6 +424,7 @@ Must-have capabilities:
 - weekly brief generation
 - commitment-safe external update draft
 - commitment-overhead queue
+- reusable answer packs for recurring roadmap questions
 
 Do not build:
 - helpdesk replacement
