@@ -70,20 +70,20 @@ export default function RecordsPage() {
 
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white">Records</h2>
+          <h2 className="text-2xl font-bold text-white">기록</h2>
           <p className="mt-1 text-sm text-slate-400">
-            {filtered.length} of {allRecords.length} VOC signals
+            {filtered.length} / {allRecords.length} VOC 신호
           </p>
           {filteredAccount && (
             <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
               <span className="rounded-full border border-sky-700 bg-sky-950 px-3 py-1 font-medium text-sky-300">
-                Account: {filteredAccount.name}
+                계정: {filteredAccount.name}
               </span>
               <Link
                 href="/records"
                 className="text-slate-400 transition-colors hover:text-white"
               >
-                Clear account filter
+                계정 필터 해제
               </Link>
             </div>
           )}
@@ -92,13 +92,13 @@ export default function RecordsPage() {
           onClick={() => setShowModal(true)}
           className="px-4 py-2 text-sm font-medium text-white bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors whitespace-nowrap"
         >
-          Add Record
+          기록 추가
         </button>
       </div>
 
       {/* Filter chips */}
       <div className="flex flex-wrap gap-2 mb-6">
-        <span className="text-xs text-slate-500 self-center mr-1">Filter:</span>
+        <span className="text-xs text-slate-500 self-center mr-1">필터:</span>
         <button
           onClick={() => setActiveFilter(null)}
           className={`inline-flex items-center gap-1.5 border text-xs px-3 py-1 rounded-full font-medium cursor-pointer transition-all
@@ -106,7 +106,7 @@ export default function RecordsPage() {
               ? 'bg-white text-slate-900 border-white'
               : 'bg-slate-700 text-slate-300 border-slate-600 hover:border-slate-400'}`}
         >
-          All <span className="opacity-70">({allRecords.length})</span>
+          전체 <span className="opacity-70">({allRecords.length})</span>
         </button>
         {signalTypes.map((type) => {
           const count = allRecords.filter((r) => r.signal_type === type).length
@@ -131,13 +131,13 @@ export default function RecordsPage() {
             <thead>
               <tr className="bg-slate-900 text-left">
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">ID</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Account</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Source Type</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Signal Type</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Severity</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Status</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Summary</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Date</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">계정</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">수집 경로</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">신호 유형</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">심각도</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">상태</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">요약</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-400">날짜</th>
               </tr>
             </thead>
             <tbody>
@@ -151,7 +151,7 @@ export default function RecordsPage() {
                     <td className="px-4 py-3 font-mono text-xs text-slate-500">
                       <span>{rec.id}</span>
                       {isNew && (
-                        <span className="ml-2 text-xs bg-emerald-800 text-emerald-300 px-1.5 py-0.5 rounded font-medium">NEW</span>
+                        <span className="ml-2 text-xs bg-emerald-800 text-emerald-300 px-1.5 py-0.5 rounded font-medium">신규</span>
                       )}
                     </td>
                     <td className="px-4 py-3 font-medium text-white whitespace-nowrap">{rec.account_name}</td>

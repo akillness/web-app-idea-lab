@@ -5,10 +5,10 @@ import { themes, RecommendationType } from '../lib/sample-data'
 import { recConfig } from '../lib/ui-config'
 
 const scoreFields: { key: keyof import('../lib/sample-data').ThemeScore; label: string; color: string }[] = [
-  { key: 'frequency', label: 'Frequency', color: 'bg-blue-500' },
-  { key: 'severity', label: 'Severity', color: 'bg-red-500' },
-  { key: 'arr_importance', label: 'ARR Importance', color: 'bg-amber-500' },
-  { key: 'commitment_risk', label: 'Commitment Risk', color: 'bg-purple-500' },
+  { key: 'frequency', label: '빈도', color: 'bg-blue-500' },
+  { key: 'severity', label: '심각도', color: 'bg-red-500' },
+  { key: 'arr_importance', label: 'ARR 중요도', color: 'bg-amber-500' },
+  { key: 'commitment_risk', label: '약속 리스크', color: 'bg-purple-500' },
 ]
 
 export default function ThemesPage() {
@@ -21,9 +21,9 @@ export default function ThemesPage() {
     <div className="p-6 max-w-5xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Themes</h2>
+        <h2 className="text-2xl font-bold text-white">테마</h2>
         <p className="mt-1 text-sm text-slate-400">
-          {themes.length} themes ranked by composite score
+          {themes.length} 개 테마 · 종합 점수 기준 정렬
         </p>
       </div>
 
@@ -36,8 +36,8 @@ export default function ThemesPage() {
               ? 'bg-slate-600 border-slate-500 text-white'
               : 'border-slate-600 text-slate-400 hover:text-white hover:border-slate-500'
           }`}
-        >
-          All
+         >
+          전체
         </button>
         {(['build_now', 'validate_next', 'hold'] as RecommendationType[]).map((rec) => {
           const cfg = recConfig[rec]
@@ -87,7 +87,7 @@ export default function ThemesPage() {
                   <div>
                     <h3 className="text-base font-semibold text-white">{theme.name}</h3>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      {theme.evidence_count} evidence items
+                      {theme.evidence_count} 개 근거
                     </p>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export default function ThemesPage() {
               {/* Total score bar */}
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-slate-500">Total Score</span>
+                  <span className="text-xs text-slate-500">총점</span>
                   <span className="text-xs font-bold text-white">
                     {(theme.total_score * 100).toFixed(0)}
                   </span>
@@ -138,7 +138,7 @@ export default function ThemesPage() {
               {/* Why jumped */}
               <div className="bg-slate-900 rounded-lg px-4 py-3 mb-3">
                 <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wide mb-1">
-                  Why This Jumped
+                  왜 우선순위가 올라왔나
                 </p>
                 <p className="text-sm text-slate-300">{theme.why_jumped}</p>
               </div>
@@ -147,7 +147,7 @@ export default function ThemesPage() {
               {theme.why_not_now && (
                 <div className="bg-slate-900 rounded-lg px-4 py-3">
                   <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
-                    Why Not Now
+                    지금 바로 하지 않는 이유
                   </p>
                   <p className="text-sm text-slate-400">{theme.why_not_now}</p>
                 </div>

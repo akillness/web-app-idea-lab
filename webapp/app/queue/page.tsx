@@ -8,9 +8,9 @@ export default function QueuePage() {
     <div className="p-6 max-w-5xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Build Queue</h2>
+        <h2 className="text-2xl font-bold text-white">빌드 큐</h2>
         <p className="mt-1 text-sm text-slate-400">
-          {decisionQueue.length} items ranked by commitment risk and ARR impact
+          {decisionQueue.length} 개 항목 · 약속 리스크와 ARR 영향 기준 정렬
         </p>
       </div>
 
@@ -85,7 +85,7 @@ export default function QueuePage() {
 
                   {/* Expand hint */}
                   <span className="text-xs text-slate-600 shrink-0 self-center group-open:hidden">
-                    Details
+                    상세
                   </span>
                 </div>
               </summary>
@@ -95,13 +95,13 @@ export default function QueuePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-emerald-400 mb-2">
-                      Why Build Next
+                      왜 다음 개발인가
                     </p>
                     <p className="text-sm text-slate-300 leading-relaxed">{item.why_build_next}</p>
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">
-                      Why Not the Alternative
+                      왜 다른 대안이 아닌가
                     </p>
                     <p className="text-sm text-slate-400 leading-relaxed">{item.why_not_alternative}</p>
                   </div>

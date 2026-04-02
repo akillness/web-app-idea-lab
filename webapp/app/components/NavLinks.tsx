@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const navLinks = [
-  { href: '/', label: 'Dashboard', icon: '▣' },
-  { href: '/records', label: 'Records', icon: '◧' },
-  { href: '/accounts', label: 'Accounts', icon: '◉' },
-  { href: '/themes', label: 'Themes', icon: '◈' },
-  { href: '/commitments', label: 'Commitments', icon: '⚠' },
-  { href: '/briefs', label: 'Briefs', icon: '◫' },
-  { href: '/queue', label: 'Build Queue', icon: '◆' },
+  { href: '/', label: '대시보드', icon: '▣' },
+  { href: '/records', label: '기록', icon: '◧' },
+  { href: '/accounts', label: '계정', icon: '◉' },
+  { href: '/themes', label: '테마', icon: '◈' },
+  { href: '/commitments', label: '약속 리스크', icon: '⚠' },
+  { href: '/briefs', label: '주간 브리프', icon: '◫' },
+  { href: '/queue', label: '빌드 큐', icon: '◆' },
 ]
 
 export function SidebarNav() {

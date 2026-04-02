@@ -6,10 +6,10 @@ import { accounts, records, HealthRiskLevel, SignalType } from '../lib/sample-da
 import { signalBadge, signalLabel } from '../lib/ui-config'
 
 const riskConfig: Record<HealthRiskLevel, { label: string; color: string; dot: string }> = {
-  critical: { label: 'Critical', color: 'border-red-700 bg-red-950', dot: 'bg-red-500' },
-  high: { label: 'High', color: 'border-orange-700 bg-orange-950', dot: 'bg-orange-500' },
-  medium: { label: 'Medium', color: 'border-yellow-700 bg-yellow-950', dot: 'bg-yellow-500' },
-  low: { label: 'Low', color: 'border-emerald-700 bg-emerald-950', dot: 'bg-emerald-500' },
+  critical: { label: '치명', color: 'border-red-700 bg-red-950', dot: 'bg-red-500' },
+  high: { label: '높음', color: 'border-orange-700 bg-orange-950', dot: 'bg-orange-500' },
+  medium: { label: '보통', color: 'border-yellow-700 bg-yellow-950', dot: 'bg-yellow-500' },
+  low: { label: '낮음', color: 'border-emerald-700 bg-emerald-950', dot: 'bg-emerald-500' },
 }
 
 const riskTextColor: Record<HealthRiskLevel, string> = {
@@ -50,9 +50,9 @@ export default function AccountsPage() {
     <div className="p-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Accounts</h2>
+        <h2 className="text-2xl font-bold text-white">계정</h2>
         <p className="mt-1 text-sm text-slate-400">
-          {accounts.length} accounts — sorted by ARR descending
+          {accounts.length} 개 계정 · ARR 높은 순 정렬
         </p>
       </div>
 
@@ -65,8 +65,8 @@ export default function AccountsPage() {
               ? 'bg-slate-600 border-slate-500 text-white'
               : 'border-slate-600 text-slate-400 hover:text-white hover:border-slate-500'
           }`}
-        >
-          All
+         >
+          전체
         </button>
         {(['critical', 'high', 'medium', 'low'] as HealthRiskLevel[]).map((level) => {
           const cfg = riskConfig[level]
@@ -87,7 +87,7 @@ export default function AccountsPage() {
         })}
       </div>
 
-      {/* Risk legend */}
+      {/* 위험 legend */}
       <div className="flex flex-wrap gap-3 mb-6">
         {(['critical', 'high', 'medium', 'low'] as HealthRiskLevel[]).map((level) => {
           const cfg = riskConfig[level]
@@ -124,7 +124,7 @@ export default function AccountsPage() {
                     <div className="flex items-center gap-1.5 mt-0.5 justify-end">
                       <span className={`w-2 h-2 rounded-full ${cfg.dot}`} />
                       <span className={`text-xs font-medium ${riskTextColor[account.health_risk_level]}`}>
-                        {cfg.label} Risk
+                        {cfg.label} 위험
                       </span>
                     </div>
                   </div>
@@ -133,13 +133,13 @@ export default function AccountsPage() {
                 {/* Stats row */}
                 <div className="flex items-center gap-4 mb-3">
                   <div>
-                    <p className="text-xs text-slate-500">Open Commitments</p>
+                    <p className="text-xs text-slate-500">열린 약속</p>
                     <p className={`text-lg font-bold ${account.open_commitment_count > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
                       {account.open_commitment_count}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Latest Signal</p>
+                    <p className="text-xs text-slate-500">최근 신호</p>
                     <p className={`text-xs font-medium mt-0.5 ${signalColor[account.latest_signal_type]}`}>
                       {signalLabel[account.latest_signal_type]}
                     </p>
@@ -148,7 +148,7 @@ export default function AccountsPage() {
 
                 {/* Top pain themes */}
                 <div>
-                  <p className="text-xs text-slate-500 mb-1.5">Top Pain Themes</p>
+                  <p className="text-xs text-slate-500 mb-1.5">핵심 불편 테마</p>
                   <div className="flex flex-wrap gap-1.5">
                     {account.top_pain_themes.map((theme) => (
                       <span
@@ -162,34 +162,34 @@ export default function AccountsPage() {
                 </div>
 
                 <p className="text-xs text-slate-500 mt-3 group-open:hidden">
-                  Click to expand evidence summary
+                  클릭해서 근거 요약 펼치기
                 </p>
               </summary>
 
               {/* Expanded evidence */}
               <div className="px-5 pb-5 border-t border-slate-700 mt-0">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mt-4 mb-2">
-                  Evidence Summary
+                  근거 요약
                 </p>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   {account.evidence_summary}
                 </p>
 
-                {/* Linked Records */}
+                {/* 연결된 기록 */}
                 <div className="mt-4">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Linked Records
+                      연결된 기록
                     </p>
                     <Link
                       href={`/records?account=${account.id}`}
                       className="text-xs text-slate-400 hover:text-white transition-colors"
                     >
-                      View all →
+                      전체 보기 →
                     </Link>
                   </div>
                   {linkedRecords.length === 0 ? (
-                    <p className="text-xs text-slate-500">No records linked</p>
+                    <p className="text-xs text-slate-500">연결된 기록 없음</p>
                   ) : (
                     <div className="space-y-1.5">
                       {linkedRecords.map((rec) => (

@@ -74,7 +74,7 @@ export default function RecordModal({ accounts, initialAccount = null, onClose, 
     >
       <div className="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700">
-          <h2 className="text-lg font-semibold text-white">Add Record</h2>
+          <h2 className="text-lg font-semibold text-white">기록 추가</h2>
           <button
             onClick={onClose}
             className="text-slate-400 hover:text-white transition-colors text-xl leading-none"
@@ -84,10 +84,10 @@ export default function RecordModal({ accounts, initialAccount = null, onClose, 
         </div>
 
         <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
-          {/* Account Name */}
+          {/* 계정명 */}
           <div>
             <label className="block text-xs font-medium text-slate-400 mb-1">
-              Account Name <span className="text-red-400">*</span>
+              계정명 <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -95,44 +95,44 @@ export default function RecordModal({ accounts, initialAccount = null, onClose, 
               value={form.account_name}
               onChange={(e) => setForm({ ...form, account_name: e.target.value })}
               className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-slate-400"
-              placeholder="e.g. Acme Corp"
+              placeholder="예: Acme Corp"
             />
             {matchedAccount && (
               <p className="mt-2 text-xs text-emerald-300">
-                Linked to existing account: {matchedAccount.name}
+                기존 계정과 연결됨: {matchedAccount.name}
               </p>
             )}
           </div>
 
-          {/* Source Type */}
+          {/* 수집 경로 */}
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Source Type</label>
+            <label className="block text-xs font-medium text-slate-400 mb-1">수집 경로</label>
             <select
               value={form.source_type}
               onChange={(e) => setForm({ ...form, source_type: e.target.value as SourceType })}
               className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-slate-400"
             >
-              <option value="support ticket">Support Ticket</option>
-              <option value="CRM note">CRM Note</option>
-              <option value="call note">Call Note</option>
-              <option value="Slack paste">Slack Paste</option>
-              <option value="review">Review</option>
-              <option value="survey">Survey</option>
+              <option value="support ticket">지원 티켓</option>
+              <option value="CRM note">CRM 메모</option>
+              <option value="call note">통화 메모</option>
+              <option value="Slack paste">슬랙 붙여넣기</option>
+              <option value="review">리뷰</option>
+              <option value="survey">설문</option>
             </select>
           </div>
 
-          {/* Signal Type */}
+          {/* 신호 유형 */}
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Signal Type</label>
+            <label className="block text-xs font-medium text-slate-400 mb-1">신호 유형</label>
             <select
               value={form.signal_type}
               onChange={(e) => setForm({ ...form, signal_type: e.target.value as SignalType })}
               className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-slate-400"
             >
-              <option value="feature_request">Feature Request</option>
-              <option value="support_escalation">Support Escalation</option>
-              <option value="churn_risk">Churn Risk</option>
-              <option value="sales_commitment">Sales Commitment</option>
+              <option value="feature_request">기능 요청</option>
+              <option value="support_escalation">지원 이슈 확대</option>
+              <option value="churn_risk">이탈 위험</option>
+              <option value="sales_commitment">세일즈 약속</option>
               <option value="rfp">RFP</option>
             </select>
           </div>
@@ -140,7 +140,7 @@ export default function RecordModal({ accounts, initialAccount = null, onClose, 
           {/* Severity */}
           <div>
             <label className="block text-xs font-medium text-slate-400 mb-1">
-              Severity (1–5)
+              심각도 (1–5)
             </label>
             <input
               type="number"
@@ -163,7 +163,7 @@ export default function RecordModal({ accounts, initialAccount = null, onClose, 
               value={form.summary}
               onChange={(e) => setForm({ ...form, summary: e.target.value })}
               className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 resize-none"
-              placeholder="Describe the signal..."
+              placeholder="신호 내용을 입력하세요..."
             />
           </div>
 

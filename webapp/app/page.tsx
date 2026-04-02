@@ -14,46 +14,46 @@ export default function DashboardPage() {
   ).length
 
   const statCards = [
-    { label: 'Total Records', value: totalRecords, sub: 'this week', color: 'text-blue-400' },
-    { label: 'Active Accounts', value: activeAccounts, sub: `${criticalAccounts} critical`, color: 'text-emerald-400' },
-    { label: 'Themes Tracked', value: themesTracked, sub: `${buildNowCount} build now`, color: 'text-violet-400' },
-    { label: 'Build Queue', value: buildQueueItems, sub: 'ranked items', color: 'text-amber-400' },
+    { label: '전체 기록', value: totalRecords, sub: '이번 주', color: 'text-blue-400' },
+    { label: '활성 계정', value: activeAccounts, sub: `${criticalAccounts}개 위험`, color: 'text-emerald-400' },
+    { label: '추적 중인 테마', value: themesTracked, sub: `${buildNowCount}개 즉시 개발`, color: 'text-violet-400' },
+    { label: '빌드 큐', value: buildQueueItems, sub: '우선순위 항목', color: 'text-amber-400' },
   ]
 
   const quickLinks = [
     {
       href: '/records',
-      title: 'Records',
-      desc: 'Browse all VOC signals by account, type, and severity.',
-      badge: `${totalRecords} records`,
+      title: '기록',
+      desc: '계정, 유형, 심각도 기준으로 VOC 신호를 확인합니다.',
+      badge: `${totalRecords}건`,
       badgeColor: 'bg-blue-900 text-blue-300',
     },
     {
       href: '/accounts',
-      title: 'Accounts',
-      desc: 'Account health, open commitments, and risk levels.',
-      badge: `${highRiskAccounts} at risk`,
+      title: '계정',
+      desc: '계정 건강도, 열린 약속, 리스크 수준을 확인합니다.',
+      badge: `${highRiskAccounts}개 위험`,
       badgeColor: 'bg-red-900 text-red-300',
     },
     {
       href: '/themes',
-      title: 'Themes',
-      desc: 'Ranked pain themes with score breakdowns.',
-      badge: `${buildNowCount} build now`,
+      title: '테마',
+      desc: '점수 분해와 함께 우선순위 테마를 확인합니다.',
+      badge: `${buildNowCount}개 즉시 개발`,
       badgeColor: 'bg-emerald-900 text-emerald-300',
     },
     {
       href: '/briefs',
-      title: 'Weekly Brief',
-      desc: 'This week\'s decision brief and strategy summary.',
+      title: '주간 브리프',
+      desc: '이번 주 의사결정 브리프와 전략 요약입니다.',
       badge: 'Apr 4, 2026',
       badgeColor: 'bg-slate-700 text-slate-300',
     },
     {
       href: '/queue',
-      title: 'Build Queue',
-      desc: 'Prioritized build decisions with evidence.',
-      badge: `${buildQueueItems} items`,
+      title: '빌드 큐',
+      desc: '근거 기반의 우선순위 개발 결정을 보여줍니다.',
+      badge: `${buildQueueItems}개`,
       badgeColor: 'bg-violet-900 text-violet-300',
     },
   ]
@@ -62,9 +62,9 @@ export default function DashboardPage() {
     <div className="p-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+        <h2 className="text-2xl font-bold text-white">대시보드</h2>
         <p className="mt-1 text-sm text-slate-400">
-          Voice-of-Customer signals, ranked themes, and build decisions — week of Apr 4, 2026
+          고객의 목소리 신호, 우선순위 테마, 개발 의사결정을 한눈에 보는 2026년 4월 4일 기준 화면
         </p>
       </div>
 
@@ -83,21 +83,21 @@ export default function DashboardPage() {
       <div className="bg-amber-950 border border-amber-800 rounded-lg px-5 py-4 mb-8 flex items-center justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-amber-400">
-            Strategy Tax This Week
+            이번 주 전략 부담
           </p>
           <p className="text-sm text-amber-200 mt-0.5">
-            Overhead from managing unresolved commitments and escalations
+            미해결 약속과 이슈 확대 대응에 들어가는 추가 운영 비용
           </p>
         </div>
         <div className="text-right">
           <p className="text-3xl font-bold text-amber-400">{strategyTaxHours}h</p>
-          <p className="text-xs text-amber-600">engineering hours</p>
+          <p className="text-xs text-amber-600">엔지니어링 시간</p>
         </div>
       </div>
 
       {/* Quick links */}
       <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-3">
-        Navigate
+        빠른 이동
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {quickLinks.map((link) => (
@@ -122,7 +122,7 @@ export default function DashboardPage() {
       {/* Top commitment risks */}
       <div className="mt-8">
         <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-3">
-          Commitments at Risk
+          위험한 약속
         </h3>
         <div className="bg-slate-800 border border-slate-700 rounded-lg divide-y divide-slate-700">
           {weeklyBrief.commitments_at_risk.map((c, i) => (
