@@ -5,6 +5,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![Playwright](https://img.shields.io/badge/E2E-49%20tests%20passing-45ba4b?logo=playwright)](https://playwright.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## VOC Repository — Live Web App
@@ -16,16 +17,21 @@
 ### 🚀 Live Demo
 **[https://akillness.github.io/web-app-idea-lab/](https://akillness.github.io/web-app-idea-lab/)**
 
+---
+
 ### 📱 App Screens
 
-| Screen | Description |
-|--------|-------------|
-| **Dashboard** | Stats overview, strategy-tax metric, quick navigation |
-| **Records** | Customer signal records with source type & severity |
-| **Accounts** | Customer-level evidence board with ARR & risk |
-| **Themes** | Ranked theme board with why-this-jumped rationale |
-| **Briefs** | Weekly decision brief with markdown export |
-| **Build Queue** | Ranked build-next decision queue with linked evidence |
+| Screen | Route | Description |
+|--------|-------|-------------|
+| **Dashboard** | `/` | Stats overview, strategy-tax metric, commitments at risk, quick navigation |
+| **Records** | `/records` | Customer signal records with filter chips, source type & severity, intake form |
+| **Accounts** | `/accounts` | Evidence board with ARR, health risk filters, linked records drill-down |
+| **Themes** | `/themes` | Ranked theme board with recommendation filter (Build Now / Validate Next / Hold) |
+| **Briefs** | `/briefs` | Weekly decision brief with markdown export |
+| **Build Queue** | `/queue` | Ranked build-next decision queue with linked evidence |
+| **Commitments** | `/commitments` | At-risk commitments tracker grouped by account |
+
+---
 
 ### 🖼 Screenshots
 
@@ -42,24 +48,40 @@
     <td align="center"><strong>Weekly Brief</strong><br><img src="webapp/public/screenshots/briefs.png" alt="Briefs" width="400"/></td>
     <td align="center"><strong>Build Queue</strong><br><img src="webapp/public/screenshots/queue.png" alt="Build Queue" width="400"/></td>
   </tr>
+  <tr>
+    <td align="center"><strong>Commitments</strong><br><img src="webapp/public/screenshots/commitments.png" alt="Commitments" width="400"/></td>
+    <td align="center"></td>
+  </tr>
 </table>
+
+---
 
 ### 🏗 Architecture
 
 ```
 web-app-idea-lab/
-├── webapp/              # Next.js 14 web app (GitHub Pages)
+├── webapp/                          # Next.js 16 web app (GitHub Pages)
 │   ├── app/
-│   │   ├── lib/sample-data.ts   # Typed VOC sample data
-│   │   ├── records/             # Signal records view
-│   │   ├── accounts/            # Customer evidence board
-│   │   ├── themes/              # Ranked theme board
-│   │   ├── briefs/              # Weekly decision brief
-│   │   └── queue/               # Build-next queue
-│   └── next.config.mjs          # Static export config
-├── src/voc_repository/  # Python CLI (existing)
-├── .github/workflows/   # CI/CD → GitHub Pages
-└── develop/             # Development plans
+│   │   ├── lib/
+│   │   │   ├── sample-data.ts       # Typed VOC sample data (5 accounts, 15 records, 8 themes)
+│   │   │   └── ui-config.ts         # Shared signal badge / label config
+│   │   ├── components/
+│   │   │   ├── NavLinks.tsx         # Active nav via usePathname()
+│   │   │   └── ExportButton.tsx     # Markdown export (use client)
+│   │   ├── records/
+│   │   │   ├── page.tsx             # Signal records + intake form
+│   │   │   └── RecordModal.tsx      # Add record modal form
+│   │   ├── accounts/                # Evidence board with health risk filter
+│   │   ├── themes/                  # Ranked themes with recommendation filter
+│   │   ├── commitments/             # At-risk commitments tracker
+│   │   ├── briefs/                  # Weekly decision brief
+│   │   └── queue/                   # Build-next queue
+│   ├── e2e/voc-app.spec.ts          # 49 Playwright E2E tests
+│   └── next.config.mjs              # Static export config
+├── src/voc_repository/              # Python CLI (existing)
+├── .github/workflows/deploy.yml     # CI/CD → GitHub Pages
+├── .jeo/                            # JEO project ledger
+└── develop/                         # Development plans
 ```
 
 ### ⚡ Local Development
@@ -69,7 +91,21 @@ cd webapp
 npm install
 npm run dev        # http://localhost:3000
 npm run build      # Static export to /out
+npx playwright test e2e/voc-app.spec.ts   # 49 E2E tests
 ```
+
+---
+
+### 🔧 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router, static export) |
+| Language | TypeScript 5 (strict mode) |
+| Styling | Tailwind CSS 4 |
+| Testing | Playwright (E2E, 49 tests) |
+| Deployment | GitHub Actions → GitHub Pages |
+| Data | Typed sample data (no backend) |
 
 ---
 
