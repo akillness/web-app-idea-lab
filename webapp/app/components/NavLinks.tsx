@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/records', label: 'Records', icon: '◧' },
   { href: '/accounts', label: 'Accounts', icon: '◉' },
   { href: '/themes', label: 'Themes', icon: '◈' },
+  { href: '/commitments', label: 'Commitments', icon: '⚠' },
   { href: '/briefs', label: 'Briefs', icon: '◫' },
   { href: '/queue', label: 'Build Queue', icon: '◆' },
 ]

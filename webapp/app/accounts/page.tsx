@@ -1,5 +1,9 @@
-import { accounts, HealthRiskLevel, SignalType } from '../lib/sample-data'
-import { signalLabel } from '../lib/ui-config'
+'use client'
+
+import Link from 'next/link'
+import { useState } from 'react'
+import { accounts, records, HealthRiskLevel, SignalType } from '../lib/sample-data'
+import { signalBadge, signalLabel } from '../lib/ui-config'
 
 const riskConfig: Record<HealthRiskLevel, { label: string; color: string; dot: string }> = {
   critical: { label: 'Critical', color: 'border-red-700 bg-red-950', dot: 'bg-red-500' },
@@ -13,6 +17,13 @@ const riskTextColor: Record<HealthRiskLevel, string> = {
   high: 'text-orange-400',
   medium: 'text-yellow-400',
   low: 'text-emerald-400',
+}
+
+const riskButtonActive: Record<HealthRiskLevel, string> = {
+  critical: 'bg-red-950 border-red-700 text-red-400',
+  high: 'bg-orange-950 border-orange-700 text-orange-400',
+  medium: 'bg-yellow-950 border-yellow-700 text-yellow-400',
+  low: 'bg-emerald-950 border-emerald-700 text-emerald-400',
 }
 
 const signalColor: Record<SignalType, string> = {
@@ -30,7 +41,10 @@ function formatArr(value: number): string {
 }
 
 export default function AccountsPage() {
-  const sorted = [...accounts].sort((a, b) => b.arr_value - a.arr_value)
+  const [activeRisk, setActiveRisk] = useState<HealthRiskLevel | null>(null)
+  const sorted = [...accounts]
+    .sort((a, b) => b.arr_value - a.arr_value)
+    .filter((a) => activeRisk === null || a.health_risk_level === activeRisk)
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
@@ -40,6 +54,37 @@ export default function AccountsPage() {
         <p className="mt-1 text-sm text-slate-400">
           {accounts.length} accounts — sorted by ARR descending
         </p>
+      </div>
+
+      {/* Filter buttons */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        <button
+          onClick={() => setActiveRisk(null)}
+          className={`text-xs px-3 py-1 rounded-full border font-medium transition-colors ${
+            activeRisk === null
+              ? 'bg-slate-600 border-slate-500 text-white'
+              : 'border-slate-600 text-slate-400 hover:text-white hover:border-slate-500'
+          }`}
+        >
+          All
+        </button>
+        {(['critical', 'high', 'medium', 'low'] as HealthRiskLevel[]).map((level) => {
+          const cfg = riskConfig[level]
+          return (
+            <button
+              key={level}
+              onClick={() => setActiveRisk(activeRisk === level ? null : level)}
+              className={`text-xs px-3 py-1 rounded-full border font-medium transition-opacity ${
+                activeRisk === level
+                  ? riskButtonActive[level]
+                  : 'border-slate-600 text-slate-400 hover:text-white hover:border-slate-500'
+              } ${activeRisk !== null && activeRisk !== level ? 'opacity-40' : 'opacity-100'}`}
+            >
+              <span className={`inline-block w-1.5 h-1.5 rounded-full ${cfg.dot} mr-1.5`} />
+              {cfg.label}
+            </button>
+          )
+        })}
       </div>
 
       {/* Risk legend */}
@@ -61,6 +106,7 @@ export default function AccountsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {sorted.map((account) => {
           const cfg = riskConfig[account.health_risk_level]
+          const linkedRecords = records.filter((r) => r.account_id === account.id)
           return (
             <details
               key={account.id}
@@ -128,6 +174,43 @@ export default function AccountsPage() {
                 <p className="text-sm text-slate-300 leading-relaxed">
                   {account.evidence_summary}
                 </p>
+
+                {/* Linked Records */}
+                <div className="mt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      Linked Records
+                    </p>
+                    <Link
+                      href={`/records?account=${account.id}`}
+                      className="text-xs text-slate-400 hover:text-white transition-colors"
+                    >
+                      View all →
+                    </Link>
+                  </div>
+                  {linkedRecords.length === 0 ? (
+                    <p className="text-xs text-slate-500">No records linked</p>
+                  ) : (
+                    <div className="space-y-1.5">
+                      {linkedRecords.map((rec) => (
+                        <div
+                          key={rec.id}
+                          className="flex items-start gap-2 bg-slate-800/60 rounded px-3 py-2"
+                        >
+                          <span className={`inline-flex border text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap ${signalBadge[rec.signal_type]}`}>
+                            {signalLabel[rec.signal_type]}
+                          </span>
+                          <span className="text-xs font-bold text-slate-300 shrink-0">
+                            {rec.severity}/5
+                          </span>
+                          <span className="text-xs text-slate-400 truncate" title={rec.summary}>
+                            {rec.summary.length > 60 ? rec.summary.slice(0, 60) + '…' : rec.summary}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </details>
           )

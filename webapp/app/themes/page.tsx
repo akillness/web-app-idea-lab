@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { themes, RecommendationType } from '../lib/sample-data'
 import { recConfig } from '../lib/ui-config'
 
@@ -9,7 +12,10 @@ const scoreFields: { key: keyof import('../lib/sample-data').ThemeScore; label: 
 ]
 
 export default function ThemesPage() {
-  const sorted = [...themes].sort((a, b) => b.total_score - a.total_score)
+  const [activeRec, setActiveRec] = useState<RecommendationType | null>(null)
+  const sorted = [...themes]
+    .sort((a, b) => b.total_score - a.total_score)
+    .filter((t) => activeRec === null || t.recommendation === activeRec)
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
@@ -19,6 +25,34 @@ export default function ThemesPage() {
         <p className="mt-1 text-sm text-slate-400">
           {themes.length} themes ranked by composite score
         </p>
+      </div>
+
+      {/* Filter buttons */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        <button
+          onClick={() => setActiveRec(null)}
+          className={`text-xs px-3 py-1 rounded-full border font-medium transition-colors ${
+            activeRec === null
+              ? 'bg-slate-600 border-slate-500 text-white'
+              : 'border-slate-600 text-slate-400 hover:text-white hover:border-slate-500'
+          }`}
+        >
+          All
+        </button>
+        {(['build_now', 'validate_next', 'hold'] as RecommendationType[]).map((rec) => {
+          const cfg = recConfig[rec]
+          return (
+            <button
+              key={rec}
+              onClick={() => setActiveRec(activeRec === rec ? null : rec)}
+              className={`text-xs px-3 py-1 rounded-full border font-medium transition-opacity ${cfg.badge} ${
+                activeRec !== null && activeRec !== rec ? 'opacity-40' : 'opacity-100'
+              }`}
+            >
+              {cfg.label}
+            </button>
+          )
+        })}
       </div>
 
       {/* Legend */}

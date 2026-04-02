@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { records, SignalType, RecordStatus } from '../lib/sample-data'
+import { records, VocRecord, SignalType, RecordStatus } from '../lib/sample-data'
 import { signalBadge, signalLabel } from '../lib/ui-config'
+import RecordModal from './RecordModal'
 
 const statusBadge: Record<RecordStatus, string> = {
   new: 'bg-slate-700 text-slate-300',
@@ -28,15 +29,36 @@ const signalTypes: SignalType[] = [
 
 export default function RecordsPage() {
   const [activeFilter, setActiveFilter] = useState<SignalType | null>(null)
-  const filtered = activeFilter ? records.filter(r => r.signal_type === activeFilter) : records
+  const [extraRecords, setExtraRecords] = useState<VocRecord[]>([])
+  const [showModal, setShowModal] = useState(false)
+
+  const allRecords = [...extraRecords, ...records]
+  const filtered = activeFilter ? allRecords.filter(r => r.signal_type === activeFilter) : allRecords
+
+  function handleAddRecord(record: VocRecord) {
+    setExtraRecords(prev => [record, ...prev])
+    setShowModal(false)
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Records</h2>
-        <p className="mt-1 text-sm text-slate-400">
-          {filtered.length} of {records.length} VOC signals
-        </p>
+      {showModal && (
+        <RecordModal onClose={() => setShowModal(false)} onSubmit={handleAddRecord} />
+      )}
+
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Records</h2>
+          <p className="mt-1 text-sm text-slate-400">
+            {filtered.length} of {allRecords.length} VOC signals
+          </p>
+        </div>
+        <button
+          onClick={() => setShowModal(true)}
+          className="px-4 py-2 text-sm font-medium text-white bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors whitespace-nowrap"
+        >
+          Add Record
+        </button>
       </div>
 
       {/* Filter chips */}
@@ -49,10 +71,10 @@ export default function RecordsPage() {
               ? 'bg-white text-slate-900 border-white'
               : 'bg-slate-700 text-slate-300 border-slate-600 hover:border-slate-400'}`}
         >
-          All <span className="opacity-70">({records.length})</span>
+          All <span className="opacity-70">({allRecords.length})</span>
         </button>
         {signalTypes.map((type) => {
-          const count = records.filter((r) => r.signal_type === type).length
+          const count = allRecords.filter((r) => r.signal_type === type).length
           const isActive = activeFilter === type
           return (
             <button
@@ -84,32 +106,40 @@ export default function RecordsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((rec, i) => (
-                <tr
-                  key={rec.id}
-                  className={`border-t border-slate-700 ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-900'} hover:bg-slate-700 transition-colors`}
-                >
-                  <td className="px-4 py-3 font-mono text-xs text-slate-500">{rec.id}</td>
-                  <td className="px-4 py-3 font-medium text-white whitespace-nowrap">{rec.account_name}</td>
-                  <td className="px-4 py-3 text-slate-300 whitespace-nowrap">{rec.source_type}</td>
-                  <td className="px-4 py-3">
-                    <span className={`inline-flex border text-xs px-2 py-0.5 rounded-full font-medium ${signalBadge[rec.signal_type]}`}>
-                      {signalLabel[rec.signal_type]}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`font-bold text-base ${severityColor(rec.severity)}`}>{rec.severity}</span>
-                    <span className="text-slate-600 text-xs">/5</span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`text-xs px-2 py-0.5 rounded font-medium ${statusBadge[rec.status]}`}>
-                      {rec.status.replace('_', ' ')}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-slate-300 max-w-xs truncate" title={rec.summary}>{rec.summary}</td>
-                  <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">{rec.date}</td>
-                </tr>
-              ))}
+              {filtered.map((rec, i) => {
+                const isNew = extraRecords.some(r => r.id === rec.id)
+                return (
+                  <tr
+                    key={rec.id}
+                    className={`border-t border-slate-700 ${i % 2 === 0 ? 'bg-slate-800' : 'bg-slate-900'} hover:bg-slate-700 transition-colors`}
+                  >
+                    <td className="px-4 py-3 font-mono text-xs text-slate-500">
+                      <span>{rec.id}</span>
+                      {isNew && (
+                        <span className="ml-2 text-xs bg-emerald-800 text-emerald-300 px-1.5 py-0.5 rounded font-medium">NEW</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 font-medium text-white whitespace-nowrap">{rec.account_name}</td>
+                    <td className="px-4 py-3 text-slate-300 whitespace-nowrap">{rec.source_type}</td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-flex border text-xs px-2 py-0.5 rounded-full font-medium ${signalBadge[rec.signal_type]}`}>
+                        {signalLabel[rec.signal_type]}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`font-bold text-base ${severityColor(rec.severity)}`}>{rec.severity}</span>
+                      <span className="text-slate-600 text-xs">/5</span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${statusBadge[rec.status]}`}>
+                        {rec.status.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-slate-300 max-w-xs truncate" title={rec.summary}>{rec.summary}</td>
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">{rec.date}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -118,7 +148,7 @@ export default function RecordsPage() {
       {/* Summary counts */}
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
         {signalTypes.map((type) => {
-          const count = records.filter((r) => r.signal_type === type).length
+          const count = allRecords.filter((r) => r.signal_type === type).length
           return (
             <div key={type} className={`border rounded-lg px-3 py-3 ${signalBadge[type]}`}>
               <p className="text-lg font-bold">{count}</p>
