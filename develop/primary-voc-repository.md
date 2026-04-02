@@ -439,5 +439,12 @@ Scaffold a dependency-light ranking engine for the primary idea that:
 - Create: `tests/voc-ranking.test.js`
 - Modify: `README.md`
 
+### Short implementation plan
+1. Bootstrap a dependency-light Node test harness with the built-in `node:test` runner.
+2. Implement a pure ranking module that validates the documented override taxonomy and score ranges.
+3. Encode the MVP weight table into deterministic weighted scoring + recommendation thresholds.
+4. Gate recommendations on linked account evidence so queue items do not overstate confidence.
+5. Cover the module with executable tests for scoring, validation, and ranked output ordering.
+
 ### Verification
 - `npm test`
