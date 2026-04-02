@@ -20,7 +20,11 @@
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20%22when%20is%20later%22%20roadmap%20%22now%20next%20later%22
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2023-05-09 결과는 `These customers are asking dates for features from 3 to 12 months out. My solution right now is to deflect it by giving generalities ...`를 노출한다. 실제 B2B 운영에서는 **날짜 요구를 받아내는 enterprise/customer-facing surface**가 계속 남아 있다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
-- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-03-18 스니펫은 `Our sales team has sold more and more enterprise deals with "commitments" of sorts in the contracts.`를 노출한다. 최신 wedge는 단순 feedback repository가 아니라 **sales-sold commitments / RFP pressure / roadmap expectation**까지 evidence graph에 묶는 operating layer다.  
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-01-11 스니펫은 `Traditional roadmaps with time constraints are commonly expected, as stakeholders often seek commitment to specific delivery dates.`를 노출한다. 이 pain은 고객 응대만이 아니라 **내부 stakeholder/exec/revenue surface에서도 time-constrained roadmap을 요구하는 구조**라는 점이 다시 확인됐다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-03-18 스니펫은 `Our sales team has sold more and more enterprise deals with \"commitments\" of sorts in the contracts.`를 노출한다. 최신 wedge는 단순 feedback repository가 아니라 **sales-sold commitments / RFP pressure / roadmap expectation**까지 evidence graph에 묶는 operating layer다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
+- **Yahoo Japan indexed snippet (browser-rendered, medium-high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-04-28 스니펫은 `... product roadmap for the next 3 months to include deadlines in which sprint things will be ...`를 노출한다. 즉 최신 요구는 추상적 날짜 질문을 넘어서 **3개월 단위 roadmap + sprint deadline 요구**까지 포함한다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-12-18 스니펫은 `How does your team prioritize what to build? And how do you balance business RFP needs versus building a strategic customer centric product?`를 노출한다. 즉 override pain은 단순한 특수 케이스가 아니라 **RFP / enterprise revenue asks vs strategic roadmap** 사이의 설명 가능한 trade-off 문제다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
@@ -51,9 +55,9 @@
 ### 1) Voice-of-Customer Repository
 - 이번 루프에서도 가장 강한 쪽은 VoC다.
 - 시장 요구가 `feedback 저장`보다 **planning translation / build-next decision / account-aware prioritization** 쪽으로 더 선명하다.
-- 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, sales-sold commitments, repeated roadmap explanation workload, RFP-vs-strategy override trade-off**까지 묶어 처리하는 operating layer다.
+- 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, internal stakeholder/exec timeline pressure, sales-sold commitments, repeated roadmap explanation workload, RFP-vs-strategy override trade-off**까지 묶어 처리하는 operating layer다.
 - 추가로 support-to-product relay 자체도 별도 카테고리보다 **major-account commitment pressure를 decision layer에 연결하는 sub-module**로 흡수하는 편이 맞다는 신호가 보였다.
-- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + support-relay sub-module + override-defense layer**다.
+- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + internal timeline-defense layer + support-relay sub-module + override-defense layer**다.
 
 ### 2) Creator Deal CRM
 backup pain도 여전히 선명하지만 더 좁다.

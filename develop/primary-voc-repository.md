@@ -6,7 +6,7 @@
 ## 1. Build goal
 사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**, **sales/CS/support reusable explanation pack**을 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure / RFP-vs-strategy override trade-off / support escalation relay**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure / RFP override justification / support escalation summary에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure / internal stakeholder timeline pressure / RFP-vs-strategy override trade-off / support escalation relay**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure / next-3-month deadline 요구 / RFP override justification / support escalation summary에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
 
 ## 2. MVP scope
 ### 포함
@@ -31,6 +31,7 @@
 - bucket definition note 생성
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
 - stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `support`, `internal exec`)
+- internal timeline-defense mode 생성 (`time-constrained roadmap`, `next 3 months`, `sprint deadline ask`)
 - commitment-overhead queue 생성
 - customer-roadmap communication queue 생성
 - sales commitment pressure queue 생성
@@ -95,6 +96,7 @@
 - `what changed since last review` block
 - `what should we build next` answer block
 - `RFP vs strategy trade-off` block
+- `timeline pressure / deadline asks` block
 - `strategy-time tax this week` block
 
 ### `/updates/latest`
@@ -103,9 +105,11 @@
 - bucket definition note (`now`, `next`, `later`)
 - ambiguity explanation block
 - stakeholder mode selector (`customer`, `sales`, `exec`)
+- internal timeline mode toggle (`directional roadmap`, `time-constrained roadmap defense`)
 - `near-term commitments only` validation badge
 - `when is later?` answer helper
 - `why this is not committed yet` helper
+- `why we are not committing this quarter/sprint` helper
 
 ### `/commitments`
 - promises at risk
@@ -265,7 +269,7 @@
 - theme_id
 - rationale_id
 - audience_mode (`customer`, `sales`, `exec`)
-- question_type (`when_is_later`, `why_not_now`, `what_changed`, `why_this_priority`)
+- question_type (`when_is_later`, `why_not_now`, `what_changed`, `why_this_priority`, `why_not_this_quarter`)
 - short_answer
 - long_answer
 - linked_evidence_ids
@@ -301,7 +305,7 @@
 ### `roadmap_call_queue_items`
 - id
 - account_id
-- request_surface (`customer_call`, `sales_followup`, `exec_review`)
+- request_surface (`customer_call`, `sales_followup`, `exec_review`, `timeline_review`)
 - request_summary
 - linked_theme_ids
 - linked_rationale_id
