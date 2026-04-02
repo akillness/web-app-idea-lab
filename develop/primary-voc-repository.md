@@ -4,16 +4,16 @@
 **Updated**: 2026-04-02
 
 ## 1. Build goal
-사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**를 생성한다.
+사용자가 support / churn / feature request / commitment records를 넣으면, 시스템이 이를 구조화해서 **customer-level evidence board**, **주간 의사결정 브리프**, **ranked build-next queue**, **commitment-safe external update draft**, **sales/CS reusable explanation pack**을 생성한다.
 
-핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden**이 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
+핵심은 feedback 저장소가 아니라, 흩어진 evidence를 **account-aware decision layer**, **priority rationale layer**, **external communication layer**로 번역하는 것이다. 이번 최신 신호 기준으로는 여기에 더해 **customer commitment / explanation work / repeated roadmap-call burden / sales-sold commitment pressure**가 잡아먹는 strategy-time tax를 줄이는 운영 레이어가 필요하다. 따라서 MVP도 단순 브리프 생성에서 끝나지 않고, **반복되는 `when is later?` / `why not now?` / customer roadmap call 요청 / enterprise date pressure에 바로 재사용할 수 있는 답변 패키지**를 만들어야 한다.
 
 ## 2. MVP scope
 ### 포함
 - record paste/upload
 - source type 지정
-- source preset 선택 (`support ticket`, `CRM note`, `call note`, `Slack paste`, `review`, `survey`, `roadmap/customer commitment note`)
-- shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`)
+- source preset 선택 (`support ticket`, `CRM note`, `call note`, `Slack paste`, `review`, `survey`, `roadmap/customer commitment note`, `sales commitment note`, `RFP / enterprise ask`)
+- shared store ingestion (`tickets`, `reviews`, `surveys`, `call notes`, `sales notes`)
 - one-table intake baseline for mixed sources (`sales calls`, `CS tickets`, `Intercom`, `notes`)
 - low-friction note capture for personal docs / meeting notes
 - AI extraction
@@ -32,6 +32,7 @@
 - stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `internal exec`)
 - commitment-overhead queue 생성
 - customer-roadmap communication queue 생성
+- sales commitment pressure queue 생성
 - markdown export
 
 ### 제외
@@ -54,7 +55,8 @@
 10. external update draft 생성
 11. commitment-overhead queue 생성
 12. customer-roadmap communication queue 생성
-13. markdown export
+13. sales commitment pressure queue 생성
+14. markdown export
 
 ## 4. Main screens
 ### `/records`
@@ -71,6 +73,7 @@
 - linked requests / churn / support / commitment signals
 - ARR / segment context
 - latest customer-safe wording note
+- open sales / contract / RFP expectation flags
 
 ### `/themes`
 - theme list
@@ -132,6 +135,13 @@
 - latest safe roadmap wording draft
 - owner + next scheduled response/action
 
+### `/queue/sales-commitments`
+- deals/accounts carrying sales-made commitments or RFP pressure
+- promise type (`contract`, `RFP`, `verbal`, `expansion ask`)
+- linked product confidence / evidence gap
+- suggested safe wording for sales follow-up
+- owner + next alignment action
+
 ### `/answers`
 - reusable answer pack for `when is later?`, `why not now?`, `what changed?`
 - audience mode (`customer`, `sales`, `exec`)
@@ -176,6 +186,7 @@
 - rough_effort
 - commitment_status
 - promise_type
+- commitment_surface (`support`, `sales`, `contract`, `RFP`, `exec`)
 - external_update_mode
 - priority_override_reason
 
@@ -258,6 +269,18 @@
 - risk_level
 - suggested_answer
 - suggested_safe_wording
+- owner
+- next_action_at
+- status
+
+### `sales_commitment_pressure_items`
+- id
+- account_id
+- source_record_id
+- pressure_type (`contract_commitment`, `RFP_date_ask`, `sales_promise`, `expansion_deadline`)
+- linked_theme_ids
+- confidence_gap_note
+- suggested_sales_followup
 - owner
 - next_action_at
 - status
@@ -354,6 +377,13 @@
 - suggested owner
 - next action due
 
+### Sales Commitment Pressure Queue
+- contract / RFP / verbal commitment pressure items
+- linked evidence and confidence gap
+- suggested sales-safe wording
+- suggested owner
+- next action due
+
 ## 8. Product rules
 - `now/next/later`는 **일정 약속 도구**가 아니라 **방향성 커뮤니케이션 도구**로 취급한다.
 - `when is later?` 대응은 PM 내부만이 아니라 customer / sales / exec 대화 표면까지 지원해야 한다.
@@ -364,6 +394,7 @@
 - `build next` 추천은 linked account evidence 없이 생성하지 않는다.
 - internal decision artifact와 customer-facing update draft를 섞지 않는다.
 - `commitment_overhead_items`는 separate queue로 유지해 decision work와 explanation work를 같이 보되 섞지 않는다.
+- sales/contract/RFP surface에서 생긴 expectation pressure도 `sales_commitment_pressure_items`로 분리해 추적한다.
 - 반복 질문에 대한 응답은 ad-hoc 작성으로 끝내지 않고 `answer_packs`로 저장해 account/audience별 재사용이 가능해야 한다.
 
 ## 9. Build order
@@ -377,8 +408,9 @@
 8. weekly brief generation
 9. external update draft
 10. commitment-overhead queue
-11. reusable answer packs
-12. export/editing
+11. sales commitment pressure queue
+12. reusable answer packs
+13. export/editing
 
 ## 10. First milestone
 - 10~20개 샘플 record 입력 가능
@@ -391,6 +423,7 @@
 - `when is later?`에 답하는 safe draft 한 개 생성
 - `why this jumped / why not now` rationale 한 세트 생성
 - commitment-overhead queue item 최소 1개 노출
+- sales commitment pressure item 최소 1개 노출
 - 재사용 가능한 answer pack 최소 1개 생성
 
 ## 11. Validation
@@ -403,13 +436,14 @@
 - `지금 무엇을 build next 해야 하는지`를 linked evidence 기준으로 말할 수 있다는 반응 확보.
 - `now/next/later` 초안이 고객 커뮤니케이션에 바로 수정 가능한 수준이라는 반응 확보.
 - expectation-management 질문을 처리하는 시간이 줄었다는 반응 확보.
+- sales/CS가 계약성 기대나 enterprise date pressure에 답할 때 ad-hoc 설명보다 linked evidence 기반 pack이 낫다는 반응 확보.
 
 ## 12. Build prompt
 ```text
 Build an MVP web app for Voice-of-Customer Repository.
 
 Goal:
-Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a ranked build-next decision queue, a commitment-overhead queue, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
+Turn support, churn, feature request, and commitment records into a customer-level evidence board, a weekly decision brief, a ranked build-next decision queue, a commitment-overhead queue, a sales-commitment-pressure queue, a priority rationale layer, and a commitment-safe external update draft for early-stage B2B SaaS teams.
 
 Must-have capabilities:
 - upload/paste records
@@ -425,6 +459,7 @@ Must-have capabilities:
 - commitment-safe external update draft
 - commitment-overhead queue
 - reusable answer packs for recurring roadmap questions
+- explicit handling for sales-sold commitments / RFP pressure
 
 Do not build:
 - helpdesk replacement
