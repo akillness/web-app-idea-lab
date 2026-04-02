@@ -27,11 +27,13 @@
 - **Yahoo Japan indexed snippet (browser-rendered, medium-high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-04-28 스니펫은 `... product roadmap for the next 3 months to include deadlines in which sprint things will be ...`를 노출한다. 즉 최신 요구는 추상적 날짜 질문을 넘어서 **3개월 단위 roadmap + sprint deadline 요구**까지 포함한다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: 같은 결과 페이지의 `r/ProductManagement` 2024-12-18 스니펫은 `How does your team prioritize what to build? And how do you balance business RFP needs versus building a strategic customer centric product?`를 노출한다. 즉 override pain은 단순한 특수 케이스가 아니라 **RFP / enterprise revenue asks vs strategic roadmap** 사이의 설명 가능한 trade-off 문제다.  
-  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20enterprise%20SaaS%20customers%20demand%20dates%20roadmap
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20RFP%20strategic%20roadmap%20prioritize%20what%20to%20build%20enterprise
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2025-06-17 결과는 `Product Roadmap Template for Execs and Revenue / Sales Teams`를 노출한다. 이건 단순 공유 포맷 문제가 아니라 **같은 evidence를 customer-safe view, exec/revenue-facing view, internal decision view로 다시 패키징해야 하는 운영 surface**가 남아 있다는 신호다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20roadmap%20template%20exec%20sales%20revenue%20timeline
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2023-04-28 결과는 `How to not be on every customer roadmap call? ... We do have customer facing versions of the roadmaps that they should be able ...`를 노출한다. artifact가 있어도 **반복 roadmap explanation workload**는 계속 남는다.  
   - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20ProductManagement%20%22customer%20roadmap%20call%22%20PM
-- **Yahoo Japan indexed snippet (browser-rendered, medium-high confidence)**: `r/ProductManagement` 2024-04-04 결과는 `Support should report into Product ... They've also committed to major accounts guarantees about roadmap ...`를 노출한다. 즉 support-to-product relay는 별도 아이디어가 아니라 **major-account commitment pressure를 product decision layer로 바로 연결하는 sub-module**로 보는 편이 맞다.  
-  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22support%20should%20report%20into%20product%22%20major%20accounts%20committed
+- **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/ProductManagement` 2024-04-04 결과는 `Support should report into Product ... They've also committed to major accounts guarantees about roadmap ...`를 노출한다. 즉 support-to-product relay는 별도 아이디어가 아니라 **major-account commitment pressure를 product decision layer로 바로 연결하는 sub-module**로 보는 편이 맞다.  
+  - https://search.yahoo.co.jp/search?p=site%3Areddit.com%20%22support%20should%20report%20into%20product%22%20roadmap%20major%20accounts%20guarantees
 
 ### 2) Backup — Creator Deal CRM
 - **Yahoo Japan indexed snippet (browser-rendered, high confidence)**: `r/freelance` 2021-01-15 결과는 `accounts payable department`와 `payment run`을 함께 언급한다. creator-side pain은 일반 독촉보다 **named AP owner + pay-run visibility** 쪽이 더 구조적이다.  
@@ -56,8 +58,9 @@
 - 이번 루프에서도 가장 강한 쪽은 VoC다.
 - 시장 요구가 `feedback 저장`보다 **planning translation / build-next decision / account-aware prioritization** 쪽으로 더 선명하다.
 - 최신 재확인으로 pain 범위가 더 또렷해졌다. 이제 빈 곳은 단순 prioritization이 아니라 **enterprise date pressure, internal stakeholder/exec timeline pressure, sales-sold commitments, repeated roadmap explanation workload, RFP-vs-strategy override trade-off**까지 묶어 처리하는 operating layer다.
+- 새로 확인한 `Product Roadmap Template for Execs and Revenue / Sales Teams` 신호는 같은 evidence라도 **customer-safe view / exec-revenue view / internal decision view를 따로 재패키징해야 하는 surface**가 남아 있음을 보여준다.
 - 추가로 support-to-product relay 자체도 별도 카테고리보다 **major-account commitment pressure를 decision layer에 연결하는 sub-module**로 흡수하는 편이 맞다는 신호가 보였다.
-- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + internal timeline-defense layer + support-relay sub-module + override-defense layer**다.
+- 즉 필요한 것은 shared store 이후의 **decision layer + explanation layer + commitment-pressure layer + exec/revenue roadmap pack layer + internal timeline-defense layer + support-relay sub-module + override-defense layer**다.
 
 ### 2) Creator Deal CRM
 backup pain도 여전히 선명하지만 더 좁다.
@@ -68,6 +71,6 @@ backup pain도 여전히 선명하지만 더 좁다.
 
 ## 이번 루프 판단
 - **순위 변경 없음**
-- Primary는 계속 1위지만, 이번 재확인으로 핵심 wedge가 **what-to-build-next + commitment/explanation workload + sales-sold commitment pressure + RFP-vs-strategy override defense**까지 확장돼 더 명확해졌다.
+- Primary는 계속 1위지만, 이번 재확인으로 핵심 wedge가 **what-to-build-next + commitment/explanation workload + sales-sold commitment pressure + RFP-vs-strategy override defense + exec/revenue roadmap pack**까지 확장돼 더 명확해졌다.
 - Backup은 계속 `독촉 자동화`보다 `AP owner + payment-run visibility + AP review lead time + blockage-first next step`이 맞다.
 - 다음 개발 우선순위는 계속 Primary다.

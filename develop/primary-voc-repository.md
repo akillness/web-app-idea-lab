@@ -31,6 +31,7 @@
 - bucket definition note 생성
 - ambiguity-closing answer 생성 (`when is later?`, `why not now?`)
 - stakeholder-specific explanation mode 생성 (`customer`, `sales/revenue`, `support`, `internal exec`)
+- exec / revenue-facing roadmap pack 생성
 - internal timeline-defense mode 생성 (`time-constrained roadmap`, `next 3 months`, `sprint deadline ask`)
 - commitment-overhead queue 생성
 - customer-roadmap communication queue 생성
@@ -162,6 +163,14 @@
 - linked account evidence + linked theme rationale
 - safe wording draft + editable short/long version
 - last-used answer and account reuse history
+
+### `/views/revenue-roadmap`
+- exec / revenue / sales용 roadmap summary
+- top customer/revenue pressure themes
+- safe commitment boundary note
+- override accepted / rejected / unresolved summary
+- top `why now` / `why not now` cards
+- latest customer-safe wording과 internal rationale 분리 보기
 
 ## 5. Core entities
 ### `records`
@@ -380,6 +389,13 @@
 - what stays intentionally uncommitted
 - strategy-time tax this week
 - evidence highlights
+
+### Exec / Revenue Roadmap Pack
+- top revenue/account pressure themes
+- `why now` / `why not now` 요약 카드
+- RFP / contract / sales commitment pressure summary
+- safe commitment boundary note
+- customer-safe wording과 internal rationale 분리 보기
 
 ### External Update Draft
 - now

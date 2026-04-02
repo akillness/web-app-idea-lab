@@ -49,6 +49,7 @@
 - commitment-overhead queue
 - customer-roadmap communication queue
 - sales/CS/support reusable explanation pack
+- exec / revenue-facing roadmap explanation pack
 - contract / RFP pressure trace
 - support escalation relay queue
 
