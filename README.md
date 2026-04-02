@@ -1,5 +1,61 @@
 # Web App Idea Lab
 
+[![Deploy VOC Repository](https://github.com/akillness/web-app-idea-lab/actions/workflows/deploy.yml/badge.svg)](https://github.com/akillness/web-app-idea-lab/actions/workflows/deploy.yml)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?logo=github)](https://akillness.github.io/web-app-idea-lab/)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+## VOC Repository — Live Web App
+
+> **B2B SaaS 팀을 위한 Voice-of-Customer 의사결정 시스템**
+>
+> Support / churn / feature request / commitment records를 **customer-level evidence board, 주간 의사결정 브리프, ranked build-next queue, commitment-safe update draft**로 바꿔주는 decision + explanation layer.
+
+### 🚀 Live Demo
+**[https://akillness.github.io/web-app-idea-lab/](https://akillness.github.io/web-app-idea-lab/)**
+
+### 📱 App Screens
+
+| Screen | Description |
+|--------|-------------|
+| **Dashboard** | Stats overview, strategy-tax metric, quick navigation |
+| **Records** | Customer signal records with source type & severity |
+| **Accounts** | Customer-level evidence board with ARR & risk |
+| **Themes** | Ranked theme board with why-this-jumped rationale |
+| **Briefs** | Weekly decision brief with markdown export |
+| **Build Queue** | Ranked build-next decision queue with linked evidence |
+
+### 🏗 Architecture
+
+```
+web-app-idea-lab/
+├── webapp/              # Next.js 14 web app (GitHub Pages)
+│   ├── app/
+│   │   ├── lib/sample-data.ts   # Typed VOC sample data
+│   │   ├── records/             # Signal records view
+│   │   ├── accounts/            # Customer evidence board
+│   │   ├── themes/              # Ranked theme board
+│   │   ├── briefs/              # Weekly decision brief
+│   │   └── queue/               # Build-next queue
+│   └── next.config.mjs          # Static export config
+├── src/voc_repository/  # Python CLI (existing)
+├── .github/workflows/   # CI/CD → GitHub Pages
+└── develop/             # Development plans
+```
+
+### ⚡ Local Development
+
+```bash
+cd webapp
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # Static export to /out
+```
+
+---
+
 혼란 줄이기 위해 저장소를 **3단계 산출물 구조**로 단순화했다.
 
 ## 구조
